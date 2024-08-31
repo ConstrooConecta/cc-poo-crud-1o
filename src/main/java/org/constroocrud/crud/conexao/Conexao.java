@@ -30,8 +30,10 @@ public class Conexao {
     public boolean conectar(){
         try{
             Class.forName("org.postgresql.Driver");
+
+            //IMPORTANTE INSIRA A URL, USER E PASSWORD NESSA PARTE
             conn = DriverManager.getConnection(
-                    "jdbc:postgresql://pg-2f1e730b-construconecta-7a5d.h.aivencloud.com:17532/dbConstroo","avnadmin","AVNS_-zUiwrfcxWJFeU7fv5L"
+                    "","",""
             );
             return true;
 
