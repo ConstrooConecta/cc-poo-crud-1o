@@ -133,6 +133,8 @@ public class InsertUserServlet extends HttpServlet {
             out.println("\nUsuário não é Comprador/Vendedor");
         }
 
+
+
     }
 
 }

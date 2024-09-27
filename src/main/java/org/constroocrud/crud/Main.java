@@ -13,12 +13,12 @@ public class Main {
     public static void main(String[] args) {
 
         //public Usuario(String nomeCompleto, String email, String senha, String telefoneCelular, String UF, String cidade, String bairro, String rua, int numero, String complemento) {
-//        Usuario usuario = new Usuario("Theo", "theo@gmail.com", "Theo1000a",  "(11) 99257-4545","SP", "Cotia", "Sítio", "Rua Luthero", 10, "Não tem", "02535-140");
+        Usuario usuario = new Usuario("Theaao", "theaaao@gmail.com", "Theo11000a",  "(11) 29257-4545","SP", "Cotia", "Sítio", "Rua Luthero", 10, "Não tem", "02535-140");
         Conexao conexao = new Conexao();
 //        conexao.inserirUsuario(usuario);
-//        if (conexao.inserirUsuario(usuario)){
-//            System.out.println("Profissional inserido");
-//        }
+        if (conexao.inserirUsuario(usuario)){
+            System.out.println("Profissional inserido");
+        }
 //        CompradorVendedor compradorVendedor = new CompradorVendedor("634.066.999-07",26)
 //
         ;
