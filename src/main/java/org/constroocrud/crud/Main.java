@@ -1,12 +1,10 @@
 package org.constroocrud.crud;
 
 
+import org.constroocrud.crud.DAOs.AdministradorDAO;
 import org.constroocrud.crud.DAOs.CategoriaProdutoDAO;
 import org.constroocrud.crud.conexao.Conexao;
-import org.constroocrud.crud.entidades.CategoriaProduto;
-import org.constroocrud.crud.entidades.CompradorVendedor;
-import org.constroocrud.crud.entidades.Profissional;
-import org.constroocrud.crud.entidades.Usuario;
+import org.constroocrud.crud.entidades.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -68,14 +66,16 @@ public class Main {
 
 
 //        }
-        CategoriaProdutoDAO categoriaProdutoDAO = new CategoriaProdutoDAO();
-        String name = "Categoria1";
-
-        CategoriaProduto categoriaProduto = new CategoriaProduto(name);
-        if (categoriaProdutoDAO.inserirCategoriaProduto(categoriaProduto)){
-            System.out.println("Deu certo");
-        }
-
+//        CategoriaProdutoDAO categoriaProdutoDAO = new CategoriaProdutoDAO();
+//        String name = "Categoria1";
+//
+//        CategoriaProduto categoriaProduto = new CategoriaProduto(name);
+//        if (categoriaProdutoDAO.inserirCategoriaProduto(categoriaProduto)){
+//            System.out.println("Deu certo");
+//        }
+        Administrador administrador = new Administrador("hideki","matheus.oshiro@picpay.com","linux123");
+        AdministradorDAO administradorDAO = new AdministradorDAO();
+        administradorDAO.inserirAdministrador(administrador);
 
     }
 

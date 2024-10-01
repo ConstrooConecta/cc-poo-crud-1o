@@ -67,6 +67,7 @@
 .nome-Usuario{
     font-size: 35px;
     color: #0E292F;
+    margin-right: 15px;
 
 }
 .infos-principais-usuario{
@@ -136,4 +137,6 @@
     flex-direction: row;
     justify-content: space-between;
 }
-
+p{
+    font-size: 20px;
+}

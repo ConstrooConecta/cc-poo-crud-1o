@@ -3,7 +3,8 @@
 <%@ page import="org.constroocrud.crud.conexao.Conexao" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="org.constroocrud.crud.entidades.CategoriaProduto" %>
-<%@ page import="org.constroocrud.crud.DAOs.CategoriaProdutoDAO" %><%--
+<%@ page import="org.constroocrud.crud.DAOs.CategoriaProdutoDAO" %>
+<%@ page import="org.constroocrud.crud.DAOs.AdministradorDAO" %><%--
   Created by IntelliJ IDEA.
   User: matheusueno-ieg
   Date: 23/08/2024
@@ -15,7 +16,7 @@
 <head>
 
     <%-- recebe o css --%>.
-    <link rel="stylesheet" href="listagemCategoriaProduto.css">
+    <link rel="stylesheet" href="listagemAdministradores.css">
 
     <title>CRUD</title>
         <%-- NAVBAR --%>.
@@ -40,12 +41,12 @@
         </a>
     </div>
     <div id="div-crud-usuario">
-        <h1 id="usuarios-titulo">Categoria Produto</h1>
+        <h1 id="usuarios-titulo">Administração</h1>
 
         <div id="right-options-crud">
 
         <%--Acesso ao cadastro de um usuario--%>
-            <form id="form-usuario-criar" action="cadastrarCategoriaProduto.html">
+            <form id="form-usuario-criar" action="cadastrarAdministrador.html">
                 <button id="button-criar">Criar</button>
                 <input type="text">
                 <input type="submit" value="pesquisar">
@@ -54,15 +55,8 @@
 
     </div>
         <%-- fiz um sistemas de :target para dividir a seçao de profissionais e compradores/vendedores--%>.
-    <div id="tipos-usuario" >
-        <a href="#secao_CategoriaProduto">
-            Categoria Produto
-        </a>
-        <a href="#">
-            Tag Serviços
-        </a>
-    </div>
-    <div id="secao_CategoriaProduto">
+
+    <div >
 
         <%--Esta é a seçao de compradores vendedores
 
@@ -73,9 +67,10 @@
         --%>
         <%
             Conexao conexao = new Conexao();
-            CategoriaProdutoDAO categoriaProdutoDAO = new CategoriaProdutoDAO();
+            AdministradorDAO administradorDAO = new AdministradorDAO();
 
-            ResultSet resultSet =categoriaProdutoDAO.buscarCategoriaProduto();
+
+            ResultSet resultSet =administradorDAO.buscarAdministrador();
             try {
                 while (resultSet.next()){
         %>
@@ -87,14 +82,15 @@
 
 
                     <h1 class="nome-Usuario"><%= resultSet.getString("nome")%></h1>
-                    <p>ID: <%= resultSet.getInt("id")%></p>
+                    <p ><%= resultSet.getString("email")%></p>
+
                 </div>
 
                 <div class="deletar-alterar">
 
                     <%--Este form post é para fazer o acesso ao servlet de deletar users que tem um input escondido que recebe o id do comprador vendedor--%>
-                    <form action="DeletarCategoriaProdutoServlet" method="post">
-                        <input type="hidden" name="categoria_id" value=<%=resultSet.getInt("id")%>>
+                    <form action="DeletarAdministradorServlet" method="post">
+                        <input type="hidden" name="administrador_id" value=<%=resultSet.getInt("id")%>>
                         <button type="submit" class="button-deletar-alterar">Deletar</button>
                     </form>
 
