@@ -1,0 +1,142 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+#navbar-line{
+    height: 30px;
+    width: 100%;
+    background-color: #0E292F;
+}
+#navbar{
+    display: flex;
+    flex-direction:column;
+}
+#navbar-Constroo{
+
+    font-size: 30px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    font-family: "Arial Black";
+    color: #0E292F;
+
+}
+#div-entidades{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    color: #0E292F;
+    font-size: 15px;
+
+}
+#div-crud-usuario{
+    margin-top: 30px;
+    margin-left:20px;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+#right-options-crud{
+    flex-direction: row;
+    width: 300px;
+    padding-right: 20px;
+}
+#button-criar{
+    width: 50px;
+}
+#form-usuario-criar{
+    flex-direction: row;
+    width: 300px;
+}
+.Usuario{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 50px;
+
+    width: 90%;
+    border: #867151, 2px, solid;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #F0F0F0;
+}
+.nome-Usuario{
+    font-size: 35px;
+    color: #0E292F;
+    margin-right: 15px;
+
+}
+.infos-principais-usuario{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 350px;
+    margin-left: 50px;
+
+}
+.deletar-alterar{
+    display: flex;
+    flex-direction: column;
+    margin-right: 50px;
+}
+.button-deletar-alterar{
+    background-color: #867151;
+    width: 80px;
+    height: 30px;
+    color: white;
+    margin-top: 20px;
+}
+.top-usuario-infos{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+
+}
+
+.infos-texto{
+    font-weight: bold;
+
+}
+.bottom-usuario-infos{
+    display: flex;
+    flex-direction: row;
+    margin-left: 50px;
+    width: 700px;
+    height: 200px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.endereco{
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    justify-content: space-between;
+
+
+}
+.endereco-infos{
+    display: flex;
+    flex-direction: row;
+    width: 400px;
+    justify-content: space-between;
+}
+.info-end{
+    display: flex;
+    flex-direction: column;
+}
+
+#tipos-usuario{
+    margin-left: 20px;
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+p{
+    font-size: 20px;
+}
