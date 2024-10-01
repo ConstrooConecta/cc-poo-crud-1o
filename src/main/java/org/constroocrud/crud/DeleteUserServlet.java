@@ -57,5 +57,7 @@ public class DeleteUserServlet extends HttpServlet {
         rd = getServletContext().getRequestDispatcher("/listagemUsuarios.jsp");
         rd.include(req, resp);
 
+
+
     }
 }

@@ -1,8 +1,6 @@
-package org.constroocrud.crud.daos;
+package org.constroocrud.crud.DAOs;
 
-import org.constroocrud.crud.conexao.Conexao;
 import org.constroocrud.crud.entidades.CategoriaProduto;
-import org.constroocrud.crud.entidades.Usuario;
 
 import java.sql.*;
 
@@ -57,10 +55,10 @@ public class CategoriaProdutoDAO {
         try {
 
             //faz o comando SQL
-            pstmt = conn.prepareStatement("INSERT INTO usuario(name,) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            pstmt = conn.prepareStatement("INSERT INTO categoria_produto(nome) VALUES ( ?)");
 
-            //Coloca como parametro cada atributo do objeto Usuario por meio dos getters
-
+            //Coloca como parametro cada atributo do objeto CategoriaProduto por meio dos getters
+            pstmt.setString(1, categoriaProduto.getNome());
 
             pstmt.execute();
 
@@ -76,5 +74,76 @@ public class CategoriaProdutoDAO {
         }
 
 
+    }
+
+    public ResultSet buscarCategoriaProduto(){
+        try {
+            conectar();
+            String query = "Select * from categoria_produto";
+            pstmt = conn.prepareStatement(query);
+            rs = pstmt.executeQuery();
+            return rs;
+
+
+        }catch (SQLException sqlException){
+            sqlException.printStackTrace();
+            return rs;
+
+        }
+
+
+    }
+
+    public ResultSet buscarCategoriaProdutoPeloID(int id){
+        try {
+            conectar();
+            String query = "Select * from categoria_produto where ? = id";
+
+            pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1,id);
+            rs = pstmt.executeQuery();
+            return rs;
+
+
+        }catch (SQLException sqlException){
+            sqlException.printStackTrace();
+            return rs;
+
+        }
+
+
+    }
+    public boolean removerCategoriaProduto(int id){
+
+
+        boolean possuiRegistros = true;
+
+        try {
+            conectar();
+
+            //Verifica se existe um comprador e vendedor nesse ID e atribui ao boolean possuiRegistros
+            ResultSet resultSet = buscarCategoriaProdutoPeloID(id);
+            if (!resultSet.next()){
+
+                possuiRegistros = false;
+            }else {
+
+                possuiRegistros = true;
+            }
+
+            //executa a query
+            String remover = "DELETE FROM categoria_produto WHERE id = ?";
+            pstmt = conn.prepareStatement(remover);
+
+            pstmt.setInt(1, id);
+            pstmt.execute();
+
+
+
+            return possuiRegistros;
+        }catch (SQLException sqlException){
+            sqlException.printStackTrace();
+            return false;
+        }
     }
 }

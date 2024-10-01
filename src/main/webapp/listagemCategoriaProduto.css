@@ -136,10 +136,10 @@
     flex-direction: row;
     justify-content: space-between;
 }
-#secao_compradorvendedor{
+#secao_CategoriaProduto{
     display: none;
 }
-#secao_compradorvendedor:target{
+#secao_CategoriaProduto:target{
     display: block;
 }
 #secao_profissional{

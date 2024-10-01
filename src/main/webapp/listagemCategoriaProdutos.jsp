@@ -1,7 +1,9 @@
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="org.constroocrud.crud.entidades.Usuario" %>
 <%@ page import="org.constroocrud.crud.conexao.Conexao" %>
-<%@ page import="java.sql.SQLException" %><%--
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="org.constroocrud.crud.entidades.CategoriaProduto" %>
+<%@ page import="org.constroocrud.crud.DAOs.CategoriaProdutoDAO" %><%--
   Created by IntelliJ IDEA.
   User: matheusueno-ieg
   Date: 23/08/2024
@@ -28,22 +30,22 @@
 
     <div id="div-entidades">
         <a>
-            Usuários
+            Categorias/Tags
         </a>
         <a>
-            Produtos
+            Administração
         </a>
         <a>
-            Serviços
+            Planos
         </a>
     </div>
     <div id="div-crud-usuario">
-        <h1 id="usuarios-titulo">Usuários</h1>
+        <h1 id="usuarios-titulo">Categoria Produto</h1>
 
         <div id="right-options-crud">
 
         <%--Acesso ao cadastro de um usuario--%>
-            <form id="form-usuario-criar" action="cadastrarUsuario.html">
+            <form id="form-usuario-criar" action="cadastrarCategoriaProduto.html">
                 <button id="button-criar">Criar</button>
                 <input type="text">
                 <input type="submit" value="pesquisar">
@@ -53,14 +55,14 @@
     </div>
         <%-- fiz um sistemas de :target para dividir a seçao de profissionais e compradores/vendedores--%>.
     <div id="tipos-usuario" >
-        <a href="#secao_profissional">
-            Profissional
+        <a href="#secao_CategoriaProduto">
+            Categoria Produto
         </a>
-        <a href="#secao_compradorvendedor">
-            Comprador/Vendedor
+        <a href="#">
+            Tag Serviços
         </a>
     </div>
-    <div id="secao_compradorvendedor">
+    <div id="secao_CategoriaProduto">
 
         <%--Esta é a seçao de compradores vendedores
 
@@ -71,7 +73,9 @@
         --%>
         <%
             Conexao conexao = new Conexao();
-            ResultSet resultSet = conexao.buscarCompradorVendedor();
+            CategoriaProdutoDAO categoriaProdutoDAO = new CategoriaProdutoDAO();
+
+            ResultSet resultSet =categoriaProdutoDAO.buscarCategoriaProduto();
             try {
                 while (resultSet.next()){
         %>
@@ -82,15 +86,15 @@
                 <div class="infos-principais-usuario">
 
 
-                    <h1 class="nome-Usuario"><%= resultSet.getString("nome_completo")%></h1>
-                    <h3 class="tipo">Comprador/Vendedor</h3>
+                    <h1 class="nome-Usuario"><%= resultSet.getString("nome")%></h1>
+                    <p>ID: <%= resultSet.getInt("id")%></p>
                 </div>
 
                 <div class="deletar-alterar">
 
                     <%--Este form post é para fazer o acesso ao servlet de deletar users que tem um input escondido que recebe o id do comprador vendedor--%>
-                    <form action="DeletarUsuarioServlet" method="post">
-                        <input type="hidden" name="id_compradorvendedor" value=<%=resultSet.getInt("CompradorVendedor_id")%>>
+                    <form action="DeletarCategoriaProdutoServlet" method="post">
+                        <input type="hidden" name="categoria_id" value=<%=resultSet.getInt("id")%>>
                         <button type="submit" class="button-deletar-alterar">Deletar</button>
                     </form>
 
@@ -98,33 +102,7 @@
                 </div>
 
             </div>
-            <div class="bottom-usuario-infos">
-                <div class="infos-contato">
-                    <p class="infos-texto">Informações pessoais</p>
-                    <p class="infos-texto">Telefone: </p><span class="info_span"><%= resultSet.getString("telefone_celular")%></span>
-                    <p class="infos-texto">E-mail: </p><span class="info_span"><%= resultSet.getString("email")%></span>
-                    <p class="infos-texto">CPF: </p><span class="info_span"><%= resultSet.getString("cpf")%></span>
-                </div>
-                <div class="endereco">
-                    <p class="infos-texto">Endereço</p>
-                    <div class="endereco-infos">
 
-                        <div class="info-end">
-                            <p class="infos-texto">CEP</p><span class="info_span"><%= resultSet.getString("cep")%></span>
-                            <p class="infos-texto">UF</p><span class="info_span"><%= resultSet.getString("uf")%></span>
-                            <p class="infos-texto">Cidade</p><span class="info_span"><%= resultSet.getString("cidade")%></span>
-                            <p class="infos-texto">Bairro</p><span class="info_span"><%= resultSet.getString("bairro")%></span>
-
-                        </div>
-                        <div class="info-end">
-                            <p class="infos-texto">Rua</p><span class="info_span"><%= resultSet.getString("rua")%></span>
-                            <p class="infos-texto">Numero</p><span class="info_span"><%= resultSet.getInt("numero")%></span>
-                            <p class="infos-texto">Complemento</p><span class="info_span"><%= resultSet.getString("complemento")%></span>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
 
 
 
@@ -144,80 +122,7 @@
             }
         %>
     </div>
-    <%-- o mesmo se repete aqui--%>
 
-    <div id="secao_profissional">
-        <%
-        resultSet = conexao.buscarProfissionais();
-        try {
-            while (resultSet.next()){
-
-    %>
-        <div class="Usuario">
-            <div class="top-usuario-infos">
-                <div class="infos-principais-usuario">
-                    <h1 class="nome-Usuario"><%= resultSet.getString("nome_completo")%></h1>
-                    <h3 class="tipo">Profissional</h3>
-                </div>
-
-                <div class="deletar-alterar">
-                    <form action="DeletarUsuarioServlet" method="post">
-                        <input type="hidden" name="id_compradorvendedor" value=<%=resultSet.getInt("profissional_id")%>>
-                        <button type="submit" class="button-deletar-alterar">Deletar</button>
-                    </form>
-                    <button class="button-deletar-alterar">Alterar</button>
-                </div>
-
-            </div>
-            <div class="bottom-usuario-infos">
-                <div class="infos-contato">
-                    <p class="infos-texto">Informações pessoais</p>
-                    <p class="infos-texto">Telefone: </p><span class="info_span"><%= resultSet.getString("telefone_celular")%></span>
-                    <p class="infos-texto">E-mail: </p><span class="info_span"><%= resultSet.getString("email")%></span>
-                    <p class="infos-texto">CPF: </p><span class="info_span"><%= resultSet.getString("cpf")%></span>
-                </div>
-                <div class="endereco">
-                    <p class="infos-texto">Endereço</p>
-                    <div class="endereco-infos">
-
-                        <div class="info-end">
-                            <p class="infos-texto">CEP</p><span class="info_span"><%= resultSet.getString("CEP")%></span>
-                            <p class="infos-texto">UF</p><span class="info_span"><%= resultSet.getString("uf")%></span>
-                            <p class="infos-texto">Cidade</p><span class="info_span"><%= resultSet.getString("cidade")%></span>
-                            <p class="infos-texto">Bairro</p><span class="info_span"><%= resultSet.getString("bairro")%></span>
-
-                        </div>
-                        <div class="info-end">
-
-                            <p class="infos-texto">Rua</p><span class="info_span"><%= resultSet.getString("rua")%></span>
-                            <p class="infos-texto">Numero</p><span class="info_span"><%= resultSet.getInt("numero")%></span>
-                            <p class="infos-texto">Complemento</p><span class="info_span"><%= resultSet.getString("complemento")%></span>
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-        </div>
-
-
-
-
-        <%
-
-
-                }
-            }catch (SQLException sqlException){
-                sqlException.printStackTrace();
-
-            }
-        %>
-
-    </div>
 
 
 </head>
