@@ -31,14 +31,13 @@ public class Conexao {
         try{
             Class.forName("org.postgresql.Driver");
 
+            String dbUrl = System.getenv("CC_URL");
+            String dbUser = System.getenv("CC_USER");
+            String dbPassword = System.getenv("CC_PASSWORD");
 
-            conn = DriverManager.getConnection(
-                    "jdbc:postgresql://pg-2f1e730b-construconecta-7a5d.h.aivencloud.com:17532/dbConstroo","avnadmin","AVNS_-zUiwrfcxWJFeU7fv5L"
-            );
+            conn = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+
             return true;
-
-
-
 
         }catch (SQLException sqlException ){
             sqlException.printStackTrace();
@@ -58,8 +57,6 @@ public class Conexao {
     //Metodo que recebe como parametro um usuario ja instanciado e insere ele no banco de dados
 
     public boolean inserirUsuario(Usuario usuario){
-
-
         conectar();
         try {
 

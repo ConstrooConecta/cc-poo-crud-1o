@@ -1,10 +1,10 @@
 package org.constroocrud.crud;
 
 
+import org.constroocrud.crud.DAOs.AdministradorDAO;
+import org.constroocrud.crud.DAOs.CategoriaProdutoDAO;
 import org.constroocrud.crud.conexao.Conexao;
-import org.constroocrud.crud.entidades.CompradorVendedor;
-import org.constroocrud.crud.entidades.Profissional;
-import org.constroocrud.crud.entidades.Usuario;
+import org.constroocrud.crud.entidades.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,33 +13,33 @@ public class Main {
     public static void main(String[] args) {
 
         //public Usuario(String nomeCompleto, String email, String senha, String telefoneCelular, String UF, String cidade, String bairro, String rua, int numero, String complemento) {
-//        Usuario usuario = new Usuario("Theo", "theo@gmail.com", "Theo1000a",  "(11) 99257-4545","SP", "Cotia", "Sítio", "Rua Luthero", 10, "Não tem", "02535-140");
-        Conexao conexao = new Conexao();
-//        conexao.inserirUsuario(usuario);
+//        Usuario usuario = new Usuario("Theaao", "theaaao@gmail.com", "Theo11000a",  "(11) 29257-4545","SP", "Cotia", "Sítio", "Rua Luthero", 10, "Não tem", "02535-140");
+//        Conexao conexao = new Conexao();
+////        conexao.inserirUsuario(usuario);
 //        if (conexao.inserirUsuario(usuario)){
 //            System.out.println("Profissional inserido");
 //        }
-//        CompradorVendedor compradorVendedor = new CompradorVendedor("634.066.999-07",26)
+////        CompradorVendedor compradorVendedor = new CompradorVendedor("634.066.999-07",26)
+////
+//        ;
+////        Profissional profissional = new Profissional("602.066.628-07", 11 );
+////        conexao.inserirProfssional(profissional);
+////        if(conexao.inserirCompradorVendedor(compradorVendedor)){
+////            System.out.println("Inseriu");
+////        }
+////        System.out.println(conexao.removerCompradorVendedor(9));
 //
-        ;
-//        Profissional profissional = new Profissional("602.066.628-07", 11 );
-//        conexao.inserirProfssional(profissional);
-//        if(conexao.inserirCompradorVendedor(compradorVendedor)){
-//            System.out.println("Inseriu");
+//
+////        if (conexao.inserirCompradorVendedor(compradorVendedor)){
+////            System.out.println("Profissional inserido");
+////        }
+//        if ( conexao.removerUsuario(26)){
+//            System.out.println("Usuario removido");
+//
+//        }else {
+//            System.out.println("ERRO");
 //        }
-//        System.out.println(conexao.removerCompradorVendedor(9));
-
-
-//        if (conexao.inserirCompradorVendedor(compradorVendedor)){
-//            System.out.println("Profissional inserido");
-//        }
-        if ( conexao.removerUsuario(26)){
-            System.out.println("Usuario removido");
-
-        }else {
-            System.out.println("ERRO");
-        }
-
+//
 
 //        try {
 //            ResultSet resultSet = conexao.buscarProfissionais();
@@ -63,7 +63,20 @@ public class Main {
 //            System.out.println("usuario inserido");
 //        }else {
 //            System.out.println("usuario não inserido");
+
+
 //        }
+//        CategoriaProdutoDAO categoriaProdutoDAO = new CategoriaProdutoDAO();
+//        String name = "Categoria1";
+//
+//        CategoriaProduto categoriaProduto = new CategoriaProduto(name);
+//        if (categoriaProdutoDAO.inserirCategoriaProduto(categoriaProduto)){
+//            System.out.println("Deu certo");
+//        }
+        Administrador administrador = new Administrador("hideki","matheus.oshiro@picpay.com","linux123");
+        AdministradorDAO administradorDAO = new AdministradorDAO();
+        administradorDAO.inserirAdministrador(administrador);
+
     }
 
 
