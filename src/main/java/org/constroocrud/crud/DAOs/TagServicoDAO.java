@@ -1,10 +1,11 @@
 package org.constroocrud.crud.DAOs;
 
-import org.constroocrud.crud.entidades.Administrador;
+import org.constroocrud.crud.entidades.CategoriaProduto;
+import org.constroocrud.crud.entidades.TagServico;
 
 import java.sql.*;
 
-public class AdministradorDAO {
+public class TagServicoDAO {
     private Connection conn;
     private PreparedStatement pstmt;
     private ResultSet rs;
@@ -48,19 +49,15 @@ public class AdministradorDAO {
 
 
     }
-
-
-    public boolean inserirAdministrador(Administrador administrador){
+    public boolean inserirTagServico(TagServico tagServico){
         conectar();
         try {
 
             //faz o comando SQL
-            pstmt = conn.prepareStatement("INSERT INTO administrador(nome,email,senha) VALUES ( ?,?,?)");
+            pstmt = conn.prepareStatement("INSERT INTO tag_servico (nome) VALUES ( ?)");
 
             //Coloca como parametro cada atributo do objeto CategoriaProduto por meio dos getters
-            pstmt.setString(1, administrador.getNome());
-            pstmt.setString(2, administrador.getEmail());
-            pstmt.setString(3, administrador.getSenha());
+            pstmt.setString(1, tagServico.getNome());
 
 
             pstmt.execute();
@@ -79,10 +76,10 @@ public class AdministradorDAO {
 
     }
 
-    public ResultSet buscarAdministrador(){
+    public ResultSet buscarTagServico(){
         try {
             conectar();
-            String query = "Select * from administrador";
+            String query = "Select * from tag_servico";
             pstmt = conn.prepareStatement(query);
             rs = pstmt.executeQuery();
             return rs;
@@ -97,10 +94,10 @@ public class AdministradorDAO {
 
     }
 
-    public ResultSet buscarAdministradorPeloID(int id){
+    public ResultSet buscarTagServicoPeloID(int id){
         try {
             conectar();
-            String query = "Select * from administrador where ? = id";
+            String query = "Select * from tag_servico where ? = id";
 
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1,id);
@@ -117,26 +114,8 @@ public class AdministradorDAO {
 
     }
 
-    public ResultSet buscarAdministradorPeloEmail(String email){
-        try {
-            conectar();
-            String query = "Select * from administrador where ? = email";
 
-            pstmt = conn.prepareStatement(query);
-            pstmt.setString(1,email);
-            rs = pstmt.executeQuery();
-            return rs;
-
-
-        }catch (SQLException sqlException){
-            sqlException.printStackTrace();
-            return rs;
-
-        }
-
-
-    }
-    public boolean removerAdministrador(int id){
+    public boolean removerTagServicoPeloID(int id){
 
 
         boolean possuiRegistros = true;
@@ -145,7 +124,7 @@ public class AdministradorDAO {
             conectar();
 
             //Verifica se existe um comprador e vendedor nesse ID e atribui ao boolean possuiRegistros
-            ResultSet resultSet = buscarAdministradorPeloID(id);
+            ResultSet resultSet = buscarTagServicoPeloID(id);
             if (!resultSet.next()){
 
                 possuiRegistros = false;
@@ -155,7 +134,7 @@ public class AdministradorDAO {
             }
 
             //executa a query
-            String remover = "DELETE FROM administrador WHERE id = ?";
+            String remover = "DELETE FROM tag_servico WHERE id = ?";
             pstmt = conn.prepareStatement(remover);
 
             pstmt.setInt(1, id);
@@ -168,20 +147,5 @@ public class AdministradorDAO {
             sqlException.printStackTrace();
             return false;
         }
-    }
-    public String buscaSenhaPorEmail(String email){
-
-        AdministradorDAO administradorDAO = new AdministradorDAO();
-        ResultSet resultSet = administradorDAO.buscarAdministradorPeloEmail(email);
-        try {
-            while (resultSet.next()){
-                return resultSet.getString("senha");
-
-            }
-        }catch (SQLException sqlException){
-            return null;
-
-        }
-        return null;
     }
 }
