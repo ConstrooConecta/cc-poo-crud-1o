@@ -75,7 +75,18 @@ public class Main {
 //        }
         Administrador administrador = new Administrador("hideki","matheus.oshiro@picpay.com","linux123");
         AdministradorDAO administradorDAO = new AdministradorDAO();
-        administradorDAO.inserirAdministrador(administrador);
+        ResultSet resultSet = administradorDAO.buscarAdministradorPeloEmail("matheus.ueno@germinare.org.br");
+        try {
+            while (resultSet.next()){
+                System.out.println(resultSet.getString("senha"));
+
+            }
+        }catch (SQLException sqlException){
+
+        }
+
+
+
 
     }
 
