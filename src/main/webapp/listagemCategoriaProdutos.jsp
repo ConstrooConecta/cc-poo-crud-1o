@@ -72,7 +72,7 @@
         Coloquei tudo dentro e dentro e dentro de divs para fazer a estilização no CSS
         --%>
         <%
-            Conexao conexao = new Conexao();
+
             CategoriaProdutoDAO categoriaProdutoDAO = new CategoriaProdutoDAO();
 
             ResultSet resultSet =categoriaProdutoDAO.buscarCategoriaProduto();
