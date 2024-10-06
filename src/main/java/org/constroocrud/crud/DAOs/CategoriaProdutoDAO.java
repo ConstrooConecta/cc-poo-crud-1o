@@ -1,5 +1,6 @@
 package org.constroocrud.crud.DAOs;
 
+import org.constroocrud.crud.entidades.Administrador;
 import org.constroocrud.crud.entidades.CategoriaProduto;
 
 import java.sql.*;
@@ -55,10 +56,11 @@ public class CategoriaProdutoDAO {
         try {
 
             //faz o comando SQL
-            pstmt = conn.prepareStatement("INSERT INTO categoria_produto(nome) VALUES ( ?)");
+            pstmt = conn.prepareStatement("INSERT INTO categoria_produto(nome, descricao) VALUES (?, ?)");
 
             //Coloca como parametro cada atributo do objeto CategoriaProduto por meio dos getters
             pstmt.setString(1, categoriaProduto.getNome());
+            pstmt.setString(2, categoriaProduto.getDescricao());
 
             pstmt.execute();
 
@@ -144,6 +146,30 @@ public class CategoriaProdutoDAO {
 
             return possuiRegistros;
         }catch (SQLException sqlException){
+            sqlException.printStackTrace();
+            return false;
+        }
+    }
+    public boolean alterarCategoriaProduto(int id, CategoriaProduto categoriaProduto) {
+        conectar();
+        try {
+            // Prepare a single statement with placeholders for all columns
+            pstmt = conn.prepareStatement("UPDATE categoria_produto SET nome = ?, descricao = ? WHERE id = ?");
+
+            // Set parameters without quotation marks
+            pstmt.setString(1, categoriaProduto.getNome());
+            pstmt.setString(2, categoriaProduto.getDescricao());
+
+            pstmt.setInt(3, id);
+
+            pstmt.execute();
+
+            // No need for separate statements for each column update
+            // ...
+
+            return true;
+
+        } catch (SQLException sqlException) {
             sqlException.printStackTrace();
             return false;
         }

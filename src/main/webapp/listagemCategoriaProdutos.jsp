@@ -29,13 +29,14 @@
          ex: ListagensProdutos.jsp--%>.
 
     <div id="div-entidades">
-        <a>
+        <a href="#">
             Categorias/Tags
         </a>
-        <a>
+        <a href="listagemAdministradores.jsp">
             Administração
+
         </a>
-        <a>
+        <a href="#">
             Planos
         </a>
     </div>
@@ -55,10 +56,10 @@
     </div>
         <%-- fiz um sistemas de :target para dividir a seçao de profissionais e compradores/vendedores--%>.
     <div id="tipos-usuario" >
-        <a href="#secao_CategoriaProduto">
+        <a href="#">
             Categoria Produto
         </a>
-        <a href="#">
+        <a href="listagemTagServico.jsp">
             Tag Serviços
         </a>
     </div>
@@ -89,6 +90,7 @@
                     <h1 class="nome-Usuario"><%= resultSet.getString("nome")%></h1>
                     <p>ID: <%= resultSet.getInt("id")%></p>
                 </div>
+                <p><%= resultSet.getString("descricao")%></p>
 
                 <div class="deletar-alterar">
 
@@ -97,8 +99,12 @@
                         <input type="hidden" name="categoria_id" value=<%=resultSet.getInt("id")%>>
                         <button type="submit" class="button-deletar-alterar">Deletar</button>
                     </form>
+                    <form action="DirecionarCategoriaProdutoAlterarServlet" method="post">
+                         <input type="hidden" name="categoria_id" value=<%=resultSet.getInt("id")%>>
+                         <button type="submit" class="button-deletar-alterar">Alterar</button>
+                    </form>
 
-                    <button class="button-deletar-alterar">Alterar</button>
+
                 </div>
 
             </div>

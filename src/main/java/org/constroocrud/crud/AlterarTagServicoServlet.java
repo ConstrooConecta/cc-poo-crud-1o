@@ -14,28 +14,28 @@ import org.constroocrud.crud.entidades.TagServico;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "InsertTagServicoServlet", value = "/InserirTagServicoServlet")
-public class InsertTagServicoServlet extends HttpServlet {
-
+@WebServlet(name = "AlterarTagServicoServlet", value = "/AlterarTagServicoServlet")
+public class AlterarTagServicoServlet extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-
-
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
-
         PrintWriter out = resp.getWriter();
-        TagServicoDAO tagServicoDAO = new TagServicoDAO();
+
+        //Recebe o id da entidade comprador/vendedor ou Profissional
+
+        String str_id = req.getParameter("id");
+        int id = Integer.parseInt(str_id);
+        out.println(str_id);
 
         String name = req.getParameter("nome");
         String descricao = req.getParameter("descricao");
 
-        TagServico tagServico = new TagServico(name,descricao);
-        if (tagServicoDAO.inserirTagServico(tagServico)){
-            System.out.println("DEUU");
-        }
 
-        //Voce é direcionado para a listagem de usuarios!
+        TagServicoDAO tagServicoDAO = new TagServicoDAO();
+        TagServico tagServico = new TagServico(name,descricao);
+
+        out.println(tagServicoDAO.alterarTagServico(id, tagServico));
+
         RequestDispatcher rd;
         rd = getServletContext().getRequestDispatcher("/listagemTagServico.jsp");
         rd.include(req, resp);
@@ -43,5 +43,7 @@ public class InsertTagServicoServlet extends HttpServlet {
 
 
 
+
     }
+
 }

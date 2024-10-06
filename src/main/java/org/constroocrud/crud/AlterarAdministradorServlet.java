@@ -7,42 +7,41 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.constroocrud.crud.DAOs.AdministradorDAO;
-import org.constroocrud.crud.DAOs.CategoriaProdutoDAO;
 import org.constroocrud.crud.entidades.Administrador;
-import org.constroocrud.crud.entidades.CategoriaProduto;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
-
-@WebServlet(name = "InsertAdministradorServlet", value = "/InserirAdministradorServlet")
-public class InsertAdministradorServlet extends HttpServlet {
-
+@WebServlet(name = "AlterarCategoriaProdutoServlet", value = "/AlterarCategoriaProdutoServlet")
+public class AlterarAdministradorServlet extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
 
+        //Recebe o id da entidade comprador/vendedor ou Profissional
 
-        AdministradorDAO administradorDAO = new AdministradorDAO();
+        String str_id = req.getParameter("id");
+        int id = Integer.parseInt(str_id);
+        out.println(str_id);
 
         String name = req.getParameter("nome");
         String email = req.getParameter("email");
         String senha = req.getParameter("senha");
 
         Administrador administrador = new Administrador(name, email, senha);
-        if (administradorDAO.inserirAdministrador(administrador)){
+        AdministradorDAO administradorDAO = new AdministradorDAO();
 
-            System.out.println("DEUU");
-        }
+        out.println(administradorDAO.alterarAdministrador(id,administrador));
 
-        //Voce é direcionado para a listagem de usuarios!
         RequestDispatcher rd;
         rd = getServletContext().getRequestDispatcher("/listagemAdministradores.jsp");
         rd.include(req, resp);
 
 
 
+
+
     }
+
 }

@@ -74,7 +74,9 @@ public class Main {
 //            System.out.println("Deu certo");
 //        }
 
-
+        CategoriaProdutoDAO categoriaProdutoDAO = new CategoriaProdutoDAO();
+        CategoriaProduto categoriaProduto = new CategoriaProduto("Categoria", "Descricao");
+        categoriaProdutoDAO.inserirCategoriaProduto(categoriaProduto);
 
 
     }
