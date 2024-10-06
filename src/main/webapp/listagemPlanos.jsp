@@ -4,8 +4,7 @@
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="org.constroocrud.crud.entidades.CategoriaProduto" %>
 <%@ page import="org.constroocrud.crud.DAOs.CategoriaProdutoDAO" %>
-<%@ page import="org.constroocrud.crud.entidades.TagServico" %>
-<%@ page import="org.constroocrud.crud.DAOs.TagServicoDAO" %><%--
+<%@ page import="org.constroocrud.crud.DAOs.PlanoDAO" %><%--
   Created by IntelliJ IDEA.
   User: matheusueno-ieg
   Date: 23/08/2024
@@ -36,18 +35,19 @@
         </a>
         <a href="listagemAdministradores.jsp">
             Administração
+
         </a>
-        <a href="listagemPlanos.jsp">
+        <a href="#">
             Planos
         </a>
     </div>
     <div id="div-crud-usuario">
-        <h1 id="usuarios-titulo">Tag Serviço</h1>
+        <h1 id="usuarios-titulo">Planos</h1>
 
         <div id="right-options-crud">
 
         <%--Acesso ao cadastro de um usuario--%>
-            <form id="form-usuario-criar" action="cadastrarTagServico.html">
+            <form id="form-usuario-criar" action="cadastrarCategoriaProduto.html">
                 <button id="button-criar">Criar</button>
                 <input type="text">
                 <input type="submit" value="pesquisar">
@@ -57,10 +57,10 @@
     </div>
         <%-- fiz um sistemas de :target para dividir a seçao de profissionais e compradores/vendedores--%>.
     <div id="tipos-usuario" >
-        <a href="listagemCategoriaProdutos.jsp">
+        <a href="#">
             Categoria Produto
         </a>
-        <a href="#">
+        <a href="listagemTagServico.jsp">
             Tag Serviços
         </a>
     </div>
@@ -74,11 +74,10 @@
         Coloquei tudo dentro e dentro e dentro de divs para fazer a estilização no CSS
         --%>
         <%
-            Conexao conexao = new Conexao();
-            TagServicoDAO tagServicoDAO = new TagServicoDAO();
 
-            ResultSet resultSet = tagServicoDAO.buscarTagServico();
+            PlanoDAO planoDAO = new PlanoDAO();
 
+            ResultSet resultSet = planoDAO.buscarPlanos();
             try {
                 while (resultSet.next()){
         %>
@@ -89,24 +88,20 @@
                 <div class="infos-principais-usuario">
 
 
-                    <h1 class="nome-Usuario"><%= resultSet.getString("nome")%></h1>
+                    <h1 class="nome-Usuario"><%= resultSet.getString("tipo_plano")%></h1>
                     <p>ID: <%= resultSet.getInt("id")%></p>
                 </div>
-                <p><%= resultSet.getString("descricao")%></p>
+                <p><%= resultSet.getInt("descricao")%></p>>
 
                 <div class="deletar-alterar">
 
                     <%--Este form post é para fazer o acesso ao servlet de deletar users que tem um input escondido que recebe o id do comprador vendedor--%>
-                    <form action="DeletarTagServicoServlet" method="post">
-                        <input type="hidden" name="tag_id" value=<%=resultSet.getInt("id")%>>
+                    <form action="DeletarCategoriaProdutoServlet" method="post">
+                        <input type="hidden" name="categoria_id" value=<%=resultSet.getInt("id")%>>
                         <button type="submit" class="button-deletar-alterar">Deletar</button>
                     </form>
-                    <form action="DirecionarTagServicoServlet" method="post">
-                        <input type="hidden" name="tag_id" value=<%=resultSet.getInt("id")%>>
-                        <button type="submit" class="button-deletar-alterar">Alterar</button>
-                    </form>
 
-
+                    <button class="button-deletar-alterar">Alterar</button>
                 </div>
 
             </div>

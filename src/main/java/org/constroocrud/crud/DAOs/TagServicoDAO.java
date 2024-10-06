@@ -54,10 +54,11 @@ public class TagServicoDAO {
         try {
 
             //faz o comando SQL
-            pstmt = conn.prepareStatement("INSERT INTO tag_servico (nome) VALUES ( ?)");
+            pstmt = conn.prepareStatement("INSERT INTO tag_servico (nome, descricao) VALUES (?, ?)");
 
             //Coloca como parametro cada atributo do objeto CategoriaProduto por meio dos getters
             pstmt.setString(1, tagServico.getNome());
+            pstmt.setString(2, tagServico.getDescricao());
 
 
             pstmt.execute();
@@ -144,6 +145,31 @@ public class TagServicoDAO {
 
             return possuiRegistros;
         }catch (SQLException sqlException){
+            sqlException.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean alterarTagServico(int id, TagServico tagServico) {
+        conectar();
+        try {
+            // Prepare a single statement with placeholders for all columns
+            pstmt = conn.prepareStatement("UPDATE tag_servico SET nome = ?, descricao = ? WHERE id = ?");
+
+            // Set parameters without quotation marks
+            pstmt.setString(1, tagServico.getNome());
+            pstmt.setString(2, tagServico.getDescricao());
+
+            pstmt.setInt(3, id);
+
+            pstmt.execute();
+
+            // No need for separate statements for each column update
+            // ...
+
+            return true;
+
+        } catch (SQLException sqlException) {
             sqlException.printStackTrace();
             return false;
         }

@@ -79,6 +79,7 @@ public class AdministradorDAO {
 
     }
 
+
     public ResultSet buscarAdministrador(){
         try {
             conectar();
@@ -183,5 +184,30 @@ public class AdministradorDAO {
 
         }
         return null;
+    }
+
+    public boolean alterarAdministrador(int id, Administrador administrador) {
+        conectar();
+        try {
+            // Prepare a single statement with placeholders for all columns
+            pstmt = conn.prepareStatement("UPDATE administrador SET nome = ?, email = ?, senha = ? WHERE id = ?");
+
+            // Set parameters without quotation marks
+            pstmt.setString(1, administrador.getNome());
+            pstmt.setString(2, administrador.getEmail());
+            pstmt.setString(3, administrador.getSenha());
+            pstmt.setInt(4, id);
+
+            pstmt.execute();
+
+            // No need for separate statements for each column update
+            // ...
+
+            return true;
+
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+            return false;
+        }
     }
 }

@@ -2,8 +2,10 @@ package org.constroocrud.crud.entidades;
 
 public class TagServico {
 
-    int id;
-    String nome;
+    private int id;
+    private String nome;
+    private String descricao;
+
 
     public int getId() {
         return id;
@@ -13,18 +15,23 @@ public class TagServico {
         return nome;
     }
 
-    public TagServico(int id, String nome) {
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public TagServico(int id, String nome, String descricao) {
         this.id = id;
         this.nome = nome;
+        this.descricao = descricao;
     }
 
-    public TagServico(String nome) {
+    public TagServico(String nome, String descricao) {
         this.nome = nome;
+        this.descricao = descricao;
     }
 
-    public TagServico() {}
-
-
+    public TagServico() {
+    }
 
     @Override
     public String toString() {

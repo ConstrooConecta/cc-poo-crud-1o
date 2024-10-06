@@ -2,10 +2,10 @@ package org.constroocrud.crud.entidades;
 
 public class Administrador {
 
-    int id;
-    String nome;
-    String email;
-    String senha;
+    private int id;
+    private String nome;
+    private String email;
+    private String senha;
 
     public int getId() {
         return id;

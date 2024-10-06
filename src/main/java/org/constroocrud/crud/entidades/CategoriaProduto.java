@@ -2,8 +2,9 @@ package org.constroocrud.crud.entidades;
 
 public class CategoriaProduto {
 
-    int id;
-    String nome;
+    private int id;
+    private String nome;
+    private String descricao;
     public int getId() {
         return id;
     }
@@ -11,14 +12,19 @@ public class CategoriaProduto {
     public String getNome() {
         return nome;
     }
-
-    public CategoriaProduto(int id, String nome) {
-        this.id = id;
-        this.nome = nome;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public CategoriaProduto(String nome) {
+    public CategoriaProduto(int id, String nome, String descricao) {
+        this.id = id;
         this.nome = nome;
+        this.descricao = descricao;
+    }
+
+    public CategoriaProduto(String nome, String descricao) {
+        this.nome = nome;
+        this.descricao = descricao;
     }
 
     public CategoriaProduto() {}
