@@ -1,6 +1,6 @@
 *{
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 }
 
 #navbar-line{
@@ -59,7 +59,7 @@
     margin-top: 50px;
 
     width: 90%;
-    border: #867151, 2px, solid;
+    border: #867151 2px solid;
     margin-left: auto;
     margin-right: auto;
     background-color: #F0F0F0;
@@ -67,6 +67,7 @@
 .nome-Usuario{
     font-size: 35px;
     color: #0E292F;
+    margin-right: 15px;
 
 }
 .infos-principais-usuario{
@@ -136,15 +137,6 @@
     flex-direction: row;
     justify-content: space-between;
 }
-#secao_compradorvendedor{
-    display: none;
-}
-#secao_compradorvendedor:target{
-    display: block;
-}
-#secao_profissional{
-    display: none;
-}
-#secao_profissional:target{
-    display: block;
+p{
+    font-size: 20px;
 }
