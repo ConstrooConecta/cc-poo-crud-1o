@@ -7,7 +7,7 @@
 <head>
 
     <%-- recebe o css --%>.
-    <link rel="stylesheet" href="../cascading-style-sheets/listagemCategoriaProduto.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/cascading-style-sheets/listagemCategoriaProduto.css">
 
     <title>CRUD</title>
         <%-- NAVBAR --%>.
@@ -38,7 +38,7 @@
         <div id="right-options-crud">
 
         <%--Acesso ao cadastro de um usuario--%>
-            <form id="form-usuario-criar" action="../hyperText-markup-language/cadastrarCategoriaProduto.html">
+            <form id="form-usuario-criar" action="${pageContext.request.contextPath}/hyperText-markup-language/cadastrarCategoriaProduto.html">
                 <button id="button-criar">Criar</button>
                 <input type="text">
                 <input type="submit" value="pesquisar">
@@ -87,11 +87,11 @@
                 <div class="deletar-alterar">
 
                     <%--Este form post é para fazer o acesso ao servlet de deletar users que tem um input escondido que recebe o id do comprador vendedor--%>
-                    <form action="../DeletarCategoriaProdutoServlet" method="post">
+                    <form action="${pageContext.request.contextPath}/DeletarCategoriaProdutoServlet" method="post">
                         <input type="hidden" name="categoria_id" value=<%=resultSet.getInt("id")%>>
                         <button type="submit" class="button-deletar-alterar">Deletar</button>
                     </form>
-                    <form action="../DirecionarCategoriaProdutoAlterarServlet" method="post">
+                    <form action="${pageContext.request.contextPath}/DirecionarCategoriaProdutoAlterarServlet" method="post">
                          <input type="hidden" name="categoria_id" value=<%=resultSet.getInt("id")%>>
                          <button type="submit" class="button-deletar-alterar">Alterar</button>
                     </form>

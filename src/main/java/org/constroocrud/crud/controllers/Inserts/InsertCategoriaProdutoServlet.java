@@ -35,7 +35,7 @@ public class InsertCategoriaProdutoServlet extends HttpServlet {
 
         //Voce é direcionado para a listagem de usuarios!
         RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("/listagemCategoriaProdutos.jsp");
+        rd = getServletContext().getRequestDispatcher("/pages/listagemCategoriaProdutos.jsp");
         rd.include(req, resp);
 
 

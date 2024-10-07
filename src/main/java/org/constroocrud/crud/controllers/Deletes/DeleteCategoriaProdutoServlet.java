@@ -34,6 +34,7 @@ public class DeleteCategoriaProdutoServlet extends HttpServlet {
             System.out.println("Nao deu certo");
         }
 
+
         RequestDispatcher rd;
         rd = getServletContext().getRequestDispatcher("/pages/listagemCategoriaProdutos.jsp");
         rd.include(req, resp);

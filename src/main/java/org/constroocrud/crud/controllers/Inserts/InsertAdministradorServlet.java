@@ -37,7 +37,7 @@ public class InsertAdministradorServlet extends HttpServlet {
 
         //Voce é direcionado para a listagem de usuarios!
         RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("/listagemAdministradores.jsp");
+        rd = getServletContext().getRequestDispatcher("/pages/listagemAdministradores.jsp");
         rd.include(req, resp);
 
 

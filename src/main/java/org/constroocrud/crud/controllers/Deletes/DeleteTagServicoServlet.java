@@ -35,7 +35,7 @@ public class DeleteTagServicoServlet extends HttpServlet {
         }
 
         RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("pages/listagemTagServico.jsp");
+        rd = getServletContext().getRequestDispatcher("/pages/listagemTagServico.jsp");
         rd.include(req, resp);
 
 
