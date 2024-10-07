@@ -1,6 +1,6 @@
 package org.constroocrud.crud.DAOs;
 
-import org.constroocrud.crud.entidades.Administrador;
+import org.constroocrud.crud.models.Administrador;
 
 import java.sql.*;
 
