@@ -1,7 +1,6 @@
 package org.constroocrud.crud.DAOs;
 
-import org.constroocrud.crud.entidades.CategoriaProduto;
-import org.constroocrud.crud.entidades.TagServico;
+import org.constroocrud.crud.models.TagServico;
 
 import java.sql.*;
 

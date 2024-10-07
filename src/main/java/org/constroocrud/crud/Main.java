@@ -1,13 +1,8 @@
 package org.constroocrud.crud;
 
 
-import org.constroocrud.crud.DAOs.AdministradorDAO;
 import org.constroocrud.crud.DAOs.CategoriaProdutoDAO;
-import org.constroocrud.crud.conexao.Conexao;
-import org.constroocrud.crud.entidades.*;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import org.constroocrud.crud.models.*;
 
 public class Main {
     public static void main(String[] args) {
