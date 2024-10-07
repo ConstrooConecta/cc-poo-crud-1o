@@ -32,7 +32,7 @@ public class DeleteAdministradorServlet extends HttpServlet {
         }
 
         RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("pages/listagemAdministradores.jsp");
+        rd = getServletContext().getRequestDispatcher("/pages/listagemAdministradores.jsp");
         rd.include(req, resp);
 
 

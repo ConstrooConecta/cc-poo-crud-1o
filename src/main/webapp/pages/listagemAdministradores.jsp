@@ -8,7 +8,7 @@
 <head>
 
     <%-- recebe o css --%>.
-    <link rel="stylesheet" href="../cascading-style-sheets/listagemAdministradores.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/cascading-style-sheets/listagemAdministradores.css">
 
     <title>CRUD</title>
         <%-- NAVBAR --%>.
@@ -81,11 +81,11 @@
                 <div class="deletar-alterar">
 
                     <%--Este form post é para fazer o acesso ao servlet de deletar users que tem um input escondido que recebe o id do comprador vendedor--%>
-                    <form action="../DeletarAdministradorServlet" method="post">
+                    <form action="${pageContext.request.contextPath}/DeletarAdministradorServlet" method="post">
                         <input type="hidden" name="administrador_id" value=<%=resultSet.getInt("id")%>>
                         <button type="submit" class="button-deletar-alterar">Deletar</button>
                     </form>
-                        <form action="../DirecionarAdministradorAlterarServlet" method="post">
+                        <form action="${pageContext.request.contextPath}/DirecionarAdministradorAlterarServlet" method="post">
                             <input type="hidden" name="administrador_id" value=<%=resultSet.getInt("id")%>>
                             <button type="submit" class="button-deletar-alterar">Alterar</button>
                         </form>

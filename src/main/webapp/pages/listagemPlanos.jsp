@@ -8,7 +8,7 @@
 <head>
 
     <%-- recebe o css --%>.
-    <link rel="stylesheet" href="../cascading-style-sheets/listagemCategoriaProduto.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/cascading-style-sheets/listagemCategoriaProduto.css">
 
     <title>CRUD</title>
         <%-- NAVBAR --%>.
