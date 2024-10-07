@@ -30,13 +30,13 @@
          ex: ListagensProdutos.jsp--%>.
 
     <div id="div-entidades">
-        <a>
+        <a href="listagemCategoriaProdutos.jsp">
             Categorias/Tags
         </a>
-        <a>
+        <a href="#">
             Administração
         </a>
-        <a>
+        <a href="#">
             Planos
         </a>
     </div>
@@ -93,8 +93,12 @@
                         <input type="hidden" name="administrador_id" value=<%=resultSet.getInt("id")%>>
                         <button type="submit" class="button-deletar-alterar">Deletar</button>
                     </form>
+                        <form action="DirecionarAdministradorAlterarServlet" method="post">
+                            <input type="hidden" name="administrador_id" value=<%=resultSet.getInt("id")%>>
+                            <button type="submit" class="button-deletar-alterar">Alterar</button>
+                        </form>
 
-                    <button class="button-deletar-alterar">Alterar</button>
+
                 </div>
 
             </div>

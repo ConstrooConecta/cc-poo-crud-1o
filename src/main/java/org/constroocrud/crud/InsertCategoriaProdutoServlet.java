@@ -27,8 +27,9 @@ public class InsertCategoriaProdutoServlet extends HttpServlet {
         CategoriaProdutoDAO categoriaProdutoDAO = new CategoriaProdutoDAO();
 
         String name = req.getParameter("nome");
+        String descricao = req.getParameter("descricao");
 
-        CategoriaProduto categoriaProduto = new CategoriaProduto(name);
+        CategoriaProduto categoriaProduto = new CategoriaProduto(name,descricao);
         if (categoriaProdutoDAO.inserirCategoriaProduto(categoriaProduto)){
             System.out.println("DEUU");
         }
