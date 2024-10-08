@@ -29,10 +29,10 @@
          ex: ListagensProdutos.jsp--%>.
 
     <div id="div-entidades">
-        <a href="listagemCategoriaProdutos.jsp">
+        <a href="${pageContext.request.contextPath}/pages/listagemCategoriaProdutos.jsp">
             Categorias/Tags
         </a>
-        <a href="listagemAdministradores.jsp">
+        <a href="${pageContext.request.contextPath}/pages/listagemAdministradores.jsp">
             Administração
         </a>
         <a href="listagemPlanos.jsp">
@@ -101,6 +101,8 @@
                     </form>
                     <form action="${pageContext.request.contextPath}/DirecionarTagServicoServlet" method="post">
                         <input type="hidden" name="tag_id" value=<%=resultSet.getInt("id")%>>
+                        <input type="hidden" name="nome" value=<%=resultSet.getString("nome")%>>
+                        <input type="hidden" name="descricao" value=<%=resultSet.getString("descricao")%>>
                         <button type="submit" class="button-deletar-alterar">Alterar</button>
                     </form>
 

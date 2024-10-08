@@ -19,10 +19,15 @@ public class DirecionarAdministradorAlterarServlet extends HttpServlet {
         //Recebe o id da entidade comprador/vendedor ou Profissional
 
         String str_id = req.getParameter("administrador_id");
+        String nome = req.getParameter("nome");
+        String senha = req.getParameter("senha");
+        String email = req.getParameter("email");
         int id = Integer.parseInt(str_id);
         out.println(id);
         req.setAttribute("id",id);
-
+        req.setAttribute("nome",nome);
+        req.setAttribute("senha",senha);
+        req.setAttribute("email",email);
 
         req.getRequestDispatcher("pages/alterarAdministrador.jsp").forward(req, resp);
 

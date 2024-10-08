@@ -12,7 +12,7 @@ import org.constroocrud.crud.models.CategoriaProduto;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "AlterarAdministradorServlet", value = "/AlterarAdministradorServlet")
+@WebServlet(name = "AlterarCategoriaProdutoServlet", value = "/AlterarCategoriaProdutoServlet")
 public class AlterarCategoriaProdutoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,8 +35,8 @@ public class AlterarCategoriaProdutoServlet extends HttpServlet {
         out.println(categoriaProdutoDAO.alterarCategoriaProduto(id,categoriaProduto));
 
         RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("pages/listagemCategoriaProduto.jsp");
-        rd.include(req, resp);
+        rd = getServletContext().getRequestDispatcher("/pages/listagemCategoriaProduto.jsp");
+        rd.forward(req, resp);
 
 
 

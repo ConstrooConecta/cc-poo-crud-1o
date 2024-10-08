@@ -22,7 +22,7 @@
          ex: ListagensProdutos.jsp--%>.
 
     <div id="div-entidades">
-        <a href="listagemCategoriaProdutos.jsp">
+        <a href="${pageContext.request.contextPath}/pages/listagemCategoriaProdutos.jsp">
             Categorias/Tags
         </a>
         <a href="#">
@@ -38,7 +38,7 @@
         <div id="right-options-crud">
 
         <%--Acesso ao cadastro de um usuario--%>
-            <form id="form-usuario-criar" action="../hyperText-markup-language/cadastrarAdministrador.html">
+            <form id="form-usuario-criar" action="${pageContext.request.contextPath}/hyperText-markup-language/cadastrarAdministrador.html">
                 <button id="button-criar">Criar</button>
                 <input type="text">
                 <input type="submit" value="pesquisar">
@@ -87,6 +87,9 @@
                     </form>
                         <form action="${pageContext.request.contextPath}/DirecionarAdministradorAlterarServlet" method="post">
                             <input type="hidden" name="administrador_id" value=<%=resultSet.getInt("id")%>>
+                            <input type="hidden" name="nome" value=<%=resultSet.getString("nome")%>>
+                            <input type="hidden" name="email" value=<%=resultSet.getString("email")%>>
+                            <input type="hidden" name="senha" value=<%=resultSet.getString("senha")%>>
                             <button type="submit" class="button-deletar-alterar">Alterar</button>
                         </form>
 

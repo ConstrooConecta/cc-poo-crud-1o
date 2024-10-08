@@ -12,7 +12,7 @@ import org.constroocrud.crud.models.Administrador;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "AlterarCategoriaProdutoServlet", value = "/AlterarCategoriaProdutoServlet")
+@WebServlet(name = "AlterarAdministradorServlet", value = "/AlterarAdministradorServlet")
 public class AlterarAdministradorServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,10 +32,11 @@ public class AlterarAdministradorServlet extends HttpServlet {
         Administrador administrador = new Administrador(name, email, senha);
         AdministradorDAO administradorDAO = new AdministradorDAO();
 
+
         out.println(administradorDAO.alterarAdministrador(id,administrador));
 
         RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("pages/listagemAdministradores.jsp");
+        rd = getServletContext().getRequestDispatcher("/pages/listagemAdministradores.jsp");
         rd.include(req, resp);
 
 

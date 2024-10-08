@@ -24,7 +24,7 @@
         <a href="#">
             Categorias/Tags
         </a>
-        <a href="listagemAdministradores.jsp">
+        <a href="${pageContext.request.contextPath}/pages/listagemAdministradores.jsp">
             Administração
 
         </a>
@@ -51,7 +51,7 @@
         <a href="#">
             Categoria Produto
         </a>
-        <a href="listagemTagServico.jsp">
+        <a href="${pageContext.request.contextPath}/pages/listagemTagServico.jsp">
             Tag Serviços
         </a>
     </div>
@@ -93,6 +93,8 @@
                     </form>
                     <form action="${pageContext.request.contextPath}/DirecionarCategoriaProdutoAlterarServlet" method="post">
                          <input type="hidden" name="categoria_id" value=<%=resultSet.getInt("id")%>>
+                        <input type="hidden" name="nome" value=<%=resultSet.getString("nome")%>>
+                        <input type="hidden" name="descricao" value=<%=resultSet.getString("descricao")%>>
                          <button type="submit" class="button-deletar-alterar">Alterar</button>
                     </form>
 
