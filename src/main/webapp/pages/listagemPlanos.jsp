@@ -1,127 +1,82 @@
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.SQLException" %>
-<%@ page import="org.constroocrud.crud.models.CategoriaProduto" %>
-<%@ page import="org.constroocrud.crud.DAOs.CategoriaProdutoDAO" %>
-<%@ page import="org.constroocrud.crud.DAOs.PlanoDAO"%>
+<%@ page import="org.constroocrud.crud.DAOs.PlanoDAO" %>
+<%@ page import="sun.awt.DebugSettings" %> <%-- Supondo que você tenha um DAO para Planos --%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<html>
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-
-    <%-- recebe o css --%>.
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/cascading-style-sheets/listagemCategoriaProduto.css">
-
-    <title>CRUD</title>
-        <%-- NAVBAR --%>.
-    <div id="navbar">
-        <p id="navbar-Constroo">Constroo</p>
-        <div id="navbar-line"></div>
-    </div>
-
-        <%-- Nesta parte o usuario sera direcionado para as outras listagens
-
-         ex: ListagensProdutos.jsp--%>.
-
-    <div id="div-entidades">
-        <a href="listagemCategoriaProdutos.jsp">
-            Categorias/Tags
-        </a>
-        <a href="listagemAdministradores.jsp">
-            Administração
-
-        </a>
-        <a href="#">
-            Planos
-        </a>
-    </div>
-    <div id="div-crud-usuario">
-        <h1 id="usuarios-titulo">Planos</h1>
-
-        <div id="right-options-crud">
-
-        <%--Acesso ao cadastro de um usuario--%>
-            <form id="form-usuario-criar" action="../hyperText-markup-language/cadastrarCategoriaProduto.html">
-                <button id="button-criar">Criar</button>
-                <input type="text">
-                <input type="submit" value="pesquisar">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planos</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/cascading-style-sheets/listagemPlanoR.css"> <!-- Atualize o caminho se necessário -->
+</head>
+<body>
+<header>
+    <div class="logo">Constroo 🌍</div>
+</header>
+<nav>
+    <ul>
+        <li><a href="${pageContext.request.contextPath}/pages/listagemPlanos.jsp" class="active">Planos</a></li>
+        <li><a href="${pageContext.request.contextPath}/pages/listagemCategoriaProdutos.jsp">Categorias</a></li>
+        <li><a href="${pageContext.request.contextPath}/pages/listagemAdministradores.jsp">Adms</a></li>
+        <li><a href="${pageContext.request.contextPath}/pages/listagemTagServico.jsp">Tag Servico</a></li>
+    </ul>
+</nav>
+<main>
+    <section class="planos">
+        <h1>Planos</h1>
+        <div class="controls">
+            <form action="${pageContext.request.contextPath}/cadastrarPlano.html" method="get">
+                <button type="submit" class="create-btn">Criar</button>
+            </form>
+            <form action="${pageContext.request.contextPath}/BuscarPlanoServlet" method="get">
+                <input type="text" name="pesquisar" placeholder="Pesquisar planos">
+                <input type="submit" value="Pesquisar">
             </form>
         </div>
 
-    </div>
-        <%-- fiz um sistemas de :target para dividir a seçao de profissionais e compradores/vendedores--%>.
-    <div id="tipos-usuario" >
-        <a href="#">
-            Categoria Produto
-        </a>
-        <a href="listagemTagServico.jsp">
-            Tag Serviços
-        </a>
-    </div>
-    <div id="secao_CategoriaProduto">
-
-        <%--Esta é a seçao de compradores vendedores
-
-        Ocorre um while no result set retornado pelos buscarCopradorVendedor, criando divs a cada resultado
-        voce consegue colocar um codigo java por meio desse < e %, caso vc queira colocar apenas uma expressao, tipo um valor string voce precisa de um < % = (sem os espaços entre si)
-
-        Coloquei tudo dentro e dentro e dentro de divs para fazer a estilização no CSS
-        --%>
         <%
-
             PlanoDAO planoDAO = new PlanoDAO();
-
             ResultSet resultSet = planoDAO.buscarPlanos();
             try {
-                while (resultSet.next()){
+                while (resultSet.next()) {
         %>
-
-
-        <div class="Usuario">
-            <div class="top-usuario-infos">
-                <div class="infos-principais-usuario">
-
-
-                    <h1 class="nome-Usuario"><%= resultSet.getString("tipo_plano")%></h1>
-                    <p>ID: <%= resultSet.getInt("id")%></p>
+        <div class="plano">
+            <div class="info">
+                <div class="details">
+                    <h2><%= resultSet.getString("nome_plano") %></h2>
+                    <p>Preço Mensal: <%= resultSet.getDouble("valor") %></p>
+                    <p>Tipo de Usuário: <%= resultSet.getString("tipo_plano") %></p>
+                    <p>Tempo duração: <%= resultSet.getInt("tempo_duracao") %></p>
+                    <p><%= resultSet.getString("descricao") %></p>
                 </div>
-                <p><%= resultSet.getInt("descricao")%></p>>
-
-                <div class="deletar-alterar">
-
-                    <%--Este form post é para fazer o acesso ao servlet de deletar users que tem um input escondido que recebe o id do comprador vendedor--%>
-                    <form action="DeletarCategoriaProdutoServlet" method="post">
-                        <input type="hidden" name="categoria_id" value=<%=resultSet.getInt("id")%>>
-                        <button type="submit" class="button-deletar-alterar">Deletar</button>
-                    </form>
-
-                    <button class="button-deletar-alterar">Alterar</button>
-                </div>
-
             </div>
-
-
-
-
-
+            <div class="actions">
+                <form action="${pageContext.request.contextPath}/DeletarPlanoServlet" method="post">
+                    <input type="hidden" name="plano_id" value="<%= resultSet.getInt("id") %>">
+                    <button type="submit" class="delete-btn">Deletar</button>
+                </form>
+                <form action="${pageContext.request.contextPath}/DirecionarPlanoAlterarServlet" method="post">
+                    <input type="hidden" name="plano_id" value="<%= resultSet.getInt("id") %>">
+                    <input type="hidden" name="nome" value="<%= resultSet.getString("nome_plano") %>">
+                    <input type="hidden" name="precoMensal" value="<%= resultSet.getString("valor") %>">
+                    <input type="hidden" name="tipoUsuario" value="<%= resultSet.getString("tipo_plano") %>">
+                    <input type="hidden" name="descricao" value="<%= resultSet.getString("descricao") %>">
+                    <button type="submit" class="edit-btn">Editar</button>
+                </form>
+            </div>
         </div>
-
-
-
-
         <%
 
-
-                }
-            }catch (SQLException sqlException){
-                sqlException.printStackTrace();
-
+            }
+            } catch (SQLException e) {
+            e.printStackTrace();
             }
         %>
-    </div>
 
 
-
-</head>
-<body>
-
+    </section>
+</main>
 </body>
 </html>

@@ -35,7 +35,7 @@ public class AlterarCategoriaProdutoServlet extends HttpServlet {
         out.println(categoriaProdutoDAO.alterarCategoriaProduto(id,categoriaProduto));
 
         RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("/pages/listagemCategoriaProduto.jsp");
+        rd = getServletContext().getRequestDispatcher("/pages/listagemCategoriaProdutos.jsp");
         rd.forward(req, resp);
 
 
