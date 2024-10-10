@@ -35,7 +35,7 @@ public class AlterarTagServicoServlet extends HttpServlet {
         out.println(tagServicoDAO.alterarTagServico(id, tagServico));
 
         RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("pages/listagemTagServico.jsp");
+        rd = getServletContext().getRequestDispatcher("/pages/listagemTagServico.jsp");
         rd.include(req, resp);
 
 

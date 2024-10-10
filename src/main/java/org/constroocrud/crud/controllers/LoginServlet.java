@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
 
         if (senhaInserida.equals(senhacerta)){
             RequestDispatcher rd;
-            rd = getServletContext().getRequestDispatcher("/listagemCategoriaProdutos.jsp");
+            rd = getServletContext().getRequestDispatcher("/pages/listagemCategoriaProdutos.jsp");
             rd.include(req, resp);
         }else {
             out.println("Senha incorreta");

@@ -1,0 +1,150 @@
+/* Estilos Gerais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+/* Estilo do Cabeçalho */
+header {
+    background-color: #f8f8f8;
+    padding: 20px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Estilo de Navegação */
+nav {
+    background-color: #002B5B;
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+/* Estilo do Conteúdo Principal */
+main {
+    padding: 20px;
+}
+
+/* Estilo da Seção de Planos */
+.planos {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.planos h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+/* Controles de Ação */
+.controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.controls .create-btn {
+    background-color: #002B5B;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.controls input {
+    padding: 10px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Estilo dos Planos */
+.plano {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f8f8;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 5px solid transparent;
+    border-radius: 5px;
+}
+
+.plano .info {
+    display: flex;
+    gap: 15px;
+}
+
+.plano .info img {
+    width: 80px;
+    height: 80px;
+    background-color: #ccc;
+    border-radius: 5px;
+}
+
+.plano .details {
+    display: flex;
+    flex-direction: column;
+}
+
+.plano .details h2 {
+    margin: 0 0 5px 0;
+    font-size: 20px;
+    color: #333;
+}
+
+.plano .details p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.plano .details ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+/* Ações de Edição e Exclusão */
+.plano .actions {
+    display: flex;
+    gap: 10px;
+}
+
+.plano .delete-btn,
+.plano .edit-btn {
+    background-color: #b5a18f;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.plano .delete-btn:hover,
+.plano .edit-btn:hover {
+    opacity: 0.8;
+}

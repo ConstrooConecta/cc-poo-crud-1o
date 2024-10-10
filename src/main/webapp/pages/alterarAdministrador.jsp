@@ -14,11 +14,11 @@
     <h2 class="subtitulo-forms"></h2>
     <div class="infos-linha">
         <label for="Nome">Nome</label>
-        <input type="text" name="nome" id="nome">
+        <input type="text" name="nome" id="nome" value=<%=request.getAttribute("nome") %>>
         <label for="email">Email</label>
-        <input type="email" name="email" id="email">
+        <input type="email" name="email" id="email" value=<%=request.getAttribute("email") %>>
         <label for="senha">Senha</label>
-        <input type="password" name="senha" id="senha">
+        <input type="password" name="senha" id="senha" value=<%=request.getAttribute("senha") %>>
         <input type="hidden" name="id" value=<%=request.getAttribute("id") %>>
     </div>
     <input type="submit" id="buttonCadastrar">
