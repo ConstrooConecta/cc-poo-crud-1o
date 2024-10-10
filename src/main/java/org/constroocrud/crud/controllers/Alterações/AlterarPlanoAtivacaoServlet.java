@@ -44,8 +44,8 @@ public class AlterarPlanoAtivacaoServlet extends HttpServlet {
 
         //Voce é direcionado para a listagem de Planos de Ativação!
         RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("/listagemPlanosAtivacao.jsp");
-        rd.include(req, resp);
+        rd = getServletContext().getRequestDispatcher("/pages/listagemPlanosAtivacao.jsp");
+        rd.forward(req, resp);
 
     }
 }

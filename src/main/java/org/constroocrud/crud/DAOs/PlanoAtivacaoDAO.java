@@ -101,14 +101,16 @@ public class PlanoAtivacaoDAO {
 
     //Update
     public int alterarAtivacao(int id){
-
+        String regex = "^[AI]$";
         try {
             rs = buscarPlanoAtivacaoPeloID(id);
 
             conectar();//abrindo conexão com o banco
             rs.next();
             String ativacaoStr = rs.getString("ativacao");
-
+            if (!ativacaoStr.matches(regex)) {
+                return 0;
+            }
             if (ativacaoStr != null && !ativacaoStr.isEmpty()) {
                 char ativacao = ativacaoStr.charAt(0); // Pega o primeiro caractere
 

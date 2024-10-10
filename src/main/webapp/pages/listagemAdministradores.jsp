@@ -28,7 +28,7 @@
     <section class="administradores">
         <h1>Administradores</h1>
         <div class="controls">
-            <form action="${pageContext.request.contextPath}/cadastrarAdministrador.html" method="get">
+            <form action="${pageContext.request.contextPath}/hyperText-markup-language/cadastrarAdministrador.html" method="get">
                 <button type="submit" class="create-btn">Adicionar</button>
             </form>
             <form action="${pageContext.request.contextPath}/BuscarAdministradorServlet" method="get">
