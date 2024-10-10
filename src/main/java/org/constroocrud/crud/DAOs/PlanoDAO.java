@@ -147,5 +147,33 @@ public class PlanoDAO {
 
 
     }
+    public boolean alterarPlano(int id, Plano plano) {
+        conectar();
+        try {
+            // Prepare a single statement with placeholders for all columns
+            pstmt = conn.prepareStatement("UPDATE plano SET nome_plano = ?, descricao = ?,tempo_duracao = ?, valor = ?, tipo_plano = ? WHERE id = ?");
+
+            // Set parameters without quotation marks
+            pstmt.setString(1, plano.getNome());
+            pstmt.setString(2, plano.getDescricao());
+            pstmt.setInt(3, plano.getDuracao());
+            pstmt.setDouble(4, plano.getValor());
+            pstmt.setString(5, plano.getTipo_plano());
+            pstmt.setInt(6, id);
+
+            pstmt.setInt(3, id);
+
+            pstmt.execute();
+
+            // No need for separate statements for each column update
+            // ...
+
+            return true;
+
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+            return false;
+        }
+    }
 
 }

@@ -46,7 +46,6 @@
             <div class="info">
                 <div class="details">
                     <h2>Plano ID: <%= resultSet.getInt("id") %></h2>
-                    <p>Tipo: <%= resultSet.getString("ativacao") %></p>
                     <div class="bottom-plano-ativacao-infos">
                         <p>Ativação: <%= resultSet.getString("ativacao") %></p>
                         <div class="infos-duracao">
