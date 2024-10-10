@@ -1,4 +1,4 @@
-package org.constroocrud.crud;
+package org.constroocrud.crud.controllers.Alterações;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;

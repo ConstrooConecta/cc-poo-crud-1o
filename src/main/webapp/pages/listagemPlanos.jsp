@@ -28,7 +28,7 @@
     <section class="planos">
         <h1>Planos</h1>
         <div class="controls">
-            <form action="${pageContext.request.contextPath}/cadastrarPlano.html" method="get">
+            <form action="${pageContext.request.contextPath}/hyperText-markup-language/cadastrarPlano.html" method="get">
                 <button type="submit" class="create-btn">Criar</button>
             </form>
             <form action="${pageContext.request.contextPath}/BuscarPlanoServlet" method="get">
@@ -63,6 +63,7 @@
                     <input type="hidden" name="nome" value="<%= resultSet.getString("nome_plano") %>">
                     <input type="hidden" name="precoMensal" value="<%= resultSet.getString("valor") %>">
                     <input type="hidden" name="tipoUsuario" value="<%= resultSet.getString("tipo_plano") %>">
+                    <input type="hidden" name="duracao" value="<%= resultSet.getString("tempo_duracao") %>">
                     <input type="hidden" name="descricao" value="<%= resultSet.getString("descricao") %>">
                     <button type="submit" class="edit-btn">Editar</button>
                 </form>

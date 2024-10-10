@@ -1,4 +1,4 @@
-package org.constroocrud.crud.controllers.Inserts;
+package org.constroocrud.crud.controllers.Alterações;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -14,41 +14,41 @@ import org.constroocrud.crud.models.TagServico;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "InsertPlanoServlet", value = "/InserirPlanoServlet")
-public class InsertPlanoServlet extends HttpServlet {
-
+@WebServlet(name = "AlterarPlanoServlet", value = "/AlterarPlanoServlet")
+public class AlterarPlanoServlet extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-
-
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
-
         PrintWriter out = resp.getWriter();
-        PlanoDAO planoDAO = new PlanoDAO();
 
-        String nome = req.getParameter("nome");
+        //Recebe o id da entidade comprador/vendedor ou Profissional
+
+        String str_id = req.getParameter("id");
+        int id = Integer.parseInt(str_id);
+        out.println(str_id);
+
+        String name = req.getParameter("nome");
         String descricao = req.getParameter("descricao");
         String strDuracao = req.getParameter("duracao");
-        String tipo = req.getParameter("tipo");
         String strValor = req.getParameter("valor");
+        String tipo = req.getParameter("tipo");
+
         double valor = Double.parseDouble(strValor);
         int duracao = Integer.parseInt(strDuracao);
 
+        PlanoDAO planoDAO = new PlanoDAO();
+        Plano plano = new Plano(tipo, valor, descricao, name,duracao);
 
+        out.println(planoDAO.alterarPlano(id, plano));
 
-        Plano plano = new Plano(tipo,valor,descricao,nome,duracao);
-        if (planoDAO.inserirPlano(plano)){
-            System.out.println("DEUU");
-        }
-
-        //Voce é direcionado para a listagem de usuarios!
         RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("/pages/listagemTagServico.jsp");
+        rd = getServletContext().getRequestDispatcher("/pages/listagemPlanos.jsp");
         rd.include(req, resp);
 
 
 
 
+
     }
+
 }
