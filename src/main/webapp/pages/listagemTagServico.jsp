@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tag Serviços</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/cascading-style-sheets/listagemTagServicoR.css">
+
 </head>
 <body>
 <header>
@@ -21,6 +22,7 @@
         <li><a href="${pageContext.request.contextPath}/pages/listagemCategoriaProdutos.jsp">Categorias</a></li>
         <li><a href="${pageContext.request.contextPath}/pages/listagemAdministradores.jsp">Adms</a></li>
         <li><a href="${pageContext.request.contextPath}/pages/listagemTagServico.jsp" class="active">Tag Servico</a></li>
+        <li><a href="${pageContext.request.contextPath}/pages/listagemPlanosAtivacao.jsp">Planos Ativação</a></li>
 
     </ul>
 </nav>

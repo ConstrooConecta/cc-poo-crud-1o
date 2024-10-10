@@ -20,6 +20,8 @@
         <li><a href="${pageContext.request.contextPath}/pages/listagemCategoriaProdutos.jsp">Categorias</a></li>
         <li><a href="${pageContext.request.contextPath}/pages/listagemAdministradores.jsp"  class="active">Adms</a></li>
         <li><a href="${pageContext.request.contextPath}/pages/listagemTagServico.jsp">Tag Serviço</a></li>
+        <li><a href="${pageContext.request.contextPath}/pages/listagemPlanosAtivacao.jsp" >Planos Ativação</a></li>
+
     </ul>
 </nav>
 <main>

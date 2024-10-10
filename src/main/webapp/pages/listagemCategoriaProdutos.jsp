@@ -21,6 +21,7 @@
         <li><a href="${pageContext.request.contextPath}/pages/listagemCategoriaProdutos.jsp" class="active">Categorias</a></li>
         <li><a href="${pageContext.request.contextPath}/pages/listagemAdministradores.jsp">Adms</a></li>
         <li><a href="${pageContext.request.contextPath}/pages/listagemTagServico.jsp">Tag Serviço</a></li>
+        <li><a href="${pageContext.request.contextPath}/pages/listagemPlanosAtivacao.jsp" >Planos Ativação</a></li>
     </ul>
 </nav>
 <main>
