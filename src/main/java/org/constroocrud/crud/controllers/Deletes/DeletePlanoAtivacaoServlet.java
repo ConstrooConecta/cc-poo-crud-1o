@@ -48,8 +48,8 @@ public class DeletePlanoAtivacaoServlet extends HttpServlet {
 
         //Voce é direcionado para a listagem de usuarios!
         RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("/listagemUsuarios.jsp");
-        rd.include(req, resp);
+        rd = getServletContext().getRequestDispatcher("/pages/listagemPlanosAtivacao.jsp");
+        rd.forward(req, resp);
 
 
 
