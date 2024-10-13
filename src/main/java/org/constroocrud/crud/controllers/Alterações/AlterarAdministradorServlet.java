@@ -32,8 +32,14 @@ public class AlterarAdministradorServlet extends HttpServlet {
         Administrador administrador = new Administrador(name, email, senha);
         AdministradorDAO administradorDAO = new AdministradorDAO();
 
-
-        out.println(administradorDAO.alterarAdministrador(id,administrador));
+        int num = administradorDAO.alterarAdministrador(id, administrador);
+        if (num == 1){
+            out.println("Administrador alterado");
+        } else if (num == 0) {
+            out.println("Administrador nao alterado");
+        } else{
+            out.println("Erro");
+        }
 
         RequestDispatcher rd;
         rd = getServletContext().getRequestDispatcher("/pages/listagemAdministradores.jsp");

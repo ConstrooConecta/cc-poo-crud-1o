@@ -34,12 +34,12 @@ public class AlterarPlanoAtivacaoServlet extends HttpServlet {
 
         int result = planoAtivacaoDAO.alterarAtivacao(id_tipo);
         if (result == 1){
-            out.println("Ativação alterada");
+            out.println("Plano Ativação alterada");
             //Caso não aconteça
         }else if (result == 0){
-            out.println("Ativação não encontrada");
+            out.println("Plano Ativação não encontrada");
         }else {
-            out.println("ERRO");
+            out.println("Erro");
         }
 
         //Voce é direcionado para a listagem de Planos de Ativação!

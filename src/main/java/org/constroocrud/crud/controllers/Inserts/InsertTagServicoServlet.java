@@ -29,8 +29,14 @@ public class InsertTagServicoServlet extends HttpServlet {
         String descricao = req.getParameter("descricao");
 
         TagServico tagServico = new TagServico(name,descricao);
-        if (tagServicoDAO.inserirTagServico(tagServico)){
-            System.out.println("DEUU");
+
+        int num = tagServicoDAO.inserirTagServico(tagServico);
+        if (num == 1){
+            out.println("Tag Serviço inserido");
+        } else if (num == 0) {
+            out.println("Tag Serviço não inserido");
+        } else {
+            out.println("Erro");
         }
 
         //Voce é direcionado para a listagem de usuarios!

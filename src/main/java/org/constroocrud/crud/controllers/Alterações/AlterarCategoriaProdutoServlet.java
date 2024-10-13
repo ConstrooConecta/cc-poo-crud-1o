@@ -32,7 +32,14 @@ public class AlterarCategoriaProdutoServlet extends HttpServlet {
         CategoriaProduto categoriaProduto = new CategoriaProduto(name, descricao);
         CategoriaProdutoDAO categoriaProdutoDAO = new CategoriaProdutoDAO();
 
-        out.println(categoriaProdutoDAO.alterarCategoriaProduto(id,categoriaProduto));
+        int num = categoriaProdutoDAO.alterarCategoriaProduto(id, categoriaProduto);
+        if (num == 1) {
+            out.println("Categoria Produto alterado");
+        } else if (num == 0) {
+            out.println("Categoria Produto não alterado");
+        } else {
+            out.println("Erro");
+        }
 
         RequestDispatcher rd;
         rd = getServletContext().getRequestDispatcher("/pages/listagemCategoriaProdutos.jsp");

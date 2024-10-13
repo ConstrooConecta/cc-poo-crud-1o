@@ -25,10 +25,14 @@ public class DeleteAdministradorServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
         String id = req.getParameter("administrador_id");
         AdministradorDAO administradorDAO = new AdministradorDAO();
-        if (administradorDAO.removerAdministrador(Integer.parseInt(id))){
-            System.out.println("Deu certo");
-        }else{
-            System.out.println("Nao deu certo");
+        int num = administradorDAO.removerAdministrador(Integer.parseInt(id));
+
+        if (num == 1){
+            out.println("Administração removido");
+        }else if (num == 0){
+            out.println("Administrador não removido");
+        }else {
+            out.println("Erro");
         }
 
         RequestDispatcher rd;

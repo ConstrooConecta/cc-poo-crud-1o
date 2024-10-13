@@ -39,7 +39,14 @@ public class AlterarPlanoServlet extends HttpServlet {
         PlanoDAO planoDAO = new PlanoDAO();
         Plano plano = new Plano(tipo, valor, descricao, name,duracao);
 
-        out.println(planoDAO.alterarPlano(id, plano));
+        int num = planoDAO.alterarPlano(id, plano);
+        if (num == 1){
+            out.println("Plano alterado");
+        } else if (num == 0) {
+            out.println("Plano nao alterado");
+        } else {
+            out.println("Erro");
+        }
 
         RequestDispatcher rd;
         rd = getServletContext().getRequestDispatcher("/pages/listagemPlanos.jsp");

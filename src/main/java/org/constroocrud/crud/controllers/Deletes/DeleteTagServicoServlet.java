@@ -28,10 +28,13 @@ public class DeleteTagServicoServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
         String id = req.getParameter("tag_id");
         TagServicoDAO tagServicoDAO = new TagServicoDAO();
-        if (tagServicoDAO.removerTagServicoPeloID(Integer.parseInt(id))){
-            System.out.println("Deu certo");
-        }else{
-            System.out.println("Nao deu certo");
+        int num = tagServicoDAO.removerTagServicoPeloID(Integer.parseInt(id));
+        if (num == 1){
+            out.println("Tag Serviço removido");
+        }else if (num == 0){
+            out.println("Tag Serviço não removido");
+        }else {
+            out.println("Erro");
         }
 
         RequestDispatcher rd;
