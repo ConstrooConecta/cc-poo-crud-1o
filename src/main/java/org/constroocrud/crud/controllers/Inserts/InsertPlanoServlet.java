@@ -35,11 +35,15 @@ public class InsertPlanoServlet extends HttpServlet {
         double valor = Double.parseDouble(strValor);
         int duracao = Integer.parseInt(strDuracao);
 
-
-
         Plano plano = new Plano(tipo,valor,descricao,nome,duracao);
-        if (planoDAO.inserirPlano(plano)){
-            System.out.println("DEUU");
+
+        int num = planoDAO.inserirPlano(plano);
+        if (num == 1){
+            out.println("Plano inserido");
+        }else if (num == 0){
+            out.println("Plano não deu certo");
+        }else {
+            out.println("Erro");
         }
 
         //Voce é direcionado para a listagem de usuarios!

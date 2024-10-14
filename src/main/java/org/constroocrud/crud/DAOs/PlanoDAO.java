@@ -1,57 +1,24 @@
 package org.constroocrud.crud.DAOs;
 
+import org.constroocrud.crud.Conexao;
 import org.constroocrud.crud.models.CategoriaProduto;
 import org.constroocrud.crud.models.Plano;
 
 import java.sql.*;
 
 public class PlanoDAO {
-    private Connection conn;
-    private PreparedStatement pstmt;
-    private ResultSet rs;
-
-    public Connection getConn() {
-        return conn;
-    }
-
-    public PreparedStatement getPstmt() {
-        return pstmt;
-    }
-
-    public ResultSet getRs() {
-        return rs;
-    }
-
-
     //Metodo que faz a conexao com o banco de dados
 
 
-    public boolean conectar(){
-        try{
-            Class.forName("org.postgresql.Driver");
 
-            String dbUrl = System.getenv("CC_URL");
-            String dbUser = System.getenv("CC_USER");
-            String dbPassword = System.getenv("CC_PASSWORD");
-
-            conn = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
-
-            return true;
-
-        }catch (SQLException sqlException ){
-            sqlException.printStackTrace();
-            return false;
-        }catch(ClassNotFoundException classNotFoundException){
-            classNotFoundException.printStackTrace();
-            return false;
-        }
-
-
-
-    }
     public ResultSet buscarPlanos() {
+        PreparedStatement pstmt;
+        ResultSet rs = null;
+        Conexao conexao = new Conexao();
+        conexao.conectar();
+        Connection conn = conexao.getConn();
         try {
-            conectar();
+
             String query = "Select * from plano";
             pstmt = conn.prepareStatement(query);
             rs = pstmt.executeQuery();
@@ -62,12 +29,19 @@ public class PlanoDAO {
             sqlException.printStackTrace();
             return rs;
 
+        }finally {
+            conexao.desconectar();
         }
     }
 
     public ResultSet buscarPlanoPeloID(int id){
+        PreparedStatement pstmt;
+        ResultSet rs = null;
+        Conexao conexao = new Conexao();
+        conexao.conectar();
+        Connection conn = conexao.getConn();
         try {
-            conectar();
+
             String query = "Select * from plano where ? = id";
 
             pstmt = conn.prepareStatement(query);
@@ -80,26 +54,23 @@ public class PlanoDAO {
             sqlException.printStackTrace();
             return rs;
 
+        }finally {
+            conexao.desconectar();
         }
 
 
     }
-    public boolean removerPlanoPeloID(int id){
-
-
-        boolean possuiRegistros = true;
-
+    public int removerPlanoPeloID(int id){
+        PreparedStatement pstmt;
+        Conexao conexao = new Conexao();
+        conexao.conectar();
+        Connection conn = conexao.getConn();
         try {
-            conectar();
 
             //Verifica se existe um comprador e vendedor nesse ID e atribui ao boolean possuiRegistros
             ResultSet resultSet =buscarPlanoPeloID(id);
-            if (!resultSet.next()){
-
-                possuiRegistros = false;
-            }else {
-
-                possuiRegistros = true;
+            if (!resultSet.next()) {
+                return 0;
             }
 
             //executa a query
@@ -109,17 +80,30 @@ public class PlanoDAO {
             pstmt.setInt(1, id);
             pstmt.execute();
 
+            // Retorna 1 caso a execução da query seja bem sucedida e 0 caso não ache
+            int rows = pstmt.executeUpdate();
 
+            if (rows > 0){
+                return 1;
+            }else {
+                return 0;
+            }
 
-            return possuiRegistros;
         }catch (SQLException sqlException){
             sqlException.printStackTrace();
-            return false;
+
+            // Retorna -1 caso a execução da query seja mal sucedida
+            return -1;
+        }finally {
+            conexao.desconectar();
         }
     }
 
-    public boolean inserirPlano(Plano plano){
-        conectar();
+    public int inserirPlano(Plano plano){
+        PreparedStatement pstmt;
+        Conexao conexao = new Conexao();
+        conexao.conectar();
+        Connection conn = conexao.getConn();
         try {
 
             //faz o comando SQL
@@ -136,20 +120,33 @@ public class PlanoDAO {
 
             // Retorna True caso a execução da query seja bem sucedida
 
-            return true;
+            // Retorna 1 caso a execução da query seja bem sucedida e 0 caso não ache
+            int rows = pstmt.executeUpdate();
+
+            if (rows > 0){
+                return 1;
+            }else {
+                return 0;
+            }
 
         }catch (SQLException sqlException){
             sqlException.printStackTrace();
-            // Retorna False caso a execução da query seja mal sucedida
 
-            return false;
+            // Retorna -1 caso a execução da query seja mal sucedida
+            return -1;
+        }finally {
+            conexao.desconectar();
         }
 
 
     }
-    public boolean alterarPlano(int id, Plano plano) {
-        conectar();
+    public int alterarPlano(int id, Plano plano) {
+        PreparedStatement pstmt;
+        Conexao conexao = new Conexao();
+        conexao.conectar();
+        Connection conn = conexao.getConn();
         try {
+
             // Prepare a single statement with placeholders for all columns
             pstmt = conn.prepareStatement("UPDATE plano SET nome_plano = ?, descricao = ?,tempo_duracao = ?, valor = ?, tipo_plano = ? WHERE id = ?");
 
@@ -165,14 +162,22 @@ public class PlanoDAO {
 
             pstmt.execute();
 
-            // No need for separate statements for each column update
-            // ...
+            // Retorna 1 caso a execução da query seja bem sucedida e 0 caso não ache            int rows = pstmt.executeUpdate();
+            int rows = pstmt.executeUpdate();
 
-            return true;
+            if (rows > 0){
+                return 1;
+            }else {
+                return 0;
+            }
 
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
-            return false;
+
+
+            return -1;
+        } finally {
+            conexao.desconectar();
         }
     }
 

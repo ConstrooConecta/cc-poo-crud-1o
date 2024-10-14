@@ -28,10 +28,14 @@ public class DeleteCategoriaProdutoServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
         String id = req.getParameter("categoria_id");
         CategoriaProdutoDAO categoriaProdutoDAO = new CategoriaProdutoDAO();
-        if (categoriaProdutoDAO.removerCategoriaProduto(Integer.parseInt(id))){
-            System.out.println("Deu certo");
-        }else{
-            System.out.println("Nao deu certo");
+        int num = categoriaProdutoDAO.removerCategoriaProduto(Integer.parseInt(id));
+
+        if (num == 1){
+            out.println("Categoria Produto removido");
+        }else if (num == 0){
+            out.println("Categoria Produto não removido");
+        }else {
+            out.println("Erro");
         }
 
 

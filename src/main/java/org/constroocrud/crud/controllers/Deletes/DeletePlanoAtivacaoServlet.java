@@ -39,11 +39,13 @@ public class DeletePlanoAtivacaoServlet extends HttpServlet {
         PlanoAtivacaoDAO planoAtivacaoDAO = new PlanoAtivacaoDAO();
 
         //caso seja comprador e vendedor, ele é removido da tabela comprador/vendedor
-
-        if (planoAtivacaoDAO.removerPlanoAtivacao(id_tipo)){
-            out.println("removido");
-
-            //caso seja profissional, ele é removido da tabela profissional
+        int num = planoAtivacaoDAO.removerPlanoAtivacao(id_tipo);
+        if (num == 1){
+            out.println("Plano Ativação removido");
+        }else if (num == 0){
+            out.println("Plano Ativação não removido");
+        }else {
+            out.println("erro");
         }
 
         //Voce é direcionado para a listagem de usuarios!

@@ -1,69 +1,21 @@
 package org.constroocrud.crud.DAOs;
 
+import org.constroocrud.crud.Conexao;
+
 import java.sql.*;
 
 public class PlanoAtivacaoDAO {
-    private Connection conn;
-    private PreparedStatement pstmt;
-    private ResultSet rs;
-
-    public Connection getConn() {
-        return conn;
-    }
-
-    public PreparedStatement getPstmt() {
-        return pstmt;
-    }
-
-    public ResultSet getRs() {
-        return rs;
-    }
-
-
-    //Metodo que faz a conexao com o banco de dados
-
-
-    public boolean conectar() {
-        try {
-            Class.forName("org.postgresql.Driver");
-
-            String dbUrl = System.getenv("CC_URL");
-            String dbUser = System.getenv("CC_USER");
-            String dbPassword = System.getenv("CC_PASSWORD");
-
-            conn = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
-
-            return true;
-
-        }catch (SQLException sqlException) {
-            sqlException.printStackTrace();
-            return false;
-        }catch (ClassNotFoundException classNotFoundException) {
-            classNotFoundException.printStackTrace();
-            return false;
-        }
-    }
-
-    public boolean desconectar(){
-        boolean verificar = false;
-        try {
-            if (conn != null && !conn.isClosed()) {
-                //Desconectando do DB
-                conn.close();
-                verificar = true;
-            }
-        }catch(SQLException sqle) {
-            sqle.printStackTrace();
-        }
-        return verificar;
-    }
 
     //SELECT
 
     //Metodo buscar PLano_Ativacao retorna um resultSet com TODOS os planos_ativacao no BD
-    public ResultSet buscarPlanoAtivacao(){
+    public ResultSet buscarPlanoAtivacao() {
+        Conexao conexao = new Conexao();
+        conexao.conectar();
+        Connection conn = conexao.getConn();
+        PreparedStatement pstmt;
+        ResultSet rs = null;
         try {
-            conectar();
             String query = "Select * from plano_usuario order by id";
             pstmt = conn.prepareStatement(query);
             rs = pstmt.executeQuery();
@@ -72,7 +24,7 @@ public class PlanoAtivacaoDAO {
             sqlException.printStackTrace();
             return rs;
         }finally {
-            desconectar();
+            conexao.desconectar();
         }
     }
 
@@ -80,8 +32,13 @@ public class PlanoAtivacaoDAO {
     //Metodo que retorna apenas um resultSet se existir um usuario com ID recebido no parametro ou null se ocorrer algum erro (o ID é PK portanto nao tera outro mais de um resultado)
 
     public ResultSet buscarPlanoAtivacaoPeloID(int id){
+        Conexao conexao = new Conexao();
+        conexao.conectar();
+        Connection conn = conexao.getConn();
+        PreparedStatement pstmt;
+        ResultSet rs;
         try {
-            conectar();
+
             String query = "Select * from plano_usuario where id = ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, id);
@@ -94,18 +51,22 @@ public class PlanoAtivacaoDAO {
             return null;
 
         }finally {
-            desconectar();
+            conexao.desconectar();
         }
 
     }
 
     //Update
     public int alterarAtivacao(int id){
+        PreparedStatement pstmt = null;
+        ResultSet rs = buscarPlanoAtivacaoPeloID(id);
+        Conexao conexao = new Conexao();
+        conexao.conectar();//abrindo conexão com o banco
+        Connection conn = conexao.getConn();
         String regex = "^[AI]$";
-        try {
-            rs = buscarPlanoAtivacaoPeloID(id);
 
-            conectar();//abrindo conexão com o banco
+        try {
+
             rs.next();
             String ativacaoStr = rs.getString("ativacao");
             if (!ativacaoStr.matches(regex)) {
@@ -123,74 +84,41 @@ public class PlanoAtivacaoDAO {
                 pstmt.setInt(1, id); // Adiciona o ID no PreparedStatement
                 pstmt.executeUpdate(); // Executa o update
                 int rows = pstmt.executeUpdate();
+
+                // Retorna 1 caso a execução da query seja bem sucedida e 0 caso não ache
+
                 if (rows > 0) {
                     return 1;
                 }
             } return 0;
         }catch (SQLException sqle){
             sqle.printStackTrace();
+
+            // Retorna -1 caso a execução da query seja mal sucedida
             return -1;
         }finally {
-            desconectar();
+            conexao.desconectar();
         }
     }
 
-    public int alterarAtivacao2(int id) {
-        try {
-            conectar(); // abrir a conexão
-
-            try (ResultSet rs = buscarPlanoAtivacaoPeloID(id)) { // buscar o plano de ativação pelo ID
-                if (rs.next()) {
-                    String ativacaoStr = rs.getString("ativacao");
-
-                    if (ativacaoStr != null && !ativacaoStr.isEmpty()) {
-                        char ativacao = ativacaoStr.charAt(0); // Pega o primeiro caractere
-                        String sql;
-
-                        if (ativacao == 'A') {
-                            sql = "UPDATE PLANO_USUARIO SET ATIVACAO = 'I' WHERE ID = ?";
-                        } else if (ativacao == 'I') {
-                            sql = "UPDATE PLANO_USUARIO SET ATIVACAO = 'A' WHERE ID = ?";
-                        } else {
-                            return 0; // Caso não seja 'A' ou 'I'
-                        }
-
-                        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-                            pstmt.setInt(1, id); // Adiciona o ID no PreparedStatement
-                            int rows = pstmt.executeUpdate(); // Executa o update
-                            return rows > 0 ? 1 : 0; // Retorna 1 se atualizou, 0 caso contrário
-                        }
-                    }
-                }
-            }
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-            return -1; // Retorna -1 em caso de erro
-        } finally {
-            desconectar(); // Fechar a conexão
-        }
-        return 0; // Retorna 0 se nada foi alterado
-    }
 
 
     //Delete
 
     //Este metodo remove um PlanoAtivação pelo seu ID
 
-    public boolean removerPlanoAtivacao(int id){
-
-        boolean possuiRegistros = true;
-
+    public int removerPlanoAtivacao(int id){
+        PreparedStatement pstmt;
+        ResultSet resultSet = buscarPlanoAtivacaoPeloID(id);
+        Conexao conexao = new Conexao();
+        conexao.conectar();
+        Connection conn = conexao.getConn();
         try {
-            //Verifica se existe um comprador e vendedor nesse ID e atribui ao boolean possuiRegistros
-            ResultSet resultSet = buscarPlanoAtivacaoPeloID(id);
-            if (!resultSet.next()){
-                possuiRegistros = false;
-            }else {
-                possuiRegistros = true;
-            }
 
-            conectar();
+            //Verifica se existe um comprador e vendedor nesse ID e atribui ao boolean possuiRegistros
+            if (!resultSet.next()){
+                return 0;
+            }
 
             //executa a query
             String remover = "DELETE FROM plano_usuario WHERE id = ?";
@@ -198,14 +126,25 @@ public class PlanoAtivacaoDAO {
 
             pstmt.setInt(1, id);
             pstmt.execute();
+            // Retorna 1 caso a execução da query seja bem sucedida e 0 caso não ache
 
-            return possuiRegistros;
+            pstmt.executeUpdate();
+
+            int rows = pstmt.executeUpdate();
+
+            if (rows > 0) {
+                return 1;
+            } else {
+                return 0;
+            }
 
         }catch (SQLException sqlException){
             sqlException.printStackTrace();
-            return false;
+
+            // Retorna -1 caso a execução da query seja mal sucedida
+            return -1;
         }finally {
-            desconectar();
+            conexao.desconectar();
         }
     }
 }

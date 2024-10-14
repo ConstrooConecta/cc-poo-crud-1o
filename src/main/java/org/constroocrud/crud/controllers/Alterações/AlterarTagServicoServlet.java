@@ -32,8 +32,14 @@ public class AlterarTagServicoServlet extends HttpServlet {
         TagServicoDAO tagServicoDAO = new TagServicoDAO();
         TagServico tagServico = new TagServico(name,descricao);
 
-        out.println(tagServicoDAO.alterarTagServico(id, tagServico));
-
+        int num = (tagServicoDAO.alterarTagServico(id, tagServico));
+        if (num == 1) {
+            out.println("Tag Serviço alterado");
+        } else if (num == 0) {
+            out.println("Tag Serviço não alterado");
+        } else {
+            out.println("Erro");
+        }
         RequestDispatcher rd;
         rd = getServletContext().getRequestDispatcher("/pages/listagemTagServico.jsp");
         rd.include(req, resp);

@@ -29,11 +29,14 @@ public class DeletePlanoServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
         String id = req.getParameter("plano_id");
         PlanoDAO planoDAO = new PlanoDAO();
+        int num = planoDAO.removerPlanoPeloID(Integer.parseInt(id));
 
-        if (planoDAO.removerPlanoPeloID(Integer.parseInt(id))){
-            System.out.println("Deu certo");
-        }else{
-            System.out.println("Nao deu certo");
+        if (num == 1){
+            out.println("Plano removido");
+        }else if (num == 0){
+            out.println("Plano nao removido");
+        }else {
+            out.println("Erro");
         }
 
         RequestDispatcher rd;
