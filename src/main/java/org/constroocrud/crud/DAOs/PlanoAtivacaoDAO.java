@@ -111,7 +111,6 @@ public class PlanoAtivacaoDAO {
         PreparedStatement pstmt;
         ResultSet resultSet = buscarPlanoAtivacaoPeloID(id);
         Conexao conexao = new Conexao();
-        boolean possuiRegistros = true;
         conexao.conectar();
         Connection conn = conexao.getConn();
         try {
