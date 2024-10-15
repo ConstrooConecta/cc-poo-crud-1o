@@ -20,22 +20,21 @@ public class LoginServlet extends HttpServlet {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
 
-
+        // Busca a senha correta do administrador com base no email fornecido
         String senhacerta = administradorDAO.buscaSenhaPorEmail(req.getParameter("email-admin"));
         String senhaInserida = req.getParameter("senha-admin");
 
-
-
-        if (senhaInserida.equals(senhacerta)){
+        // Verifica se a senha inserida corresponde à senha correta
+        if (senhaInserida.equals(senhacerta)) {
+            // Redireciona para a página de listagem de categorias de produtos se a senha estiver correta
             RequestDispatcher rd;
             rd = getServletContext().getRequestDispatcher("/pages/listagemCategoriaProdutos.jsp");
             rd.include(req, resp);
-        }else {
+        } else {
+            // Se a senha estiver incorreta, exibe uma mensagem de erro
             out.println("Senha incorreta");
             out.println(senhacerta);
-            out.println( req.getParameter("senha-admin"));
-           ;
+            out.println(req.getParameter("senha-admin"));
         }
-
     }
 }

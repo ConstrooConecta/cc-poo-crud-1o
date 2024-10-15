@@ -1,6 +1,5 @@
 package org.constroocrud.crud.controllers.Deletes;
 
-
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -9,49 +8,36 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.constroocrud.crud.DAOs.PlanoAtivacaoDAO;
 
-
 import java.io.IOException;
 import java.io.PrintWriter;
-//SERVLET QUE FAZ O DELET DE USUARIOS
-//O que precisa ser implementado?
 
-//1. Por enquanto este servlet apenas deleta o registro na tabela Comprador_vendedor ou Profissional, sendo que é preciso deletar da tabela usuarios também, caso nao exista nenhum registro nem nos profissionais nem nos compradores vendedores
-
-
+// Servlet mapeada para "/DeletarPlanoAtivacaoServlet"
 @WebServlet(name = "DeletePlanoAtivacaoServlet", value = "/DeletarPlanoAtivacaoServlet")
 public class DeletePlanoAtivacaoServlet extends HttpServlet {
 
-
+    // Método que trata requisições POST
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
 
-        //Recebe o id da entidade comprador/vendedor ou Profissional
-
+        // Recebe o ID do plano de ativação a ser deletado
         String str_id_tipo = req.getParameter("id_planoativacao");
         int id_tipo = Integer.parseInt(str_id_tipo);
 
         out.println(id_tipo);
 
-        //Estabelece a conexao
+        // Estabelece a conexão
         PlanoAtivacaoDAO planoAtivacaoDAO = new PlanoAtivacaoDAO();
 
-        //caso seja comprador e vendedor, ele é removido da tabela comprador/vendedor
-
-        if (planoAtivacaoDAO.removerPlanoAtivacao(id_tipo)){
+        // Verifica se a remoção foi bem-sucedida
+        if (planoAtivacaoDAO.removerPlanoAtivacao(id_tipo)) {
             out.println("removido");
-
-            //caso seja profissional, ele é removido da tabela profissional
         }
 
-        //Voce é direcionado para a listagem de usuarios!
-        RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("/pages/listagemPlanosAtivacao.jsp");
+        // Redireciona para a página de listagem de planos de ativação
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/listagemPlanosAtivacao.jsp");
         rd.forward(req, resp);
-
-
-
     }
 }

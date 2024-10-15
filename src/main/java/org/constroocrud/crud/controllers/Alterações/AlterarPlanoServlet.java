@@ -7,22 +7,22 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.constroocrud.crud.DAOs.PlanoDAO;
-import org.constroocrud.crud.DAOs.TagServicoDAO;
 import org.constroocrud.crud.models.Plano;
-import org.constroocrud.crud.models.TagServico;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
+// Servlet mapeada para "/AlterarPlanoServlet"
 @WebServlet(name = "AlterarPlanoServlet", value = "/AlterarPlanoServlet")
 public class AlterarPlanoServlet extends HttpServlet {
+
+    // Método que trata requisições POST
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
 
-        //Recebe o id da entidade comprador/vendedor ou Profissional
-
+        // Recebe parâmetros da requisição e converte para tipos apropriados
         String str_id = req.getParameter("id");
         int id = Integer.parseInt(str_id);
         out.println(str_id);
@@ -36,19 +36,15 @@ public class AlterarPlanoServlet extends HttpServlet {
         double valor = Double.parseDouble(strValor);
         int duracao = Integer.parseInt(strDuracao);
 
+        // Instancia DAO e cria objeto Plano
         PlanoDAO planoDAO = new PlanoDAO();
-        Plano plano = new Plano(tipo, valor, descricao, name,duracao);
+        Plano plano = new Plano(tipo, valor, descricao, name, duracao);
 
+        // Altera o plano no banco e exibe o resultado
         out.println(planoDAO.alterarPlano(id, plano));
 
-        RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("/pages/listagemPlanos.jsp");
+        // Redireciona para a página de listagem de planos
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/listagemPlanos.jsp");
         rd.include(req, resp);
-
-
-
-
-
     }
-
 }

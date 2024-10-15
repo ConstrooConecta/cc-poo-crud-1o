@@ -11,41 +11,39 @@ import org.constroocrud.crud.DAOs.PlanoAtivacaoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+// Servlet mapeada para "/AlterarPlanoAtivacaoServlet"
 @WebServlet(name = "AlterarPlanoAtivacaoServlet", value = "/AlterarPlanoAtivacaoServlet")
 public class AlterarPlanoAtivacaoServlet extends HttpServlet {
 
+    // Método que trata requisições POST
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
 
-        //Recebe o id do PLano Ativação
-
+        // Recebe o ID do Plano de Ativação e converte para int
         String str_id_tipo = req.getParameter("id_planoativacao");
         int id_tipo = Integer.parseInt(str_id_tipo);
 
         out.println(id_tipo);
 
-        //Estabelece a conexao
+        // Estabelece a conexão com o DAO
         PlanoAtivacaoDAO planoAtivacaoDAO = new PlanoAtivacaoDAO();
 
-        //caso esteja na tabela Plano Ativação, a coluna ativação será alterada
-
+        // Altera a ativação na tabela Plano Ativação e verifica o resultado
         int result = planoAtivacaoDAO.alterarAtivacao(id_tipo);
         if (result == 1){
             out.println("Ativação alterada");
-            //Caso não aconteça
-        }else if (result == 0){
+        } else if (result == 0){
             out.println("Ativação não encontrada");
-        }else {
+        } else {
             out.println("ERRO");
         }
 
-        //Voce é direcionado para a listagem de Planos de Ativação!
+        // Redireciona para a página de listagem de Planos de Ativação
         RequestDispatcher rd;
         rd = getServletContext().getRequestDispatcher("/pages/listagemPlanosAtivacao.jsp");
         rd.forward(req, resp);
-
     }
 }
