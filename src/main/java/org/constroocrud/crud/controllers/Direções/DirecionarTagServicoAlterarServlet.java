@@ -16,22 +16,20 @@ public class DirecionarTagServicoAlterarServlet extends HttpServlet {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
 
-        //Recebe o id da entidade comprador/vendedor ou Profissional
-
-        String str_id = req.getParameter( "tag_id");
-        String nome = req.getParameter( "nome");
-        String descricao = req.getParameter( "descricao");
+        // Recebe o id da tag de serviço a ser alterada
+        String str_id = req.getParameter("tag_id");
+        String nome = req.getParameter("nome");
+        String descricao = req.getParameter("descricao");
 
         int id = Integer.parseInt(str_id);
         out.println(id);
-        req.setAttribute("id",id);
-        req.setAttribute("nome",nome);
-        req.setAttribute("descricao",descricao);
 
+        // Define os atributos que serão utilizados na página de alteração
+        req.setAttribute("id", id);
+        req.setAttribute("nome", nome);
+        req.setAttribute("descricao", descricao);
 
+        // Redireciona para a página de alteração da tag de serviço
         req.getRequestDispatcher("pages/alterarTagServico.jsp").forward(req, resp);
-
-
     }
-
 }

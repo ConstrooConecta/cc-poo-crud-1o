@@ -16,22 +16,19 @@ public class DirecionarCategoriaProdutoAlterarServlet extends HttpServlet {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
 
-        //Recebe o id da entidade comprador/vendedor ou Profissional
-
-        String str_id = req.getParameter( "categoria_id");
-        String nome = req.getParameter( "nome");
-        String descricao = req.getParameter( "descricao");
+        // Recebe os dados da categoria de produto a ser alterada
+        String str_id = req.getParameter("categoria_id");
+        String nome = req.getParameter("nome");
+        String descricao = req.getParameter("descricao");
         int id = Integer.parseInt(str_id);
         out.println(id);
-        req.setAttribute("id",id);
-        req.setAttribute("nome",nome);
-        req.setAttribute("descricao",descricao);
 
+        // Define atributos para serem usados na página de alteração
+        req.setAttribute("id", id);
+        req.setAttribute("nome", nome);
+        req.setAttribute("descricao", descricao);
 
-
+        // Redireciona para a página de alteração da categoria de produto
         req.getRequestDispatcher("pages/alterarCategoriaProduto.jsp").forward(req, resp);
-
-
     }
-
 }

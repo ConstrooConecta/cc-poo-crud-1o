@@ -16,28 +16,26 @@ public class DirecionarPlanoAlterarServlet extends HttpServlet {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
 
-        //Recebe o id da entidade comprador/vendedor ou Profissional
-
-        String str_id = req.getParameter( "plano_id");
+        // Recebe os dados do plano a ser alterado
+        String str_id = req.getParameter("plano_id");
         String nome = req.getParameter("nome");
         String descricao = req.getParameter("descricao");
         String duracao = req.getParameter("duracao");
         String tipo = req.getParameter("tipoUsuario");
         String valor = req.getParameter("precoMensal");
+
         int id = Integer.parseInt(str_id);
         out.println(id);
 
-        req.setAttribute("id",id);
-        req.setAttribute("nome",nome);
-        req.setAttribute("descricao",descricao);
-        req.setAttribute("duracao",duracao);
-        req.setAttribute("tipo",tipo);
-        req.setAttribute("valor",valor);
+        // Define os atributos que serão utilizados na página de alteração
+        req.setAttribute("id", id);
+        req.setAttribute("nome", nome);
+        req.setAttribute("descricao", descricao);
+        req.setAttribute("duracao", duracao);
+        req.setAttribute("tipo", tipo);
+        req.setAttribute("valor", valor);
 
-
+        // Redireciona para a página de alteração do plano
         req.getRequestDispatcher("pages/alterarPlano.jsp").forward(req, resp);
-
-
     }
-
 }

@@ -7,9 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.constroocrud.crud.DAOs.PlanoDAO;
-import org.constroocrud.crud.DAOs.TagServicoDAO;
 import org.constroocrud.crud.models.Plano;
-import org.constroocrud.crud.models.TagServico;
 
 import java.io.IOException;
 import java.io.PrintWriter;

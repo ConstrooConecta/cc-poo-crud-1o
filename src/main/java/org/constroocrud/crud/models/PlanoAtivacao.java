@@ -1,38 +1,35 @@
-package org.constroocrud.crud.models;
+package org.constroocrud.crud.models; // Pacote da classe PlanoAtivacao
 
-import java.util.Date;
+import java.util.Date; // Importação da classe Date
 
-public class PlanoAtivacao {
+public class PlanoAtivacao { // Classe principal
 
-    //Atributos do comprador/vendedor
+    // Atributos do comprador/vendedor
+    private int id; // ID do plano de ativação
+    private Date data_assinatura; // Data de assinatura
+    private Date data_final; // Data final do plano
+    private char ativacao; // Estado de ativação
 
-    private int id;
-    private Date data_assinatura;
-    private Date data_final;
-    private char ativacao;
-
-    //Gets do comprador/vendedor
-
-    public int getID() {
+    // Gets do comprador/vendedor
+    public int getID() { // Getter para ID
         return id;
     }
 
-    public Date getData_assinatura() {
+    public Date getData_assinatura() { // Getter para data de assinatura
         return data_assinatura;
     }
 
-    public Date getData_final() {
+    public Date getData_final() { // Getter para data final
         return data_final;
     }
 
-    public char getAtivacao(){
+    public char getAtivacao() { // Getter para ativação
         return this.ativacao;
     }
 
-    //Construtores do CompradorVendedor
+    // Construtores do CompradorVendedor
 
-    //Construtor com todos os parametros
-
+    // Construtor com todos os parâmetros
     public PlanoAtivacao(int id, Date data_assinatura, Date data_final, char ativacao) {
         this.id = id;
         this.data_assinatura = data_assinatura;
@@ -40,27 +37,24 @@ public class PlanoAtivacao {
         this.ativacao = ativacao;
     }
 
-
-    //Construtor sem ID
-
+    // Construtor sem ID
     public PlanoAtivacao(Date data_assinatura, Date data_final, char ativacao) {
         this.data_assinatura = data_assinatura;
         this.data_final = data_final;
         this.ativacao = ativacao;
     }
 
-    //Construtor vazio
+    // Construtor vazio
+    public PlanoAtivacao() { }
 
-    public PlanoAtivacao(){}
-
-    //To String
+    // To String
     @Override
-    public String toString() {
+    public String toString() { // Método para representação da classe
         return "CompradorVendedor{" +
                 "ID=" + id +
                 ", data_assinatura='" + data_assinatura + '\'' +
                 ", data_fim='" + data_final + '\'' +
                 ", ativacao=" + ativacao +
-                '}';
+                '}'; // Retorna a representação do objeto
     }
 }
