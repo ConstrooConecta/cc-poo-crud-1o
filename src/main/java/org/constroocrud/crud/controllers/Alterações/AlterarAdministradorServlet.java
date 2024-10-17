@@ -12,29 +12,43 @@ import org.constroocrud.crud.models.Administrador;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-// Servlet mapeada para a rota "/AlterarAdministradorServlet"
 @WebServlet(name = "AlterarAdministradorServlet", value = "/AlterarAdministradorServlet")
 public class AlterarAdministradorServlet extends HttpServlet {
-
-    // Método que trata requisições POST
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
 
-        // Captura e converte parâmetros
-        int id = Integer.parseInt(req.getParameter("id"));
+        //Recebe o id da entidade comprador/vendedor ou Profissional
+
+        String str_id = req.getParameter("id");
+        int id = Integer.parseInt(str_id);
+        out.println(str_id);
+
         String name = req.getParameter("nome");
         String email = req.getParameter("email");
         String senha = req.getParameter("senha");
 
-        // Atualiza o administrador
         Administrador administrador = new Administrador(name, email, senha);
         AdministradorDAO administradorDAO = new AdministradorDAO();
-        out.println(administradorDAO.alterarAdministrador(id, administrador));
 
-        // Redireciona para a página de listagem
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/listagemAdministradores.jsp");
+        int num = administradorDAO.alterarAdministrador(id, administrador);
+        if (num == 1){
+            out.println("Administrador alterado");
+        } else if (num == 0) {
+            out.println("Administrador nao alterado");
+        } else{
+            out.println("Erro");
+        }
+
+        RequestDispatcher rd;
+        rd = getServletContext().getRequestDispatcher("/pages/listagemAdministradores.jsp");
         rd.include(req, resp);
+
+
+
+
+
     }
+
 }

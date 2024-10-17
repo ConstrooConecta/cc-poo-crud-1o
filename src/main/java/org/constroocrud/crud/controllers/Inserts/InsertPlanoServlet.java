@@ -7,9 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.constroocrud.crud.DAOs.PlanoDAO;
-import org.constroocrud.crud.DAOs.TagServicoDAO;
 import org.constroocrud.crud.models.Plano;
-import org.constroocrud.crud.models.TagServico;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -35,11 +33,15 @@ public class InsertPlanoServlet extends HttpServlet {
         double valor = Double.parseDouble(strValor);
         int duracao = Integer.parseInt(strDuracao);
 
-
-
         Plano plano = new Plano(tipo,valor,descricao,nome,duracao);
-        if (planoDAO.inserirPlano(plano)){
-            System.out.println("DEUU");
+
+        int num = planoDAO.inserirPlano(plano);
+        if (num == 1){
+            out.println("Plano inserido");
+        }else if (num == 0){
+            out.println("Plano não deu certo");
+        }else {
+            out.println("Erro");
         }
 
         //Voce é direcionado para a listagem de usuarios!

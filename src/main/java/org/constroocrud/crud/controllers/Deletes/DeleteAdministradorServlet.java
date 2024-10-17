@@ -1,5 +1,6 @@
 package org.constroocrud.crud.controllers.Deletes;
 
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -10,31 +11,35 @@ import org.constroocrud.crud.DAOs.AdministradorDAO;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+//1. Por enquanto este servlet apenas deleta o registro na tabela Comprador_vendedor ou Profissional, sendo que é preciso deletar da tabela usuarios também, caso nao exista nenhum registro nem nos profissionais nem nos compradores vendedores
 
-// Servlet mapeada para "/DeletarAdministradorServlet"
+
 @WebServlet(name = "DeleteAdministradorServlet", value = "/DeletarAdministradorServlet")
 public class DeleteAdministradorServlet extends HttpServlet {
 
-    // Método que trata requisições POST
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
-
-        // Recebe o ID do administrador a ser deletado
         String id = req.getParameter("administrador_id");
         AdministradorDAO administradorDAO = new AdministradorDAO();
+        int num = administradorDAO.removerAdministrador(Integer.parseInt(id));
 
-        // Verifica se a remoção foi bem-sucedida
-        if (administradorDAO.removerAdministrador(Integer.parseInt(id))) {
-            System.out.println("Deu certo");
-        } else {
-            System.out.println("Nao deu certo");
+        if (num == 1){
+            out.println("Administração removido");
+        }else if (num == 0){
+            out.println("Administrador não removido");
+        }else {
+            out.println("Erro");
         }
 
-        // Redireciona para a página de listagem de administradores
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/listagemAdministradores.jsp");
+        RequestDispatcher rd;
+        rd = getServletContext().getRequestDispatcher("/pages/listagemAdministradores.jsp");
         rd.include(req, resp);
+
+
+
     }
 }

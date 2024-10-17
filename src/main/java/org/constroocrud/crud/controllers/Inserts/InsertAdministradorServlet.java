@@ -30,9 +30,14 @@ public class InsertAdministradorServlet extends HttpServlet {
         String senha = req.getParameter("senha");
 
         Administrador administrador = new Administrador(name, email, senha);
-        if (administradorDAO.inserirAdministrador(administrador)){
 
-            System.out.println("DEUU");
+        int num = administradorDAO.inserirAdministrador(administrador);
+        if (num == 1){
+            out.println("Administrador inserido");
+        } else if (num == 0) {
+            out.println("Administrador não inserido");
+        }else {
+            out.println("Erro");
         }
 
         //Voce é direcionado para a listagem de usuarios!

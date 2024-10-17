@@ -29,8 +29,14 @@ public class InsertCategoriaProdutoServlet extends HttpServlet {
         String descricao = req.getParameter("descricao");
 
         CategoriaProduto categoriaProduto = new CategoriaProduto(name,descricao);
-        if (categoriaProdutoDAO.inserirCategoriaProduto(categoriaProduto)){
-            System.out.println("DEUU");
+
+        int num = categoriaProdutoDAO.inserirCategoriaProduto(categoriaProduto);
+        if (num == 1){
+            out.println("Categoria Produto inserido");
+        } else if (num == 0){
+            out.println("Categoria Produto não inserido");
+        } else{
+            out.println("Erro");
         }
 
         //Voce é direcionado para a listagem de usuarios!

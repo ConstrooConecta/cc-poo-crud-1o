@@ -12,34 +12,42 @@ import org.constroocrud.crud.models.TagServico;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-// Servlet mapeada para "/AlterarTagServicoServlet"
 @WebServlet(name = "AlterarTagServicoServlet", value = "/AlterarTagServicoServlet")
 public class AlterarTagServicoServlet extends HttpServlet {
-
-    // Método que trata requisições POST
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
 
-        // Recebe e converte o ID
+        //Recebe o id da entidade comprador/vendedor ou Profissional
+
         String str_id = req.getParameter("id");
         int id = Integer.parseInt(str_id);
         out.println(str_id);
 
-        // Recebe os outros parâmetros
         String name = req.getParameter("nome");
         String descricao = req.getParameter("descricao");
 
-        // Instancia o DAO e cria um objeto TagServico
+
         TagServicoDAO tagServicoDAO = new TagServicoDAO();
-        TagServico tagServico = new TagServico(name, descricao);
+        TagServico tagServico = new TagServico(name,descricao);
 
-        // Altera a tag no banco e exibe o resultado
-        out.println(tagServicoDAO.alterarTagServico(id, tagServico));
-
-        // Redireciona para a página de listagem de Tags de Serviço
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/listagemTagServico.jsp");
+        int num = (tagServicoDAO.alterarTagServico(id, tagServico));
+        if (num == 1) {
+            out.println("Tag Serviço alterado");
+        } else if (num == 0) {
+            out.println("Tag Serviço não alterado");
+        } else {
+            out.println("Erro");
+        }
+        RequestDispatcher rd;
+        rd = getServletContext().getRequestDispatcher("/pages/listagemTagServico.jsp");
         rd.include(req, resp);
+
+
+
+
+
     }
+
 }

@@ -12,17 +12,15 @@ import org.constroocrud.crud.models.CategoriaProduto;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-// Servlet mapeada para a rota "/AlterarCategoriaProdutoServlet"
 @WebServlet(name = "AlterarCategoriaProdutoServlet", value = "/AlterarCategoriaProdutoServlet")
 public class AlterarCategoriaProdutoServlet extends HttpServlet {
-
-    // Método que trata requisições POST
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
 
-        // Captura e converte parâmetros
+        //Recebe o id da entidade comprador/vendedor ou Profissional
+
         String str_id = req.getParameter("id");
         int id = Integer.parseInt(str_id);
         out.println(str_id);
@@ -30,14 +28,27 @@ public class AlterarCategoriaProdutoServlet extends HttpServlet {
         String name = req.getParameter("nome");
         String descricao = req.getParameter("descricao");
 
-        // Atualiza a categoria de produto
+
         CategoriaProduto categoriaProduto = new CategoriaProduto(name, descricao);
         CategoriaProdutoDAO categoriaProdutoDAO = new CategoriaProdutoDAO();
 
-        out.println(categoriaProdutoDAO.alterarCategoriaProduto(id, categoriaProduto));
+        int num = categoriaProdutoDAO.alterarCategoriaProduto(id, categoriaProduto);
+        if (num == 1) {
+            out.println("Categoria Produto alterado");
+        } else if (num == 0) {
+            out.println("Categoria Produto não alterado");
+        } else {
+            out.println("Erro");
+        }
 
-        // Redireciona para a página de listagem
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/listagemCategoriaProdutos.jsp");
+        RequestDispatcher rd;
+        rd = getServletContext().getRequestDispatcher("/pages/listagemCategoriaProdutos.jsp");
         rd.forward(req, resp);
+
+
+
+
+
     }
+
 }
