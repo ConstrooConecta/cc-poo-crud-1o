@@ -85,9 +85,8 @@ public class PlanoDAO {
 
             if (rows > 0){
                 return 1;
-            }else {
-                return 0;
             }
+            return 0;
 
         }catch (SQLException sqlException){
             sqlException.printStackTrace();
