@@ -1,4 +1,4 @@
-package org.constroocrud.crud.controllers.Direções;
+package org.constroocrud.crud.controllers.Plano;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -9,17 +9,20 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "DirecionarTagServicoServlet", value = "/DirecionarTagServicoServlet")
-public class DirecionarTagServicoAlterarServlet extends HttpServlet {
+@WebServlet(name = "DirecionarPlanoAlterarServlet", value = "/DirecionarPlanoAlterarServlet")
+public class DirecionarPlanoAlterarServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
 
-        // Recebe o id da tag de serviço a ser alterada
-        String str_id = req.getParameter("tag_id");
+        // Recebe os dados do plano a ser alterado
+        String str_id = req.getParameter("plano_id");
         String nome = req.getParameter("nome");
         String descricao = req.getParameter("descricao");
+        String duracao = req.getParameter("duracao");
+        String tipo = req.getParameter("tipoUsuario");
+        String valor = req.getParameter("precoMensal");
 
         int id = Integer.parseInt(str_id);
         out.println(id);
@@ -28,8 +31,11 @@ public class DirecionarTagServicoAlterarServlet extends HttpServlet {
         req.setAttribute("id", id);
         req.setAttribute("nome", nome);
         req.setAttribute("descricao", descricao);
+        req.setAttribute("duracao", duracao);
+        req.setAttribute("tipo", tipo);
+        req.setAttribute("valor", valor);
 
-        // Redireciona para a página de alteração da tag de serviço
-        req.getRequestDispatcher("pages/alterarTagServico.jsp").forward(req, resp);
+        // Redireciona para a página de alteração do plano
+        req.getRequestDispatcher("pages/alterarPlano.jsp").forward(req, resp);
     }
 }
