@@ -1,4 +1,4 @@
-package org.constroocrud.crud.controllers.Deletes;
+package org.constroocrud.crud.controllers.Administrador;
 
 
 import jakarta.servlet.RequestDispatcher;
@@ -7,19 +7,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.constroocrud.crud.DAOs.PlanoDAO;
-import org.constroocrud.crud.DAOs.TagServicoDAO;
+import org.constroocrud.crud.DAOs.AdministradorDAO;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-//SERVLET QUE FAZ O DELET DE USUARIOS
-//O que precisa ser implementado?
-
 //1. Por enquanto este servlet apenas deleta o registro na tabela Comprador_vendedor ou Profissional, sendo que é preciso deletar da tabela usuarios também, caso nao exista nenhum registro nem nos profissionais nem nos compradores vendedores
 
 
-@WebServlet(name = "DeletePlanoServlet", value = "/DeletarPlanoServlet")
-public class DeletePlanoServlet extends HttpServlet {
+@WebServlet(name = "DeleteAdministradorServlet", value = "/DeletarAdministradorServlet")
+public class DeleteAdministradorServlet extends HttpServlet {
 
 
     @Override
@@ -27,20 +23,20 @@ public class DeletePlanoServlet extends HttpServlet {
             throws ServletException, IOException {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
-        String id = req.getParameter("plano_id");
-        PlanoDAO planoDAO = new PlanoDAO();
-        int num = planoDAO.removerPlanoPeloID(Integer.parseInt(id));
+        String id = req.getParameter("administrador_id");
+        AdministradorDAO administradorDAO = new AdministradorDAO();
+        int num = administradorDAO.removerAdministrador(Integer.parseInt(id));
 
         if (num == 1){
-            out.println("Plano removido");
+            out.println("Administração removido");
         }else if (num == 0){
-            out.println("Plano nao removido");
+            out.println("Administrador não removido");
         }else {
             out.println("Erro");
         }
 
         RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("/pages/listagemPlanos.jsp");
+        rd = getServletContext().getRequestDispatcher("/pages/listagemAdministradores.jsp");
         rd.include(req, resp);
 
 

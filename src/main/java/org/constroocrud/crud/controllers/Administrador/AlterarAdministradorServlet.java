@@ -1,4 +1,4 @@
-package org.constroocrud.crud.controllers.Alterações;
+package org.constroocrud.crud.controllers.Administrador;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -6,14 +6,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.constroocrud.crud.DAOs.TagServicoDAO;
-import org.constroocrud.crud.models.TagServico;
+import org.constroocrud.crud.DAOs.AdministradorDAO;
+import org.constroocrud.crud.models.Administrador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "AlterarTagServicoServlet", value = "/AlterarTagServicoServlet")
-public class AlterarTagServicoServlet extends HttpServlet {
+@WebServlet(name = "AlterarAdministradorServlet", value = "/AlterarAdministradorServlet")
+public class AlterarAdministradorServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
@@ -26,22 +26,23 @@ public class AlterarTagServicoServlet extends HttpServlet {
         out.println(str_id);
 
         String name = req.getParameter("nome");
-        String descricao = req.getParameter("descricao");
+        String email = req.getParameter("email");
+        String senha = req.getParameter("senha");
 
+        Administrador administrador = new Administrador(name, email, senha);
+        AdministradorDAO administradorDAO = new AdministradorDAO();
 
-        TagServicoDAO tagServicoDAO = new TagServicoDAO();
-        TagServico tagServico = new TagServico(name,descricao);
-
-        int num = (tagServicoDAO.alterarTagServico(id, tagServico));
-        if (num == 1) {
-            out.println("Tag Serviço alterado");
+        int num = administradorDAO.alterarAdministrador(id, administrador);
+        if (num == 1){
+            out.println("Administrador alterado");
         } else if (num == 0) {
-            out.println("Tag Serviço não alterado");
-        } else {
+            out.println("Administrador nao alterado");
+        } else{
             out.println("Erro");
         }
+
         RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("/pages/listagemTagServico.jsp");
+        rd = getServletContext().getRequestDispatcher("/pages/listagemAdministradores.jsp");
         rd.include(req, resp);
 
 

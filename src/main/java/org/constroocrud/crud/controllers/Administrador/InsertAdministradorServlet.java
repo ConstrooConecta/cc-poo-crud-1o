@@ -1,4 +1,4 @@
-package org.constroocrud.crud.controllers.Inserts;
+package org.constroocrud.crud.controllers.Administrador;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
