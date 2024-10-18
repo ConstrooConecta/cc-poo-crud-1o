@@ -41,7 +41,7 @@
         <%
             // Recupera os dados do banco de dados via DAO
             TagServicoDAO tagServicoDAO = new TagServicoDAO();
-            ResultSet resultSet = tagServicoDAO.buscarTagServico();
+            ResultSet resultSet = tagServicoDAO.buscarTagServicos();
 
             try {
                 while (resultSet.next()) {

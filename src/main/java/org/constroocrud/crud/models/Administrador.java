@@ -1,41 +1,41 @@
-package org.constroocrud.crud.models;
+package org.constroocrud.crud.models; // Pacote da classe Administrador
 
-public class Administrador {
+public class Administrador { // Classe principal
 
-    private int id;
-    private String nome;
-    private String email;
-    private String senha;
+    private int id; // ID do administrador
+    private String nome; // Nome do administrador
+    private String email; // Email do administrador
+    private String senha; // Senha do administrador
 
-    public int getId() {
+    public int getId() { // Getter para ID
         return id;
     }
 
-    public String getNome() {
+    public String getNome() { // Getter para nome
         return nome;
     }
 
-    public String getEmail() {
+    public String getEmail() { // Getter para email
         return email;
     }
 
-    public String getSenha() {
+    public String getSenha() { // Getter para senha
         return senha;
     }
 
-    public Administrador(int id, String nome, String email, String senha) {
+    public Administrador(int id, String nome, String email, String senha) { // Construtor com ID
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
     }
 
-    public Administrador(String nome, String email, String senha) {
+    public Administrador(String nome, String email, String senha) { // Construtor sem ID
         this.nome = nome;
         this.email = email;
         this.senha = senha;
     }
 
-    public Administrador() {
+    public Administrador() { // Construtor padrão
     }
 }

@@ -16,22 +16,21 @@ public class DirecionarAdministradorAlterarServlet extends HttpServlet {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
 
-        //Recebe o id da entidade comprador/vendedor ou Profissional
-
+        // Recebe os dados do administrador a ser alterado
         String str_id = req.getParameter("administrador_id");
         String nome = req.getParameter("nome");
         String senha = req.getParameter("senha");
         String email = req.getParameter("email");
         int id = Integer.parseInt(str_id);
         out.println(id);
-        req.setAttribute("id",id);
-        req.setAttribute("nome",nome);
-        req.setAttribute("senha",senha);
-        req.setAttribute("email",email);
 
+        // Define atributos para serem usados na página de alteração
+        req.setAttribute("id", id);
+        req.setAttribute("nome", nome);
+        req.setAttribute("senha", senha);
+        req.setAttribute("email", email);
+
+        // Redireciona para a página de alteração do administrador
         req.getRequestDispatcher("pages/alterarAdministrador.jsp").forward(req, resp);
-
-
     }
-
 }

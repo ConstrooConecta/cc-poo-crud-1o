@@ -7,7 +7,6 @@ import java.sql.*;
 
 public class CategoriaProdutoDAO {
 
-
     public int inserirCategoriaProduto(CategoriaProduto categoriaProduto){
         PreparedStatement pstmt;
         Conexao conexao = new Conexao();
