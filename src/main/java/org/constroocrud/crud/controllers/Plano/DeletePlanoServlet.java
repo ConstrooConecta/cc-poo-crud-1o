@@ -1,4 +1,4 @@
-package org.constroocrud.crud.controllers.Deletes;
+package org.constroocrud.crud.controllers.Plano;
 
 
 import jakarta.servlet.RequestDispatcher;
@@ -7,7 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.constroocrud.crud.DAOs.TagServicoDAO;
+import org.constroocrud.crud.DAOs.PlanoDAO;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,8 +17,8 @@ import java.io.PrintWriter;
 //1. Por enquanto este servlet apenas deleta o registro na tabela Comprador_vendedor ou Profissional, sendo que é preciso deletar da tabela usuarios também, caso nao exista nenhum registro nem nos profissionais nem nos compradores vendedores
 
 
-@WebServlet(name = "DeleteTagServicoServlet", value = "/DeletarTagServicoServlet")
-public class DeleteTagServicoServlet extends HttpServlet {
+@WebServlet(name = "DeletePlanoServlet", value = "/DeletarPlanoServlet")
+public class DeletePlanoServlet extends HttpServlet {
 
 
     @Override
@@ -26,19 +26,20 @@ public class DeleteTagServicoServlet extends HttpServlet {
             throws ServletException, IOException {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
-        String id = req.getParameter("tag_id");
-        TagServicoDAO tagServicoDAO = new TagServicoDAO();
-        int num = tagServicoDAO.removerTagServicoPeloID(Integer.parseInt(id));
+        String id = req.getParameter("plano_id");
+        PlanoDAO planoDAO = new PlanoDAO();
+        int num = planoDAO.removerPlanoPeloID(Integer.parseInt(id));
+
         if (num == 1){
-            out.println("Tag Serviço removido");
+            out.println("Plano removido");
         }else if (num == 0){
-            out.println("Tag Serviço não removido");
+            out.println("Plano nao removido");
         }else {
             out.println("Erro");
         }
 
         RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("/pages/listagemTagServico.jsp");
+        rd = getServletContext().getRequestDispatcher("/pages/listagemPlanos.jsp");
         rd.include(req, resp);
 
 

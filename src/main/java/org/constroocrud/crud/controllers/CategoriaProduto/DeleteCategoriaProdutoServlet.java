@@ -1,4 +1,5 @@
-package org.constroocrud.crud.controllers.Inserts;
+package org.constroocrud.crud.controllers.CategoriaProduto;
+
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -7,43 +8,40 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.constroocrud.crud.DAOs.CategoriaProdutoDAO;
-import org.constroocrud.crud.models.CategoriaProduto;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+//SERVLET QUE FAZ O DELET DE USUARIOS
+//O que precisa ser implementado?
 
-@WebServlet(name = "InsertCategoriaProdutoServlet", value = "/InserirCategoriaProdutoServlet")
-public class InsertCategoriaProdutoServlet extends HttpServlet {
+//1. Por enquanto este servlet apenas deleta o registro na tabela Comprador_vendedor ou Profissional, sendo que é preciso deletar da tabela usuarios também, caso nao exista nenhum registro nem nos profissionais nem nos compradores vendedores
+
+
+@WebServlet(name = "DeleteCategoriaProdutoServlet", value = "/DeletarCategoriaProdutoServlet")
+public class DeleteCategoriaProdutoServlet extends HttpServlet {
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-
-
         resp.setContentType("text/html");
-
         PrintWriter out = resp.getWriter();
+        String id = req.getParameter("categoria_id");
         CategoriaProdutoDAO categoriaProdutoDAO = new CategoriaProdutoDAO();
+        int num = categoriaProdutoDAO.removerCategoriaProduto(Integer.parseInt(id));
 
-        String name = req.getParameter("nome");
-        String descricao = req.getParameter("descricao");
-
-        CategoriaProduto categoriaProduto = new CategoriaProduto(name,descricao);
-
-        int num = categoriaProdutoDAO.inserirCategoriaProduto(categoriaProduto);
         if (num == 1){
-            out.println("Categoria Produto inserido");
-        } else if (num == 0){
-            out.println("Categoria Produto não inserido");
-        } else{
+            out.println("Categoria Produto removido");
+        }else if (num == 0){
+            out.println("Categoria Produto não removido");
+        }else {
             out.println("Erro");
         }
 
-        //Voce é direcionado para a listagem de usuarios!
+
         RequestDispatcher rd;
         rd = getServletContext().getRequestDispatcher("/pages/listagemCategoriaProdutos.jsp");
         rd.include(req, resp);
-
 
 
 

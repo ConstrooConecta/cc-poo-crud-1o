@@ -1,4 +1,4 @@
-package org.constroocrud.crud.controllers.Alterações;
+package org.constroocrud.crud.controllers.CategoriaProduto;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;

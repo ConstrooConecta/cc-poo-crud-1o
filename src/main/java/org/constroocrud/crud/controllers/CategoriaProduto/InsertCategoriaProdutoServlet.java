@@ -1,4 +1,4 @@
-package org.constroocrud.crud.controllers.Inserts;
+package org.constroocrud.crud.controllers.CategoriaProduto;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -6,14 +6,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.constroocrud.crud.DAOs.TagServicoDAO;
-import org.constroocrud.crud.models.TagServico;
+import org.constroocrud.crud.DAOs.CategoriaProdutoDAO;
+import org.constroocrud.crud.models.CategoriaProduto;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "InsertTagServicoServlet", value = "/InserirTagServicoServlet")
-public class InsertTagServicoServlet extends HttpServlet {
+@WebServlet(name = "InsertCategoriaProdutoServlet", value = "/InserirCategoriaProdutoServlet")
+public class InsertCategoriaProdutoServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -23,25 +23,25 @@ public class InsertTagServicoServlet extends HttpServlet {
         resp.setContentType("text/html");
 
         PrintWriter out = resp.getWriter();
-        TagServicoDAO tagServicoDAO = new TagServicoDAO();
+        CategoriaProdutoDAO categoriaProdutoDAO = new CategoriaProdutoDAO();
 
         String name = req.getParameter("nome");
         String descricao = req.getParameter("descricao");
 
-        TagServico tagServico = new TagServico(name,descricao);
+        CategoriaProduto categoriaProduto = new CategoriaProduto(name,descricao);
 
-        int num = tagServicoDAO.inserirTagServico(tagServico);
+        int num = categoriaProdutoDAO.inserirCategoriaProduto(categoriaProduto);
         if (num == 1){
-            out.println("Tag Serviço inserido");
-        } else if (num == 0) {
-            out.println("Tag Serviço não inserido");
-        } else {
+            out.println("Categoria Produto inserido");
+        } else if (num == 0){
+            out.println("Categoria Produto não inserido");
+        } else{
             out.println("Erro");
         }
 
         //Voce é direcionado para a listagem de usuarios!
         RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("/pages/listagemTagServico.jsp");
+        rd = getServletContext().getRequestDispatcher("/pages/listagemCategoriaProdutos.jsp");
         rd.include(req, resp);
 
 
