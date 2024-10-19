@@ -72,6 +72,7 @@ public class PlanoAtivacaoDAO {
                 }
 
                 pstmt.setInt(1, id); // Adiciona o ID no PreparedStatement
+
                 int rows = pstmt.executeUpdate(); // Executa o update
                 // Retorna 1 se a remoção for bem-sucedida, 0 caso contrário
                 if (rows>0){
@@ -107,8 +108,9 @@ public class PlanoAtivacaoDAO {
             String remover = "DELETE FROM plano_usuario WHERE id = ?";
             pstmt = conn.prepareStatement(remover);
             pstmt.setInt(1, id);
-            int rows = pstmt.executeUpdate(); // Executa o delete
+
             // Retorna 1 se a remoção for bem-sucedida, 0 caso contrário
+            int rows = pstmt.executeUpdate(); // Executa o delete
             if (rows>0){
                 return 1;
             }

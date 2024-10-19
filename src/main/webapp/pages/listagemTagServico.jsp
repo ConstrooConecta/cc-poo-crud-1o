@@ -38,6 +38,29 @@
                 <input type="submit" value="Pesquisar">
             </form>
         </div>
+
+        <% if (request.getAttribute("retorno") == "erro"){
+        %>
+        <div>
+            <P>ERRO AO <%= request.getAttribute("metodo") %> O ITEM: <%= request.getAttribute("entidade") %></P>
+
+        </div>
+        <%} else if (request.getAttribute("retorno") == "certo") {%>
+        <div>
+            <P>SUCESSO AO <%= request.getAttribute("metodo") %> O ITEM: <%= request.getAttribute("entidade") %></P>
+
+        </div>
+        <%} else if (request.getAttribute("retorno") == "notfound") {%>
+        <div>
+            <p>ITEM NÃO ENCONTRADO AO <%= request.getAttribute("metodo")%>: <%= request.getAttribute("entidade") %></p>
+        </div>
+        <%} else if (request.getAttribute("retorno") == "existente") {%>
+        <div>
+            <p>ITEM JÁ EXISTENTE AO <%= request.getAttribute("metodo") %>: <%= request.getAttribute("entidade") %></p>
+        </div>
+        <%}%>
+
+
         <%
             // Recupera os dados do banco de dados via DAO
             TagServicoDAO tagServicoDAO = new TagServicoDAO();

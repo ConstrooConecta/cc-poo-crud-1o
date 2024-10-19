@@ -31,13 +31,15 @@ public class DeleteCategoriaProdutoServlet extends HttpServlet {
         int num = categoriaProdutoDAO.removerCategoriaProduto(Integer.parseInt(id));
 
         if (num == 1){
-            out.println("Categoria Produto removido");
+            req.setAttribute("retorno", "certo");
         }else if (num == 0){
-            out.println("Categoria Produto não removido");
+            req.setAttribute("retorno", "notfound");
         }else {
-            out.println("Erro");
+            req.setAttribute("retorno", "erro");
         }
 
+        req.setAttribute("metodo", "DELETAR");
+        req.setAttribute("entidade",req.getParameter("nome") );
 
         RequestDispatcher rd;
         rd = getServletContext().getRequestDispatcher("/pages/listagemCategoriaProdutos.jsp");

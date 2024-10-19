@@ -34,6 +34,27 @@
                 <input type="submit" value="Pesquisar"> <!-- Botão de pesquisa -->
             </form>
         </div>
+        <% if (request.getAttribute("retorno") == "erro"){
+        %>
+        <div>
+            <P>ERRO AO <%= request.getAttribute("metodo") %> O ITEM: <%= request.getAttribute("entidade") %></P>
+
+        </div>
+        <%} else if (request.getAttribute("retorno") == "certo") {%>
+        <div>
+            <P>SUCESSO AO <%= request.getAttribute("metodo") %> O ITEM: <%= request.getAttribute("entidade") %></P>
+
+        </div>
+        <%} else if (request.getAttribute("retorno") == "notfound") {%>
+        <div>
+            <p>ITEM NÃO ENCONTRADO AO <%= request.getAttribute("metodo")%>: <%= request.getAttribute("entidade") %></p>
+        </div>
+        <%} else if (request.getAttribute("retorno") == "existente") {%>
+        <div>
+            <p>ITEM JÁ EXISTENTE AO <%= request.getAttribute("metodo") %>: <%= request.getAttribute("entidade") %></p>
+        </div>
+        <%}%>
+
 
         <%
             CategoriaProdutoDAO categoriaProdutoDAO = new CategoriaProdutoDAO(); // Instância do DAO
@@ -48,7 +69,8 @@
             </div>
             <div class="actions"> <!-- Ações disponíveis -->
                 <form action="${pageContext.request.contextPath}/DeletarCategoriaProdutoServlet" method="post"> <!-- Formulário para deletar -->
-                    <input type="hidden" name="categoria_id" value="<%= resultSet.getInt("id") %>"> <!-- ID da categoria -->
+                    <input type="hidden" name="categoria_id" value="<%= resultSet.getInt("id") %>">
+                    <input type="hidden" name="nome" value="<%= resultSet.getString("nome") %>"><!-- ID da categoria -->
                     <button type="submit" class="delete-btn">Deletar</button> <!-- Botão de deletar -->
                 </form>
                 <form action="${pageContext.request.contextPath}/DirecionarCategoriaProdutoAlterarServlet" method="post"> <!-- Formulário para editar -->
