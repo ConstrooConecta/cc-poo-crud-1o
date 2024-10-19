@@ -67,6 +67,7 @@ public class TagServicoDAO {
             String remover = "DELETE FROM tag_servico WHERE id = ?";
             pstmt = conn.prepareStatement(remover);
             pstmt.setInt(1, id);
+
             int rows = pstmt.executeUpdate();
 
             if (rows > 0) {

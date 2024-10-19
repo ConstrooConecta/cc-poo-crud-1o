@@ -66,6 +66,7 @@ public class PlanoDAO {
             String remover = "DELETE FROM plano WHERE id = ?";
             pstmt = conn.prepareStatement(remover);
             pstmt.setInt(1, id);
+
             int rows = pstmt.executeUpdate();
 
             if (rows > 0) {

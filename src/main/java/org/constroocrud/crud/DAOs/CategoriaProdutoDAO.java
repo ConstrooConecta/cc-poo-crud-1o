@@ -21,8 +21,6 @@ public class CategoriaProdutoDAO {
             pstmt.setString(1, categoriaProduto.getNome());
             pstmt.setString(2, categoriaProduto.getDescricao());
 
-            pstmt.execute();
-
             // Retorna 1 caso a execução da query seja bem sucedida e 0 caso não ache
             int rows = pstmt.executeUpdate();
 
@@ -68,7 +66,7 @@ public class CategoriaProdutoDAO {
 
     }
 
-    public ResultSet buscarCategoriaProdutoPeloID(int id){
+    public ResultSet buscarCategoriaProdutoPeloID(int id) {
         PreparedStatement pstmt;
         ResultSet rs = null;
         Conexao conexao = new Conexao();
@@ -78,7 +76,31 @@ public class CategoriaProdutoDAO {
             String query = "Select * from categoria_produto where ? = id";
 
             pstmt = conn.prepareStatement(query);
-            pstmt.setInt(1,id);
+            pstmt.setInt(1, id);
+            rs = pstmt.executeQuery();
+            return rs;
+
+
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+            return rs;
+
+        } finally {
+            conexao.desconectar();
+        }
+    }
+
+    public ResultSet buscarCategoriaProdutoPeloNome(String nome){
+        PreparedStatement pstmt;
+        ResultSet rs = null;
+        Conexao conexao = new Conexao();
+        conexao.conectar();
+        Connection conn = conexao.getConn();
+        try {
+            String query = "Select * from categoria_produto where ? = nome";
+
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, nome);
             rs = pstmt.executeQuery();
             return rs;
 
@@ -115,7 +137,6 @@ public class CategoriaProdutoDAO {
             pstmt.setInt(1, id);
 
             // Retorna 1 caso a execução da query seja bem sucedida e 0 caso não ache
-
             int rows = pstmt.executeUpdate();
 
             if (rows > 0){
@@ -147,8 +168,6 @@ public class CategoriaProdutoDAO {
             pstmt.setString(2, categoriaProduto.getDescricao());
 
             pstmt.setInt(3, id);
-
-            pstmt.execute();
 
             // Retorna 1 caso a execução da query seja bem sucedida e 0 caso não ache
             int rows = pstmt.executeUpdate();
