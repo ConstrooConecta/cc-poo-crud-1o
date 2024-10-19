@@ -23,17 +23,22 @@ public class DeleteAdministradorServlet extends HttpServlet {
             throws ServletException, IOException {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
+
         String id = req.getParameter("administrador_id");
+        String nome = req.getParameter("nome");
         AdministradorDAO administradorDAO = new AdministradorDAO();
         int num = administradorDAO.removerAdministrador(Integer.parseInt(id));
 
         if (num == 1){
-            out.println("Administração removido");
+            req.setAttribute("retorno", "certo");
         }else if (num == 0){
-            out.println("Administrador não removido");
+            req.setAttribute("retorno", "notfound");
         }else {
-            out.println("Erro");
+            req.setAttribute("retorno", "erro");
         }
+
+        req.setAttribute("metodo", "DELETAR");
+        req.setAttribute("entidade", nome);
 
         RequestDispatcher rd;
         rd = getServletContext().getRequestDispatcher("/pages/listagemAdministradores.jsp");

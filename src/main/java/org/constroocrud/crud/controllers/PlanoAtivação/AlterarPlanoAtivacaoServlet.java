@@ -24,7 +24,6 @@ public class AlterarPlanoAtivacaoServlet extends HttpServlet {
 
         String str_id_tipo = req.getParameter("id_planoativacao");
         int id_tipo = Integer.parseInt(str_id_tipo);
-
         out.println(id_tipo);
 
         //Estabelece a conexao
@@ -32,15 +31,17 @@ public class AlterarPlanoAtivacaoServlet extends HttpServlet {
 
         //caso esteja na tabela Plano Ativação, a coluna ativação será alterada
 
-        int result = planoAtivacaoDAO.alterarAtivacao(id_tipo);
-        if (result == 1){
-            out.println("Plano Ativação alterada");
-            //Caso não aconteça
-        }else if (result == 0){
-            out.println("Plano Ativação não encontrada");
+        int num = planoAtivacaoDAO.alterarAtivacao(id_tipo);
+        if (num == 1){
+            req.setAttribute("retorno", "certo");
+        }else if (num == 0){
+            req.setAttribute("retorno", "notfound");
         }else {
-            out.println("Erro");
+            req.setAttribute("retorno", "erro");
         }
+
+        req.setAttribute("metodo", "ALTERAR");
+        req.setAttribute("entidade", id_tipo);
 
         //Voce é direcionado para a listagem de Planos de Ativação!
         RequestDispatcher rd;

@@ -76,11 +76,12 @@
             </div>
             <div class="actions">
                 <form action="${pageContext.request.contextPath}/DeletarTagServicoServlet" method="post">
-                    <input type="hidden" name="tag_id" value="<%= resultSet.getInt("id") %>">
+                    <input type="hidden" name="id" value="<%= resultSet.getInt("id") %>">
+                    <input type="hidden" name="nome" value="<%= resultSet.getString("nome") %>">
                     <button type="submit" class="delete-btn">Deletar</button>
                 </form>
                 <form action="${pageContext.request.contextPath}/DirecionarTagServicoServlet" method="post">
-                    <input type="hidden" name="tag_id" value="<%= resultSet.getInt("id") %>">
+                    <input type="hidden" name="id" value="<%= resultSet.getInt("id") %>">
                     <input type="hidden" name="nome" value="<%= resultSet.getString("nome") %>">
                     <input type="hidden" name="descricao" value="<%= resultSet.getString("descricao") %>">
                     <button type="submit" class="edit-btn">Editar</button>

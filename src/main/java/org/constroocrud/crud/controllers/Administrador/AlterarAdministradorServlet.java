@@ -25,21 +25,24 @@ public class AlterarAdministradorServlet extends HttpServlet {
         int id = Integer.parseInt(str_id);
         out.println(str_id);
 
-        String name = req.getParameter("nome");
+        String nome = req.getParameter("nome");
         String email = req.getParameter("email");
         String senha = req.getParameter("senha");
 
-        Administrador administrador = new Administrador(name, email, senha);
+        Administrador administrador = new Administrador(nome, email, senha);
         AdministradorDAO administradorDAO = new AdministradorDAO();
 
         int num = administradorDAO.alterarAdministrador(id, administrador);
         if (num == 1){
-            out.println("Administrador alterado");
-        } else if (num == 0) {
-            out.println("Administrador nao alterado");
-        } else{
-            out.println("Erro");
+            req.setAttribute("retorno", "certo");
+        }else if (num == 0){
+            req.setAttribute("retorno", "notfound");
+        }else {
+            req.setAttribute("retorno", "erro");
         }
+
+        req.setAttribute("metodo", "ALTERAR");
+        req.setAttribute("entidade", nome);
 
         RequestDispatcher rd;
         rd = getServletContext().getRequestDispatcher("/pages/listagemAdministradores.jsp");

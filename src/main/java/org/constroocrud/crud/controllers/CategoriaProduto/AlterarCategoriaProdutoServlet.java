@@ -23,13 +23,12 @@ public class AlterarCategoriaProdutoServlet extends HttpServlet {
 
         String str_id = req.getParameter("id");
         int id = Integer.parseInt(str_id);
-        out.println(str_id);
 
-        String name = req.getParameter("nome");
+        String nome = req.getParameter("nome");
         String descricao = req.getParameter("descricao");
 
 
-        CategoriaProduto categoriaProduto = new CategoriaProduto(name, descricao);
+        CategoriaProduto categoriaProduto = new CategoriaProduto(nome, descricao);
         CategoriaProdutoDAO categoriaProdutoDAO = new CategoriaProdutoDAO();
 
         int num = categoriaProdutoDAO.alterarCategoriaProduto(id, categoriaProduto);
@@ -43,7 +42,7 @@ public class AlterarCategoriaProdutoServlet extends HttpServlet {
         }
 
         req.setAttribute("metodo", "ALTERAR");
-        req.setAttribute("entidade", name);
+        req.setAttribute("entidade", nome);
 
         RequestDispatcher rd;
         rd = getServletContext().getRequestDispatcher("/pages/listagemCategoriaProdutos.jsp");

@@ -11,6 +11,8 @@ import org.constroocrud.crud.models.Plano;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 @WebServlet(name = "InsertPlanoServlet", value = "/InserirPlanoServlet")
 public class InsertPlanoServlet extends HttpServlet {
@@ -23,7 +25,6 @@ public class InsertPlanoServlet extends HttpServlet {
         resp.setContentType("text/html");
 
         PrintWriter out = resp.getWriter();
-        PlanoDAO planoDAO = new PlanoDAO();
 
         String nome = req.getParameter("nome");
         String descricao = req.getParameter("descricao");
@@ -34,15 +35,28 @@ public class InsertPlanoServlet extends HttpServlet {
         int duracao = Integer.parseInt(strDuracao);
 
         Plano plano = new Plano(tipo,valor,descricao,nome,duracao);
+        PlanoDAO planoDAO = new PlanoDAO();
 
-        int num = planoDAO.inserirPlano(plano);
-        if (num == 1){
-            out.println("Plano inserido");
-        }else if (num == 0){
-            out.println("Plano não deu certo");
-        }else {
-            out.println("Erro");
+        try {
+            ResultSet rs = planoDAO.buscarPlanoPeloID(plano.getId());
+            if (!rs.next()){
+                int num = planoDAO.inserirPlano(plano);
+                if (num == 1){
+                    req.setAttribute("retorno", "certo");
+                }else if (num == 0){
+                    req.setAttribute("retorno", "notfound");
+                }else {
+                    req.setAttribute("retorno", "erro");
+                }
+            }else {
+                req.setAttribute("retorno", "existente");  // Categoria já existe
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
+
+        req.setAttribute("metodo", "INSERIR");
+        req.setAttribute("entidade", nome);
 
         //Voce é direcionado para a listagem de usuarios!
         RequestDispatcher rd;

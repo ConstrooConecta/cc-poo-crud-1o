@@ -26,16 +26,23 @@ public class DeleteTagServicoServlet extends HttpServlet {
             throws ServletException, IOException {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
+
         String id = req.getParameter("tag_id");
+        String nome = req.getParameter("nome");
+
         TagServicoDAO tagServicoDAO = new TagServicoDAO();
         int num = tagServicoDAO.removerTagServicoPeloID(Integer.parseInt(id));
+
         if (num == 1){
-            out.println("Tag Serviço removido");
+            req.setAttribute("retorno", "certo");
         }else if (num == 0){
-            out.println("Tag Serviço não removido");
+            req.setAttribute("retorno", "notfound");
         }else {
-            out.println("Erro");
+            req.setAttribute("retorno", "erro");
         }
+
+        req.setAttribute("metodo", "DELETAR");
+        req.setAttribute("entidade", nome);
 
         RequestDispatcher rd;
         rd = getServletContext().getRequestDispatcher("/pages/listagemTagServico.jsp");

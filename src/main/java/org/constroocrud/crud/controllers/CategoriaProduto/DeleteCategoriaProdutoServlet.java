@@ -26,7 +26,10 @@ public class DeleteCategoriaProdutoServlet extends HttpServlet {
             throws ServletException, IOException {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
+
         String id = req.getParameter("categoria_id");
+        String nome = req.getParameter("nome");
+
         CategoriaProdutoDAO categoriaProdutoDAO = new CategoriaProdutoDAO();
         int num = categoriaProdutoDAO.removerCategoriaProduto(Integer.parseInt(id));
 
@@ -39,7 +42,7 @@ public class DeleteCategoriaProdutoServlet extends HttpServlet {
         }
 
         req.setAttribute("metodo", "DELETAR");
-        req.setAttribute("entidade",req.getParameter("nome") );
+        req.setAttribute("entidade", nome);
 
         RequestDispatcher rd;
         rd = getServletContext().getRequestDispatcher("/pages/listagemCategoriaProdutos.jsp");
