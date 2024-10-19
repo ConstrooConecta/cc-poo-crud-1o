@@ -73,6 +73,7 @@
             <div class="actions"> <!-- Ações disponíveis -->
                 <form action="${pageContext.request.contextPath}/DeletarAdministradorServlet" method="post"> <!-- Formulário para deletar -->
                     <input type="hidden" name="administrador_id" value="<%= resultSet.getInt("id") %>"> <!-- ID do administrador -->
+                    <input type="hidden" name="nome" value="<%= resultSet.getString("nome") %>"> <!-- Nome do administrador -->
                     <button type="submit" class="delete-btn">Deletar</button> <!-- Botão de deletar -->
                 </form>
                 <form action="${pageContext.request.contextPath}/DirecionarAdministradorAlterarServlet" method="post"> <!-- Formulário para editar -->

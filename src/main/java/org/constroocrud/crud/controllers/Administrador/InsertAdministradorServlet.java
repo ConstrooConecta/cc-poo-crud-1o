@@ -11,6 +11,8 @@ import org.constroocrud.crud.models.Administrador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 
 @WebServlet(name = "InsertAdministradorServlet", value = "/InserirAdministradorServlet")
@@ -25,20 +27,32 @@ public class InsertAdministradorServlet extends HttpServlet {
 
         AdministradorDAO administradorDAO = new AdministradorDAO();
 
-        String name = req.getParameter("nome");
+        String nome = req.getParameter("nome");
         String email = req.getParameter("email");
         String senha = req.getParameter("senha");
 
-        Administrador administrador = new Administrador(name, email, senha);
+        Administrador administrador = new Administrador(nome, email, senha);
 
-        int num = administradorDAO.inserirAdministrador(administrador);
-        if (num == 1){
-            out.println("Administrador inserido");
-        } else if (num == 0) {
-            out.println("Administrador não inserido");
-        }else {
-            out.println("Erro");
+        try {
+            ResultSet rs = administradorDAO.buscarAdministradorPeloEmail(email);
+            if (!rs.next()){
+                int num = administradorDAO.inserirAdministrador(administrador);
+                if (num == 1){
+                    req.setAttribute("retorno", "certo");
+                }else if (num == 0){
+                    req.setAttribute("retorno", "notfound");
+                }else {
+                    req.setAttribute("retorno", "erro");
+                }
+            }else {
+                req.setAttribute("retorno", "existente");  // Categoria já existe
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
+
+        req.setAttribute("metodo", "INSERIR");
+        req.setAttribute("entidade", nome);
 
         //Voce é direcionado para a listagem de usuarios!
         RequestDispatcher rd;

@@ -25,21 +25,25 @@ public class AlterarTagServicoServlet extends HttpServlet {
         int id = Integer.parseInt(str_id);
         out.println(str_id);
 
-        String name = req.getParameter("nome");
+        String nome = req.getParameter("nome");
         String descricao = req.getParameter("descricao");
 
 
         TagServicoDAO tagServicoDAO = new TagServicoDAO();
-        TagServico tagServico = new TagServico(name,descricao);
+        TagServico tagServico = new TagServico(nome,descricao);
 
         int num = (tagServicoDAO.alterarTagServico(id, tagServico));
-        if (num == 1) {
-            out.println("Tag Serviço alterado");
-        } else if (num == 0) {
-            out.println("Tag Serviço não alterado");
-        } else {
-            out.println("Erro");
+        if (num == 1){
+            req.setAttribute("retorno", "certo");
+        }else if (num == 0){
+            req.setAttribute("retorno", "notfound");
+        }else {
+            req.setAttribute("retorno", "erro");
         }
+
+        req.setAttribute("metodo", "ALTERAR");
+        req.setAttribute("entidade", nome);
+
         RequestDispatcher rd;
         rd = getServletContext().getRequestDispatcher("/pages/listagemTagServico.jsp");
         rd.include(req, resp);

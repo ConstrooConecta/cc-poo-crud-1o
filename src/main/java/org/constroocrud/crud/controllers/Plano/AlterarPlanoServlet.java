@@ -25,7 +25,7 @@ public class AlterarPlanoServlet extends HttpServlet {
         int id = Integer.parseInt(str_id);
         out.println(str_id);
 
-        String name = req.getParameter("nome");
+        String nome = req.getParameter("nome");
         String descricao = req.getParameter("descricao");
         String strDuracao = req.getParameter("duracao");
         String strValor = req.getParameter("valor");
@@ -35,16 +35,19 @@ public class AlterarPlanoServlet extends HttpServlet {
         int duracao = Integer.parseInt(strDuracao);
 
         PlanoDAO planoDAO = new PlanoDAO();
-        Plano plano = new Plano(tipo, valor, descricao, name,duracao);
+        Plano plano = new Plano(tipo, valor, descricao, nome,duracao);
 
         int num = planoDAO.alterarPlano(id, plano);
         if (num == 1){
-            out.println("Plano alterado");
-        } else if (num == 0) {
-            out.println("Plano nao alterado");
-        } else {
-            out.println("Erro");
+            req.setAttribute("retorno", "certo");
+        }else if (num == 0){
+            req.setAttribute("retorno", "notfound");
+        }else {
+            req.setAttribute("retorno", "erro");
         }
+
+        req.setAttribute("metodo", "ALTERAR");
+        req.setAttribute("entidade", nome);
 
         RequestDispatcher rd;
         rd = getServletContext().getRequestDispatcher("/pages/listagemPlanos.jsp");

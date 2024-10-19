@@ -78,6 +78,7 @@
             <div class="actions">
                 <form action="${pageContext.request.contextPath}/DeletarPlanoServlet" method="post">
                     <input type="hidden" name="plano_id" value="<%= resultSet.getInt("id") %>">
+                    <input type="hidden" name="nome" value="<%= resultSet.getString("nome_plano")%>">
                     <button type="submit" class="delete-btn">Deletar</button>
                 </form>
                 <form action="${pageContext.request.contextPath}/DirecionarPlanoAlterarServlet" method="post">

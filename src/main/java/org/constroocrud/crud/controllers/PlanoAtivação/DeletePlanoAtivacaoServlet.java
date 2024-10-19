@@ -32,7 +32,7 @@ public class DeletePlanoAtivacaoServlet extends HttpServlet {
 
         String str_id_tipo = req.getParameter("id_planoativacao");
         int id_tipo = Integer.parseInt(str_id_tipo);
-
+        String nome = req.getParameter("nome");
         out.println(id_tipo);
 
         //Estabelece a conexao
@@ -40,13 +40,17 @@ public class DeletePlanoAtivacaoServlet extends HttpServlet {
 
         //caso seja comprador e vendedor, ele é removido da tabela comprador/vendedor
         int num = planoAtivacaoDAO.removerPlanoAtivacao(id_tipo);
+
         if (num == 1){
-            out.println("Plano Ativação removido");
+            req.setAttribute("retorno", "certo");
         }else if (num == 0){
-            out.println("Plano Ativação não removido");
+            req.setAttribute("retorno", "notfound");
         }else {
-            out.println("erro");
+            req.setAttribute("retorno", "erro");
         }
+
+        req.setAttribute("metodo", "DELETAR");
+        req.setAttribute("entidade", nome);
 
         //Voce é direcionado para a listagem de usuarios!
         RequestDispatcher rd;

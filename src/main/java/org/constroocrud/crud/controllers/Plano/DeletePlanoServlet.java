@@ -26,17 +26,22 @@ public class DeletePlanoServlet extends HttpServlet {
             throws ServletException, IOException {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
+
         String id = req.getParameter("plano_id");
+
         PlanoDAO planoDAO = new PlanoDAO();
         int num = planoDAO.removerPlanoPeloID(Integer.parseInt(id));
 
         if (num == 1){
-            out.println("Plano removido");
+            req.setAttribute("retorno", "certo");
         }else if (num == 0){
-            out.println("Plano nao removido");
+            req.setAttribute("retorno", "notfound");
         }else {
-            out.println("Erro");
+            req.setAttribute("retorno", "erro");
         }
+
+        req.setAttribute("metodo", "DELETAR");
+        req.setAttribute("entidade", id);
 
         RequestDispatcher rd;
         rd = getServletContext().getRequestDispatcher("/pages/listagemPlanos.jsp");
