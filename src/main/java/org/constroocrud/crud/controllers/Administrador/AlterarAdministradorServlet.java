@@ -23,30 +23,48 @@ public class AlterarAdministradorServlet extends HttpServlet {
 
         String str_id = req.getParameter("id");
         int id = Integer.parseInt(str_id);
-        out.println(str_id);
 
         String nome = req.getParameter("nome");
         String email = req.getParameter("email");
         String senha = req.getParameter("senha");
+        String errosMensagem = "";
+        if (email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$") && senha.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,20}$")){
+            Administrador administrador = new Administrador(nome, email, senha);
+            AdministradorDAO administradorDAO = new AdministradorDAO();
 
-        Administrador administrador = new Administrador(nome, email, senha);
-        AdministradorDAO administradorDAO = new AdministradorDAO();
+            int num = administradorDAO.alterarAdministrador(id, administrador);
+            if (num == 1){
+                req.setAttribute("retorno", "certo");
+            }else if (num == 0){
+                req.setAttribute("retorno", "notfound");
+            }else {
+                req.setAttribute("retorno", "erro");
+            }
 
-        int num = administradorDAO.alterarAdministrador(id, administrador);
-        if (num == 1){
-            req.setAttribute("retorno", "certo");
-        }else if (num == 0){
-            req.setAttribute("retorno", "notfound");
+            req.setAttribute("metodo", "ALTERAR");
+            req.setAttribute("entidade", nome);
+
+            RequestDispatcher rd;
+            rd = getServletContext().getRequestDispatcher("/pages/listagemAdministradores.jsp");
+            rd.include(req, resp);
         }else {
+            if (!email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")){
+                errosMensagem+="| E-mail inválido |";
+            }
+            if (!senha.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,20}$\n")){
+                errosMensagem+="| Senha inválida (É necessário ter de 8 a 20 caracteres, uma letra maiúscula e minúscula e um número) |";
+            }
+            RequestDispatcher rd;
             req.setAttribute("retorno", "erro");
+            req.setAttribute("mensagem", errosMensagem);
+            req.setAttribute("id", id);
+            req.setAttribute("nome", nome);
+            req.setAttribute("senha", senha);
+            req.setAttribute("email", email);
+            rd = getServletContext().getRequestDispatcher("/pages/alterarAdministrador.jsp");
+            rd.include(req, resp);
         }
 
-        req.setAttribute("metodo", "ALTERAR");
-        req.setAttribute("entidade", nome);
-
-        RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("/pages/listagemAdministradores.jsp");
-        rd.include(req, resp);
 
 
 

@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tag Serviços</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/cascading-style-sheets/listagemTagServicoR.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/cascading-style-sheets/listagemTagServico.css">
 
 </head>
 <body>
@@ -30,7 +30,7 @@
     <section class="categorias">
         <h1>Tag Serviços</h1>
         <div class="controls">
-            <form action="${pageContext.request.contextPath}/hyperText-markup-language/cadastrarTagServico.html" method="get">
+            <form action="${pageContext.request.contextPath}/cadastros/cadastrarTagServico.html" method="get">
                 <button class="create-btn">Criar</button>
             </form>
             <form action="${pageContext.request.contextPath}/BuscarTagServicoServlet" method="get">
@@ -76,12 +76,12 @@
             </div>
             <div class="actions">
                 <form action="${pageContext.request.contextPath}/DeletarTagServicoServlet" method="post">
-                    <input type="hidden" name="id" value="<%= resultSet.getInt("id") %>">
+                    <input type="hidden" name="tag_id" value="<%= resultSet.getInt("id") %>">
                     <input type="hidden" name="nome" value="<%= resultSet.getString("nome") %>">
                     <button type="submit" class="delete-btn">Deletar</button>
                 </form>
                 <form action="${pageContext.request.contextPath}/DirecionarTagServicoServlet" method="post">
-                    <input type="hidden" name="id" value="<%= resultSet.getInt("id") %>">
+                    <input type="hidden" name="tag_id" value="<%= resultSet.getInt("id") %>">
                     <input type="hidden" name="nome" value="<%= resultSet.getString("nome") %>">
                     <input type="hidden" name="descricao" value="<%= resultSet.getString("descricao") %>">
                     <button type="submit" class="edit-btn">Editar</button>

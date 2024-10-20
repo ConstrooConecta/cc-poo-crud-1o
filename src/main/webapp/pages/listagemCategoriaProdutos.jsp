@@ -9,7 +9,7 @@
     <meta charset="UTF-8"> <!-- Define a codificação de caracteres -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configura responsividade -->
     <title>Categorias</title> <!-- Título da página -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/cascading-style-sheets/listagemCategoriaProdutoR.css"> <!-- Importa o CSS -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/cascading-style-sheets/listagemCategoriaProduto.css"> <!-- Importa o CSS -->
 </head>
 <body>
 <header>
@@ -28,7 +28,7 @@
     <section class="categorias"> <!-- Seção para categorias -->
         <h1>Categorias Produtos</h1> <!-- Título da seção -->
         <div class="controls"> <!-- Controles de ação -->
-            <form action="${pageContext.request.contextPath}/hyperText-markup-language/cadastrarCategoriaProduto.html">
+            <form action="${pageContext.request.contextPath}/cadastros/cadastrarCategoriaProduto.html">
                 <button class="create-btn">Criar</button> <!-- Botão para criar nova categoria -->
                 <input type="text" name="search" placeholder="Pesquisar categorias"> <!-- Campo de pesquisa -->
                 <input type="submit" value="Pesquisar"> <!-- Botão de pesquisa -->

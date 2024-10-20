@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planos</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/cascading-style-sheets/listagemPlanoR.css"> <!-- Atualize o caminho se necessário -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/cascading-style-sheets/listagemPlano.css"> <!-- Atualize o caminho se necessário -->
 </head>
 <body>
 <header>
@@ -28,7 +28,7 @@
     <section class="planos">
         <h1>Planos</h1>
         <div class="controls">
-            <form action="${pageContext.request.contextPath}/hyperText-markup-language/cadastrarPlano.html" method="get">
+            <form action="${pageContext.request.contextPath}/cadastros/cadastrarPlano.html" method="get">
                 <button type="submit" class="create-btn">Criar</button>
             </form>
             <form action="${pageContext.request.contextPath}/BuscarPlanoServlet" method="get">

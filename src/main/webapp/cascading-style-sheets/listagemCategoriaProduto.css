@@ -1,139 +1,132 @@
-*{
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #f9f9f9;
 }
 
-#navbar-line{
-    height: 30px;
-    width: 100%;
-    background-color: #0E292F;
-}
-#navbar{
-    display: flex;
-    flex-direction:column;
-}
-#navbar-Constroo{
-
-    font-size: 30px;
-    margin-bottom: 20px;
-    margin-left: 20px;
-    font-family: "Arial Black";
-    color: #0E292F;
-
-}
-#div-entidades{
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    color: #0E292F;
-    font-size: 15px;
-
-}
-#div-crud-usuario{
-    margin-top: 30px;
-    margin-left:20px;
-    margin-right: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
-}
-#right-options-crud{
-    flex-direction: row;
-    width: 300px;
-    padding-right: 20px;
-}
-#button-criar{
-    width: 50px;
-}
-#form-usuario-criar{
-    flex-direction: row;
-    width: 300px;
-}
-.Usuario{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-top: 50px;
-
-    width: 90%;
-    border: #867151 2px solid;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #F0F0F0;
-}
-.nome-Usuario{
-    font-size: 35px;
-    color: #0E292F;
-
-}
-.infos-principais-usuario{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 350px;
-    margin-left: 50px;
-
-}
-.deletar-alterar{
-    display: flex;
-    flex-direction: column;
-    margin-right: 50px;
-}
-.button-deletar-alterar{
-    background-color: #867151;
-    width: 80px;
-    height: 30px;
-    color: white;
-    margin-top: 20px;
-}
-.top-usuario-infos{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-
-}
-
-.infos-texto{
+header {
+    background-color: #f8f8f8;
+    padding: 20px;
+    text-align: center;
+    font-size: 24px;
     font-weight: bold;
-
 }
-.bottom-usuario-infos{
+
+nav {
+    background-color: #0E292F;
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+nav ul li a.active {
+    font-weight: bold;
+}
+
+main {
+    padding: 20px;
+}
+
+.categorias {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.categorias h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.controls {
     display: flex;
-    flex-direction: row;
-    margin-left: 50px;
-    width: 700px;
-    height: 200px;
     justify-content: space-between;
     margin-bottom: 20px;
 }
-.endereco{
+
+.controls .create-btn {
+    background-color:#0E292F;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.controls input {
+    padding: 10px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.categoria {
     display: flex;
-    flex-direction: column;
-    height: 100px;
     justify-content: space-between;
-
-
+    align-items: center;
+    background-color: #f8f8f8;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 5px solid transparent;
+    border-radius: 5px;
+    transition: border-left 0.3s ease;
 }
-.endereco-infos{
+
+.categoria .info h2 {
+    margin: 0 0 5px 0;
+    font-size: 20px;
+    color: #333;
+}
+
+.categoria .info p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.categoria .actions {
     display: flex;
-    flex-direction: row;
-    width: 400px;
-    justify-content: space-between;
-}
-.info-end{
-    display: flex;
-    flex-direction: column;
+    gap: 10px;
 }
 
-#tipos-usuario{
-    margin-left: 20px;
-    width: 300px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.categoria .delete-btn,
+.categoria .edit-btn {
+    background-color: #b5a18f;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
+.categoria .delete-btn:hover,
+.categoria .edit-btn:hover {
+    opacity: 0.8;
+}
+
+.color-ref {
+    font-weight: bold;
+}
+.categoria:hover {
+    border-left: 5px solid #002B5B;
+}

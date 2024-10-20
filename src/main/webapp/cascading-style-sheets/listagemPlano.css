@@ -14,10 +14,13 @@ header {
     font-size: 24px;
     font-weight: bold;
 }
+.plano:hover {
+    border-left: 5px solid #002B5B;
+}
 
 /* Estilo de Navegação */
 nav {
-    background-color: #002B5B;
+    background-color: #0E292F;
     padding: 10px 0;
 }
 
@@ -37,6 +40,9 @@ nav ul li a {
     color: #fff;
     text-decoration: none;
     font-size: 16px;
+}
+nav ul li a.active {
+    font-weight: bold;
 }
 
 /* Estilo do Conteúdo Principal */
@@ -68,7 +74,7 @@ main {
 }
 
 .controls .create-btn {
-    background-color: #002B5B;
+    background-color: #0E292F;
     color: #fff;
     border: none;
     padding: 10px 20px;
