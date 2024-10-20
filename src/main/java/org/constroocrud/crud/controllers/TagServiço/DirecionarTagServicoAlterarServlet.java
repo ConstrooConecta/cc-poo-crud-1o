@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "DirecionarTagServicoServlet", value = "/DirecionarTagServicoServlet")
+@WebServlet(name = "DirecionarTagServicoAlterarServlet", value = "/DirecionarTagServicoServlet")
 public class DirecionarTagServicoAlterarServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

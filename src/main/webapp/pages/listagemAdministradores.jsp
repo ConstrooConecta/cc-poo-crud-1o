@@ -8,7 +8,7 @@
     <meta charset="UTF-8"> <!-- Define a codificação de caracteres -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configura responsividade -->
     <title>Administradores</title> <!-- Título da página -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/cascading-style-sheets/listagemAdministradoresR.css"> <!-- Importa o CSS -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/cascading-style-sheets/listagemAdministradores.css"> <!-- Importa o CSS -->
 </head>
 <body>
 <header>
@@ -27,7 +27,7 @@
     <section class="administradores"> <!-- Seção para administradores -->
         <h1>Administradores</h1> <!-- Título da seção -->
         <div class="controls"> <!-- Controles de ação -->
-            <form action="${pageContext.request.contextPath}/hyperText-markup-language/cadastrarAdministrador.html" method="get">
+            <form action="${pageContext.request.contextPath}/cadastros/cadastrarAdministrador.jsp" method="get">
                 <button type="submit" class="create-btn">Adicionar</button> <!-- Botão para adicionar administrador -->
             </form>
             <form action="${pageContext.request.contextPath}/BuscarAdministradorServlet" method="get">
