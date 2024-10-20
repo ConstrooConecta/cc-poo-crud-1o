@@ -34,7 +34,7 @@
                 <button class="create-btn">Criar</button>
             </form>
             <form action="${pageContext.request.contextPath}/BuscarTagServicoServlet" method="post">
-                <input type="text" name="pesquisa" placeholder="Pesquisar categorias">
+                <input type="text" name="nome" placeholder="Pesquisar categorias">
                 <input type="submit" value="Pesquisar">
             </form>
         </div>
@@ -64,7 +64,7 @@
         <%
             // Recupera os dados do banco de dados via DAO
             TagServicoDAO tagServicoDAO = new TagServicoDAO();
-            ResultSet resultSet = tagServicoDAO.buscarTagServicos();
+            ResultSet resultSet = tagServicoDAO.buscarTagServicoPeloNome(String.valueOf(request.getAttribute("nome")));
 
             try {
                 while (resultSet.next()) {

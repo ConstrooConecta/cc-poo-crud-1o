@@ -29,7 +29,7 @@
         <h1>Planos de Ativação</h1>
         <div class="controls">
             <form id="form-plano-ativacao-criar" action="${pageContext.request.contextPath}/BuscarPlanoAtivacaoServlet" method="post">
-                <input type="text" name="id" placeholder="Pesquise o plano pelo id">
+                <input type="number" name="id" placeholder="Pesquise o plano pelo ID">
                 <input type="submit" value="Pesquisar">
             </form>
         </div>
@@ -59,7 +59,7 @@
         <%-- Inicio do loop dos resultados --%>
         <%
             PlanoAtivacaoDAO planoAtivacaoDAO = new PlanoAtivacaoDAO();
-            ResultSet resultSet = planoAtivacaoDAO.buscarPlanoAtivacao();
+            ResultSet resultSet = planoAtivacaoDAO.buscarPlanoAtivacaoPeloID(Integer.parseInt(String.valueOf(request.getAttribute("id"))));
 
             try {
                 while (resultSet.next()) {

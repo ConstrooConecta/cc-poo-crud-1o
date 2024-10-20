@@ -47,6 +47,7 @@ public class PlanoAtivacaoDAO {
         }
     }
 
+
     // UPDATE
 
     // Método para alterar o status de ativação de um plano de acordo com o ID

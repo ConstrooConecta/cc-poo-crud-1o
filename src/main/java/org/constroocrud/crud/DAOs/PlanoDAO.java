@@ -48,6 +48,25 @@ public class PlanoDAO {
             conexao.desconectar();
         }
     }
+    public ResultSet buscarPlanoPeloNome(String nome) {
+        PreparedStatement pstmt;
+        ResultSet rs = null;
+        Conexao conexao = new Conexao();
+        conexao.conectar();
+        Connection conn = conexao.getConn();
+        try {
+            String query = "SELECT * FROM plano WHERE nome_plano like ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1,"%"+nome+"%");
+            rs = pstmt.executeQuery();
+            return rs;
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+            return rs;
+        } finally {
+            conexao.desconectar();
+        }
+    }
 
     // Método para remover um plano pelo ID
     public int removerPlanoPeloID(int id) {

@@ -31,7 +31,7 @@
                 <button type="submit" class="create-btn">Adicionar</button> <!-- Botão para adicionar administrador -->
             </form>
             <form action="${pageContext.request.contextPath}/BuscarAdministradorServlet" method="post">
-                <input type="text" name="pesquisar" placeholder="Pesquisar administradores"> <!-- Campo de pesquisa -->
+                <input type="text" name="nome" placeholder="Pesquisar administradores pelo nome"> <!-- Campo de pesquisa -->
                 <input type="submit" value="Pesquisar"> <!-- Botão de pesquisa -->
             </form>
         </div>
@@ -60,7 +60,7 @@
 
         <%
             AdministradorDAO administradorDAO = new AdministradorDAO(); // Instância do DAO
-            ResultSet resultSet = administradorDAO.buscarAdministrador(); // Busca os administradores
+            ResultSet resultSet = administradorDAO.buscarAdministradorPeloNome(String.valueOf(request.getAttribute("nome"))); // Busca os administradores
 
             try {
                 while (resultSet.next()) { // Itera sobre os resultados
@@ -87,10 +87,13 @@
         </div>
         <%
                 } // Fim do while
+
             } catch (SQLException e) { // Tratamento de exceções
                 e.printStackTrace(); // Imprime o stack trace em caso de erro
             }
         %>
+
+
     </section>
 </main>
 </body>

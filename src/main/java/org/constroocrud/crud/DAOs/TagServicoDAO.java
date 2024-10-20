@@ -49,6 +49,26 @@ public class TagServicoDAO {
             conexao.desconectar();
         }
     }
+    public ResultSet buscarTagServicoPeloNome(String nome) {
+        PreparedStatement pstmt;
+        ResultSet rs = null;
+        Conexao conexao = new Conexao();
+        conexao.conectar();
+        Connection conn = conexao.getConn();
+        try {
+            String query = "SELECT * FROM tag_servico WHERE nome like ?";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1,"%"+nome+"%");
+            rs = pstmt.executeQuery();
+            return rs;
+
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+            return rs;
+        } finally {
+            conexao.desconectar();
+        }
+    }
 
     // Método para remover uma tag de serviço pelo ID
     public int removerTagServicoPeloID(int id) {

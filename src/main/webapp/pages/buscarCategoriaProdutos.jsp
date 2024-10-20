@@ -35,7 +35,6 @@
                 <input type="text" name="nome" placeholder="Pesquisar categorias"> <!-- Campo de pesquisa -->
                 <input type="submit" value="Pesquisar">
             </form>
-
         </div>
         <% if (request.getAttribute("retorno") == "erro"){
         %>
@@ -61,7 +60,7 @@
 
         <%
             CategoriaProdutoDAO categoriaProdutoDAO = new CategoriaProdutoDAO(); // Instância do DAO
-            ResultSet resultSet = categoriaProdutoDAO.buscarCategoriaProduto(); // Busca as categorias
+            ResultSet resultSet = categoriaProdutoDAO.buscarSimilarCategoriaProdutoPeloNome(String.valueOf(request.getAttribute("nome"))); // Busca as categorias
             try {
                 while (resultSet.next()) { // Itera sobre os resultados
         %>
