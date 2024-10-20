@@ -28,16 +28,11 @@
     <section class="planos">
         <h1>Planos</h1>
         <div class="controls">
-            <div class="actionsCreateAlterDelete">
-                <form action="${pageContext.request.contextPath}/cadastros/cadastrarPlano.html" method="get">
-                    <button type="submit" class="create-btn">Adicionar</button> <!-- Botão para adicionar administrador -->
-                </form>
-                <form action="${pageContext.request.contextPath}/pages/alterarPlanoPeloID.jsp" method="get">
-                    <button type="submit" class="create-btn">Alterar</button> <!-- Botão para adicionar administrador -->
-                </form>
-            </div>
+            <form action="${pageContext.request.contextPath}/cadastros/cadastrarPlano.html" method="get">
+                <button type="submit" class="create-btn">Criar</button>
+            </form>
             <form action="${pageContext.request.contextPath}/BuscarPlanoServlet" method="post">
-                <input type="text" name="nome" placeholder="Pesquisar planos">
+                <input type="text" name="pesquisar" placeholder="Pesquisar planos">
                 <input type="submit" value="Pesquisar">
             </form>
         </div>
@@ -66,7 +61,7 @@
 
         <%
             PlanoDAO planoDAO = new PlanoDAO();
-            ResultSet resultSet = planoDAO.buscarPlanos();
+            ResultSet resultSet = planoDAO.buscarPlanoPeloNome(String.valueOf(request.getAttribute("nome")));
             try {
                 while (resultSet.next()) {
         %>

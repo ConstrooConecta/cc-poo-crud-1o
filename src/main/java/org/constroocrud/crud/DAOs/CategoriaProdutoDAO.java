@@ -115,6 +115,31 @@ public class CategoriaProdutoDAO {
 
 
     }
+    public ResultSet buscarSimilarCategoriaProdutoPeloNome(String nome){
+        PreparedStatement pstmt;
+        ResultSet rs = null;
+        Conexao conexao = new Conexao();
+        conexao.conectar();
+        Connection conn = conexao.getConn();
+        try {
+            String query = "Select * from categoria_produto where nome like ?";
+
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, "%"+nome+"%");
+            rs = pstmt.executeQuery();
+            return rs;
+
+
+        }catch (SQLException sqlException){
+            sqlException.printStackTrace();
+            return rs;
+
+        }finally {
+            conexao.desconectar();
+        }
+
+
+    }
 
 
     public int removerCategoriaProduto(int id){

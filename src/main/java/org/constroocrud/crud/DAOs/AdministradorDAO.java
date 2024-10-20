@@ -94,6 +94,24 @@ public class AdministradorDAO {
             conexao.desconectar(); // Desconecta do banco de dados
         }
     }
+    public ResultSet buscarAdministradorPeloNome(String nome) {
+        Conexao conexao = new Conexao();
+        conexao.conectar(); // Conecta ao banco de dados
+        Connection conn = conexao.getConn();
+
+        try {
+            String query = "SELECT * FROM administrador WHERE nome like ?";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1,"%"+ nome+"%");
+            return pstmt.executeQuery(); // Retorna o ResultSet do administrador
+
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+            return null; // Retorna null em caso de erro
+        } finally {
+            conexao.desconectar(); // Desconecta do banco de dados
+        }
+    }
 
     // Método para remover um administrador pelo ID
     public int removerAdministrador(int id) {

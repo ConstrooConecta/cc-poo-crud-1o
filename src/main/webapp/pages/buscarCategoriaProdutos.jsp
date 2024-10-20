@@ -28,19 +28,13 @@
     <section class="categorias"> <!-- Seção para categorias -->
         <h1>Categorias Produtos</h1> <!-- Título da seção -->
         <div class="controls"> <!-- Controles de ação -->
-            <div class="actionsCreateAlterDelete">
-                <form action="${pageContext.request.contextPath}/cadastros/cadastrarCategoriaProduto.html" method="get">
-                    <button type="submit" class="create-btn">Adicionar</button> <!-- Botão para adicionar administrador -->
-                </form>
-                <form action="${pageContext.request.contextPath}/pages/alterarCategoriaProdutoPeloID.jsp" method="get">
-                    <button type="submit" class="create-btn">Alterar</button> <!-- Botão para adicionar administrador -->
-                </form>
-            </div>
+            <form action="${pageContext.request.contextPath}/cadastros/cadastrarCategoriaProduto.html">
+                <button type="submit"  class="create-btn">Criar</button> <!-- Botão para criar nova categoria --><!-- Botão de pesquisa -->
+            </form>
             <form action="${pageContext.request.contextPath}/BuscarCategoriaProdutoServlet" method="post">
                 <input type="text" name="nome" placeholder="Pesquisar categorias"> <!-- Campo de pesquisa -->
                 <input type="submit" value="Pesquisar">
             </form>
-
         </div>
         <% if (request.getAttribute("retorno") == "erro"){
         %>
@@ -66,7 +60,7 @@
 
         <%
             CategoriaProdutoDAO categoriaProdutoDAO = new CategoriaProdutoDAO(); // Instância do DAO
-            ResultSet resultSet = categoriaProdutoDAO.buscarCategoriaProduto(); // Busca as categorias
+            ResultSet resultSet = categoriaProdutoDAO.buscarSimilarCategoriaProdutoPeloNome(String.valueOf(request.getAttribute("nome"))); // Busca as categorias
             try {
                 while (resultSet.next()) { // Itera sobre os resultados
         %>
