@@ -28,9 +28,14 @@
     <section class="planos">
         <h1>Planos</h1>
         <div class="controls">
-            <form action="${pageContext.request.contextPath}/cadastros/cadastrarPlano.html" method="get">
-                <button type="submit" class="create-btn">Criar</button>
-            </form>
+            <div class="actionsCreateAlterDelete">
+                <form action="${pageContext.request.contextPath}/cadastros/cadastrarPlano.html" method="get">
+                    <button type="submit" class="create-btn">Adicionar</button> <!-- Botão para adicionar administrador -->
+                </form>
+                <form action="${pageContext.request.contextPath}/pages/alterarPlanoPeloID.jsp" method="get">
+                    <button type="submit" class="create-btn">Alterar</button> <!-- Botão para adicionar administrador -->
+                </form>
+            </div>
             <form action="${pageContext.request.contextPath}/BuscarPlanoServlet" method="post">
                 <input type="text" name="nome" placeholder="Pesquisar planos">
                 <input type="submit" value="Pesquisar">
