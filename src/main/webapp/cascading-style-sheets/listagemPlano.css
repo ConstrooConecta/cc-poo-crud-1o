@@ -23,6 +23,12 @@ nav {
     background-color: #0E292F;
     padding: 10px 0;
 }
+.actionsCreateAlterDelete{
+    display: flex;
+    flex-direction: row;
+    width: 200px;
+    justify-content: space-between;
+}
 
 nav ul {
     list-style-type: none;

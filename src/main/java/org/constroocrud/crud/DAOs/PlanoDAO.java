@@ -43,7 +43,7 @@ public class PlanoDAO {
             return rs;
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
-            return rs;
+            return null;
         } finally {
             conexao.desconectar();
         }

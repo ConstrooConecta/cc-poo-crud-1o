@@ -130,3 +130,9 @@ main {
 .categoria:hover {
     border-left: 5px solid #002B5B;
 }
+.actionsCreateAlterDelete{
+    display: flex;
+    flex-direction: row;
+    width: 200px;
+    justify-content: space-between;
+}

@@ -30,9 +30,14 @@
     <section class="categorias">
         <h1>Tag Serviços</h1>
         <div class="controls">
-            <form action="${pageContext.request.contextPath}/cadastros/cadastrarTagServico.html" method="get">
-                <button class="create-btn">Criar</button>
-            </form>
+            <div class="actionsCreateAlterDelete">
+                <form action="${pageContext.request.contextPath}/cadastros/cadastrarTagServico.html" method="get">
+                    <button type="submit" class="create-btn">Adicionar</button> <!-- Botão para adicionar administrador -->
+                </form>
+                <form action="${pageContext.request.contextPath}/pages/alterarTagServicoPeloID.jsp" method="get">
+                    <button type="submit" class="create-btn">Alterar</button> <!-- Botão para adicionar administrador -->
+                </form>
+            </div>
             <form action="${pageContext.request.contextPath}/BuscarTagServicoServlet" method="post">
                 <input type="text" name="pesquisa" placeholder="Pesquisar categorias">
                 <input type="submit" value="Pesquisar">

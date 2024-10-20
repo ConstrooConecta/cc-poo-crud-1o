@@ -27,9 +27,15 @@
     <section class="administradores"> <!-- Seção para administradores -->
         <h1>Administradores</h1> <!-- Título da seção -->
         <div class="controls"> <!-- Controles de ação -->
-            <form action="${pageContext.request.contextPath}/cadastros/cadastrarAdministrador.jsp" method="get">
-                <button type="submit" class="create-btn">Adicionar</button> <!-- Botão para adicionar administrador -->
-            </form>
+            <div class="actionsCreateAlterDelete">
+                <form action="${pageContext.request.contextPath}/cadastros/cadastrarAdministrador.jsp" method="get">
+                    <button type="submit" class="create-btn">Adicionar</button> <!-- Botão para adicionar administrador -->
+                </form>
+                <form action="${pageContext.request.contextPath}/pages/alterarAdministradorPeloID.jsp" method="get">
+                    <button type="submit" class="create-btn">Alterar</button> <!-- Botão para adicionar administrador -->
+                </form>
+            </div>
+
             <form action="${pageContext.request.contextPath}/BuscarAdministradorServlet" method="post">
                 <input type="text" name="pesquisar" placeholder="Pesquisar administradores"> <!-- Campo de pesquisa -->
                 <input type="submit" value="Pesquisar"> <!-- Botão de pesquisa -->
