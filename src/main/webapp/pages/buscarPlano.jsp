@@ -32,7 +32,7 @@
                 <button type="submit" class="create-btn">Criar</button>
             </form>
             <form action="${pageContext.request.contextPath}/BuscarPlanoServlet" method="post">
-                <input type="text" name="nome" placeholder="Pesquisar planos">
+                <input type="text" name="pesquisar" placeholder="Pesquisar planos">
                 <input type="submit" value="Pesquisar">
             </form>
         </div>
@@ -61,7 +61,7 @@
 
         <%
             PlanoDAO planoDAO = new PlanoDAO();
-            ResultSet resultSet = planoDAO.buscarPlanos();
+            ResultSet resultSet = planoDAO.buscarPlanoPeloNome(String.valueOf(request.getAttribute("nome")));
             try {
                 while (resultSet.next()) {
         %>
