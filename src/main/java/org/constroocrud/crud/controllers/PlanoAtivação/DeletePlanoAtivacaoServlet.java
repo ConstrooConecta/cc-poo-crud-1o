@@ -32,7 +32,6 @@ public class DeletePlanoAtivacaoServlet extends HttpServlet {
 
         String str_id_tipo = req.getParameter("id_planoativacao");
         int id_tipo = Integer.parseInt(str_id_tipo);
-        String nome = req.getParameter("nome");
         out.println(id_tipo);
 
         //Estabelece a conexao
@@ -50,7 +49,7 @@ public class DeletePlanoAtivacaoServlet extends HttpServlet {
         }
 
         req.setAttribute("metodo", "DELETAR");
-        req.setAttribute("entidade", nome);
+        req.setAttribute("entidade", id_tipo);
 
         //Voce é direcionado para a listagem de usuarios!
         RequestDispatcher rd;

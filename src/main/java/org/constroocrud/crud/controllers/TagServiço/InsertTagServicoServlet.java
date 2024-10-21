@@ -26,7 +26,6 @@ public class InsertTagServicoServlet extends HttpServlet {
 
         PrintWriter out = resp.getWriter();
 
-        String str_id = req.getParameter("id");
         String nome = req.getParameter("nome");
         String descricao = req.getParameter("descricao");
 
@@ -34,7 +33,7 @@ public class InsertTagServicoServlet extends HttpServlet {
         TagServicoDAO tagServicoDAO = new TagServicoDAO();
 
         try {
-            ResultSet rs = tagServicoDAO.buscarTagServicoPeloID(Integer.parseInt(str_id));
+            ResultSet rs = tagServicoDAO.buscarTagServicoPeloNome(nome);
             if (!rs.next()){
                 int num = tagServicoDAO.inserirTagServico(tagServico);
                 if (num == 1){
@@ -52,7 +51,7 @@ public class InsertTagServicoServlet extends HttpServlet {
         }
 
         req.setAttribute("metodo", "INSERIR");
-        req.setAttribute("entidade", str_id);
+        req.setAttribute("entidade", nome);
 
         //Voce é direcionado para a listagem de usuarios!
         RequestDispatcher rd;
