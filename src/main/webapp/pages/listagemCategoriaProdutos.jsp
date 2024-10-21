@@ -35,6 +35,9 @@
                 <form action="${pageContext.request.contextPath}/pages/alterarCategoriaProdutoPeloID.jsp" method="get">
                     <button type="submit" class="create-btn">Alterar</button> <!-- Botão para adicionar administrador -->
                 </form>
+                <form action="${pageContext.request.contextPath}/pages/deletarCategoriaProdutoPeloID.jsp" method="get">
+                    <button type="submit" class="create-btn">Deletar</button> <!-- Botão para deletar administrador -->
+                </form>
             </div>
             <form action="${pageContext.request.contextPath}/BuscarCategoriaProdutoServlet" method="post">
                 <input type="text" name="nome" placeholder="Pesquisar categorias"> <!-- Campo de pesquisa -->

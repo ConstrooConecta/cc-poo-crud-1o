@@ -37,6 +37,9 @@
                 <form action="${pageContext.request.contextPath}/pages/alterarTagServicoPeloID.jsp" method="get">
                     <button type="submit" class="create-btn">Alterar</button> <!-- Botão para adicionar administrador -->
                 </form>
+                <form action="${pageContext.request.contextPath}/pages/deletarTagServicoPeloID.jsp" method="get">
+                    <button type="submit" class="create-btn">Deletar</button> <!-- Botão para deletar administrador -->
+                </form>
             </div>
             <form action="${pageContext.request.contextPath}/BuscarTagServicoServlet" method="post">
                 <input type="text" name="pesquisa" placeholder="Pesquisar categorias">

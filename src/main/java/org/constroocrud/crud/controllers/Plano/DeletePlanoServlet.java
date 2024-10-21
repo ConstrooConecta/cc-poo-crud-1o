@@ -27,7 +27,8 @@ public class DeletePlanoServlet extends HttpServlet {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
 
-        String id = req.getParameter("plano_id");
+        String id = req.getParameter("id");
+        String nome = req.getParameter("nome");
 
         PlanoDAO planoDAO = new PlanoDAO();
         int num = planoDAO.removerPlanoPeloID(Integer.parseInt(id));
@@ -41,7 +42,7 @@ public class DeletePlanoServlet extends HttpServlet {
         }
 
         req.setAttribute("metodo", "DELETAR");
-        req.setAttribute("entidade", id);
+        req.setAttribute("entidade", nome);
 
         RequestDispatcher rd;
         rd = getServletContext().getRequestDispatcher("/pages/listagemPlanos.jsp");
