@@ -34,6 +34,9 @@
                 <form action="${pageContext.request.contextPath}/pages/alterarAdministradorPeloID.jsp" method="get">
                     <button type="submit" class="create-btn">Alterar</button> <!-- Botão para adicionar administrador -->
                 </form>
+                <form action="${pageContext.request.contextPath}/pages/deletarAdministradorPeloID.jsp" method="get">
+                    <button type="submit" class="create-btn">Deletar</button> <!-- Botão para deletar administrador -->
+                </form>
             </div>
 
             <form action="${pageContext.request.contextPath}/BuscarAdministradorServlet" method="post">

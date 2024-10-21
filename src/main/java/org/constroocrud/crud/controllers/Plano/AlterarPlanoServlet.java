@@ -23,7 +23,6 @@ public class AlterarPlanoServlet extends HttpServlet {
 
         String str_id = req.getParameter("id");
         int id = Integer.parseInt(str_id);
-        out.println(str_id);
 
         String nome = req.getParameter("nome");
         String descricao = req.getParameter("descricao");

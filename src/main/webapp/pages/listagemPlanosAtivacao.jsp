@@ -32,6 +32,12 @@
                 <input type="text" name="id" placeholder="Pesquise o plano pelo id">
                 <input type="submit" value="Pesquisar">
             </form>
+            <form action="${pageContext.request.contextPath}/pages/alterarPlanoAtivacaoPeloID.jsp" method="get">
+                <button type="submit" class="create-btn">Alterar</button> <!-- Botão para deletar administrador -->
+            </form>
+            <form action="${pageContext.request.contextPath}/pages/deletarPlanoAtivacaoPeloID.jsp" method="get">
+                <button type="submit" class="create-btn">Deletar</button> <!-- Botão para deletar administrador -->
+            </form>
         </div>
 
         <% if (request.getAttribute("retorno") == "erro"){

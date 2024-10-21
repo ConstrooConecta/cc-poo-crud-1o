@@ -35,6 +35,9 @@
                 <form action="${pageContext.request.contextPath}/pages/alterarPlanoPeloID.jsp" method="get">
                     <button type="submit" class="create-btn">Alterar</button> <!-- Botão para adicionar administrador -->
                 </form>
+                <form action="${pageContext.request.contextPath}/pages/deletarPlanoPeloID.jsp" method="get">
+                    <button type="submit" class="create-btn">Deletar</button> <!-- Botão para deletar administrador -->
+                </form>
             </div>
             <form action="${pageContext.request.contextPath}/BuscarPlanoServlet" method="post">
                 <input type="text" name="nome" placeholder="Pesquisar planos">
@@ -82,7 +85,7 @@
             </div>
             <div class="actions">
                 <form action="${pageContext.request.contextPath}/DeletarPlanoServlet" method="post">
-                    <input type="hidden" name="plano_id" value="<%= resultSet.getInt("id") %>">
+                    <input type="hidden" name="id" value="<%= resultSet.getInt("id") %>">
                     <input type="hidden" name="nome" value="<%= resultSet.getString("nome_plano")%>">
                     <button type="submit" class="delete-btn">Deletar</button>
                 </form>
