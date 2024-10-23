@@ -11,6 +11,8 @@ import org.constroocrud.crud.DAOs.PlanoDAO;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 //SERVLET QUE FAZ O DELET DE USUARIOS
 //O que precisa ser implementado?
 
@@ -27,28 +29,51 @@ public class DeletePlanoServlet extends HttpServlet {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
 
-        String id = req.getParameter("id");
-        String nome = req.getParameter("nome");
+        String str_id = req.getParameter("plano_id");
+        int id = Integer.parseInt(str_id);
+        out.println(id);
 
         PlanoDAO planoDAO = new PlanoDAO();
-        int num = planoDAO.removerPlanoPeloID(Integer.parseInt(id));
 
-        if (num == 1){
-            req.setAttribute("retorno", "certo");
-        }else if (num == 0){
-            req.setAttribute("retorno", "notfound");
-        }else {
+        try {
+            ResultSet rs = planoDAO.buscarPlanoPeloID(id);
+            if (!rs.next()){
+                req.setAttribute("retorno", "notfound");
+                req.setAttribute("metodo", "DELETAR");
+                req.setAttribute("entidade", id);
+
+                RequestDispatcher rd;
+                rd = getServletContext().getRequestDispatcher("/pages/listagemPlanos.jsp");
+                rd.include(req, resp);
+            }else{
+                String nome = rs.getString("nome_plano");
+
+                int num = planoDAO.removerPlanoPeloID(id);
+
+                if (num == 1){
+                    req.setAttribute("retorno", "certo");
+                }else if (num == 0){
+                    req.setAttribute("retorno", "notfound");
+                }else {
+                    req.setAttribute("retorno", "erro");
+                }
+
+                req.setAttribute("metodo", "DELETAR");
+                req.setAttribute("entidade", nome);
+
+                RequestDispatcher rd;
+                rd = getServletContext().getRequestDispatcher("/pages/listagemPlanos.jsp");
+                rd.include(req, resp);
+            }
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
             req.setAttribute("retorno", "erro");
+            req.setAttribute("mensagem", "Erro SQL");
+
+            RequestDispatcher rd;
+            rd = getServletContext().getRequestDispatcher("/pages/listagemPlanos.jsp");
+            rd.include(req, resp);
+
         }
-
-        req.setAttribute("metodo", "DELETAR");
-        req.setAttribute("entidade", nome);
-
-        RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("/pages/listagemPlanos.jsp");
-        rd.include(req, resp);
-
-
-
     }
 }
