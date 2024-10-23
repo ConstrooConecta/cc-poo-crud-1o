@@ -2,6 +2,7 @@
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="org.constroocrud.crud.DAOs.PlanoAtivacaoDAO" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page errorPage="ErrorPage.jsp" %>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -31,6 +32,12 @@
             <form id="form-plano-ativacao-criar" action="${pageContext.request.contextPath}/BuscarPlanoAtivacaoServlet" method="post">
                 <input type="text" name="id" placeholder="Pesquise o plano pelo id">
                 <input type="submit" value="Pesquisar">
+            </form>
+            <form action="${pageContext.request.contextPath}/pages/alterarPlanoAtivacaoPeloID.jsp" method="get">
+                <button type="submit" class="create-btn">Alterar</button> <!-- Botão para deletar administrador -->
+            </form>
+            <form action="${pageContext.request.contextPath}/pages/deletarPlanoAtivacaoPeloID.jsp" method="get">
+                <button type="submit" class="create-btn">Deletar</button> <!-- Botão para deletar administrador -->
             </form>
         </div>
 

@@ -49,6 +49,8 @@ public class TagServicoDAO {
             conexao.desconectar();
         }
     }
+
+    // Método para buscar uma tag de serviço pelo Nome
     public ResultSet buscarTagServicoPeloNome(String nome) {
         PreparedStatement pstmt;
         ResultSet rs = null;

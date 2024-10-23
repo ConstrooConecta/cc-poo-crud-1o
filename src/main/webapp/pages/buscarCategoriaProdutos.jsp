@@ -3,6 +3,7 @@
 <%@ page import="org.constroocrud.crud.models.CategoriaProduto" %> <!-- Importa a classe CategoriaProduto -->
 <%@ page import="org.constroocrud.crud.DAOs.CategoriaProdutoDAO" %> <!-- Importa a classe CategoriaProdutoDAO -->
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> <!-- Define tipo de conteúdo e codificação -->
+<%@ page errorPage="ErrorPage.jsp" %>
 <!DOCTYPE html>
 <html lang="pt-BR"> <!-- Define o idioma da página -->
 <head>

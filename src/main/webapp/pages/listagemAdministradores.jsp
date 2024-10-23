@@ -2,6 +2,7 @@
 <%@ page import="java.sql.SQLException" %> <!-- Importa a classe SQLException -->
 <%@ page import="org.constroocrud.crud.DAOs.AdministradorDAO" %> <!-- Importa a classe AdministradorDAO -->
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> <!-- Define tipo de conteúdo e codificação -->
+<%@ page errorPage="ErrorPage.jsp" %>
 <!DOCTYPE html>
 <html lang="pt-BR"> <!-- Define o idioma da página -->
 <head>
@@ -33,6 +34,9 @@
                 </form>
                 <form action="${pageContext.request.contextPath}/pages/alterarAdministradorPeloID.jsp" method="get">
                     <button type="submit" class="create-btn">Alterar</button> <!-- Botão para adicionar administrador -->
+                </form>
+                <form action="${pageContext.request.contextPath}/pages/deletarAdministradorPeloID.jsp" method="get">
+                    <button type="submit" class="create-btn">Deletar</button> <!-- Botão para deletar administrador -->
                 </form>
             </div>
 

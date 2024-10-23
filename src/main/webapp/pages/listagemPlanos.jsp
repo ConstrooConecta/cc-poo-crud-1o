@@ -3,6 +3,7 @@
 <%@ page import="org.constroocrud.crud.DAOs.PlanoDAO" %>
 <%@ page import="sun.awt.DebugSettings" %> <%-- Supondo que você tenha um DAO para Planos --%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page errorPage="ErrorPage.jsp" %>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -34,6 +35,9 @@
                 </form>
                 <form action="${pageContext.request.contextPath}/pages/alterarPlanoPeloID.jsp" method="get">
                     <button type="submit" class="create-btn">Alterar</button> <!-- Botão para adicionar administrador -->
+                </form>
+                <form action="${pageContext.request.contextPath}/pages/deletarPlanoPeloID.jsp" method="get">
+                    <button type="submit" class="create-btn">Deletar</button> <!-- Botão para deletar administrador -->
                 </form>
             </div>
             <form action="${pageContext.request.contextPath}/BuscarPlanoServlet" method="post">

@@ -21,9 +21,8 @@ public class AlterarPlanoServlet extends HttpServlet {
 
         //Recebe o id da entidade comprador/vendedor ou Profissional
 
-        String str_id = req.getParameter("id");
+        String str_id = req.getParameter("plano_id");
         int id = Integer.parseInt(str_id);
-        out.println(str_id);
 
         String nome = req.getParameter("nome");
         String descricao = req.getParameter("descricao");

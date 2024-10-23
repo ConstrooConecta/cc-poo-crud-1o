@@ -26,7 +26,6 @@ public class InsertTagServicoServlet extends HttpServlet {
 
         PrintWriter out = resp.getWriter();
 
-        String str_id = req.getParameter("id");
         String nome = req.getParameter("nome");
         String descricao = req.getParameter("descricao");
 
