@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %> <!-- Definição do tipo de conteúdo e linguagem -->
+<%@ page errorPage="ErrorPage.jsp" %>
 <html>
 <head>
     <title>Title</title> <!-- Título da página -->
@@ -16,7 +17,6 @@
         <label for="tag_id">Insira o ID do Tag Serviço</label> <!-- Rótulo para nome -->
         <input type="number" name="tag_id" id="tag_id" required> <!-- Campo de entrada para nome -->
     </div>
-
         <% if (request.getAttribute("retorno") == "erro"){
         %>
     <div>

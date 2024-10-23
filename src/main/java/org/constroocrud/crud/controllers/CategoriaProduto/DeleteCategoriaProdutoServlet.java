@@ -11,6 +11,8 @@ import org.constroocrud.crud.DAOs.CategoriaProdutoDAO;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 //SERVLET QUE FAZ O DELET DE USUARIOS
 //O que precisa ser implementado?
 
@@ -28,27 +30,47 @@ public class DeleteCategoriaProdutoServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
 
         String id = req.getParameter("categoria_id");
-        String nome = req.getParameter("nome");
 
         CategoriaProdutoDAO categoriaProdutoDAO = new CategoriaProdutoDAO();
-        int num = categoriaProdutoDAO.removerCategoriaProduto(Integer.parseInt(id));
+        try {
+            ResultSet rs = categoriaProdutoDAO.buscarCategoriaProdutoPeloID(Integer.parseInt(id));
+            if (!rs.next()){
+                req.setAttribute("retorno", "notfound");
+                req.setAttribute("metodo", "DELETAR");
+                req.setAttribute("entidade", id);
 
-        if (num == 1){
-            req.setAttribute("retorno", "certo");
-        }else if (num == 0){
-            req.setAttribute("retorno", "notfound");
-        }else {
+                RequestDispatcher rd;
+                rd = getServletContext().getRequestDispatcher("/pages/listagemCategoriaProdutos.jsp");
+                rd.include(req, resp);
+            }else{
+                String nome = rs.getString("nome");
+
+                int num = categoriaProdutoDAO.removerCategoriaProduto(Integer.parseInt(id));
+
+                if (num == 1){
+                    req.setAttribute("retorno", "certo");
+                }else if (num == 0){
+                    req.setAttribute("retorno", "notfound");
+                }else {
+                    req.setAttribute("retorno", "erro");
+                }
+
+                req.setAttribute("metodo", "DELETAR");
+                req.setAttribute("entidade", nome);
+
+                RequestDispatcher rd;
+                rd = getServletContext().getRequestDispatcher("/pages/listagemCategoriaProdutos.jsp");
+                rd.include(req, resp);
+            }
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
             req.setAttribute("retorno", "erro");
+            req.setAttribute("mensagem", "Erro SQL");
+
+            RequestDispatcher rd;
+            rd = getServletContext().getRequestDispatcher("/pages/listagemCategoriaProdutos.jsp");
+            rd.include(req, resp);
+
         }
-
-        req.setAttribute("metodo", "DELETAR");
-        req.setAttribute("entidade", nome);
-
-        RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("/pages/listagemCategoriaProdutos.jsp");
-        rd.include(req, resp);
-
-
-
     }
 }

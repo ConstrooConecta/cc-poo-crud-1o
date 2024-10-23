@@ -3,6 +3,7 @@
 <%@ page import="org.constroocrud.crud.DAOs.PlanoDAO" %>
 <%@ page import="sun.awt.DebugSettings" %> <%-- Supondo que você tenha um DAO para Planos --%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page errorPage="ErrorPage.jsp" %>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -85,7 +86,7 @@
             </div>
             <div class="actions">
                 <form action="${pageContext.request.contextPath}/DeletarPlanoServlet" method="post">
-                    <input type="hidden" name="id" value="<%= resultSet.getInt("id") %>">
+                    <input type="hidden" name="plano_id" value="<%= resultSet.getInt("id") %>">
                     <input type="hidden" name="nome" value="<%= resultSet.getString("nome_plano")%>">
                     <button type="submit" class="delete-btn">Deletar</button>
                 </form>

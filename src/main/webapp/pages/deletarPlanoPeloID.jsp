@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %> <!-- Definição do tipo de conteúdo e linguagem -->
+<%@ page errorPage="ErrorPage.jsp" %>
 <html>
 <head>
     <title>Title</title> <!-- Título da página -->
@@ -13,8 +14,8 @@
 <form action="${pageContext.request.contextPath}/DeletarPlanoServlet" method="post"> <!-- Formulário para alteração -->
     <h2 class="subtitulo-forms"></h2> <!-- Subtítulo -->
     <div class="infos-linha"> <!-- Linha de informações -->
-        <label for="id">Insira o ID do Plano</label> <!-- Rótulo para nome -->
-        <input type="number" name="id" id="id" required> <!-- Campo de entrada para nome -->
+        <label for="plano_id">Insira o ID do Plano</label> <!-- Rótulo para nome -->
+        <input type="number" name="plano_id" id="plano_id" required> <!-- Campo de entrada para nome -->
     </div>
 
     <% if (request.getAttribute("retorno") == "erro"){

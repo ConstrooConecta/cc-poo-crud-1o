@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %> <!-- Definição do tipo de conteúdo e linguagem -->
+<%@ page errorPage="ErrorPage.jsp" %>
 <html>
 <head>
   <title>Title</title> <!-- Título da página -->

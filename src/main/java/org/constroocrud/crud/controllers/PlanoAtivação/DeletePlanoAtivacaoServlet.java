@@ -12,6 +12,8 @@ import org.constroocrud.crud.DAOs.PlanoAtivacaoDAO;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 //SERVLET QUE FAZ O DELET DE USUARIOS
 //O que precisa ser implementado?
 
@@ -32,31 +34,49 @@ public class DeletePlanoAtivacaoServlet extends HttpServlet {
 
         String str_id_tipo = req.getParameter("id_planoativacao");
         int id_tipo = Integer.parseInt(str_id_tipo);
-        out.println(id_tipo);
 
         //Estabelece a conexao
         PlanoAtivacaoDAO planoAtivacaoDAO = new PlanoAtivacaoDAO();
 
-        //caso seja comprador e vendedor, ele é removido da tabela comprador/vendedor
-        int num = planoAtivacaoDAO.removerPlanoAtivacao(id_tipo);
+        try {
+            ResultSet rs = planoAtivacaoDAO.buscarPlanoAtivacaoPeloID(id_tipo);
+            if (!rs.next()) {
+                req.setAttribute("retorno", "notfound");
+                req.setAttribute("metodo", "DELETAR");
+                req.setAttribute("entidade", id_tipo);
 
-        if (num == 1){
-            req.setAttribute("retorno", "certo");
-        }else if (num == 0){
-            req.setAttribute("retorno", "notfound");
-        }else {
+                RequestDispatcher rd;
+                rd = getServletContext().getRequestDispatcher("/pages/listagemPlanosAtivacao.jsp");
+                rd.include(req, resp);
+            } else {
+
+                int num = planoAtivacaoDAO.removerPlanoAtivacao(id_tipo);
+
+                if (num == 1) {
+                    req.setAttribute("retorno", "certo");
+                } else if (num == 0) {
+                    req.setAttribute("retorno", "notfound");
+                } else {
+                    req.setAttribute("retorno", "erro");
+                }
+
+                req.setAttribute("metodo", "DELETAR");
+                req.setAttribute("entidade", id_tipo);
+
+                RequestDispatcher rd;
+                rd = getServletContext().getRequestDispatcher("/pages/listagemPlanosAtivacao.jsp");
+                rd.include(req, resp);
+            }
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
             req.setAttribute("retorno", "erro");
+            req.setAttribute("mensagem", "Erro SQL");
+
+            RequestDispatcher rd;
+            rd = getServletContext().getRequestDispatcher("/pages/listagemPlanosAtivacao.jsp");
+            rd.include(req, resp);
+
         }
-
-        req.setAttribute("metodo", "DELETAR");
-        req.setAttribute("entidade", id_tipo);
-
-        //Voce é direcionado para a listagem de usuarios!
-        RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("/pages/listagemPlanosAtivacao.jsp");
-        rd.forward(req, resp);
-
-
-
     }
 }
+
