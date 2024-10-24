@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.constroocrud.crud.DAOs.AdministradorDAO;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -25,10 +26,10 @@ public class LoginServlet extends HttpServlet {
         String senhaInserida = req.getParameter("senha-admin");
 
         // Verifica se a senha inserida corresponde à senha correta
-        if (senhaInserida.equals(senhacerta)) {
+        if (BCrypt.checkpw(senhaInserida, senhacerta)) {
             // Redireciona para a página de listagem de categorias de produtos se a senha estiver correta
             RequestDispatcher rd;
-            rd = getServletContext().getRequestDispatcher("/pages/listagemCategoriaProdutos.jsp");
+            rd = getServletContext().getRequestDispatcher("/pages/listagemAdministradores.jsp");
             rd.include(req, resp);
         } else {
             // Se a senha estiver incorreta, exibe uma mensagem de erro

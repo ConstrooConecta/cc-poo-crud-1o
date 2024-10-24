@@ -8,7 +8,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.constroocrud.crud.DAOs.AdministradorDAO;
 import org.constroocrud.crud.models.Administrador;
+import org.mindrot.jbcrypt.BCrypt;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
@@ -30,7 +32,9 @@ public class InsertAdministradorServlet extends HttpServlet {
         String email = req.getParameter("email");
         String senha = req.getParameter("senha");
 
-        Administrador administrador = new Administrador(nome, email, senha);
+        String hashedPassword = BCrypt.hashpw(senha, BCrypt.gensalt());
+
+        Administrador administrador = new Administrador(nome, email, hashedPassword);
 
         if (email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$") && senha.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,20}$")){
             try {
@@ -72,10 +76,6 @@ public class InsertAdministradorServlet extends HttpServlet {
             rd.include(req, resp);
 
         }
-
-
-
-
 
     }
 }
