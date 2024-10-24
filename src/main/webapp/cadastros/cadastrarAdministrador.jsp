@@ -1,47 +1,50 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: matheusueno-ieg
-  Date: 19/10/2024
-  Time: 19:04
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Administrador</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/cascading-style-sheets/cadastrarAdministrador.css">
 </head>
-<body>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/cascading-style-sheets/cadastrarUsuario.css">
-<div id="navbar">
-    <p id="navbar-Constroo">Constroo</p>
-    <div id="navbar-line"></div>
-</div>
-<h1 id="titulo-Cadastrar-Usuario">Cadastrar Administrador</h1>
+<body>7
+
+<header>
+    <div class="titulo-constroo">
+        <h1>Constroo</h1>
+        <img src="${pageContext.request.contextPath}/imagens/LogoVersaoMenor.svg" alt="Logo do app Constroo">
+    </div>
+</header>
+
+<h1 id="titulo-Cadastrar-Administrador">Cadastrar Administrador</h1>
 <form action="${pageContext.request.contextPath}/InserirAdministradorServlet" method="post" >
+
     <h2 class="subtitulo-forms"></h2>
 
     <div class="infos-linha">
-        <label for="Nome">Nome</label>
-        <input type="text" name="nome" id="nome">
-        <label for="email">Email</label>
-        <input type="text" name="email" id="email">
-        <label for="senha">Senha</label>
-        <input type="password" name="senha" id="senha">
 
-    </div>
+        <label for="Nome">Nome</label>
+        <input type="text" name="nome" id="nome" placeholder="Matheus">
+
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" placeholder="exemplo@email.com">
+
+        <label for="senha">Senha</label>
+        <input type="password" name="senha" id="senha" placeholder="senha123">
+
+        <input type="hidden" name="id" value=id>
 
         <% if (request.getAttribute("retorno") == "erro"){
         %>
-    <div>
-        <P><%=request.getAttribute("mensagem")%></P>
+        <div>
+            <P><%=request.getAttribute("mensagem")%></P>
+
+        </div>
+        <%}%>
+
+        <input type="submit" id="buttonCadastrar" value="Cadastrar">
 
     </div>
-<%}%>
-
-    <input type="submit" id="buttonCadastrar">
-
-
 </form>
+
 </body>
 </html>
