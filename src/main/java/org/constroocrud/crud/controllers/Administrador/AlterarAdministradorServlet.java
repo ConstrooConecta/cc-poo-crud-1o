@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.constroocrud.crud.DAOs.AdministradorDAO;
 import org.constroocrud.crud.models.Administrador;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -27,9 +28,12 @@ public class AlterarAdministradorServlet extends HttpServlet {
         String nome = req.getParameter("nome");
         String email = req.getParameter("email");
         String senha = req.getParameter("senha");
+
         String errosMensagem = "";
         if (email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$") && senha.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,20}$")){
-            Administrador administrador = new Administrador(nome, email, senha);
+            String hash = BCrypt.hashpw(senha, BCrypt.gensalt());
+
+            Administrador administrador = new Administrador(nome, email, hash);
             AdministradorDAO administradorDAO = new AdministradorDAO();
 
             int num = administradorDAO.alterarAdministrador(id, administrador);

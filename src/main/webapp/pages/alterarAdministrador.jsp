@@ -22,10 +22,8 @@
         <input type="text" value="<%= request.getAttribute("email") %>" disabled>
         <label for="email">Novo Email:</label> <!-- Rótulo para email -->
         <input type="email" name="email" id="email" value="<%=request.getAttribute("email")%>"> <!-- Campo de entrada para email -->
-        <label>Senha Atual:</label>
-        <input type="text" value="<%= request.getAttribute("senha") %>" disabled>
         <label for="senha">Nova Senha:</label> <!-- Rótulo para senha -->
-        <input type="password" name="senha" id="senha" value="<%=request.getAttribute("senha")%>"> <!-- Campo de entrada para senha -->
+        <input type="password" name="senha" id="senha" value=""> <!-- Campo de entrada para senha -->
         <input type="hidden" name="id" value=<%=request.getAttribute("id") %>> <!-- Campo oculto para ID -->
     </div>
 
