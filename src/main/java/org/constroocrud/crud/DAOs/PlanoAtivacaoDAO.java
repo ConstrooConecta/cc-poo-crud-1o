@@ -14,7 +14,7 @@ public class PlanoAtivacaoDAO {
         PreparedStatement pstmt;
         ResultSet rs = null;
         try {
-            String query = "SELECT * FROM plano_usuario ORDER BY id";
+            String query = "SELECT * FROM plano_ativacao ORDER BY id";
             pstmt = conn.prepareStatement(query);
             rs = pstmt.executeQuery();
             return rs;
@@ -34,7 +34,7 @@ public class PlanoAtivacaoDAO {
         PreparedStatement pstmt;
         ResultSet rs = null;
         try {
-            String query = "SELECT * FROM plano_usuario WHERE id = ?";
+            String query = "SELECT * FROM plano_ativacao WHERE id = ?";
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, id);
             rs = pstmt.executeQuery();
@@ -67,9 +67,9 @@ public class PlanoAtivacaoDAO {
 
                 char ativacao = ativacaoStr.charAt(0); // Pega o primeiro caractere
                 if (ativacao == 'A') {
-                    pstmt = conn.prepareStatement("UPDATE plano_usuario SET ativacao = 'I' WHERE id = ?");
+                    pstmt = conn.prepareStatement("UPDATE plano_ativacao SET ativacao = 'I' WHERE id = ?");
                 } else if (ativacao == 'I') {
-                    pstmt = conn.prepareStatement("UPDATE plano_usuario SET ativacao = 'A' WHERE id = ?");
+                    pstmt = conn.prepareStatement("UPDATE plano_ativacao SET ativacao = 'A' WHERE id = ?");
                 }
 
                 pstmt.setInt(1, id); // Adiciona o ID no PreparedStatement
@@ -106,7 +106,7 @@ public class PlanoAtivacaoDAO {
             }
 
             // Executa a query de remoção
-            String remover = "DELETE FROM plano_usuario WHERE id = ?";
+            String remover = "DELETE FROM plano_ativacao WHERE id = ?";
             pstmt = conn.prepareStatement(remover);
             pstmt.setInt(1, id);
 

@@ -2,34 +2,43 @@
 <%@ page errorPage="ErrorPage.jsp" %>
 <html>
 <head>
-    <title>Title</title> <!-- Título da página -->
+    <title>Alterar Plano pelo ID</title> <!-- Título da página -->
 </head>
 <body>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/cascading-style-sheets/cadastrarUsuario.css"> <!-- Importação do CSS -->
-<div id="navbar"> <!-- Navegação -->
-    <p id="navbar-Constroo">Constroo</p> <!-- Nome da marca -->
-    <div id="navbar-line"></div> <!-- Linha de separação -->
-</div>
-<h1 id="titulo-Cadastrar-Usuario">Alterar</h1> <!-- Título principal -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/cascading-style-sheets/id.css">
+<header>
+    <div class="titulo-constroo">
+        <h1>Constroo</h1>
+        <img src="${pageContext.request.contextPath}/imagens/LogoVersaoMenor.svg" alt="Logo do app Constroo">
+    </div>
+</header>
+
+<h1 id="titulo-Editar-Pelo-ID">Editar Plano por ID</h1> <!-- Título principal -->
 <form action="${pageContext.request.contextPath}/IncluirCamposPlanoServlet" method="post"> <!-- Formulário para alteração -->
     <h2 class="subtitulo-forms"></h2> <!-- Subtítulo -->
-    <div class="infos-linha"> <!-- Linha de informações -->
-        <label for="plano_id">Insira o ID do Plano</label> <!-- Rótulo para nome -->
-        <input type="number" name="plano_id" id="plano_id" required> <!-- Campo de entrada para nome -->
-    </div>
+    <div class="infos-linha1"> <!-- Linha de informações -->
 
-        <% if (request.getAttribute("retorno") == "erro"){
+        <div class="ID">
+            <label for="id">ID:</label> <!-- Rótulo para nome Atual -->
+            <input type="text" name="plano_id" id="id" placeholder="Insira o ID"> <!-- Campo de entrada para Nome Novo -->
+        </div>
+
+        <div class="classButton1">
+            <input type="submit" id="buttonCadastrar" value="Começar a editar"> <!-- Botão de envio -->
+        </div>
+
+            <% if (request.getAttribute("retorno") == "erro"){
         %>
-    <div>
-        <P><%=request.getAttribute("mensagem") %></P>
+        <div>
+            <P><%=request.getAttribute("mensagem") %></P>
 
-    </div>
-        <%} else if (request.getAttribute("retorno") == "notfound") {%>
-    <div>
-        <p>ITEM NÃO ENCONTRADO</p>
-    </div>
-<%}%>
-    <input type="submit" id="buttonCadastrar"> <!-- Botão de envio -->
+        </div>
+            <%} else if (request.getAttribute("retorno") == "notfound") {%>
+        <div>
+            <p>ITEM NÃO ENCONTRADO</p>
+        </div>
+            <%}%>
 </form>
+
 </body>
 </html>
