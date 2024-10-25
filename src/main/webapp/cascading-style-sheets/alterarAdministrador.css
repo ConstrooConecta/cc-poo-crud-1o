@@ -58,7 +58,7 @@ header h1 {
     text-align: center;
     margin: 10% 0% 2% 0%;
     font-size: 24px;
-    
+
 }
 
 form {
@@ -75,14 +75,11 @@ form {
     justify-content: space-around;
 }
 .gridAtualNome {
-    
+
     grid-area: atualnome;
 }
 .gridAtualEmail {
     grid-area: atualemail;
-}
-.gridAtualSenha {
-    grid-area: atualsenha;
 }
 .gridNovoNome {
     grid-area: novonome;
@@ -92,15 +89,21 @@ form {
 }
 .gridNovaSenha {
     grid-area: novasenha;
-} 
+}
 .infos-linha {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    /* grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    grid-template-areas: 
+    grid-template-areas:
     "atualnome novonome"
     "atualemail novoemail"
-    "atualsenha novasenha";
+    "novasenha novasenha"; */
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas:
+    "atualnome atualnome novonome novonome"
+    "atualemail atualemail novoemail novoemail"
+    ". novasenha novasenha .";
     gap: 25px;
 
 }
@@ -118,7 +121,7 @@ input {
     font-size: 16px;
 }
 
- /* Cadastrar */
+/* Cadastrar */
 .classButton {
     display: flex;
     align-items: center;
@@ -135,7 +138,7 @@ input {
     font-size: 16px;
 }
 
-#buttonCadastrar:hover { 
+#buttonCadastrar:hover {
     opacity: 0.8;
 }
 
