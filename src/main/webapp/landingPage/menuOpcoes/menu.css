@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:wght@100&display=swap');
+
+.montserrat-alternates-regular {
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+*{
+    font-family: "Montserrat Alternates", sans-serif;
+    margin: 0%;
+    padding: 0%;
+}
+
+html{
+    font-size: 16px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    overflow-x: hidden;
+}
+
+header {    
+    width: 100%;
+    background-color: #071c20;
+    color: white;
+    padding: 1% 2%;
+    height: 2rem;
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header h1 {
+    font-size: 2rem;
+    padding: 0% 1% 0% 1%;
+    font-weight: 600;
+}
+
+li{
+    margin: 2vh 0vw;
+}
+
+button{
+    background-color: #071c20;
+    border: none;
+    border-radius: 7px;
+    height: 60%;
+    width: 9rem;
+    color: #F9F9F9;
+    font-weight: 700;
+    margin: 30% 0% 0% 0%;
+    font-size: 100%;
+    cursor: pointer;
+    max-width: 20vw;
+}
+
+.titulo-constroo{
+    width: 10%;
+    align-items: center;
+    display: flex;
+    font-size: 2vh;
+}
+
+.titulo-constroo img{
+    width: 2.5rem;
+    margin: 10% 0% 0% 30%;
+}
+
+#content{
+    background-image: url(imagens/BackgroundConstrucao.svg);
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    background-repeat: no-repeat;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#opcoes{
+    display: flex;
+    justify-content: space-between;
+    width: 62%;
+}
+
+#titulo-menu{
+    background-color: #F9F9F9;
+    width: 25%;
+    height: 7%;
+    border-radius: 3vmin;
+    padding: 1%;
+    align-content: center;
+    text-align: center;
+    font-size: 1rem;
+    margin: -5% 0% 3% 0%;
+    box-shadow: 9px 8px 8px rgba(0, 0, 0, 0.3);
+}
+
+.caixa-opcao{
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #F9F9F9;
+    border-radius: 10%;
+    width: 40%;
+    height: 118%;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4);
+}
+
+.caixa-opcao h2{
+    margin: 10% 0% 5% 0%;
+}
+
+.caixa-opcao p{
+    margin: 0% 0% 5% 0%;
+}
