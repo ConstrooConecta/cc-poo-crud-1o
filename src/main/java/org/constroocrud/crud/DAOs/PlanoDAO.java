@@ -15,7 +15,7 @@ public class PlanoDAO {
         conexao.conectar();
         Connection conn = conexao.getConn();
         try {
-            String query = "SELECT * FROM plano";
+            String query = "SELECT * FROM plano order by nome_plano";
             pstmt = conn.prepareStatement(query);
             rs = pstmt.executeQuery();
             return rs;
@@ -36,7 +36,7 @@ public class PlanoDAO {
         conexao.conectar();
         Connection conn = conexao.getConn();
         try {
-            String query = "SELECT * FROM plano WHERE id = ?";
+            String query = "SELECT * FROM plano WHERE id = ? order by nome_plano";
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, id);
             rs = pstmt.executeQuery();
@@ -55,7 +55,7 @@ public class PlanoDAO {
         conexao.conectar();
         Connection conn = conexao.getConn();
         try {
-            String query = "SELECT * FROM plano WHERE nome_plano like ?";
+            String query = "SELECT * FROM plano WHERE nome_plano like ? order by nome_plano";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1,"%"+nome+"%");
             rs = pstmt.executeQuery();

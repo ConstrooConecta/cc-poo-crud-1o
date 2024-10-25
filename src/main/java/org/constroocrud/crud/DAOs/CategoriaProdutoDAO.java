@@ -50,7 +50,7 @@ public class CategoriaProdutoDAO {
         Connection conn = conexao.getConn();
         try {
 
-            String query = "Select * from categoria_produto";
+            String query = "Select * from categoria_produto order by nome";
             pstmt = conn.prepareStatement(query);
             rs = pstmt.executeQuery();
             return rs;
@@ -73,7 +73,7 @@ public class CategoriaProdutoDAO {
         conexao.conectar();
         Connection conn = conexao.getConn();
         try {
-            String query = "Select * from categoria_produto where ? = id";
+            String query = "Select * from categoria_produto where ? = id order by nome";
 
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, id);
@@ -97,7 +97,7 @@ public class CategoriaProdutoDAO {
         conexao.conectar();
         Connection conn = conexao.getConn();
         try {
-            String query = "Select * from categoria_produto where ? = nome";
+            String query = "Select * from categoria_produto where ? = nome order by nome";
 
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, nome);
@@ -122,7 +122,7 @@ public class CategoriaProdutoDAO {
         conexao.conectar();
         Connection conn = conexao.getConn();
         try {
-            String query = "Select * from categoria_produto where nome like ?";
+            String query = "Select * from categoria_produto where nome like ? order by nome";
 
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, "%"+nome+"%");
