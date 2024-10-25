@@ -34,11 +34,6 @@
             <input type="email" name="email" id="email" placeholder="Email novo" > <!-- Campo de entrada para email -->
         </div>
 
-        <div class="gridAtualSenha">
-            <label>Senha Atual:</label>
-            <input type="text" value="<%=request.getAttribute("senha")%>" disabled>
-        </div>
-
         <div class="gridNovaSenha">
             <label for="senha">Nova Senha:</label> <!-- Rótulo para senha -->
             <input type="password" name="senha" id="senha" placeholder="Senha nova"> <!-- Campo de entrada para senha -->
