@@ -25,17 +25,29 @@ public class LoginServlet extends HttpServlet {
         String senhacerta = administradorDAO.buscaSenhaPorEmail(req.getParameter("email-admin"));
         String senhaInserida = req.getParameter("senha-admin");
 
-        // Verifica se a senha inserida corresponde à senha correta
-        if (BCrypt.checkpw(senhaInserida, senhacerta)) {
-            // Redireciona para a página de listagem de categorias de produtos se a senha estiver correta
+
+        try {
+            // Verifica se a senha inserida corresponde à senha correta
+            if (BCrypt.checkpw(senhaInserida, senhacerta)) {
+
+                // Redireciona para a página de listagem de categorias de produtos se a senha estiver correta
+                RequestDispatcher rd;
+                rd = getServletContext().getRequestDispatcher("/pages/listagemAdministradores.jsp");
+                rd.include(req, resp);
+            } else {
+
+                // Se a senha estiver incorreta, exibe uma mensagem de erro
+                req.setAttribute("retorno", "senha incorreta");
+                RequestDispatcher rd;
+                rd = getServletContext().getRequestDispatcher("/login.jsp");
+                rd.include(req, resp);
+
+            }
+        }catch (NullPointerException e){
+            req.setAttribute("retorno", "email incorreto");
             RequestDispatcher rd;
-            rd = getServletContext().getRequestDispatcher("/pages/listagemAdministradores.jsp");
+            rd = getServletContext().getRequestDispatcher("/login.jsp");
             rd.include(req, resp);
-        } else {
-            // Se a senha estiver incorreta, exibe uma mensagem de erro
-            out.println("Senha incorreta");
-            out.println(senhacerta);
-            out.println(req.getParameter("senha-admin"));
         }
     }
 }

@@ -43,7 +43,7 @@ public class AdministradorDAO {
         Connection conn = conexao.getConn();
 
         try {
-            String query = "SELECT * FROM administrador";
+            String query = "SELECT * FROM administrador order by nome";
             PreparedStatement pstmt = conn.prepareStatement(query);
             return pstmt.executeQuery(); // Retorna o ResultSet dos administradores
 
@@ -62,7 +62,7 @@ public class AdministradorDAO {
         Connection conn = conexao.getConn();
 
         try {
-            String query = "SELECT * FROM administrador WHERE id = ?";
+            String query = "SELECT * FROM administrador WHERE id = ? order by nome";
             PreparedStatement pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, id);
             return pstmt.executeQuery(); // Retorna o ResultSet do administrador
@@ -82,7 +82,7 @@ public class AdministradorDAO {
         Connection conn = conexao.getConn();
 
         try {
-            String query = "SELECT * FROM administrador WHERE email = ?";
+            String query = "SELECT * FROM administrador WHERE email = ? order by nome";
             PreparedStatement pstmt = conn.prepareStatement(query);
             pstmt.setString(1, email);
             return pstmt.executeQuery(); // Retorna o ResultSet do administrador
@@ -100,7 +100,7 @@ public class AdministradorDAO {
         Connection conn = conexao.getConn();
 
         try {
-            String query = "SELECT * FROM administrador WHERE nome like ?";
+            String query = "SELECT * FROM administrador WHERE nome like ? order by nome";
             PreparedStatement pstmt = conn.prepareStatement(query);
             pstmt.setString(1,"%"+ nome+"%");
             return pstmt.executeQuery(); // Retorna o ResultSet do administrador
