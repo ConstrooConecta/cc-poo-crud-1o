@@ -40,17 +40,13 @@
             <button type="submit" value="Logar" id="botao-login">Login</button>
         </form>
 
-        <% if (request.getAttribute("retorno") == "senha incorreta"){
-        %>
         <div class="informacao-erro">
+        <% if (request.getAttribute("retorno") == "senha incorreta"){%>
             <p>Senha Inválida!</p>
-        </div>
-        <%} else if (request.getAttribute("retorno") == "email incorreto") {
-        %>
-        <div class="informacao-erro">
+        <%} else if (request.getAttribute("retorno") == "email incorreto") {%>
             <p>Administrador inexistente!</p>
+            <%}%>
         </div>
-        <%}%>
 
     </div>
 </div>

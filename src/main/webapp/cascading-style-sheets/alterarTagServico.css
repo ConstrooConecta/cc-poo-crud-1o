@@ -58,7 +58,7 @@ header h1 {
     text-align: center;
     margin: 10% 0% 2% 0%;
     font-size: 24px;
-    
+
 }
 
 form {
@@ -91,7 +91,7 @@ form {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    grid-template-areas: 
+    grid-template-areas:
     "atualnome novonome"
     "atualdescricao novadescricao";
     gap: 25px;
@@ -111,7 +111,7 @@ input {
     font-size: 16px;
 }
 
- /* Cadastrar */
+/* Cadastrar */
 .classButton {
     display: flex;
     align-items: center;
@@ -128,7 +128,33 @@ input {
     font-size: 16px;
 }
 
-#buttonEditar:hover { 
+#buttonEditar:hover {
     opacity: 0.8;
 }
 
+@media screen and (max-width: 684px){
+    #titulo-Editar-Tag-Servico {
+        margin: 20% 0% 5% 0%;
+    }
+
+    form {
+        width: 70%;
+        height: 50%;
+    }
+
+    .infos-linha {
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(1, 1fr);
+        grid-template-areas:
+        "atualnome"
+        "novonome"
+        "atualdescricao"
+        "novadescricao";
+
+    }
+
+    .info{
+        margin-left:10px;
+        width: 1000%;
+    }
+}

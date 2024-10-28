@@ -48,8 +48,6 @@ public class InsertPlanoServlet extends HttpServlet {
                 }else {
                     req.setAttribute("retorno", "erro");
                 }
-            }else {
-                req.setAttribute("retorno", "existente");  // Categoria já existe
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

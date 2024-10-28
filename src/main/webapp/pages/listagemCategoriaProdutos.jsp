@@ -77,7 +77,7 @@
         <div class="categoria"> <!-- Container para cada categoria -->
             <div class="info"> <!-- Informações da categoria -->
                 <h2><%= resultSet.getString("nome") %></h2> <!-- Nome da categoria -->
-                <p><%= resultSet.getString("descricao") %></p> <!-- Descrição da categoria -->
+                <p>ID: <%= resultSet.getInt("id") %> | descrição: <%= resultSet.getString("descricao") %></p> <!-- Descrição da categoria -->
             </div>
             <div class="actions"> <!-- Ações disponíveis -->
                 <form action="${pageContext.request.contextPath}/DeletarCategoriaProdutoServlet" method="post"> <!-- Formulário para deletar -->

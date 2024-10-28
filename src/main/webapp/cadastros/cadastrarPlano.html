@@ -25,7 +25,11 @@
             <label for="Duracao">Duracao (dias)</label>
             <input type="number" name="duracao" id="duracao" placeholder="30 dias">
             <label for="Tipo">Tipo plano</label>
-            <input type="text" name="tipo" id="tipo" placeholder="Digite P para Profissional e V para Vendedor">
+            <select name="tipo" id="tipo">
+                <option value="" disabled selected>Selecione o tipo</option>
+                <option value="P">Profissional</option>
+                <option value="V">Vendedor</option>
+            </select>
             <label for="Valor">Valor</label>
             <input type="number" name="valor" id="valor" step="1.00" placeholder="Insira o preço do plano">
 

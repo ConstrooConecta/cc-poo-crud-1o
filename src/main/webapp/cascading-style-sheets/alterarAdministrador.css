@@ -62,34 +62,45 @@ header h1 {
 }
 
 form {
-    max-width: 800px;
+    width: 54%;
     margin: 0 auto;
     padding: 20px;
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 .gridAtualEmail, .gridAtualNome, .gridAtualSenha, .gridNovaSenha, .gridNovoEmail, .gridNovoNome{
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
-.gridAtualNome {
 
+.gridAtualNome {
     grid-area: atualnome;
 }
+
 .gridAtualEmail {
     grid-area: atualemail;
 }
+
+.gridAtualSenha {
+    grid-area: atualsenha;
+}
+
 .gridNovoNome {
     grid-area: novonome;
 }
+
 .gridNovoEmail {
     grid-area: novoemail;
 }
+
 .gridNovaSenha {
     grid-area: novasenha;
 }
+
+
 .infos-linha {
     display: grid;
     /* grid-template-columns: repeat(2, 1fr);
@@ -140,5 +151,29 @@ input {
 
 #buttonCadastrar:hover {
     opacity: 0.8;
+}
+
+@media screen and (max-width: 1110px){
+
+    form {
+        width: 70%;
+        height: 60%;
+    }
+
+    .infos-linha {
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(1, 1fr);
+        grid-template-areas:
+        "atualnome"
+        "novonome"
+        "atualemail"
+        "novoemail"
+        "novasenha";
+    }
+
+    .info{
+        margin-left:10px;
+        width: 100%;
+    }
 }
 

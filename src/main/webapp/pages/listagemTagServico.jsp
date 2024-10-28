@@ -81,7 +81,7 @@
         <div class="categoria">
             <div class="info">
                 <h2><%= resultSet.getString("nome") %></h2>
-                <p><%= resultSet.getString("descricao") %></p>
+                <p>ID: <%= resultSet.getInt("id") %> | Descrição: <%= resultSet.getString("descricao") %></p>
             </div>
             <div class="actions">
                 <form action="${pageContext.request.contextPath}/DeletarTagServicoServlet" method="post">
