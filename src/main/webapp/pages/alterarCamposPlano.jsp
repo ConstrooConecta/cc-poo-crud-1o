@@ -66,8 +66,12 @@
         </div>
 
         <div class="gridNovoTipo">
-            <label for="tipo">Novo Tipo:</label> <!-- Rótulo para email -->
-            <input type="text" name="tipo" id="tipo" placeholder="Novo tipo"> <!-- Campo de entrada para email -->
+            <label for="Tipo">Tipo Novo:</label>
+            <select name="tipo" id="tipo">
+                <option value="" disabled selected>Selecione o tipo</option>
+                <option value="P">Profissional</option>
+                <option value="V">Vendedor</option>
+            </select>
         </div>
         <input type="hidden" name="id" value="<%=request.getAttribute("id") %>"> <!-- Campo oculto para ID -->
 

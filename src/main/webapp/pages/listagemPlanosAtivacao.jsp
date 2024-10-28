@@ -76,7 +76,12 @@
                 <div class="details">
                     <h2>Plano ID: <%= resultSet.getInt("id") %></h2>
                     <div class="bottom-plano-ativacao-infos">
-                        <p>Ativação: <%= resultSet.getString("ativacao") %></p>
+                        <p>Ativação: <%if (resultSet.getString("ativacao").equals("A"))
+                        {%>
+                            Ativo
+                            <% }else if (resultSet.getString("ativacao").equals("I")){%>
+                            Inativo
+                            <% }%></p>
                         <div class="infos-duracao">
                             <p class="infos-texto">Data de Assinatura: <%= resultSet.getDate("data_assinatura") %></p>
                             <p class="infos-texto">Data de Término: <%= resultSet.getDate("data_final") %></p>

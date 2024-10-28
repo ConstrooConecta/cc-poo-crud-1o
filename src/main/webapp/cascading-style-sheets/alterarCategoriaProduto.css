@@ -56,33 +56,37 @@ header h1 {
 /* Formulario */
 #titulo-Editar-Categoria-Produto {
     text-align: center;
-    margin: 10% 0% 2% 0%;
-    font-size: 24px;
-    
+    margin: 150px 0% 2% 0%;
+    font-size: 1.7rem;
 }
 
 form {
-    max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
+    width: 50%;
+    padding: 3%;
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 .gridAtualDescricao, .gridAtualNome, .gridNovaDescricao, .gridNovoNome{
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
+
 .gridAtualNome {
     grid-area: atualnome;
 }
+
 .gridAtualDescricao {
     grid-area: atualdescricao;
 }
+
 .gridNovoNome {
     grid-area: novonome;
 }
+
 .gridNovaDescricao {
     grid-area: novadescricao;
 }
@@ -91,7 +95,7 @@ form {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    grid-template-areas: 
+    grid-template-areas:
     "atualnome novonome"
     "atualdescricao novadescricao";
     gap: 25px;
@@ -109,16 +113,19 @@ input {
     border: 1px solid lightgrey;
     border-radius: 5px;
     font-size: 16px;
+    width: 50%;
 }
 
- /* Cadastrar */
+/* Cadastrar */
 .classButton {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 2rem;
 }
+
 #buttonEditar {
+    text-align: center;
     background-color: #071c20;
     color: white;
     border: none;
@@ -126,9 +133,42 @@ input {
     border-radius: 5px;
     /* align-self: center; */
     font-size: 16px;
+    width: 15%;
 }
 
-#buttonEditar:hover { 
+#buttonEditar:hover {
     opacity: 0.8;
 }
 
+@media screen and (max-width: 686px){
+    form{
+        width: 70%;
+        height: 60%;
+    }
+
+    .infos-linha {
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(1, 1fr);
+        grid-template-areas:
+        "atualnome"
+        "novonome"
+        "atualdescricao"
+        "novadescricao";
+    }
+
+    input {
+        border: 1px solid lightgrey;
+        border-radius: 5px;
+        font-size: 16px;
+        width: 90%;
+    }
+
+    #buttonEditar {
+        text-align: center;
+        background-color: #071c20;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        width: 20%;
+    }
+}

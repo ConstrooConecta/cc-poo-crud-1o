@@ -26,17 +26,16 @@
             <input type="submit" id="buttonCadastrar" value="Começar a editar"> <!-- Botão de envio -->
         </div>
 
-            <% if (request.getAttribute("retorno") == "erro"){
-        %>
-        <div>
+        <div id="infos-erro">
+            <% if (request.getAttribute("retorno") == "erro"){%>
             <P><%=request.getAttribute("mensagem") %></P>
 
-        </div>
             <%} else if (request.getAttribute("retorno") == "notfound") {%>
-        <div>
             <p>ITEM NÃO ENCONTRADO</p>
-        </div>
             <%}%>
+        </div>
+
+    </div>
 </form>
 
 </body>

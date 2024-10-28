@@ -13,6 +13,10 @@
     padding: 0%;
 }
 
+html{
+    font-size: 16px;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -25,7 +29,7 @@ header {
     background-color: #071c20;
     color: white;
     padding: 1% 2%;
-    height: 5.5%;
+    height: 2rem;
     display: flex;
     position: fixed;
     align-items: center;
@@ -33,90 +37,88 @@ header {
 }
 
 header h1 {
-    font-size: 170%;
+    font-size: 2rem;
     padding: 0% 1% 0% 1%;
     font-weight: 600;
 }
 
-label {
-    font-size: 75%;
-    margin: 4% 0% 0% 0%;
+li{
+    margin: 2vh 0vw;
+}
+
+button{
+    background-color: #071c20;
+    border: none;
+    border-radius: 7px;
+    height: 60%;
+    width: 9rem;
+    color: #F9F9F9;
+    font-weight: 700;
+    margin: 30% 0% 0% 0%;
+    font-size: 100%;
+    cursor: pointer;
+    max-width: 20vw;
 }
 
 .titulo-constroo{
     width: 10%;
     align-items: center;
     display: flex;
-    font-size: 110%;
+    font-size: 2vh;
 }
 
 .titulo-constroo img{
-    width: 350%;
-    margin: 0% 0% 0% 100%;
+    width: 2.5rem;
+    margin: 10% 0% 0% 30%;
 }
 
-.content{
-    background-image: url(../imagens/ImagemDeFundoAREARESTRITA.svg);
+#content{
+    background-image: url(imagens/BackgroundConstrucao.svg);
     background-size: cover;
     height: 100vh;
+    width: 100%;
     background-repeat: no-repeat;
     justify-content: center;
     display: flex;
-    align-items: center;
-}
-
-.login{
-    margin: 7% 0% 0% 0%;
-    width: 33%;
-    height: 65%;
-    background-color: #f4f4f4;
-    border-radius: 15px;
-    display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.titulo-login{
-    margin: 18% 0% 2% 0%;
+#opcoes{
+    display: flex;
+    justify-content: space-between;
+    width: 62%;
 }
 
-.formulario-login{
-    width: 80%;
-    margin-left: -6%;
+#titulo-menu{
+    background-color: #F9F9F9;
+    width: 25%;
+    height: 7%;
+    border-radius: 3vmin;
+    padding: 1%;
+    align-content: center;
+    text-align: center;
+    font-size: 1rem;
+    margin: -5% 0% 3% 0%;
+    box-shadow: 9px 8px 8px rgba(0, 0, 0, 0.3);
+}
+
+.caixa-opcao{
+    font-size: 1.2rem;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    background-color: #F9F9F9;
+    border-radius: 10%;
+    width: 40%;
+    height: 118%;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.4);
 }
 
-.informacao-erro{
-    margin: 20px;
+.caixa-opcao h2{
+    margin: 10% 0% 5% 0%;
 }
 
-.informacoes-admin {
-    padding: 0% 0% 0% 5%;
-    font-weight: 300;
-    font-size: 80%;
-    width: 26.7vw;
-    height: 160%;
-    border-radius: 10px;
-    border: none;
-    background-color: #d9d9d9;
-}
-
-#botao-login{
-    font-weight: bold;
-    margin: 7% 0% 0% 0%;
-    background-color: #071c20;
-    color: white;
-    width: 106%;
-    border-radius: 10px;
-    border: none;
-    height: 8vh;
-    
-}
-
-#Imagem-Login{
-    width: 10%;
-    position: absolute;
-    top: 14%;
+.caixa-opcao p{
+    margin: 0% 0% 5% 0%;
 }

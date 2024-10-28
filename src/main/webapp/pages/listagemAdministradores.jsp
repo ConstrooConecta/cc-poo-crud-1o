@@ -78,7 +78,7 @@
         <div class="administrador"> <!-- Container para cada administrador -->
             <div class="info"> <!-- Informações do administrador -->
                 <h2><%= resultSet.getString("nome") %></h2> <!-- Nome do administrador -->
-                <p>Email: <%= resultSet.getString("email") %></p> <!-- Email do administrador -->
+                <p>ID: <%= resultSet.getInt("id") %> | Email: <%= resultSet.getString("email") %></p> <!-- Email do administrador -->
             </div>
             <div class="actions"> <!-- Ações disponíveis -->
                 <form action="${pageContext.request.contextPath}/DeletarAdministradorServlet" method="post"> <!-- Formulário para deletar -->
