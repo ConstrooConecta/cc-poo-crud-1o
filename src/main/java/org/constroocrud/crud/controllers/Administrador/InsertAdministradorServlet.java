@@ -60,7 +60,7 @@ public class InsertAdministradorServlet extends HttpServlet {
 
             //Voce é direcionado para a listagem de usuarios!
             RequestDispatcher rd;
-            rd = getServletContext().getRequestDispatcher("/pages/listagemAdministradores.jsp");
+            rd = getServletContext().getRequestDispatcher("/pages/administrador/listagemAdministradores.jsp");
             rd.include(req, resp);
         }else{
             if (!email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")){
@@ -72,7 +72,7 @@ public class InsertAdministradorServlet extends HttpServlet {
             RequestDispatcher rd;
             req.setAttribute("retorno", "erro");
             req.setAttribute("mensagem", errosMensagem);
-            rd = getServletContext().getRequestDispatcher("/cadastros/cadastrarAdministrador.jsp");
+            rd = getServletContext().getRequestDispatcher("/pagesa/dministrador/cadastrarAdministrador.jsp");
             rd.include(req, resp);
 
         }

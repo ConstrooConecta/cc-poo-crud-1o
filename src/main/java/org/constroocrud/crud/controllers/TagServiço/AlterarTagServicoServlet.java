@@ -45,7 +45,7 @@ public class AlterarTagServicoServlet extends HttpServlet {
         req.setAttribute("entidade", nome);
 
         RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("/pages/listagemTagServico.jsp");
+        rd = getServletContext().getRequestDispatcher("/pages/tagServico/listagemTagServico.jsp");
         rd.include(req, resp);
 
 

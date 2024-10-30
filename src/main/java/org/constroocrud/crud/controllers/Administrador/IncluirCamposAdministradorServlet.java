@@ -31,7 +31,7 @@ public class IncluirCamposAdministradorServlet extends HttpServlet {
             if (!resultSet.next()){
                 req.setAttribute("retorno", "notfound");
                 req.setAttribute("mensagem", "Admin não encontrado!");
-                req.getRequestDispatcher("pages/alterarAdministradorPeloID.jsp").forward(req, resp);
+                req.getRequestDispatcher("/pages/administrador/alterarAdministradorPeloID.jsp").forward(req, resp);
             }else{
 
                 String nome = resultSet.getString("nome");
@@ -41,7 +41,7 @@ public class IncluirCamposAdministradorServlet extends HttpServlet {
                 req.setAttribute("nome", nome);
                 req.setAttribute("senha", senha);
                 req.setAttribute("email", email);
-                req.getRequestDispatcher("pages/alterarCamposAdministrador.jsp").forward(req, resp);
+                req.getRequestDispatcher("/pages/administrador/alterarCamposAdministrador.jsp").forward(req, resp);
             }
 
 

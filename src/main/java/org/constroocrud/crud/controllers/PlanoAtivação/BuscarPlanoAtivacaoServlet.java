@@ -23,7 +23,7 @@ public class BuscarPlanoAtivacaoServlet extends HttpServlet {
         int id = Integer.parseInt(idStr);
         req.setAttribute("id",id);
         RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("/pages/buscarPlanosAtivacao.jsp");
+        rd = getServletContext().getRequestDispatcher("/pages/planoAtivacao/buscarPlanosAtivacao.jsp");
         rd.include(req, resp);
     }
 }

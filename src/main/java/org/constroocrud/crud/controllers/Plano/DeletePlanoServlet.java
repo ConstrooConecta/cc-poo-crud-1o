@@ -43,7 +43,7 @@ public class DeletePlanoServlet extends HttpServlet {
                 req.setAttribute("entidade", id);
 
                 RequestDispatcher rd;
-                rd = getServletContext().getRequestDispatcher("/pages/listagemPlanos.jsp");
+                rd = getServletContext().getRequestDispatcher("/pages/plano/listagemPlanos.jsp");
                 rd.include(req, resp);
             }else{
                 String nome = rs.getString("nome_plano");
@@ -62,7 +62,7 @@ public class DeletePlanoServlet extends HttpServlet {
                 req.setAttribute("entidade", nome);
 
                 RequestDispatcher rd;
-                rd = getServletContext().getRequestDispatcher("/pages/listagemPlanos.jsp");
+                rd = getServletContext().getRequestDispatcher("/pages/plano/listagemPlanos.jsp");
                 rd.include(req, resp);
             }
         } catch (SQLException sqlException) {
@@ -71,7 +71,7 @@ public class DeletePlanoServlet extends HttpServlet {
             req.setAttribute("mensagem", "Erro SQL");
 
             RequestDispatcher rd;
-            rd = getServletContext().getRequestDispatcher("/pages/listagemPlanos.jsp");
+            rd = getServletContext().getRequestDispatcher("/pages/plano/listagemPlanos.jsp");
             rd.include(req, resp);
 
         }

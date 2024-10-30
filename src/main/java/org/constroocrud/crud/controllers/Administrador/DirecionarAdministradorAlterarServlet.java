@@ -31,6 +31,6 @@ public class DirecionarAdministradorAlterarServlet extends HttpServlet {
         req.setAttribute("email", email);
 
         // Redireciona para a página de alteração do administrador
-        req.getRequestDispatcher("pages/alterarAdministrador.jsp").forward(req, resp);
+        req.getRequestDispatcher("/pages/administrador/alterarAdministrador.jsp").forward(req, resp);
     }
 }

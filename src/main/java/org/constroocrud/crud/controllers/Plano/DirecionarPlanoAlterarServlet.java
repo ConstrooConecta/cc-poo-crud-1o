@@ -36,6 +36,6 @@ public class DirecionarPlanoAlterarServlet extends HttpServlet {
         req.setAttribute("valor", valor);
 
         // Redireciona para a página de alteração do plano
-        req.getRequestDispatcher("pages/alterarPlano.jsp").forward(req, resp);
+        req.getRequestDispatcher("/pages/plano/alterarPlano.jsp").forward(req, resp);
     }
 }

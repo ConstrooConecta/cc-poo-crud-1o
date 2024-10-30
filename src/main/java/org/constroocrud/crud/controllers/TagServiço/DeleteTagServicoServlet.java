@@ -40,7 +40,7 @@ public class DeleteTagServicoServlet extends HttpServlet {
                 req.setAttribute("entidade", id);
 
                 RequestDispatcher rd;
-                rd = getServletContext().getRequestDispatcher("/pages/listagemTagServico.jsp");
+                rd = getServletContext().getRequestDispatcher("/pages/tagServico/listagemTagServico.jsp");
                 rd.include(req, resp);
             }else{
                 String nome = rs.getString("nome");
@@ -59,7 +59,7 @@ public class DeleteTagServicoServlet extends HttpServlet {
                 req.setAttribute("entidade", nome);
 
                 RequestDispatcher rd;
-                rd = getServletContext().getRequestDispatcher("/pages/listagemTagServico.jsp");
+                rd = getServletContext().getRequestDispatcher("/pages/tagServico/listagemTagServico.jsp");
                 rd.include(req, resp);
             }
         } catch (SQLException sqlException) {
@@ -68,7 +68,7 @@ public class DeleteTagServicoServlet extends HttpServlet {
             req.setAttribute("mensagem", "Erro SQL");
 
             RequestDispatcher rd;
-            rd = getServletContext().getRequestDispatcher("/pages/listagemTagServico.jsp");
+            rd = getServletContext().getRequestDispatcher("/pages/tagServico/listagemTagServico.jsp");
             rd.include(req, resp);
 
         }
