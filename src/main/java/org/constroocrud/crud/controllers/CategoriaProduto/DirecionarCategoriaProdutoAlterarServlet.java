@@ -29,6 +29,6 @@ public class DirecionarCategoriaProdutoAlterarServlet extends HttpServlet {
         req.setAttribute("descricao", descricao);
 
         // Redireciona para a página de alteração da categoria de produto
-        req.getRequestDispatcher("pages/alterarCategoriaProduto.jsp").forward(req, resp);
+        req.getRequestDispatcher("/pages/categoriaProduto/alterarCategoriaProduto.jsp").forward(req, resp);
     }
 }

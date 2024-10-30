@@ -31,7 +31,7 @@ public class IncluirCamposPlanoServlet extends HttpServlet {
             if (!resultSet.next()){
                 req.setAttribute("retorno", "notfound");
                 req.setAttribute("mensagem", "Admin não encontrado!");
-                req.getRequestDispatcher("pages/alterarPlanoPeloID.jsp").forward(req, resp);
+                req.getRequestDispatcher("/pages/plano/alterarPlanoPeloID.jsp").forward(req, resp);
             }else{
 
                 String nome = resultSet.getString("nome_plano");
@@ -49,7 +49,7 @@ public class IncluirCamposPlanoServlet extends HttpServlet {
                 req.setAttribute("tipo", tipo);
                 req.setAttribute("valor", valor);
 
-                req.getRequestDispatcher("pages/alterarCamposPlano.jsp").forward(req, resp);
+                req.getRequestDispatcher("/pages/plano/alterarCamposPlano.jsp").forward(req, resp);
             }
 
 

@@ -49,7 +49,7 @@ public class AlterarAdministradorServlet extends HttpServlet {
             req.setAttribute("entidade", nome);
 
             RequestDispatcher rd;
-            rd = getServletContext().getRequestDispatcher("/pages/listagemAdministradores.jsp");
+            rd = getServletContext().getRequestDispatcher("/pages/administrador/listagemAdministradores.jsp");
             rd.include(req, resp);
         }else {
             if (!email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")){
@@ -65,7 +65,7 @@ public class AlterarAdministradorServlet extends HttpServlet {
             req.setAttribute("nome", nome);
             req.setAttribute("senha", senha);
             req.setAttribute("email", email);
-            rd = getServletContext().getRequestDispatcher("/pages/alterarAdministrador.jsp");
+            rd = getServletContext().getRequestDispatcher("/pages/administrador/alterarAdministrador.jsp");
             rd.include(req, resp);
         }
 

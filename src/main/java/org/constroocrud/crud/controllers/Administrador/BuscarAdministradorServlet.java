@@ -23,7 +23,7 @@ public class BuscarAdministradorServlet extends HttpServlet {
         String nome = req.getParameter("nome");
         req.setAttribute("nome",nome);
         RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("/pages/buscarAdministrador.jsp");
+        rd = getServletContext().getRequestDispatcher("/pages/administrador/buscarAdministrador.jsp");
         rd.include(req, resp);
     }
 }

@@ -22,7 +22,7 @@ public class BuscarTagServicoServlet extends HttpServlet {
         String nome = req.getParameter("nome");
         req.setAttribute("nome",nome);
         RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("/pages/buscarTagServico.jsp");
+        rd = getServletContext().getRequestDispatcher("/pages/tagServico/buscarTagServico.jsp");
         rd.include(req, resp);
     }
 }

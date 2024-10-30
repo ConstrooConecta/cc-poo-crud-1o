@@ -22,7 +22,7 @@ public class BuscarCategoriaProdutoServlet extends HttpServlet {
         String nome = req.getParameter("nome");
         req.setAttribute("nome",nome);
         RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("/pages/buscarCategoriaProdutos.jsp");
+        rd = getServletContext().getRequestDispatcher("/pages/categoriaProduto/buscarCategoriaProdutos.jsp");
         rd.include(req, resp);
     }
 }

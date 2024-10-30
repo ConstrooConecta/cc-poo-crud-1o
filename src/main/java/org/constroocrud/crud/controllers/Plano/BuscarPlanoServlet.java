@@ -22,7 +22,7 @@ public class BuscarPlanoServlet extends HttpServlet {
         String nome = req.getParameter("nome");
         req.setAttribute("nome",nome);
         RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("/pages/buscarPlano.jsp");
+        rd = getServletContext().getRequestDispatcher("/pages/plano/buscarPlano.jsp");
         rd.include(req, resp);
     }
 }

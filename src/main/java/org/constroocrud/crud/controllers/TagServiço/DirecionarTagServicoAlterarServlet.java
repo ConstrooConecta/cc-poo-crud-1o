@@ -30,6 +30,6 @@ public class DirecionarTagServicoAlterarServlet extends HttpServlet {
         req.setAttribute("descricao", descricao);
 
         // Redireciona para a página de alteração da tag de serviço
-        req.getRequestDispatcher("pages/alterarTagServico.jsp").forward(req, resp);
+        req.getRequestDispatcher("/pages/tagServico/alterarTagServico.jsp").forward(req, resp);
     }
 }

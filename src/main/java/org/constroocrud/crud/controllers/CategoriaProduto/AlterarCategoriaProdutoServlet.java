@@ -45,7 +45,7 @@ public class AlterarCategoriaProdutoServlet extends HttpServlet {
         req.setAttribute("entidade", nome);
 
         RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("/pages/listagemCategoriaProdutos.jsp");
+        rd = getServletContext().getRequestDispatcher("/pages/categoriaProduto/listagemCategoriaProdutos.jsp");
         rd.forward(req, resp);
 
 

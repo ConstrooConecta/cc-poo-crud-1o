@@ -58,7 +58,7 @@ public class InsertPlanoServlet extends HttpServlet {
 
         //Voce é direcionado para a listagem de usuarios!
         RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("/pages/listagemPlanos.jsp");
+        rd = getServletContext().getRequestDispatcher("/pages/plano/listagemPlanos.jsp");
         rd.include(req, resp);
 
 

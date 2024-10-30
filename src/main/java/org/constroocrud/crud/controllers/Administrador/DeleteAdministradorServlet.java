@@ -38,7 +38,7 @@ public class DeleteAdministradorServlet extends HttpServlet {
                 req.setAttribute("entidade", id);
 
                 RequestDispatcher rd;
-                rd = getServletContext().getRequestDispatcher("/pages/listagemAdministradores.jsp");
+                rd = getServletContext().getRequestDispatcher("/pages/administrador/listagemAdministradores.jsp");
                 rd.include(req, resp);
             }else{
                 String nome = rs.getString("nome");
@@ -57,7 +57,7 @@ public class DeleteAdministradorServlet extends HttpServlet {
                 req.setAttribute("entidade", nome);
 
                 RequestDispatcher rd;
-                rd = getServletContext().getRequestDispatcher("/pages/listagemAdministradores.jsp");
+                rd = getServletContext().getRequestDispatcher("/pages/administrador/listagemAdministradores.jsp");
                 rd.include(req, resp);
             }
         } catch (SQLException sqlException) {
@@ -66,7 +66,7 @@ public class DeleteAdministradorServlet extends HttpServlet {
             req.setAttribute("mensagem", "Erro SQL");
 
             RequestDispatcher rd;
-            rd = getServletContext().getRequestDispatcher("/pages/listagemAdministradores.jsp");
+            rd = getServletContext().getRequestDispatcher("/pages/administrador/listagemAdministradores.jsp");
             rd.include(req, resp);
 
         }

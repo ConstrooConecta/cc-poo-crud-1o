@@ -32,7 +32,7 @@ public class IncluirCamposTagServicoServlet extends HttpServlet {
             if (!resultSet.next()){
                 req.setAttribute("retorno", "notfound");
                 req.setAttribute("mensagem", "Admin não encontrado!");
-                req.getRequestDispatcher("pages/alterarTagServicoPeloID.jsp").forward(req, resp);
+                req.getRequestDispatcher("/pages/tagServico/alterarTagServicoPeloID.jsp").forward(req, resp);
             }else{
 
                 String nome = resultSet.getString("nome");
@@ -42,7 +42,7 @@ public class IncluirCamposTagServicoServlet extends HttpServlet {
                 req.setAttribute("nome", nome);
                 req.setAttribute("descricao", descricao);
 
-                req.getRequestDispatcher("pages/alterarCamposTagServico.jsp").forward(req, resp);
+                req.getRequestDispatcher("/pages/tagServico/alterarCamposTagServico.jsp").forward(req, resp);
             }
 
 

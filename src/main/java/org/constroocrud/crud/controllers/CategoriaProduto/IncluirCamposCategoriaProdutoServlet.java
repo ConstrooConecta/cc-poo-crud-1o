@@ -32,7 +32,7 @@ public class IncluirCamposCategoriaProdutoServlet extends HttpServlet {
             if (!resultSet.next()){
                 req.setAttribute("retorno", "notfound");
                 req.setAttribute("mensagem", "Admin não encontrado!");
-                req.getRequestDispatcher("pages/alterarCategoriaProdutoPeloID.jsp").forward(req, resp);
+                req.getRequestDispatcher("/pages/categoriaProduto/alterarCategoriaProdutoPeloID.jsp").forward(req, resp);
             }else{
 
                 String nome = resultSet.getString("nome");
@@ -42,7 +42,7 @@ public class IncluirCamposCategoriaProdutoServlet extends HttpServlet {
                 req.setAttribute("nome", nome);
                 req.setAttribute("descricao", descricao);
 
-                req.getRequestDispatcher("pages/alterarCamposCategoriaProduto.jsp").forward(req, resp);
+                req.getRequestDispatcher("/pages/categoriaProduto/alterarCamposCategoriaProduto.jsp").forward(req, resp);
             }
 
 

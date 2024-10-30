@@ -49,7 +49,7 @@ public class AlterarPlanoServlet extends HttpServlet {
         req.setAttribute("entidade", nome);
 
         RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("/pages/listagemPlanos.jsp");
+        rd = getServletContext().getRequestDispatcher("/pages/plano/listagemPlanos.jsp");
         rd.include(req, resp);
 
 

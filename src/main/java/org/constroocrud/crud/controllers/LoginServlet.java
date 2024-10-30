@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
 
                 // Redireciona para a página de listagem de categorias de produtos se a senha estiver correta
                 RequestDispatcher rd;
-                rd = getServletContext().getRequestDispatcher("/pages/listagemAdministradores.jsp");
+                rd = getServletContext().getRequestDispatcher("/pages/administrador/listagemAdministradores.jsp");
                 rd.include(req, resp);
             } else {
 
