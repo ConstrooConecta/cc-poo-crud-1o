@@ -4,8 +4,6 @@
     <title>Editar Administrador</title> <!-- Título da página -->
 </head>
 <body>
-<!-- <link rel="stylesheet" href="alterarAdministrador.css">  -->
-<!-- <link rel="stylesheet" href="alterar2.css"> -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/cascading-style-sheets/alterarAdministrador.css">
 <header>
     <div class="titulo-constroo">

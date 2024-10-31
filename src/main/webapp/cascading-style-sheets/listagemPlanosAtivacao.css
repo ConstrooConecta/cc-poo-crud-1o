@@ -161,3 +161,10 @@ nav ul li a.active {
     color: #555;
     font-weight: normal;
 }
+
+.actionsCreateAlterDelete{
+    display: flex;
+    flex-direction: row;
+    width: 200px;
+    justify-content: space-between;
+}
