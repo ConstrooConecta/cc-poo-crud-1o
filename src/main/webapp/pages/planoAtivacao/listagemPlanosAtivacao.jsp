@@ -29,16 +29,20 @@
     <section class="planos">
         <h1>Planos de Ativação</h1>
         <div class="controls">
+
+            <div class="actionsCreateAlterDelete">
+                <form action="${pageContext.request.contextPath}/pages/planoAtivacao/alterarPlanoAtivacaoPeloID.jsp" method="get">
+                    <button type="submit" class="create-btn">Alterar</button> <!-- Botão para deletar administrador -->
+                </form>
+                <form action="${pageContext.request.contextPath}/pages/planoAtivacao/deletarPlanoAtivacaoPeloID.jsp" method="get">
+                    <button type="submit" class="create-btn">Deletar</button> <!-- Botão para deletar administrador -->
+                </form>
+            </div>
             <form id="form-plano-ativacao-criar" action="${pageContext.request.contextPath}/BuscarPlanoAtivacaoServlet" method="post">
                 <input type="text" name="id" placeholder="Pesquise o plano pelo id">
                 <input type="submit" value="Pesquisar">
             </form>
-            <form action="${pageContext.request.contextPath}/pages/planoAtivacao/alterarPlanoAtivacaoPeloID.jsp" method="get">
-                <button type="submit" class="create-btn">Alterar</button> <!-- Botão para deletar administrador -->
-            </form>
-            <form action="${pageContext.request.contextPath}/pages/planoAtivacao/deletarPlanoAtivacaoPeloID.jsp" method="get">
-                <button type="submit" class="create-btn">Deletar</button> <!-- Botão para deletar administrador -->
-            </form>
+
         </div>
 
         <% if (request.getAttribute("retorno") == "erro"){
