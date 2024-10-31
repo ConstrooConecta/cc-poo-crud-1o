@@ -21,7 +21,7 @@ public class BuscarAdministradorServlet extends HttpServlet {
         //Recebe o id da entidade comprador/vendedor ou Profissional
 
         String nome = req.getParameter("nome");
-        req.setAttribute("nome",nome);
+        req.setAttribute("nome", nome);
         RequestDispatcher rd;
         rd = getServletContext().getRequestDispatcher("/pages/administrador/buscarAdministrador.jsp");
         rd.include(req, resp);
