@@ -41,7 +41,7 @@
                 </form>
             </div>
             <form action="${pageContext.request.contextPath}/BuscarPlanoServlet" method="post">
-                <input type="text" name="nome" placeholder="Pesquisar planos">
+                <input type="text" name="nome" id="nome" placeholder="Pesquisar planos">
                 <input type="submit" value="Pesquisar">
             </form>
         </div>

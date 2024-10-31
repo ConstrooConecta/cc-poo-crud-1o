@@ -43,7 +43,7 @@
                 </form>
             </div>
             <form action="${pageContext.request.contextPath}/BuscarTagServicoServlet" method="post">
-                <input type="text" name="pesquisa" placeholder="Pesquisar categorias">
+                <input type="text" name="nome" id="nome" placeholder="Pesquisar categorias">
                 <input type="submit" value="Pesquisar">
             </form>
         </div>

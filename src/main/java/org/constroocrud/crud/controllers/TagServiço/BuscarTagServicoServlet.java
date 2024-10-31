@@ -20,7 +20,7 @@ public class BuscarTagServicoServlet extends HttpServlet {
         //Recebe o id da entidade comprador/vendedor ou Profissional
 
         String nome = req.getParameter("nome");
-        req.setAttribute("nome",nome);
+        req.setAttribute("nome", nome);
         RequestDispatcher rd;
         rd = getServletContext().getRequestDispatcher("/pages/tagServico/buscarTagServico.jsp");
         rd.include(req, resp);

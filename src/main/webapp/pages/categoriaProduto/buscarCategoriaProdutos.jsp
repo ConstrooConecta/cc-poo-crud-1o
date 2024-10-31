@@ -29,13 +29,22 @@
     <section class="categorias"> <!-- Seção para categorias -->
         <h1>Categorias Produtos</h1> <!-- Título da seção -->
         <div class="controls"> <!-- Controles de ação -->
-            <form action="${pageContext.request.contextPath}/cadastros/cadastrarCategoriaProduto.html">
-                <button type="submit"  class="create-btn">Criar</button> <!-- Botão para criar nova categoria --><!-- Botão de pesquisa -->
-            </form>
             <form action="${pageContext.request.contextPath}/BuscarCategoriaProdutoServlet" method="post">
-                <input type="text" name="nome" placeholder="Pesquisar categorias"> <!-- Campo de pesquisa -->
+                <input type="text" name="nome" id="nome" value="<%=request.getAttribute("nome")%>" placeholder="Pesquisar categorias"> <!-- Campo de pesquisa -->
                 <input type="submit" value="Pesquisar">
             </form>
+            <div class="actionsCreateAlterDelete">
+                <form action="${pageContext.request.contextPath}/pages/categoriaProduto/cadastrarCategoriaProduto.html" method="get">
+                    <button type="submit" class="create-btn">Adicionar</button> <!-- Botão para adicionar administrador -->
+                </form>
+                <form action="${pageContext.request.contextPath}/pages/categoriaProduto/alterarCategoriaProdutoPeloID.jsp" method="get">
+                    <button type="submit" class="create-btn">Alterar</button> <!-- Botão para adicionar administrador -->
+                </form>
+                <form action="${pageContext.request.contextPath}/pages/categoriaProduto/deletarCategoriaProdutoPeloID.jsp" method="get">
+                    <button type="submit" class="create-btn">Deletar</button> <!-- Botão para deletar administrador -->
+                </form>
+            </div>
+
         </div>
         <% if (request.getAttribute("retorno") == "erro"){
         %>

@@ -28,11 +28,19 @@
     <section class="administradores"> <!-- Seção para administradores -->
         <h1>Administradores</h1> <!-- Título da seção -->
         <div class="controls"> <!-- Controles de ação -->
-            <form action="${pageContext.request.contextPath}/cadastros/cadastrarAdministrador.jsp" method="get">
-                <button type="submit" class="create-btn">Adicionar</button> <!-- Botão para adicionar administrador -->
-            </form>
+            <div class="actionsCreateAlterDelete">
+                <form action="${pageContext.request.contextPath}/pages/administrador/cadastrarAdministrador.jsp" method="get">
+                    <button type="submit" class="create-btn">Adicionar</button> <!-- Botão para adicionar administrador -->
+                </form>
+                <form action="${pageContext.request.contextPath}/pages/administrador/alterarAdministradorPeloID.jsp" method="get">
+                    <button type="submit" class="create-btn">Alterar</button> <!-- Botão para adicionar administrador -->
+                </form>
+                <form action="${pageContext.request.contextPath}/pages/administrador/deletarAdministradorPeloID.jsp" method="get">
+                    <button type="submit" class="create-btn">Deletar</button> <!-- Botão para deletar administrador -->
+                </form>
+            </div>
             <form action="${pageContext.request.contextPath}/BuscarAdministradorServlet" method="post">
-                <input type="text" name="nome" placeholder="Pesquisar administradores pelo nome"> <!-- Campo de pesquisa -->
+                <input type="text" name="nome" id="nome" value="<%=request.getAttribute("nome")%>" placeholder="Pesquisar administradores pelo nome"> <!-- Campo de pesquisa -->
                 <input type="submit" value="Pesquisar"> <!-- Botão de pesquisa -->
             </form>
         </div>
