@@ -22,7 +22,7 @@
         <li><a href="${pageContext.request.contextPath}/pages/plano/listagemPlanos.jsp" >Planos</a></li>
         <li><a href="${pageContext.request.contextPath}/pages/categoriaProduto/listagemCategoriaProdutos.jsp">Categorias</a></li>
         <li><a href="${pageContext.request.contextPath}/pages/administrador/listagemAdministradores.jsp">Adms</a></li>
-        <li><a href="${pageContext.request.contextPath}/pages/tagServico/tagServico/listagemTagServico.jsp" class="active">Tag Servico</a></li>
+        <li><a href="${pageContext.request.contextPath}/pages/tagServico/listagemTagServico.jsp" class="active">Tag Servico</a></li>
         <li><a href="${pageContext.request.contextPath}/pages/planoAtivacao/listagemPlanosAtivacao.jsp">Planos Ativação</a></li>
 
     </ul>

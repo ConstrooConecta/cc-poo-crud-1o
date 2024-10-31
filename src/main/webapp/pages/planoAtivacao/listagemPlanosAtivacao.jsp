@@ -21,7 +21,7 @@
         <li><a href="${pageContext.request.contextPath}/pages/categoriaProduto/listagemCategoriaProdutos.jsp">Categorias</a></li>
         <li><a href="${pageContext.request.contextPath}/pages/administrador/listagemAdministradores.jsp">Adms</a></li>
         <li><a href="${pageContext.request.contextPath}/pages/tagServico/listagemTagServico.jsp">Tag Servico</a></li>
-        <li><a href="${pageContext.request.contextPath}/pages/planoAtivacao/planoAtivacao/listagemPlanosAtivacao.jsp" class="active">Planos Ativação</a></li>
+        <li><a href="${pageContext.request.contextPath}/pages/planoAtivacao/listagemPlanosAtivacao.jsp" class="active">Planos Ativação</a></li>
     </ul>
 </nav>
 

@@ -79,7 +79,7 @@
                 <div class="details">
                     <h2>ID: <%= resultSet.getString("id") %> | <%= resultSet.getString("nome_plano") %></h2>
                     <p>Preço Mensal: <%= resultSet.getDouble("valor") %></p>
-                    <p>Tipo de Usuário: <%if (resultSet.getString("tipo_plano").equals("P"))
+                    <p>Tipo de Plano: <%if (resultSet.getString("tipo_plano").equals("P"))
                     {%>
                         Profissional
                    <% }else if (resultSet.getString("tipo_plano").equals("V")){%>
