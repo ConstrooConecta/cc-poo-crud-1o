@@ -41,7 +41,7 @@
             </div>
 
             <form action="${pageContext.request.contextPath}/BuscarAdministradorServlet" method="post">
-                <input type="text" name="pesquisar" placeholder="Pesquisar administradores"> <!-- Campo de pesquisa -->
+                <input type="text" name="nome" id="nome" placeholder="Pesquisar administradores"> <!-- Campo de pesquisa -->
                 <input type="submit" value="Pesquisar"> <!-- Botão de pesquisa -->
             </form>
         </div>

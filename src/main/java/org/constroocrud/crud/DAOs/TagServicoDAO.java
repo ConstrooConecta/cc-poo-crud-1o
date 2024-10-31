@@ -15,7 +15,7 @@ public class TagServicoDAO {
         conexao.conectar();
         Connection conn = conexao.getConn();
         try {
-            String query = "SELECT * FROM tag_servico order by id";
+            String query = "SELECT * FROM tag_servico order by nome";
             pstmt = conn.prepareStatement(query);
             rs = pstmt.executeQuery();
             return rs;
@@ -36,7 +36,7 @@ public class TagServicoDAO {
         conexao.conectar();
         Connection conn = conexao.getConn();
         try {
-            String query = "SELECT * FROM tag_servico WHERE id = ? order by id";
+            String query = "SELECT * FROM tag_servico WHERE id = ? order by nome";
             pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, id);
             rs = pstmt.executeQuery();
@@ -58,7 +58,7 @@ public class TagServicoDAO {
         conexao.conectar();
         Connection conn = conexao.getConn();
         try {
-            String query = "SELECT * FROM tag_servico WHERE nome like ? order by id";
+            String query = "SELECT * FROM tag_servico WHERE nome like ? order by nome";
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1,"%"+nome+"%");
             rs = pstmt.executeQuery();

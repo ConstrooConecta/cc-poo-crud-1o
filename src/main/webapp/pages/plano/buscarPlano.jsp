@@ -29,11 +29,19 @@
     <section class="planos">
         <h1>Planos</h1>
         <div class="controls">
-            <form action="${pageContext.request.contextPath}/cadastros/cadastrarPlano.html" method="get">
-                <button type="submit" class="create-btn">Criar</button>
-            </form>
+            <div class="actionsCreateAlterDelete">
+                <form action="${pageContext.request.contextPath}/pages/plano/cadastrarPlano.html" method="get">
+                    <button type="submit" class="create-btn">Adicionar</button> <!-- Botão para adicionar administrador -->
+                </form>
+                <form action="${pageContext.request.contextPath}/pages/plano/alterarPlanoPeloID.jsp" method="get">
+                    <button type="submit" class="create-btn">Alterar</button> <!-- Botão para adicionar administrador -->
+                </form>
+                <form action="${pageContext.request.contextPath}/pages/plano/deletarPlanoPeloID.jsp" method="get">
+                    <button type="submit" class="create-btn">Deletar</button> <!-- Botão para deletar administrador -->
+                </form>
+            </div>
             <form action="${pageContext.request.contextPath}/BuscarPlanoServlet" method="post">
-                <input type="text" name="pesquisar" placeholder="Pesquisar planos">
+                <input type="text" name="pesquisar" id="nome" value="<%=request.getAttribute("nome")%>" placeholder="Pesquisar planos">
                 <input type="submit" value="Pesquisar">
             </form>
         </div>

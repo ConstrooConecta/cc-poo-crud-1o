@@ -20,10 +20,21 @@ public class BuscarPlanoAtivacaoServlet extends HttpServlet {
         //Recebe o id da entidade comprador/vendedor ou Profissional
 
         String idStr = req.getParameter("id");
-        int id = Integer.parseInt(idStr);
-        req.setAttribute("id",id);
-        RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("/pages/planoAtivacao/buscarPlanosAtivacao.jsp");
-        rd.include(req, resp);
+        int id;
+        try{
+            id = Integer.parseInt(idStr);
+            req.setAttribute("id",id);
+
+        }catch (NumberFormatException e){
+            id = 0;
+            req.setAttribute("id",id);
+
+        }finally {
+            RequestDispatcher rd;
+            rd = getServletContext().getRequestDispatcher("/pages/planoAtivacao/buscarPlanosAtivacao.jsp");
+            rd.include(req, resp);
+        }
+
+
     }
 }

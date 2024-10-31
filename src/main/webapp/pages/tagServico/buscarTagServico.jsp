@@ -35,7 +35,7 @@
                 <button class="create-btn">Criar</button>
             </form>
             <form action="${pageContext.request.contextPath}/BuscarTagServicoServlet" method="post">
-                <input type="text" name="nome" placeholder="Pesquisar categorias">
+                <input type="text" name="nome" id="nome"  value="<%=request.getAttribute("nome")%>" placeholder="Pesquisar categorias">
                 <input type="submit" value="Pesquisar">
             </form>
         </div>

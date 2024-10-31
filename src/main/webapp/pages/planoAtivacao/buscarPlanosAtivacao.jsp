@@ -29,10 +29,19 @@
     <section class="planos">
         <h1>Planos de Ativação</h1>
         <div class="controls">
+            <div class="actionsCreateAlterDelete">
+                <form action="${pageContext.request.contextPath}/pages/planoAtivacao/alterarPlanoAtivacaoPeloID.jsp" method="get">
+                    <button type="submit" class="create-btn">Alterar</button> <!-- Botão para deletar administrador -->
+                </form>
+                <form action="${pageContext.request.contextPath}/pages/planoAtivacao/deletarPlanoAtivacaoPeloID.jsp" method="get">
+                    <button type="submit" class="create-btn">Deletar</button> <!-- Botão para deletar administrador -->
+                </form>
+            </div>
             <form id="form-plano-ativacao-criar" action="${pageContext.request.contextPath}/BuscarPlanoAtivacaoServlet" method="post">
-                <input type="number" name="id" placeholder="Pesquise o plano pelo ID">
+                <input type="number" name="id" id="id" value=" <%=Integer.parseInt(String.valueOf(request.getAttribute("id"))) == 0 ? null: request.getAttribute("id")%>" placeholder="Pesquise o plano pelo ID">
                 <input type="submit" value="Pesquisar">
             </form>
+
         </div>
 
         <% if (request.getAttribute("retorno") == "erro"){
@@ -60,7 +69,14 @@
         <%-- Inicio do loop dos resultados --%>
         <%
             PlanoAtivacaoDAO planoAtivacaoDAO = new PlanoAtivacaoDAO();
-            ResultSet resultSet = planoAtivacaoDAO.buscarPlanoAtivacaoPeloID(Integer.parseInt(String.valueOf(request.getAttribute("id"))));
+            ResultSet resultSet;
+            if (Integer.parseInt(String.valueOf(request.getAttribute("id"))) == 0){
+                resultSet = planoAtivacaoDAO.buscarPlanoAtivacao();
+
+            }else{
+                resultSet = planoAtivacaoDAO.buscarPlanoAtivacaoPeloID(Integer.parseInt(String.valueOf(request.getAttribute("id"))));
+
+            }
 
             try {
                 while (resultSet.next()) {

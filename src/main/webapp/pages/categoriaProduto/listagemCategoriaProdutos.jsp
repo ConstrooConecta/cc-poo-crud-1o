@@ -41,7 +41,7 @@
                 </form>
             </div>
             <form action="${pageContext.request.contextPath}/BuscarCategoriaProdutoServlet" method="post">
-                <input type="text" name="nome" placeholder="Pesquisar categorias"> <!-- Campo de pesquisa -->
+                <input type="text" name="nome" id="nome" placeholder="Pesquisar categorias"> <!-- Campo de pesquisa -->
                 <input type="submit" value="Pesquisar">
             </form>
 
