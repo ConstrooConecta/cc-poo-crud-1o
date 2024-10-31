@@ -78,7 +78,7 @@ main {
     justify-content: space-between;
     margin-bottom: 20px;
 }
-
+.controls input[type="submit"],
 .controls .create-btn {
     background-color: #0E292F;
     color: #fff;
