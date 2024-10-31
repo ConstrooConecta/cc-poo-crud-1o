@@ -63,11 +63,8 @@
         <div class="gridAtualTipo">
             <label for="tipoAtual">Tipo Atual:</label>
             <input type="text" name="tipoAtual" id="tipoAtual" value="<%if (request.getAttribute("tipo").equals("P"))
-                    {%>
-                        Profissional
-                   <% }else if (request.getAttribute("tipo").equals("V")){%>
-                        Vendedor
-                        <% }%>"  disabled>
+                    {%>Profissional<% }else if (request.getAttribute("tipo").equals("V"))
+                    {%>Vendedor<%}%>"  disabled>
         </div>
 
         <div class="gridNovoTipo">
