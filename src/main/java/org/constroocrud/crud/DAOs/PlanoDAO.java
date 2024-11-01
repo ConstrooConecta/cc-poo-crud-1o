@@ -11,20 +11,19 @@ public class PlanoDAO {
     public ResultSet buscarPlanos() {
         PreparedStatement pstmt;
         ResultSet rs = null;
-        Conexao conexao = new Conexao();
-        conexao.conectar();
-        Connection conn = conexao.getConn();
+        Conexao conexao = new Conexao(); // Cria uma nova conexão
+        conexao.conectar(); // Estabelece a conexão com o banco de dados
+        Connection conn = conexao.getConn(); // Obtém a conexão ativa
         try {
-            String query = "SELECT * FROM plano order by id";
-            pstmt = conn.prepareStatement(query);
-            rs = pstmt.executeQuery();
-            return rs;
-
+            String query = "SELECT * FROM plano ORDER BY id"; // Query para selecionar todos os planos
+            pstmt = conn.prepareStatement(query); // Prepara a instrução SQL
+            rs = pstmt.executeQuery(); // Executa a consulta e armazena o resultado
+            return rs; // Retorna o conjunto de resultados
         } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
-            return rs;
+            sqlException.printStackTrace(); // Exibe qualquer erro SQL
+            return rs; // Retorna null em caso de erro
         } finally {
-            conexao.desconectar();
+            conexao.desconectar(); // Desconecta a conexão no final
         }
     }
 
@@ -32,132 +31,134 @@ public class PlanoDAO {
     public ResultSet buscarPlanoPeloID(int id) {
         PreparedStatement pstmt;
         ResultSet rs = null;
-        Conexao conexao = new Conexao();
-        conexao.conectar();
-        Connection conn = conexao.getConn();
+        Conexao conexao = new Conexao(); // Cria uma nova conexão
+        conexao.conectar(); // Estabelece a conexão com o banco de dados
+        Connection conn = conexao.getConn(); // Obtém a conexão ativa
         try {
-            String query = "SELECT * FROM plano WHERE id = ? order by id";
-            pstmt = conn.prepareStatement(query);
-            pstmt.setInt(1, id);
-            rs = pstmt.executeQuery();
-            return rs;
+            String query = "SELECT * FROM plano WHERE id = ? ORDER BY id"; // Query para selecionar um plano pelo ID
+            pstmt = conn.prepareStatement(query); // Prepara a instrução SQL
+            pstmt.setInt(1, id); // Define o parâmetro ID na consulta
+            rs = pstmt.executeQuery(); // Executa a consulta e armazena o resultado
+            return rs; // Retorna o conjunto de resultados
         } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
-            return null;
+            sqlException.printStackTrace(); // Exibe qualquer erro SQL
+            return null; // Retorna null em caso de erro
         } finally {
-            conexao.desconectar();
+            conexao.desconectar(); // Desconecta a conexão no final
         }
     }
+
+    // Método para buscar um plano pelo nome
     public ResultSet buscarPlanoPeloNome(String nome) {
         PreparedStatement pstmt;
         ResultSet rs = null;
-        Conexao conexao = new Conexao();
-        conexao.conectar();
-        Connection conn = conexao.getConn();
+        Conexao conexao = new Conexao(); // Cria uma nova conexão
+        conexao.conectar(); // Estabelece a conexão com o banco de dados
+        Connection conn = conexao.getConn(); // Obtém a conexão ativa
         try {
-            String query = "SELECT * FROM plano WHERE nome_plano like ? order by id";
-            pstmt = conn.prepareStatement(query);
-            pstmt.setString(1,"%"+nome+"%");
-            rs = pstmt.executeQuery();
-            return rs;
+            String query = "SELECT * FROM plano WHERE nome_plano LIKE ? ORDER BY id"; // Query para selecionar planos com nome correspondente
+            pstmt = conn.prepareStatement(query); // Prepara a instrução SQL
+            pstmt.setString(1, "%" + nome + "%"); // Define o parâmetro nome na consulta (wildcard para busca parcial)
+            rs = pstmt.executeQuery(); // Executa a consulta e armazena o resultado
+            return rs; // Retorna o conjunto de resultados
         } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
-            return rs;
+            sqlException.printStackTrace(); // Exibe qualquer erro SQL
+            return rs; // Retorna null em caso de erro
         } finally {
-            conexao.desconectar();
+            conexao.desconectar(); // Desconecta a conexão no final
         }
     }
 
     // Método para remover um plano pelo ID
     public int removerPlanoPeloID(int id) {
         PreparedStatement pstmt;
-        Conexao conexao = new Conexao();
-        conexao.conectar();
-        Connection conn = conexao.getConn();
+        Conexao conexao = new Conexao(); // Cria uma nova conexão
+        conexao.conectar(); // Estabelece a conexão com o banco de dados
+        Connection conn = conexao.getConn(); // Obtém a conexão ativa
         try {
             // Verifica se existe um plano com esse ID
-            ResultSet resultSet = buscarPlanoPeloID(id);
+            ResultSet resultSet = buscarPlanoPeloID(id); // Busca o plano pelo ID
             if (!resultSet.next()) {
                 return 0; // Retorna 0 se o plano não for encontrado
             }
 
             // Executa a query de remoção
-            String remover = "DELETE FROM plano WHERE id = ?";
-            pstmt = conn.prepareStatement(remover);
-            pstmt.setInt(1, id);
+            String remover = "DELETE FROM plano WHERE id = ?"; // Query para deletar um plano pelo ID
+            pstmt = conn.prepareStatement(remover); // Prepara a instrução SQL
+            pstmt.setInt(1, id); // Define o parâmetro ID na consulta
 
-            int rows = pstmt.executeUpdate();
+            int rows = pstmt.executeUpdate(); // Executa a remoção
 
             if (rows > 0) {
-                return 1; // Retorna 1 se a remoção for bem-sucedida
+                return 1; // Retorna 1 se a remoção foi bem-sucedida
             }
             return 0; // Retorna 0 se nenhuma linha foi afetada
         } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
+            sqlException.printStackTrace(); // Exibe qualquer erro SQL
             return -1; // Retorna -1 em caso de erro
         } finally {
-            conexao.desconectar();
+            conexao.desconectar(); // Desconecta a conexão no final
         }
     }
 
     // Método para inserir um novo plano
     public int inserirPlano(Plano plano) {
         PreparedStatement pstmt;
-        Conexao conexao = new Conexao();
-        conexao.conectar();
-        Connection conn = conexao.getConn();
+        Conexao conexao = new Conexao(); // Cria uma nova conexão
+        conexao.conectar(); // Estabelece a conexão com o banco de dados
+        Connection conn = conexao.getConn(); // Obtém a conexão ativa
         try {
             // Faz o comando SQL
-            pstmt = conn.prepareStatement("INSERT INTO plano (nome_plano, tempo_duracao, valor, descricao, tipo_plano) VALUES (?, ?, ?, ?, ?)");
+            pstmt = conn.prepareStatement("INSERT INTO plano (nome_plano, tempo_duracao, valor, descricao, tipo_plano) VALUES (?, ?, ?, ?, ?)"); // Query para inserir um novo plano
             // Coloca como parâmetro cada atributo do objeto Plano
-            pstmt.setString(1, plano.getNome());
-            pstmt.setInt(2, plano.getDuracao());
-            pstmt.setDouble(3, plano.getValor());
-            pstmt.setString(4, plano.getDescricao());
-            pstmt.setString(5, plano.getTipo_plano());
+            pstmt.setString(1, plano.getNome()); // Define o nome do plano
+            pstmt.setInt(2, plano.getDuracao()); // Define a duração do plano
+            pstmt.setDouble(3, plano.getValor()); // Define o valor do plano
+            pstmt.setString(4, plano.getDescricao()); // Define a descrição do plano
+            pstmt.setString(5, plano.getTipo_plano()); // Define o tipo do plano
 
-            int rows = pstmt.executeUpdate();
+            int rows = pstmt.executeUpdate(); // Executa a inserção
 
             if (rows > 0) {
                 return 1; // Retorna 1 se a inserção for bem-sucedida
             }
             return 0; // Retorna 0 se nenhuma linha foi afetada
         } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
+            sqlException.printStackTrace(); // Exibe qualquer erro SQL
             return -1; // Retorna -1 em caso de erro
         } finally {
-            conexao.desconectar();
+            conexao.desconectar(); // Desconecta a conexão no final
         }
     }
 
     // Método para alterar um plano
     public int alterarPlano(int id, Plano plano) {
         PreparedStatement pstmt;
-        Conexao conexao = new Conexao();
-        conexao.conectar();
-        Connection conn = conexao.getConn();
+        Conexao conexao = new Conexao(); // Cria uma nova conexão
+        conexao.conectar(); // Estabelece a conexão com o banco de dados
+        Connection conn = conexao.getConn(); // Obtém a conexão ativa
         try {
             // Prepara a consulta de atualização
-            pstmt = conn.prepareStatement("UPDATE plano SET nome_plano = ?, descricao = ?, tempo_duracao = ?, valor = ?, tipo_plano = ? WHERE id = ?");
+            pstmt = conn.prepareStatement("UPDATE plano SET nome_plano = ?, descricao = ?, tempo_duracao = ?, valor = ?, tipo_plano = ? WHERE id = ?"); // Query para atualizar os dados do plano
             // Define os parâmetros da consulta
-            pstmt.setString(1, plano.getNome());
-            pstmt.setString(2, plano.getDescricao());
-            pstmt.setInt(3, plano.getDuracao());
-            pstmt.setDouble(4, plano.getValor());
-            pstmt.setString(5, plano.getTipo_plano());
-            pstmt.setInt(6, id);
+            pstmt.setString(1, plano.getNome()); // Define o nome do plano
+            pstmt.setString(2, plano.getDescricao()); // Define a descrição do plano
+            pstmt.setInt(3, plano.getDuracao()); // Define a duração do plano
+            pstmt.setDouble(4, plano.getValor()); // Define o valor do plano
+            pstmt.setString(5, plano.getTipo_plano()); // Define o tipo do plano
+            pstmt.setInt(6, id); // Define o ID do plano que será atualizado
 
-            int rows = pstmt.executeUpdate();
+            int rows = pstmt.executeUpdate(); // Executa a atualização
 
             if (rows > 0) {
                 return 1; // Retorna 1 se a alteração for bem-sucedida
             }
             return 0; // Retorna 0 se nenhuma linha foi afetada
         } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
+            sqlException.printStackTrace(); // Exibe qualquer erro SQL
             return -1; // Retorna -1 em caso de erro
         } finally {
-            conexao.desconectar();
+            conexao.desconectar(); // Desconecta a conexão no final
         }
     }
 }

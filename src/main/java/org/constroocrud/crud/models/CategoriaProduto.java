@@ -6,33 +6,40 @@ public class CategoriaProduto { // Classe principal
     private String nome; // Nome da categoria
     private String descricao; // Descrição da categoria
 
-    public int getId() { // Getter para ID
+    // Getter para ID
+    public int getId() {
         return id;
     }
 
-    public String getNome() { // Getter para nome
+    // Getter para nome
+    public String getNome() {
         return nome;
     }
 
-    public String getDescricao() { // Getter para descrição
+    // Getter para descrição
+    public String getDescricao() {
         return descricao;
     }
 
-    public CategoriaProduto(int id, String nome, String descricao) { // Construtor com ID
+    // Construtor com ID
+    public CategoriaProduto(int id, String nome, String descricao) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
     }
 
-    public CategoriaProduto(String nome, String descricao) { // Construtor sem ID
+    // Construtor sem ID
+    public CategoriaProduto(String nome, String descricao) {
         this.nome = nome;
         this.descricao = descricao;
     }
 
-    public CategoriaProduto() { } // Construtor padrão
+    // Construtor padrão
+    public CategoriaProduto() { }
 
+    // Método toString para representação da classe
     @Override
-    public String toString() { // Método toString para representação da classe
+    public String toString() {
         return "CategoriaProduto{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +

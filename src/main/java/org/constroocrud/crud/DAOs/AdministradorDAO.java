@@ -7,142 +7,101 @@ import java.sql.*;
 
 public class AdministradorDAO {
 
+    private Connection getConnection() throws SQLException {
+        Conexao conexao = new Conexao();
+        conexao.conectar();
+        return conexao.getConn();
+    }
+
     // Método para inserir um administrador
     public int inserirAdministrador(Administrador administrador) {
-        Conexao conexao = new Conexao();
-        conexao.conectar(); // Conecta ao banco de dados
-        Connection conn = conexao.getConn();
-        try {
-            // Prepara o comando SQL
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO administrador(nome, email, senha) VALUES (?, ?, ?)");
+        String sql = "INSERT INTO administrador(nome, email, senha) VALUES (?, ?, ?)";
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            // Coloca como parâmetro cada atributo do objeto Administrador por meio dos getters
             pstmt.setString(1, administrador.getNome());
             pstmt.setString(2, administrador.getEmail());
             pstmt.setString(3, administrador.getSenha());
 
-            // Retorna 1 se a execução da query for bem-sucedida, caso contrário, retorna 0
-            int rows = pstmt.executeUpdate();
-            if (rows > 0){
-                return 1;
-            }
-            return 0;
+            return pstmt.executeUpdate() > 0 ? 1 : 0;
 
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
-            return -1; // Retorna -1 se a execução da query for mal-sucedida
-        } finally {
-            conexao.desconectar(); // Desconecta do banco de dados
+            return -1; // Erro na execução da query
         }
     }
 
     // Método para buscar todos os administradores
     public ResultSet buscarAdministrador() {
-        Conexao conexao = new Conexao();
-        conexao.conectar(); // Conecta ao banco de dados
-        Connection conn = conexao.getConn();
-
+        String query = "SELECT * FROM administrador ORDER BY id";
         try {
-            String query = "SELECT * FROM administrador order by id";
+            Connection conn = getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query);
-            return pstmt.executeQuery(); // Retorna o ResultSet dos administradores
-
+            return pstmt.executeQuery();
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
-            return null; // Retorna null em caso de erro
-        } finally {
-            conexao.desconectar(); // Desconecta do banco de dados
+            return null; // Erro na execução da query
         }
     }
 
     // Método para buscar um administrador pelo ID
     public ResultSet buscarAdministradorPeloID(int id) {
-        Conexao conexao = new Conexao();
-        conexao.conectar(); // Conecta ao banco de dados
-        Connection conn = conexao.getConn();
-
+        String query = "SELECT * FROM administrador WHERE id = ?";
         try {
-            String query = "SELECT * FROM administrador WHERE id = ? order by id";
+            Connection conn = getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, id);
-            return pstmt.executeQuery(); // Retorna o ResultSet do administrador
-
+            return pstmt.executeQuery();
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
-            return null; // Retorna null em caso de erro
-        } finally {
-            conexao.desconectar(); // Desconecta do banco de dados
+            return null; // Erro na execução da query
         }
     }
 
     // Método para buscar um administrador pelo email
     public ResultSet buscarAdministradorPeloEmail(String email) {
-        Conexao conexao = new Conexao();
-        conexao.conectar(); // Conecta ao banco de dados
-        Connection conn = conexao.getConn();
-
+        String query = "SELECT * FROM administrador WHERE email = ?";
         try {
-            String query = "SELECT * FROM administrador WHERE email = ? order by id";
+            Connection conn = getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query);
             pstmt.setString(1, email);
-            return pstmt.executeQuery(); // Retorna o ResultSet do administrador
-
+            return pstmt.executeQuery();
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
-            return null; // Retorna null em caso de erro
-        } finally {
-            conexao.desconectar(); // Desconecta do banco de dados
+            return null; // Erro na execução da query
         }
     }
+
+    // Método para buscar um administrador pelo nome
     public ResultSet buscarAdministradorPeloNome(String nome) {
-        Conexao conexao = new Conexao();
-        conexao.conectar(); // Conecta ao banco de dados
-        Connection conn = conexao.getConn();
-
+        String query = "SELECT * FROM administrador WHERE nome LIKE ?";
         try {
-            String query = "SELECT * FROM administrador WHERE nome like ? order by nome";
+            Connection conn = getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1,"%"+ nome+"%");
-            return pstmt.executeQuery(); // Retorna o ResultSet do administrador
-
+            pstmt.setString(1, "%" + nome + "%");
+            return pstmt.executeQuery();
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
-            return null; // Retorna null em caso de erro
-        } finally {
-            conexao.desconectar(); // Desconecta do banco de dados
+            return null; // Erro na execução da query
         }
     }
 
     // Método para remover um administrador pelo ID
     public int removerAdministrador(int id) {
-        Conexao conexao = new Conexao();
-        conexao.conectar(); // Conecta ao banco de dados
-        Connection conn = conexao.getConn();
+        if (buscarAdministradorPeloID(id) == null) {
+            return 0; // Não encontrado
+        }
 
-        try {
-            // Verifica se existe um administrador com o ID fornecido
-            ResultSet resultSet = buscarAdministradorPeloID(id);
-            if (!resultSet.next()) {
-                return 0; // Retorna 0 se não encontrar o administrador
-            }
+        String remover = "DELETE FROM administrador WHERE id = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(remover)) {
 
-            // Executa a query
-            String remover = "DELETE FROM administrador WHERE id = ?";
-            PreparedStatement pstmt = conn.prepareStatement(remover);
             pstmt.setInt(1, id);
-
-            // Retorna 1 se a execução da query for bem-sucedida, caso contrário, retorna 0
-            int rows = pstmt.executeUpdate();
-            if (rows > 0){
-                return 1;
-            }
-            return 0;
+            return pstmt.executeUpdate() > 0 ? 1 : 0;
 
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
-            return -1; // Retorna -1 se a execução da query for mal-sucedida
-        } finally {
-            conexao.desconectar(); // Desconecta do banco de dados
+            return -1; // Erro na execução da query
         }
     }
 
@@ -150,43 +109,31 @@ public class AdministradorDAO {
     public String buscaSenhaPorEmail(String email) {
         ResultSet resultSet = buscarAdministradorPeloEmail(email);
         try {
-            while (resultSet != null && resultSet.next()) {
-                return resultSet.getString("senha"); // Retorna a senha
+            if (resultSet != null && resultSet.next()) {
+                return resultSet.getString("senha");
             }
         } catch (SQLException sqlException) {
-            return null; // Retorna null em caso de erro
+            sqlException.printStackTrace();
         }
-        return null; // Retorna null se não encontrar a senha
+        return null; // Não encontrado ou erro
     }
 
     // Método para alterar um administrador
     public int alterarAdministrador(int id, Administrador administrador) {
-        Conexao conexao = new Conexao();
-        conexao.conectar(); // Conecta ao banco de dados
-        Connection conn = conexao.getConn();
+        String sql = "UPDATE administrador SET nome = ?, email = ?, senha = ? WHERE id = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-        try {
-            // Prepara a instrução de atualização
-            PreparedStatement pstmt = conn.prepareStatement("UPDATE administrador SET nome = ?, email = ?, senha = ? WHERE id = ?");
-
-            // Define os parâmetros
             pstmt.setString(1, administrador.getNome());
             pstmt.setString(2, administrador.getEmail());
             pstmt.setString(3, administrador.getSenha());
             pstmt.setInt(4, id);
 
-            // Retorna 1 se a execução da query for bem-sucedida, caso contrário, retorna 0
-            int rows = pstmt.executeUpdate();
-            if (rows > 0){
-                return 1;
-            }
-            return 0;
+            return pstmt.executeUpdate() > 0 ? 1 : 0;
 
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
-            return -1; // Retorna -1 se a execução da query for mal-sucedida
-        } finally {
-            conexao.desconectar(); // Desconecta do banco de dados
+            return -1; // Erro na execução da query
         }
     }
 }

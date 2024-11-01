@@ -2,40 +2,49 @@ package org.constroocrud.crud.models; // Pacote da classe TagServico
 
 public class TagServico { // Classe principal
 
+    // Atributos da tag de serviço
     private int id; // ID da tag de serviço
     private String nome; // Nome da tag
     private String descricao; // Descrição da tag
 
+    // Getters para os atributos da tag de serviço
     public int getId() { // Getter para ID
-        return id;
+        return id; // Retorna o ID da tag
     }
 
     public String getNome() { // Getter para nome
-        return nome;
+        return nome; // Retorna o nome da tag
     }
 
     public String getDescricao() { // Getter para descrição
-        return descricao;
+        return descricao; // Retorna a descrição da tag
     }
 
-    public TagServico(int id, String nome, String descricao) { // Construtor com ID
-        this.id = id;
-        this.nome = nome;
-        this.descricao = descricao;
+    // Construtores da classe TagServico
+
+    // Construtor com ID
+    public TagServico(int id, String nome, String descricao) {
+        this.id = id; // Inicializa o ID da tag
+        this.nome = nome; // Inicializa o nome da tag
+        this.descricao = descricao; // Inicializa a descrição da tag
     }
 
-    public TagServico(String nome, String descricao) { // Construtor sem ID
-        this.nome = nome;
-        this.descricao = descricao;
+    // Construtor sem ID
+    public TagServico(String nome, String descricao) {
+        this.nome = nome; // Inicializa o nome da tag
+        this.descricao = descricao; // Inicializa a descrição da tag
     }
 
-    public TagServico() { } // Construtor padrão
+    // Construtor padrão
+    public TagServico() { } // Construtor vazio sem parâmetros
 
+    // Método toString para representação da classe
     @Override
-    public String toString() { // Método toString para representação da classe
+    public String toString() { // Retorna uma representação em string da tag de serviço
         return "TagServico{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                '}'; // Retorna a representação da tag de serviço
+                "id=" + id + // ID da tag de serviço
+                ", nome='" + nome + '\'' + // Nome da tag
+                '}'; // Retorna a representação do objeto
     }
 }
+

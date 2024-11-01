@@ -16,7 +16,7 @@ public class DirecionarTagServicoAlterarServlet extends HttpServlet {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
 
-        // Recebe o id da tag de serviço a ser alterada
+        // Recebe o ID da tag de serviço a ser alterada
         String str_id = req.getParameter("tag_id");
         String nome = req.getParameter("nome");
         String descricao = req.getParameter("descricao");

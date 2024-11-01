@@ -9,33 +9,41 @@ public class Plano { // Classe principal
     private String nome; // Nome do plano
     private int duracao; // Duração do plano
 
-    public int getId() { // Getter para ID
+    // Getter para ID
+    public int getId() {
         return id;
     }
 
-    public String getTipo_plano() { // Getter para tipo de plano
+    // Getter para tipo de plano
+    public String getTipo_plano() {
         return tipo_plano;
     }
 
-    public double getValor() { // Getter para valor
+    // Getter para valor
+    public double getValor() {
         return valor;
     }
 
-    public String getDescricao() { // Getter para descrição
+    // Getter para descrição
+    public String getDescricao() {
         return descricao;
     }
 
-    public String getNome() { // Getter para nome
+    // Getter para nome
+    public String getNome() {
         return nome;
     }
 
-    public int getDuracao() { // Getter para duração
+    // Getter para duração
+    public int getDuracao() {
         return duracao;
     }
 
-    public Plano() { } // Construtor padrão
+    // Construtor padrão
+    public Plano() { }
 
-    public Plano(String tipo_plano, double valor, String descricao, String nome, int duracao) { // Construtor sem ID
+    // Construtor sem ID
+    public Plano(String tipo_plano, double valor, String descricao, String nome, int duracao) {
         this.tipo_plano = tipo_plano;
         this.valor = valor;
         this.descricao = descricao;
@@ -43,7 +51,8 @@ public class Plano { // Classe principal
         this.duracao = duracao;
     }
 
-    public Plano(int id, String tipo_plano, double valor, String descricao, String nome, int duracao) { // Construtor com ID
+    // Construtor com ID
+    public Plano(int id, String tipo_plano, double valor, String descricao, String nome, int duracao) {
         this.id = id;
         this.tipo_plano = tipo_plano;
         this.valor = valor;

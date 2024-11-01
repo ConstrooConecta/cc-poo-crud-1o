@@ -11,20 +11,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tag Serviços</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/cascading-style-sheets/listagemTagServico.css">
-
 </head>
 <body>
 <header>
-    <div class="logo">Constroo 🌍</div>
+    <div class="logo">Constroo 🌍</div> <!-- Logo do aplicativo -->
 </header>
 <nav>
     <ul>
-        <li><a href="${pageContext.request.contextPath}/pages/plano/listagemPlanos.jsp" >Planos</a></li>
+        <li><a href="${pageContext.request.contextPath}/pages/plano/listagemPlanos.jsp">Planos</a></li>
         <li><a href="${pageContext.request.contextPath}/pages/categoriaProduto/listagemCategoriaProdutos.jsp">Categorias</a></li>
         <li><a href="${pageContext.request.contextPath}/pages/administrador/listagemAdministradores.jsp">Adms</a></li>
         <li><a href="${pageContext.request.contextPath}/pages/tagServico/listagemTagServico.jsp" class="active">Tag Servico</a></li>
         <li><a href="${pageContext.request.contextPath}/pages/planoAtivacao/listagemPlanosAtivacao.jsp">Planos Ativação</a></li>
-
     </ul>
 </nav>
 <main>
@@ -33,45 +31,42 @@
         <div class="controls">
             <div class="actionsCreateAlterDelete">
                 <form action="${pageContext.request.contextPath}/pages/tagServico/cadastrarTagServico.html" method="get">
-                    <button type="submit" class="create-btn">Adicionar</button> <!-- Botão para adicionar administrador -->
+                    <button type="submit" class="create-btn">Adicionar</button> <!-- Botão para adicionar Tag Serviço -->
                 </form>
                 <form action="${pageContext.request.contextPath}/pages/tagServico/alterarTagServicoPeloID.jsp" method="get">
-                    <button type="submit" class="create-btn">Alterar</button> <!-- Botão para adicionar administrador -->
+                    <button type="submit" class="create-btn">Alterar</button> <!-- Botão para alterar Tag Serviço -->
                 </form>
                 <form action="${pageContext.request.contextPath}/pages/tagServico/deletarTagServicoPeloID.jsp" method="get">
-                    <button type="submit" class="create-btn">Deletar</button> <!-- Botão para deletar administrador -->
+                    <button type="submit" class="create-btn">Deletar</button> <!-- Botão para deletar Tag Serviço -->
                 </form>
             </div>
             <form action="${pageContext.request.contextPath}/BuscarTagServicoServlet" method="post">
                 <input type="text" name="nome" id="nome" placeholder="Pesquisar categorias">
-                <input type="submit" value="Pesquisar">
+                <input type="submit" value="Pesquisar"> <!-- Botão de pesquisa -->
             </form>
         </div>
 
-        <% if (request.getAttribute("retorno") == "erro"){
-        %>
+        <%-- Exibição de mensagens de retorno do servidor --%>
+        <% if (request.getAttribute("retorno") == "erro") { %>
         <div>
-            <P>ERRO AO <%= request.getAttribute("metodo") %> O ITEM: <%= request.getAttribute("entidade") %></P>
-
+            <p>ERRO AO <%= request.getAttribute("metodo") %> O ITEM: <%= request.getAttribute("entidade") %></p>
         </div>
-        <%} else if (request.getAttribute("retorno") == "certo") {%>
+        <% } else if (request.getAttribute("retorno") == "certo") { %>
         <div>
-            <P>SUCESSO AO <%= request.getAttribute("metodo") %> O ITEM: <%= request.getAttribute("entidade") %></P>
-
+            <p>SUCESSO AO <%= request.getAttribute("metodo") %> O ITEM: <%= request.getAttribute("entidade") %></p>
         </div>
-        <%} else if (request.getAttribute("retorno") == "notfound") {%>
+        <% } else if (request.getAttribute("retorno") == "notfound") { %>
         <div>
-            <p>ITEM NÃO ENCONTRADO AO <%= request.getAttribute("metodo")%>: <%= request.getAttribute("entidade") %></p>
+            <p>ITEM NÃO ENCONTRADO AO <%= request.getAttribute("metodo") %>: <%= request.getAttribute("entidade") %></p>
         </div>
-        <%} else if (request.getAttribute("retorno") == "existente") {%>
+        <% } else if (request.getAttribute("retorno") == "existente") { %>
         <div>
             <p>ITEM JÁ EXISTENTE AO <%= request.getAttribute("metodo") %>: <%= request.getAttribute("entidade") %></p>
         </div>
-        <%}%>
+        <% } %>
 
-
+        <%-- Recupera os dados do banco de dados via DAO --%>
         <%
-            // Recupera os dados do banco de dados via DAO
             TagServicoDAO tagServicoDAO = new TagServicoDAO();
             ResultSet resultSet = tagServicoDAO.buscarTagServicos();
 
@@ -81,26 +76,26 @@
         <div class="categoria">
             <div class="info">
                 <h2><%= resultSet.getString("nome") %></h2>
-                <p>ID: <%= resultSet.getInt("id") %> | Descrição: <%= resultSet.getString("descricao") %></p>
+                <p>ID: <%= resultSet.getInt("id") %> | Descrição: <%= resultSet.getString("descricao") %></p> <!-- Exibe ID e Descrição -->
             </div>
             <div class="actions">
                 <form action="${pageContext.request.contextPath}/DeletarTagServicoServlet" method="post">
                     <input type="hidden" name="tag_id" value="<%= resultSet.getInt("id") %>">
                     <input type="hidden" name="nome" value="<%= resultSet.getString("nome") %>">
-                    <button type="submit" class="delete-btn">Deletar</button>
+                    <button type="submit" class="delete-btn">Deletar</button> <!-- Botão para deletar Tag Serviço -->
                 </form>
                 <form action="${pageContext.request.contextPath}/DirecionarTagServicoServlet" method="post">
                     <input type="hidden" name="tag_id" value="<%= resultSet.getInt("id") %>">
                     <input type="hidden" name="nome" value="<%= resultSet.getString("nome") %>">
                     <input type="hidden" name="descricao" value="<%= resultSet.getString("descricao") %>">
-                    <button type="submit" class="edit-btn">Editar</button>
+                    <button type="submit" class="edit-btn">Editar</button> <!-- Botão para editar Tag Serviço -->
                 </form>
             </div>
         </div>
         <%
                 }
             } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
+                sqlException.printStackTrace(); // Imprime a stack trace em caso de erro SQL
             }
         %>
     </section>
