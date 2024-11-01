@@ -13,11 +13,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-//SERVLET QUE FAZ O DELET DE USUARIOS
-//O que precisa ser implementado?
-
-//1. Por enquanto este servlet apenas deleta o registro na tabela Comprador_vendedor ou Profissional, sendo que é preciso deletar da tabela usuarios também, caso nao exista nenhum registro nem nos profissionais nem nos compradores vendedores
-
 
 @WebServlet(name = "DeleteTagServicoServlet", value = "/DeletarTagServicoServlet")
 public class DeleteTagServicoServlet extends HttpServlet {
