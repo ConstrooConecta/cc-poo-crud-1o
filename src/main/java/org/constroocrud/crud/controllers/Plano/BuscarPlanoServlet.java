@@ -12,17 +12,20 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "BuscarPlanoServlet", value = "/BuscarPlanoServlet")
 public class BuscarPlanoServlet extends HttpServlet {
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
 
-        //Recebe o id da entidade comprador/vendedor ou Profissional
-
+        // Recebe o nome do plano a ser buscado
         String nome = req.getParameter("nome");
-        req.setAttribute("nome",nome);
-        RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("/pages/plano/buscarPlano.jsp");
+
+        // Define o atributo "nome" para ser utilizado na página JSP
+        req.setAttribute("nome", nome);
+
+        // Redireciona para a página de busca de planos
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/plano/buscarPlano.jsp");
         rd.include(req, resp);
     }
 }

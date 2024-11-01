@@ -7,208 +7,118 @@ import java.sql.*;
 
 public class CategoriaProdutoDAO {
 
-    public int inserirCategoriaProduto(CategoriaProduto categoriaProduto){
-        PreparedStatement pstmt;
+    private Connection getConnection() throws SQLException {
         Conexao conexao = new Conexao();
         conexao.conectar();
-        Connection conn = conexao.getConn();
-        try {
+        return conexao.getConn();
+    }
 
-            //faz o comando SQL
-            pstmt = conn.prepareStatement("INSERT INTO categoria_produto(nome, descricao) VALUES (?, ?)");
+    // Método para inserir uma categoria de produto
+    public int inserirCategoriaProduto(CategoriaProduto categoriaProduto) {
+        String sql = "INSERT INTO categoria_produto(nome, descricao) VALUES (?, ?)";
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            //Coloca como parametro cada atributo do objeto CategoriaProduto por meio dos getters
             pstmt.setString(1, categoriaProduto.getNome());
             pstmt.setString(2, categoriaProduto.getDescricao());
 
-            // Retorna 1 caso a execução da query seja bem sucedida e 0 caso não ache
-            int rows = pstmt.executeUpdate();
-
-            if (rows > 0){
-                return 1;
-            }else {
-                return 0;
-            }
-
-        }catch (SQLException sqlException){
-            sqlException.printStackTrace();
-
-            // Retorna -1 caso a execução da query seja mal sucedida
-            return -1;
-        }finally {
-            conexao.desconectar();
-        }
-
-
-    }
-
-    public ResultSet buscarCategoriaProduto(){
-        PreparedStatement pstmt;
-        ResultSet rs = null;
-        Conexao conexao = new Conexao();
-        conexao.conectar();
-        Connection conn = conexao.getConn();
-        try {
-
-            String query = "Select * from categoria_produto order by id";
-            pstmt = conn.prepareStatement(query);
-            rs = pstmt.executeQuery();
-            return rs;
-
-
-        }catch (SQLException sqlException){
-            sqlException.printStackTrace();
-            return rs;
-
-        }finally {
-            conexao.desconectar();
-        }
-
-    }
-
-    public ResultSet buscarCategoriaProdutoPeloID(int id) {
-        PreparedStatement pstmt;
-        ResultSet rs = null;
-        Conexao conexao = new Conexao();
-        conexao.conectar();
-        Connection conn = conexao.getConn();
-        try {
-            String query = "Select * from categoria_produto where ? = id order by id";
-
-            pstmt = conn.prepareStatement(query);
-            pstmt.setInt(1, id);
-            rs = pstmt.executeQuery();
-            return rs;
-
+            return pstmt.executeUpdate() > 0 ? 1 : 0;
 
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
-            return rs;
-
-        } finally {
-            conexao.desconectar();
+            return -1; // Erro na execução da query
         }
     }
 
-    public ResultSet buscarCategoriaProdutoPeloNome(String nome){
-        PreparedStatement pstmt;
-        ResultSet rs = null;
-        Conexao conexao = new Conexao();
-        conexao.conectar();
-        Connection conn = conexao.getConn();
+    // Método para buscar todas as categorias de produtos
+    public ResultSet buscarCategoriaProduto() {
+        String query = "SELECT * FROM categoria_produto ORDER BY id";
         try {
-            String query = "Select * from categoria_produto where ? = nome order by id";
+            Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            return pstmt.executeQuery();
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+            return null; // Erro na execução da query
+        }
+    }
 
-            pstmt = conn.prepareStatement(query);
+    // Método para buscar uma categoria de produto pelo ID
+    public ResultSet buscarCategoriaProdutoPeloID(int id) {
+        String query = "SELECT * FROM categoria_produto WHERE id = ?";
+        try {
+            Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, id);
+            return pstmt.executeQuery();
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+            return null; // Erro na execução da query
+        }
+    }
+
+    // Método para buscar uma categoria de produto pelo nome
+    public ResultSet buscarCategoriaProdutoPeloNome(String nome) {
+        String query = "SELECT * FROM categoria_produto WHERE nome = ?";
+        try {
+            Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(query);
             pstmt.setString(1, nome);
-            rs = pstmt.executeQuery();
-            return rs;
-
-
-        }catch (SQLException sqlException){
+            return pstmt.executeQuery();
+        } catch (SQLException sqlException) {
             sqlException.printStackTrace();
-            return rs;
-
-        }finally {
-            conexao.desconectar();
+            return null; // Erro na execução da query
         }
-
-
-    }
-    public ResultSet buscarSimilarCategoriaProdutoPeloNome(String nome){
-        PreparedStatement pstmt;
-        ResultSet rs = null;
-        Conexao conexao = new Conexao();
-        conexao.conectar();
-        Connection conn = conexao.getConn();
-        try {
-            String query = "Select * from categoria_produto where nome like ? order by id";
-
-            pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, "%"+nome+"%");
-            rs = pstmt.executeQuery();
-            return rs;
-
-
-        }catch (SQLException sqlException){
-            sqlException.printStackTrace();
-            return rs;
-
-        }finally {
-            conexao.desconectar();
-        }
-
-
     }
 
-
-    public int removerCategoriaProduto(int id){
-        PreparedStatement pstmt;
-        Conexao conexao = new Conexao();
-        conexao.conectar();
-        Connection conn = conexao.getConn();
+    // Método para buscar categorias de produto com nome similar
+    public ResultSet buscarSimilarCategoriaProdutoPeloNome(String nome) {
+        String query = "SELECT * FROM categoria_produto WHERE nome LIKE ?";
         try {
+            Connection conn = getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, "%" + nome + "%");
+            return pstmt.executeQuery();
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+            return null; // Erro na execução da query
+        }
+    }
 
-            //Verifica se existe um comprador e vendedor nesse ID e atribui ao boolean possuiRegistros
-            ResultSet resultSet = buscarCategoriaProdutoPeloID(id);
-            if (!resultSet.next()){
-                return 0;
-            }
+    // Método para remover uma categoria de produto pelo ID
+    public int removerCategoriaProduto(int id) {
+        if (buscarCategoriaProdutoPeloID(id) == null) {
+            return 0; // Não encontrado
+        }
 
-            //executa a query
-            String remover = "DELETE FROM categoria_produto WHERE id = ?";
-            pstmt = conn.prepareStatement(remover);
+        String remover = "DELETE FROM categoria_produto WHERE id = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(remover)) {
 
             pstmt.setInt(1, id);
+            return pstmt.executeUpdate() > 0 ? 1 : 0;
 
-            // Retorna 1 caso a execução da query seja bem sucedida e 0 caso não ache
-            int rows = pstmt.executeUpdate();
-
-            if (rows > 0){
-                return 1;
-            }else {
-                return 0;
-            }
-        }catch (SQLException sqlException){
+        } catch (SQLException sqlException) {
             sqlException.printStackTrace();
-
-            // Retorna -1 caso a execução da query seja mal sucedida
-            return -1;
-        }finally {
-            conexao.desconectar();
+            return -1; // Erro na execução da query
         }
     }
 
+    // Método para alterar uma categoria de produto
     public int alterarCategoriaProduto(int id, CategoriaProduto categoriaProduto) {
-        PreparedStatement pstmt = null;
-        Conexao conexao = new Conexao();
-        conexao.conectar();
-        Connection conn = conexao.getConn();
-        try {
-            // Prepare a single statement with placeholders for all columns
-            pstmt = conn.prepareStatement("UPDATE categoria_produto SET nome = ?, descricao = ? WHERE id = ?");
+        String sql = "UPDATE categoria_produto SET nome = ?, descricao = ? WHERE id = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            // Set parameters without quotation marks
             pstmt.setString(1, categoriaProduto.getNome());
             pstmt.setString(2, categoriaProduto.getDescricao());
-
             pstmt.setInt(3, id);
 
-            // Retorna 1 caso a execução da query seja bem sucedida e 0 caso não ache
-            int rows = pstmt.executeUpdate();
+            return pstmt.executeUpdate() > 0 ? 1 : 0;
 
-            if (rows > 0) {
-                return 1;
-            } else {
-                return 0;
-            }
-        }catch (SQLException sqlException){
+        } catch (SQLException sqlException) {
             sqlException.printStackTrace();
-
-            // Retorna -1 caso a execução da query seja mal sucedida
-            return -1;
-        } finally {
-            conexao.desconectar();
+            return -1; // Erro na execução da query
         }
     }
 }

@@ -2,6 +2,8 @@ package org.constroocrud.crud;
 
 import java.sql.*;
 
+import static java.lang.System.getenv;
+
 public class Conexao {
 
     private Connection conn;
@@ -18,9 +20,9 @@ public class Conexao {
         try {
             Class.forName("org.postgresql.Driver");
 
-            String dbUrl = System.getenv("CC_URL");
-            String dbUser = System.getenv("CC_USER");
-            String dbPassword = System.getenv("CC_PASSWORD");
+            String dbUrl = getenv("CC_URL");
+            String dbUser = getenv("CC_USER");
+            String dbPassword = getenv("CC_PASSWORD");
 
             conn = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
 
