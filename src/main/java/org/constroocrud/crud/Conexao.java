@@ -12,10 +12,7 @@ public class Conexao {
         return conn;
     }
 
-
-    //Metodo que faz a conexao com o banco de dados
-
-
+    // Método que faz a conexão com o banco de dados
     public boolean conectar() {
         try {
             Class.forName("org.postgresql.Driver");
@@ -28,27 +25,27 @@ public class Conexao {
 
             return true;
 
-        }catch (SQLException sqlException) {
+        } catch (SQLException sqlException) {
             sqlException.printStackTrace();
             return false;
-        }catch (ClassNotFoundException classNotFoundException) {
+        } catch (ClassNotFoundException classNotFoundException) {
             classNotFoundException.printStackTrace();
             return false;
         }
     }
 
-    public boolean desconectar(){
+    public boolean desconectar() {
         boolean verificar = false;
         try {
             if (conn != null && !conn.isClosed()) {
-                //Desconectando do DB
+                // Desconectando do DB
                 conn.close();
                 verificar = true;
             }
-        }catch(SQLException sqle) {
+        } catch (SQLException sqle) {
             sqle.printStackTrace();
         }
         return verificar;
     }
-
 }
+

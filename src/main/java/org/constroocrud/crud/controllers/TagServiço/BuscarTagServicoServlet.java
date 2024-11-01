@@ -14,15 +14,17 @@ import java.io.PrintWriter;
 public class BuscarTagServicoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // Define o tipo de resposta como HTML
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
 
-        //Recebe o id da entidade comprador/vendedor ou Profissional
-
+        // Recebe o nome da tag de serviço a ser buscada
         String nome = req.getParameter("nome");
-        req.setAttribute("nome", nome);
+        req.setAttribute("nome", nome); // Define o nome como atributo da requisição
+
+        // Redireciona para a página de busca de tags de serviço
         RequestDispatcher rd;
         rd = getServletContext().getRequestDispatcher("/pages/tagServico/buscarTagServico.jsp");
-        rd.include(req, resp);
+        rd.include(req, resp); // Inclui a página JSP na resposta
     }
 }

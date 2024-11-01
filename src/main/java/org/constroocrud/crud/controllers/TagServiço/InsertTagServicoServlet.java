@@ -21,29 +21,27 @@ public class InsertTagServicoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-
         resp.setContentType("text/html");
-
         PrintWriter out = resp.getWriter();
 
         String nome = req.getParameter("nome");
         String descricao = req.getParameter("descricao");
 
-        TagServico tagServico = new TagServico(nome,descricao);
+        TagServico tagServico = new TagServico(nome, descricao);
         TagServicoDAO tagServicoDAO = new TagServicoDAO();
 
         try {
             ResultSet rs = tagServicoDAO.buscarTagServicoPeloNome(nome);
-            if (!rs.next()){
+            if (!rs.next()) {
                 int num = tagServicoDAO.inserirTagServico(tagServico);
-                if (num == 1){
+                if (num == 1) {
                     req.setAttribute("retorno", "certo");
-                }else if (num == 0){
+                } else if (num == 0) {
                     req.setAttribute("retorno", "notfound");
-                }else {
+                } else {
                     req.setAttribute("retorno", "erro");
                 }
-            }else {
+            } else {
                 req.setAttribute("retorno", "existente");  // Categoria já existe
             }
         } catch (SQLException e) {
@@ -53,13 +51,9 @@ public class InsertTagServicoServlet extends HttpServlet {
         req.setAttribute("metodo", "INSERIR");
         req.setAttribute("entidade", nome);
 
-        //Voce é direcionado para a listagem de usuarios!
+        // Você é direcionado para a listagem de usuários!
         RequestDispatcher rd;
         rd = getServletContext().getRequestDispatcher("/pages/tagServico/listagemTagServico.jsp");
         rd.include(req, resp);
-
-
-
-
     }
 }
