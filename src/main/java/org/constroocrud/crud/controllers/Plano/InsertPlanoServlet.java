@@ -14,6 +14,9 @@ import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+// SERVLET QUE INSERE UM NOVO PLANO
+// Este servlet é responsável por coletar os dados de um novo plano e inseri-lo no banco de dados.
+
 @WebServlet(name = "InsertPlanoServlet", value = "/InserirPlanoServlet")
 public class InsertPlanoServlet extends HttpServlet {
 
@@ -21,48 +24,55 @@ public class InsertPlanoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
-
+        // Define o tipo de conteúdo da resposta
         resp.setContentType("text/html");
 
+        // Cria um PrintWriter para escrever a resposta
         PrintWriter out = resp.getWriter();
 
+        // Coleta os parâmetros enviados na requisição
         String nome = req.getParameter("nome");
         String descricao = req.getParameter("descricao");
         String strDuracao = req.getParameter("duracao");
         String tipo = req.getParameter("tipo");
         String strValor = req.getParameter("valor");
+
+        // Converte os valores para os tipos adequados
         double valor = Double.parseDouble(strValor);
         int duracao = Integer.parseInt(strDuracao);
 
-        Plano plano = new Plano(tipo,valor,descricao,nome,duracao);
+        // Cria uma instância do modelo Plano
+        Plano plano = new Plano(tipo, valor, descricao, nome, duracao);
         PlanoDAO planoDAO = new PlanoDAO();
 
         try {
+            // Verifica se já existe um plano com o mesmo ID
             ResultSet rs = planoDAO.buscarPlanoPeloID(plano.getId());
-            if (!rs.next()){
+            if (!rs.next()) { // Se não encontrar, insere o novo plano
                 int num = planoDAO.inserirPlano(plano);
-                if (num == 1){
+                // Define o retorno baseado no resultado da inserção
+                if (num == 1) {
                     req.setAttribute("retorno", "certo");
-                }else if (num == 0){
+                } else if (num == 0) {
                     req.setAttribute("retorno", "notfound");
-                }else {
+                } else {
                     req.setAttribute("retorno", "erro");
                 }
+            } else {
+                // Se o plano já existir, pode-se definir um retorno específico, se necessário
+                req.setAttribute("retorno", "existente");
             }
         } catch (SQLException e) {
+            // Lida com exceções SQL
             throw new RuntimeException(e);
         }
 
+        // Define os atributos que serão utilizados na página de listagem
         req.setAttribute("metodo", "INSERIR");
         req.setAttribute("entidade", nome);
 
-        //Voce é direcionado para a listagem de usuarios!
-        RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("/pages/plano/listagemPlanos.jsp");
+        // Redireciona para a página de listagem de planos
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/plano/listagemPlanos.jsp");
         rd.include(req, resp);
-
-
-
-
     }
 }

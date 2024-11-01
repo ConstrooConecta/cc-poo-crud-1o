@@ -9,6 +9,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+// SERVLET QUE DIRECIONA A PÁGINA DE ALTERAÇÃO DE PLANOS
+// Este servlet é responsável por coletar os dados do plano que precisa ser alterado
+// e redirecionar o usuário para a página de alteração correspondente.
+
 @WebServlet(name = "DirecionarPlanoAlterarServlet", value = "/DirecionarPlanoAlterarServlet")
 public class DirecionarPlanoAlterarServlet extends HttpServlet {
     @Override
@@ -17,15 +21,16 @@ public class DirecionarPlanoAlterarServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
 
         // Recebe os dados do plano a ser alterado
-        String str_id = req.getParameter("plano_id");
-        String nome = req.getParameter("nome");
-        String descricao = req.getParameter("descricao");
-        String duracao = req.getParameter("duracao");
-        String tipo = req.getParameter("tipoUsuario");
-        String valor = req.getParameter("precoMensal");
+        String str_id = req.getParameter("plano_id"); // ID do plano
+        String nome = req.getParameter("nome"); // Nome do plano
+        String descricao = req.getParameter("descricao"); // Descrição do plano
+        String duracao = req.getParameter("duracao"); // Duração do plano
+        String tipo = req.getParameter("tipoUsuario"); // Tipo de usuário associado ao plano
+        String valor = req.getParameter("precoMensal"); // Preço mensal do plano
 
+        // Converte o ID do plano de String para int
         int id = Integer.parseInt(str_id);
-        out.println(id);
+        out.println(id); // Imprime o ID para debug (pode ser removido em produção)
 
         // Define os atributos que serão utilizados na página de alteração
         req.setAttribute("id", id);
