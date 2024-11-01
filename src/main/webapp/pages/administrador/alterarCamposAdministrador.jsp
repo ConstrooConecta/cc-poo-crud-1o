@@ -21,7 +21,7 @@
 
         <div class="gridNovoNome">
             <label for="nome">Novo Nome:</label> <!-- Rótulo para nome Atual -->
-            <input type="text" name="nome" id="nome" placeholder="Novo nome"> <!-- Campo de entrada para Nome Novo -->
+            <input type="text" name="nome" id="nome" value="<%= request.getAttribute("nome") %>" placeholder="Novo nome"> <!-- Campo de entrada para Nome Novo -->
         </div>
 
         <div class="gridAtualEmail">
@@ -31,15 +31,14 @@
 
         <div class="gridNovoEmail">
             <label for="email">Novo Email:</label> <!-- Rótulo para email -->
-            <input type="email" name="email" id="email" placeholder="Email novo" > <!-- Campo de entrada para email -->
+            <input type="email" name="email" id="email" value="<%= request.getAttribute("email") %>" placeholder="Email novo" > <!-- Campo de entrada para email -->
         </div>
 
         <div class="gridNovaSenha">
             <label for="senha">Nova Senha:</label> <!-- Rótulo para senha -->
             <input type="password" name="senha" id="senha" placeholder="Senha nova"> <!-- Campo de entrada para senha -->
             <input type="hidden" name="id" value=<%=request.getAttribute("id") %>> <!-- Campo oculto para ID -->
-        </div>
-    </div>
+        </div>  </div>
 
     <div class="classButton">
         <input type="submit" id="buttonCadastrar"> <!-- Botão de envio -->
