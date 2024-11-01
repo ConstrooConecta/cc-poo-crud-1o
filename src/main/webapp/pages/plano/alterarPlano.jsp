@@ -30,7 +30,7 @@
 
         <div class="gridNovoNome">
             <label for="nome">Novo Nome:</label> <!-- Rótulo para nome Atual -->
-            <input type="text" name="nome" id="nome" placeholder="Novo nome"> <!-- Campo de entrada para Nome Novo -->
+            <input type="text" name="nome" id="nome" value="<%= request.getAttribute("nome") %>" placeholder="Novo nome"> <!-- Campo de entrada para Nome Novo -->
         </div>
 
         <div class="gridAtualDescricao">
@@ -40,7 +40,7 @@
 
         <div class="gridNovaDescricao">
             <label for="descricao">Nova Descrição:</label> <!-- Rótulo para email -->
-            <input type="text" name="descricao" id="descricao" placeholder="Descrição nova"> <!-- Campo de entrada para email -->
+            <input type="text" name="descricao" id="descricao" value="<%= request.getAttribute("descricao") %>" placeholder="Descrição nova"> <!-- Campo de entrada para email -->
         </div>
 
         <div class="gridAtualDuracao">
@@ -50,7 +50,7 @@
 
         <div class="gridNovaDuracao">
             <label for="duracao">Nova Duração:</label> <!-- Rótulo para duração -->
-            <input type="number" name="duracao" id="duracao" placeholder="Descrição nova" > <!-- Campo de entrada para email -->
+            <input type="number" name="duracao" id="duracao" value="<%= request.getAttribute("duracao") %>" placeholder="Descrição nova" > <!-- Campo de entrada para email -->
         </div>
 
 
@@ -61,7 +61,7 @@
 
         <div class="gridNovoValor">
             <label for="valor">Novo Valor:</label> <!-- Rótulo para senha -->
-            <input type="number" name="valor" id="valor" step="0.01" placeholder="Novo Valor"> <!-- Campo de entrada para senha -->
+            <input type="number" name="valor" id="valor" step="0.01" value="<%= request.getAttribute("valor") %>" placeholder="Novo Valor"> <!-- Campo de entrada para senha -->
         </div>
 
         <div class="gridAtualTipo">
