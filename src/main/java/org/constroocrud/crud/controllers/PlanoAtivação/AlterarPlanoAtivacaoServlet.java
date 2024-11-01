@@ -22,30 +22,41 @@ public class AlterarPlanoAtivacaoServlet extends HttpServlet {
         //Recebe o id do PLano Ativação
 
         String str_id_tipo = req.getParameter("id_planoativacao");
-        int id_tipo = Integer.parseInt(str_id_tipo);
-        out.println(id_tipo);
-
-        //Estabelece a conexao
-        PlanoAtivacaoDAO planoAtivacaoDAO = new PlanoAtivacaoDAO();
-
-        //caso esteja na tabela Plano Ativação, a coluna ativação será alterada
-
-        int num = planoAtivacaoDAO.alterarAtivacao(id_tipo);
-        if (num == 1){
-            req.setAttribute("retorno", "certo");
-        }else if (num == 0){
-            req.setAttribute("retorno", "notfound");
-        }else {
-            req.setAttribute("retorno", "erro");
-        }
+        int id_tipo = 0;
 
         req.setAttribute("metodo", "ALTERAR");
-        req.setAttribute("entidade", id_tipo);
 
-        //Voce é direcionado para a listagem de Planos de Ativação!
-        RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("/pages/planoAtivacao/listagemPlanosAtivacao.jsp");
-        rd.forward(req, resp);
+        try{
+            id_tipo = Integer.parseInt(str_id_tipo);
+        }catch (NumberFormatException e){
+            req.setAttribute("retorno", "notfound");
+            req.setAttribute("mensagem", "Plano Ativação não encontrado!");
+
+            // Redireciona para a página de alteração do administrador
+            req.getRequestDispatcher("../pages/planoAtivacao/listagemPlanoAtivacao.jsp").forward(req, resp);
+        }finally {
+            //Estabelece a conexao
+            PlanoAtivacaoDAO planoAtivacaoDAO = new PlanoAtivacaoDAO();
+
+            req.setAttribute("entidade", id_tipo);
+
+            //caso esteja na tabela Plano Ativação, a coluna ativação será alterada
+            int num = planoAtivacaoDAO.alterarAtivacao(id_tipo);
+            if (num == 1){
+                req.setAttribute("retorno", "certo");
+                req.getRequestDispatcher("/pages/planoAtivacao/listagemPlanosAtivacao.jsp").forward(req, resp);
+            }else if (num == 0){
+                req.setAttribute("retorno", "notfound");
+                req.setAttribute("mensagem", "Plano Ativação não encontrado!");
+                req.getRequestDispatcher("/pages/planoAtivacao/listagemPlanosAtivacao.jsp").forward(req, resp);
+            }else {
+                req.setAttribute("retorno", "erro");
+                req.setAttribute("mensagem", "Erro");
+                req.getRequestDispatcher("/pages/planoAtivacao/listagemPlanosAtivacao.jsp").forward(req, resp);
+
+            }
+
+        }
 
     }
 }

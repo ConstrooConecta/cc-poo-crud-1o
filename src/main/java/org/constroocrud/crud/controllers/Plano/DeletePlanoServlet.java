@@ -29,51 +29,53 @@ public class DeletePlanoServlet extends HttpServlet {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
 
-        String str_id = req.getParameter("plano_id");
-        int id = Integer.parseInt(str_id);
-        out.println(id);
+        req.setAttribute("metodo", "DELETAR");
 
-        PlanoDAO planoDAO = new PlanoDAO();
+        String str_id = req.getParameter("plano_id");
+        int id = 0;
 
         try {
-            ResultSet rs = planoDAO.buscarPlanoPeloID(id);
-            if (!rs.next()){
-                req.setAttribute("retorno", "notfound");
-                req.setAttribute("metodo", "DELETAR");
-                req.setAttribute("entidade", id);
+            id = Integer.parseInt(str_id);
+        }catch (NumberFormatException numberFormatException) {
+            req.setAttribute("retorno", "notfound");
+            req.getRequestDispatcher("/pages/plano/deletarPlanoPeloID.jsp").forward(req, resp);
+        }finally {
+            PlanoDAO planoDAO = new PlanoDAO();
 
-                RequestDispatcher rd;
-                rd = getServletContext().getRequestDispatcher("/pages/plano/listagemPlanos.jsp");
-                rd.include(req, resp);
-            }else{
-                String nome = rs.getString("nome_plano");
-
-                int num = planoDAO.removerPlanoPeloID(id);
-
-                if (num == 1){
-                    req.setAttribute("retorno", "certo");
-                }else if (num == 0){
+            try {
+                ResultSet rs = planoDAO.buscarPlanoPeloID(id);
+                if (!rs.next()) {
                     req.setAttribute("retorno", "notfound");
-                }else {
-                    req.setAttribute("retorno", "erro");
-                }
+                    req.setAttribute("entidade", id);
 
-                req.setAttribute("metodo", "DELETAR");
-                req.setAttribute("entidade", nome);
+                    req.getRequestDispatcher("/pages/plano/deletarPlanoPeloID.jsp").forward(req, resp);
+
+                } else {
+
+                    String nome = rs.getString("nome_plano");
+
+                    int num = planoDAO.removerPlanoPeloID(id);
+
+                    if (num == 1) {
+                        req.setAttribute("retorno", "certo");
+                    } else {
+                        req.setAttribute("retorno", "erro");
+                    }
+
+                    req.setAttribute("entidade", nome);
+
+                    req.getRequestDispatcher("/pages/plano/listagemPlanos.jsp").forward(req, resp);
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+                req.setAttribute("retorno", "erro");
+                req.setAttribute("mensagem", "Erro SQL");
 
                 RequestDispatcher rd;
                 rd = getServletContext().getRequestDispatcher("/pages/plano/listagemPlanos.jsp");
                 rd.include(req, resp);
+
             }
-        } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
-            req.setAttribute("retorno", "erro");
-            req.setAttribute("mensagem", "Erro SQL");
-
-            RequestDispatcher rd;
-            rd = getServletContext().getRequestDispatcher("/pages/plano/listagemPlanos.jsp");
-            rd.include(req, resp);
-
         }
     }
 }

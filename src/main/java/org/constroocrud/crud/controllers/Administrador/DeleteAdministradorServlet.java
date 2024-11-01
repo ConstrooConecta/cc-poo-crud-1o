@@ -26,49 +26,51 @@ public class DeleteAdministradorServlet extends HttpServlet {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
 
-        String id = req.getParameter("administrador_id");
+        req.setAttribute("metodo", "DELETAR");
 
-        AdministradorDAO administradorDAO = new AdministradorDAO();
+        String str_id = req.getParameter("administrador_id");
+        int id = 0;
 
         try {
-            ResultSet rs = administradorDAO.buscarAdministradorPeloID(Integer.parseInt(id));
-            if (!rs.next()){
-                req.setAttribute("retorno", "notfound");
-                req.setAttribute("metodo", "DELETAR");
-                req.setAttribute("entidade", id);
+            id = Integer.parseInt(str_id);
+        } catch (NumberFormatException numberFormatException) {
+            req.setAttribute("retorno", "notfound");
+            req.setAttribute("mensagem", "Tag Serviço não encontrado!");
+            req.getRequestDispatcher("../pages/administrador/deletarAdministradorPeloID").forward(req, resp);
+        } finally {
 
-                RequestDispatcher rd;
-                rd = getServletContext().getRequestDispatcher("/pages/administrador/listagemAdministradores.jsp");
-                rd.include(req, resp);
-            }else{
-                String nome = rs.getString("nome");
+            AdministradorDAO administradorDAO = new AdministradorDAO();
 
-                int num = administradorDAO.removerAdministrador(Integer.parseInt(id));
-
-                if (num == 1){
-                    req.setAttribute("retorno", "certo");
-                }else if (num == 0){
+            try {
+                ResultSet rs = administradorDAO.buscarAdministradorPeloID(id);
+                if (!rs.next()) {
                     req.setAttribute("retorno", "notfound");
-                }else {
-                    req.setAttribute("retorno", "erro");
+                    req.setAttribute("entidade", id);
+
+                    req.getRequestDispatcher("/pages/administrador/deletarAdministradorPeloID.jsp").forward(req, resp);
+                } else {
+                    String nome = rs.getString("nome");
+
+                    int num = administradorDAO.removerAdministrador(id);
+
+                    if (num == 1) {
+                        req.setAttribute("retorno", "certo");
+                    } else {
+                        req.setAttribute("retorno", "erro");
+                    }
+
+                    req.setAttribute("entidade", nome);
+
+                    req.getRequestDispatcher("/pages/administrador/listagemAdministradores.jsp").forward(req, resp);
                 }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+                req.setAttribute("retorno", "erro");
+                req.setAttribute("mensagem", "Erro SQL");
 
-                req.setAttribute("metodo", "DELETAR");
-                req.setAttribute("entidade", nome);
+                req.getRequestDispatcher("/pages/administrador/listagemAdministradores.jsp").forward(req, resp);
 
-                RequestDispatcher rd;
-                rd = getServletContext().getRequestDispatcher("/pages/administrador/listagemAdministradores.jsp");
-                rd.include(req, resp);
             }
-        } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
-            req.setAttribute("retorno", "erro");
-            req.setAttribute("mensagem", "Erro SQL");
-
-            RequestDispatcher rd;
-            rd = getServletContext().getRequestDispatcher("/pages/administrador/listagemAdministradores.jsp");
-            rd.include(req, resp);
-
         }
     }
 }

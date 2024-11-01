@@ -22,41 +22,46 @@ public class IncluirCamposCategoriaProdutoServlet extends HttpServlet {
 
         // Recebe os dados do administrador a ser alterado
         String str_id = req.getParameter("categoria_id");
-        int id = Integer.parseInt(str_id);
-        out.println(id);
-        CategoriaProdutoDAO categoriaProdutoDAO = new CategoriaProdutoDAO();
+        int id = 0;
 
-        ResultSet resultSet = categoriaProdutoDAO.buscarCategoriaProdutoPeloID(id);
+        try{
+            id = Integer.parseInt(str_id);
+        }catch (NumberFormatException numberFormatException){
+            // Define atributos para serem usados na página de alteração
+            req.setAttribute("retorno", "notfound");
+            req.setAttribute("mensagem", "Admin não encontrado!");
+            req.getRequestDispatcher("/pages/categoriaProduto/alterarCategoriaProdutoPeloID.jsp").forward(req, resp);
+        }finally {
+            CategoriaProdutoDAO categoriaProdutoDAO = new CategoriaProdutoDAO();
 
-        try {
-            if (!resultSet.next()){
-                req.setAttribute("retorno", "notfound");
-                req.setAttribute("mensagem", "Admin não encontrado!");
+            ResultSet resultSet = categoriaProdutoDAO.buscarCategoriaProdutoPeloID(id);
+
+            try {
+                if (!resultSet.next()){
+                    // Define atributos para serem usados na página de alteração
+                    req.setAttribute("retorno", "notfound");
+                    req.setAttribute("mensagem", "Admin não encontrado!");
+                }else{
+
+                    String nome = resultSet.getString("nome");
+                    String descricao = resultSet.getString("descricao");
+
+                    // Define atributos para serem usados na página de alteração
+                    req.setAttribute("id", id);
+                    req.setAttribute("nome", nome);
+                    req.setAttribute("descricao", descricao);
+
+                    req.getRequestDispatcher("/pages/categoriaProduto/alterarCamposCategoriaProduto.jsp").forward(req, resp);
+                }
+            }catch (SQLException sqlException){
+                sqlException.printStackTrace();
+                // Redireciona para a página de alteração do administrador
+                req.setAttribute("retorno", "erro");
+                req.setAttribute("mensagem", "Erro SQL");
+            }finally {
                 req.getRequestDispatcher("/pages/categoriaProduto/alterarCategoriaProdutoPeloID.jsp").forward(req, resp);
-            }else{
-
-                String nome = resultSet.getString("nome");
-                String descricao = resultSet.getString("descricao");
-
-                req.setAttribute("id", id);
-                req.setAttribute("nome", nome);
-                req.setAttribute("descricao", descricao);
-
-                req.getRequestDispatcher("/pages/categoriaProduto/alterarCamposCategoriaProduto.jsp").forward(req, resp);
             }
 
-
-
-        }catch (SQLException sqlException){
-            sqlException.printStackTrace();
-            req.setAttribute("retorno", "erro");
-            req.setAttribute("mensagem", "Erro SQL");
         }
-
-        // Define atributos para serem usados na página de alteração
-
-
-        // Redireciona para a página de alteração do administrador
-
     }
 }

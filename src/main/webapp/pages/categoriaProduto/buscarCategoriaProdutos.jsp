@@ -29,10 +29,7 @@
     <section class="categorias"> <!-- Seção para categorias -->
         <h1>Categorias Produtos</h1> <!-- Título da seção -->
         <div class="controls"> <!-- Controles de ação -->
-            <form action="${pageContext.request.contextPath}/BuscarCategoriaProdutoServlet" method="post">
-                <input type="text" name="nome" id="nome" value="<%=request.getAttribute("nome")%>" placeholder="Pesquisar categorias"> <!-- Campo de pesquisa -->
-                <input type="submit" value="Pesquisar">
-            </form>
+
             <div class="actionsCreateAlterDelete">
                 <form action="${pageContext.request.contextPath}/pages/categoriaProduto/cadastrarCategoriaProduto.html" method="get">
                     <button type="submit" class="create-btn">Adicionar</button> <!-- Botão para adicionar administrador -->
@@ -44,6 +41,10 @@
                     <button type="submit" class="create-btn">Deletar</button> <!-- Botão para deletar administrador -->
                 </form>
             </div>
+            <form action="${pageContext.request.contextPath}/BuscarCategoriaProdutoServlet" method="post">
+                <input type="text" name="nome" id="nome" value="<%=request.getAttribute("nome")%>" placeholder="Pesquisar categorias"> <!-- Campo de pesquisa -->
+                <input type="submit" value="Pesquisar">
+            </form>
 
         </div>
         <% if (request.getAttribute("retorno") == "erro"){

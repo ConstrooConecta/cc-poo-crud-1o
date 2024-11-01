@@ -29,48 +29,52 @@ public class DeleteCategoriaProdutoServlet extends HttpServlet {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
 
-        String id = req.getParameter("categoria_id");
+        req.setAttribute("metodo", "DELETAR");
 
-        CategoriaProdutoDAO categoriaProdutoDAO = new CategoriaProdutoDAO();
+        String str_id = req.getParameter("categoria_id");
+        int id = 0;
+
         try {
-            ResultSet rs = categoriaProdutoDAO.buscarCategoriaProdutoPeloID(Integer.parseInt(id));
-            if (!rs.next()){
-                req.setAttribute("retorno", "notfound");
-                req.setAttribute("metodo", "DELETAR");
-                req.setAttribute("entidade", id);
+            id = Integer.parseInt(str_id);
+        }catch (NumberFormatException numberFormatException) {
+            req.setAttribute("retorno", "notfound");
+            req.getRequestDispatcher("/pages/categoriaProduto/deletarCategoriaProdutoPeloID.jsp").forward(req, resp);
+        }finally {
 
-                RequestDispatcher rd;
-                rd = getServletContext().getRequestDispatcher("/pages/categoriaProduto/listagemCategoriaProdutos.jsp");
-                rd.include(req, resp);
-            }else{
-                String nome = rs.getString("nome");
+            CategoriaProdutoDAO categoriaProdutoDAO = new CategoriaProdutoDAO();
 
-                int num = categoriaProdutoDAO.removerCategoriaProduto(Integer.parseInt(id));
-
-                if (num == 1){
-                    req.setAttribute("retorno", "certo");
-                }else if (num == 0){
+            try {
+                ResultSet rs = categoriaProdutoDAO.buscarCategoriaProdutoPeloID(id);
+                if (!rs.next()) {
                     req.setAttribute("retorno", "notfound");
-                }else {
-                    req.setAttribute("retorno", "erro");
+                    req.setAttribute("entidade", id);
+
+                    req.getRequestDispatcher("/pages/categoriaProduto/deletarCategoriaProdutoPeloID.jsp").forward(req, resp);
+                } else {
+
+                    String nome = rs.getString("nome");
+
+                    int num = categoriaProdutoDAO.removerCategoriaProduto(id);
+
+                    if (num == 1) {
+                        req.setAttribute("retorno", "certo");
+                    } else {
+                        req.setAttribute("retorno", "erro");
+                    }
+
+                    req.setAttribute("entidade", nome);
+
+
+                    req.getRequestDispatcher("/pages/categoriaProduto/listagemCategoriaProdutos.jsp").forward(req, resp);
                 }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+                req.setAttribute("retorno", "erro");
+                req.setAttribute("mensagem", "Erro SQL");
 
-                req.setAttribute("metodo", "DELETAR");
-                req.setAttribute("entidade", nome);
+                req.getRequestDispatcher("/pages/categoriaProduto/listagemCategoriaProdutos.jsp").forward(req, resp);
 
-                RequestDispatcher rd;
-                rd = getServletContext().getRequestDispatcher("/pages/categoriaProduto/listagemCategoriaProdutos.jsp");
-                rd.include(req, resp);
             }
-        } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
-            req.setAttribute("retorno", "erro");
-            req.setAttribute("mensagem", "Erro SQL");
-
-            RequestDispatcher rd;
-            rd = getServletContext().getRequestDispatcher("/pages/categoriaProduto/listagemCategoriaProdutos.jsp");
-            rd.include(req, resp);
-
         }
     }
 }

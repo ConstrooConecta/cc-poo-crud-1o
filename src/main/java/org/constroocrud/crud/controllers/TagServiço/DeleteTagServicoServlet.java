@@ -29,48 +29,51 @@ public class DeleteTagServicoServlet extends HttpServlet {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
 
-        String id = req.getParameter("tag_id");
+        req.setAttribute("metodo", "DELETAR");
 
-        TagServicoDAO tagServicoDAO = new TagServicoDAO();
+        String str_id = req.getParameter("tag_id");
+        int id = 0;
         try {
-            ResultSet rs = tagServicoDAO.buscarTagServicoPeloID(Integer.parseInt(id));
-            if (!rs.next()){
-                req.setAttribute("retorno", "notfound");
-                req.setAttribute("metodo", "DELETAR");
-                req.setAttribute("entidade", id);
+            id = Integer.parseInt(str_id);
+        } catch (NumberFormatException numberFormatException) {
+            req.setAttribute("retorno", "notfound");
+            req.setAttribute("mensagem", "Tag Serviço não encontrado!");
+            req.getRequestDispatcher("/pages/tagServico/deletarTagServicoPeloID").forward(req, resp);
+        } finally {
 
-                RequestDispatcher rd;
-                rd = getServletContext().getRequestDispatcher("/pages/tagServico/listagemTagServico.jsp");
-                rd.include(req, resp);
-            }else{
-                String nome = rs.getString("nome");
+            TagServicoDAO tagServicoDAO = new TagServicoDAO();
 
-                int num = tagServicoDAO.removerTagServicoPeloID(Integer.parseInt(id));
-
-                if (num == 1){
-                    req.setAttribute("retorno", "certo");
-                }else if (num == 0){
+            try {
+                ResultSet rs = tagServicoDAO.buscarTagServicoPeloID(id);
+                if (!rs.next()) {
                     req.setAttribute("retorno", "notfound");
-                }else {
-                    req.setAttribute("retorno", "erro");
+                    req.setAttribute("mensagem", "Tag Serviço não encontrado!");
+                    req.setAttribute("entidade", id);
+
+                    req.getRequestDispatcher("/pages/tagServico/deletarTagServicoPeloID.jsp").forward(req, resp);
+                } else {
+
+                    String nome = rs.getString("nome");
+                    req.setAttribute("entidade", nome);
+
+                    int num = tagServicoDAO.removerTagServicoPeloID(id);
+
+                    if (num == 1) {
+                        req.setAttribute("retorno", "certo");
+                    } else {
+                        req.setAttribute("retorno", "erro");
+                    }
+
+                    req.getRequestDispatcher("/pages/tagServico/listagemTagServico.jsp").forward(req, resp);
+
                 }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+                req.setAttribute("retorno", "erro");
+                req.setAttribute("mensagem", "Erro SQL");
 
-                req.setAttribute("metodo", "DELETAR");
-                req.setAttribute("entidade", nome);
-
-                RequestDispatcher rd;
-                rd = getServletContext().getRequestDispatcher("/pages/tagServico/listagemTagServico.jsp");
-                rd.include(req, resp);
+                req.getRequestDispatcher("/pages/tagServico/listagemTagServico.jsp");
             }
-        } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
-            req.setAttribute("retorno", "erro");
-            req.setAttribute("mensagem", "Erro SQL");
-
-            RequestDispatcher rd;
-            rd = getServletContext().getRequestDispatcher("/pages/tagServico/listagemTagServico.jsp");
-            rd.include(req, resp);
-
         }
     }
 }
