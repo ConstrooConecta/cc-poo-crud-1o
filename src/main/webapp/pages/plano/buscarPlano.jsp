@@ -47,6 +47,22 @@
             </form>
         </div>
 
+        <% if (request.getAttribute("retorno") == "erro"){
+        %>
+        <div>
+            <P>ERRO AO <%= request.getAttribute("metodo") %> O ITEM: <%= request.getAttribute("entidade") %></P>
+        </div>
+        <%} else if (request.getAttribute("retorno") == "certo") {%>
+        <div>
+            <P>SUCESSO AO <%= request.getAttribute("metodo") %> O ITEM: <%= request.getAttribute("entidade") %></P>
+
+        </div>
+        <%} else if (request.getAttribute("retorno") == "notfound") {%>
+        <div>
+            <p>ITEM NÃO ENCONTRADO AO <%= request.getAttribute("metodo")%>: <%= request.getAttribute("entidade") %></p>
+        </div>
+        <%} else if (request.getAttribute("retorno") == "existente") {%>
+
         <!-- Exibição de mensagens de erro ou sucesso -->
         <% if (request.getAttribute("retorno") != null) { %>
         <div>
@@ -67,6 +83,12 @@
             PlanoDAO planoDAO = new PlanoDAO();
             ResultSet resultSet = planoDAO.buscarPlanoPeloNome(String.valueOf(request.getAttribute("nome")));
             try {
+                if (!resultSet.next()){%>
+                    <p>Nenhum item encontrado</p>
+                <%
+                }else{
+                    do {%>
+
                 while (resultSet.next()) { // Iteração sobre os resultados
         %>
         <div class="plano">
@@ -101,6 +123,13 @@
                 </form>
             </div>
         </div>
+                    <%
+                    } while (resultSet.next());
+                }
+        %>
+
+        <%
+
         <%
                 } // Fim do while
             } catch (SQLException e) {

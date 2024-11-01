@@ -21,41 +21,50 @@ public class IncluirCamposAdministradorServlet extends HttpServlet {
 
         // Recebe os dados do administrador a ser alterado
         String str_id = req.getParameter("administrador_id");
-        int id = Integer.parseInt(str_id);
-        out.println(id);
-        AdministradorDAO administradorDAO = new AdministradorDAO();
+        int id = 0;
 
-        ResultSet resultSet = administradorDAO.buscarAdministradorPeloID(id);
+        try{
+            id = Integer.parseInt(str_id);
+        }catch (NumberFormatException numberFormatException){
+            // Define atributos para serem usados na página de alteração
+            req.setAttribute("retorno", "notfound");
+            req.setAttribute("mensagem", "Admin não encontrado!");
 
-        try {
-            if (!resultSet.next()){
-                req.setAttribute("retorno", "notfound");
-                req.setAttribute("mensagem", "Admin não encontrado!");
+            // Redireciona para a página de alteração do administrador
+            req.getRequestDispatcher("/pages/administrador/alterarAdministradorPeloID.jsp").forward(req, resp);
+        }finally {
+            AdministradorDAO administradorDAO = new AdministradorDAO();
+
+            ResultSet resultSet = administradorDAO.buscarAdministradorPeloID(id);
+
+            try {
+                if (!resultSet.next()){
+                    // Define atributos para serem usados na página de alteração
+                    req.setAttribute("retorno", "notfound");
+                    req.setAttribute("mensagem", "Admin não encontrado!");
+                }else{
+
+                    String nome = resultSet.getString("nome");
+                    String senha = resultSet.getString("senha");
+                    String email = resultSet.getString("email");
+
+                    // Define atributos para serem usados na página de alteração
+                    req.setAttribute("id", id);
+                    req.setAttribute("nome", nome);
+                    req.setAttribute("senha", senha);
+                    req.setAttribute("email", email);
+                    // Redireciona para a página de alteração do administrador
+                    req.getRequestDispatcher("/pages/administrador/alterarCamposAdministrador.jsp").forward(req, resp);
+                }
+            }catch (SQLException sqlException){
+                sqlException.printStackTrace();
+                // Define atributos para serem usados na página de alteração
+                req.setAttribute("retorno", "erro");
+                req.setAttribute("mensagem", "Erro SQL");
+            }finally{
+                // Redireciona para a página de alteração do administrador
                 req.getRequestDispatcher("/pages/administrador/alterarAdministradorPeloID.jsp").forward(req, resp);
-            }else{
-
-                String nome = resultSet.getString("nome");
-                String senha = resultSet.getString("senha");
-                String email = resultSet.getString("email");
-                req.setAttribute("id", id);
-                req.setAttribute("nome", nome);
-                req.setAttribute("senha", senha);
-                req.setAttribute("email", email);
-                req.getRequestDispatcher("/pages/administrador/alterarCamposAdministrador.jsp").forward(req, resp);
             }
-
-
-
-        }catch (SQLException sqlException){
-            sqlException.printStackTrace();
-            req.setAttribute("retorno", "erro");
-            req.setAttribute("mensagem", "Erro SQL");
         }
-
-        // Define atributos para serem usados na página de alteração
-
-
-        // Redireciona para a página de alteração do administrador
-
     }
 }

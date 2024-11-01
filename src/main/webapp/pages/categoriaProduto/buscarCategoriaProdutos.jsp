@@ -29,10 +29,7 @@
     <section class="categorias"> <!-- Seção para categorias -->
         <h1>Categorias Produtos</h1> <!-- Título da seção -->
         <div class="controls"> <!-- Controles de ação -->
-            <form action="${pageContext.request.contextPath}/BuscarCategoriaProdutoServlet" method="post">
-                <input type="text" name="nome" id="nome" value="<%=request.getAttribute("nome")%>" placeholder="Pesquisar categorias"> <!-- Campo de pesquisa -->
-                <input type="submit" value="Pesquisar">
-            </form>
+
             <div class="actionsCreateAlterDelete">
                 <form action="${pageContext.request.contextPath}/pages/categoriaProduto/cadastrarCategoriaProduto.html" method="get">
                     <button type="submit" class="create-btn">Adicionar</button> <!-- Botão para adicionar administrador -->
@@ -44,6 +41,10 @@
                     <button type="submit" class="create-btn">Deletar</button> <!-- Botão para deletar administrador -->
                 </form>
             </div>
+            <form action="${pageContext.request.contextPath}/BuscarCategoriaProdutoServlet" method="post">
+                <input type="text" name="nome" id="nome" value="<%=request.getAttribute("nome")%>" placeholder="Pesquisar categorias"> <!-- Campo de pesquisa -->
+                <input type="submit" value="Pesquisar">
+            </form>
 
         </div>
         <% if (request.getAttribute("retorno") == "erro"){
@@ -72,8 +73,11 @@
             CategoriaProdutoDAO categoriaProdutoDAO = new CategoriaProdutoDAO(); // Instância do DAO
             ResultSet resultSet = categoriaProdutoDAO.buscarSimilarCategoriaProdutoPeloNome(String.valueOf(request.getAttribute("nome"))); // Busca as categorias
             try {
-                while (resultSet.next()) { // Itera sobre os resultados
-        %>
+                if (!resultSet.next()){%>
+        <p>Nenhum item encontrado</p>
+        <%
+        }else{
+            do {%>
         <div class="categoria"> <!-- Container para cada categoria -->
             <div class="info"> <!-- Informações da categoria -->
                 <h2><%= resultSet.getString("nome") %></h2> <!-- Nome da categoria -->
@@ -94,9 +98,13 @@
             </div>
         </div>
         <%
-                } // Fim do while
-            } catch (SQLException sqlException) { // Tratamento de exceções
-                sqlException.printStackTrace(); // Imprime o stack trace em caso de erro
+                } while (resultSet.next());
+            }
+        %>
+
+        <%
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         %>
     </section>

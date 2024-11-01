@@ -24,6 +24,42 @@ public class AlterarPlanoAtivacaoServlet extends HttpServlet {
 
         // Recebe o ID do Plano de Ativação a ser alterado e converte para inteiro
         String str_id_tipo = req.getParameter("id_planoativacao");
+        int id_tipo = 0;
+
+        req.setAttribute("metodo", "ALTERAR");
+
+        try{
+            id_tipo = Integer.parseInt(str_id_tipo);
+        }catch (NumberFormatException e){
+            req.setAttribute("retorno", "notfound");
+            req.setAttribute("mensagem", "Plano Ativação não encontrado!");
+
+            // Redireciona para a página de alteração do administrador
+            req.getRequestDispatcher("../pages/planoAtivacao/alterarPlanoAtivacaoPeloID.jsp").forward(req, resp);
+        }finally {
+            //Estabelece a conexao
+            PlanoAtivacaoDAO planoAtivacaoDAO = new PlanoAtivacaoDAO();
+
+            req.setAttribute("entidade", id_tipo);
+
+            //caso esteja na tabela Plano Ativação, a coluna ativação será alterada
+            int num = planoAtivacaoDAO.alterarAtivacao(id_tipo);
+            if (num == 1){
+                req.setAttribute("retorno", "certo");
+                req.getRequestDispatcher("/pages/planoAtivacao/listagemPlanosAtivacao.jsp").forward(req, resp);
+            }else if (num == 0){
+                req.setAttribute("retorno", "notfound");
+                req.setAttribute("mensagem", "Plano Ativação não encontrado!");
+                req.getRequestDispatcher("/pages/planoAtivacao/alterarPlanoAtivacaoPeloID.jsp").forward(req, resp);
+            }else {
+                req.setAttribute("retorno", "erro");
+                req.setAttribute("mensagem", "Erro");
+                req.getRequestDispatcher("/pages/planoAtivacao/listagemPlanosAtivacao.jsp").forward(req, resp);
+
+            }
+
+        }
+
         int id_tipo = Integer.parseInt(str_id_tipo);
         out.println(id_tipo);  // Imprime o ID para fins de depuração
 

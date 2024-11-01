@@ -78,8 +78,11 @@
             }
 
             try {
-                while (resultSet.next()) {
-        %>
+                if (!resultSet.next()){%>
+        <p>Nenhum item encontrado</p>
+        <%
+        }else{
+            do {%>
         <div class="plano">
             <div class="info">
                 <div class="details">
@@ -108,7 +111,12 @@
             </div>
         </div>
         <%
-                }
+                } while (resultSet.next());
+            }
+        %>
+
+
+        <%
             } catch (SQLException e) {
                 e.printStackTrace(); // Imprime o stack trace em caso de erro
             }

@@ -25,6 +25,31 @@ public class DeletePlanoAtivacaoServlet extends HttpServlet {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
 
+        req.setAttribute("metodo", "DELETAR");
+
+        //Recebe o id da entidade comprador/vendedor ou Profissional
+        String str_id_tipo = req.getParameter("id_planoativacao");
+        int id = 0;
+        try {
+            id = Integer.parseInt(str_id_tipo);
+        } catch (NumberFormatException numberFormatException) {
+            req.setAttribute("retorno", "notfound");
+            req.setAttribute("mensagem", "Plano Ativação não encontrado!");
+            req.getRequestDispatcher("/pages/planoAtivacao/deletarPlanoAtivacaoPeloID.jsp").forward(req, resp);
+        } finally {
+            //Estabelece a conexao
+            PlanoAtivacaoDAO planoAtivacaoDAO = new PlanoAtivacaoDAO();
+
+            try {
+                ResultSet rs = planoAtivacaoDAO.buscarPlanoAtivacaoPeloID(id);
+                if (!rs.next()) {
+                    req.setAttribute("retorno", "notfound");
+                    req.setAttribute("mensagem", "Plano Ativação não encontrado!");
+                    req.setAttribute("entidade", id);
+
+                    req.getRequestDispatcher("/pages/planoAtivacao/deletarPlanoAtivacaoPeloID.jsp").forward(req, resp);
+                } else {
+
         // Recebe o ID do plano de ativação a ser deletado
         String str_id_tipo = req.getParameter("id_planoativacao");
         int id_tipo = Integer.parseInt(str_id_tipo); // Converte o ID para inteiro
@@ -57,8 +82,25 @@ public class DeletePlanoAtivacaoServlet extends HttpServlet {
                     req.setAttribute("retorno", "erro"); // Erro inesperado
                 }
 
-                req.setAttribute("metodo", "DELETAR");
-                req.setAttribute("entidade", id_tipo);
+                    int num = planoAtivacaoDAO.removerPlanoAtivacao(id);
+
+                    if (num == 1) {
+                        req.setAttribute("retorno", "certo");
+                    } else {
+                        req.setAttribute("retorno", "erro");
+                    }
+
+                    req.setAttribute("entidade", id);
+
+                    req.getRequestDispatcher("/pages/planoAtivacao/listagemPlanosAtivacao.jsp");
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+                req.setAttribute("retorno", "erro");
+                req.setAttribute("mensagem", "Erro SQL");
+
+                req.getRequestDispatcher("/pages/planoAtivacao/listagemPlanosAtivacao.jsp");
+            }
 
                 // Redireciona para a página de listagem de planos de ativação
                 RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/planoAtivacao/listagemPlanosAtivacao.jsp");

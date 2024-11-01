@@ -26,6 +26,26 @@ public class DeleteCategoriaProdutoServlet extends HttpServlet {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
 
+        req.setAttribute("metodo", "DELETAR");
+
+        String str_id = req.getParameter("categoria_id");
+        int id = 0;
+
+        try {
+            id = Integer.parseInt(str_id);
+        }catch (NumberFormatException numberFormatException) {
+            req.setAttribute("retorno", "notfound");
+            req.getRequestDispatcher("/pages/categoriaProduto/deletarCategoriaProdutoPeloID.jsp").forward(req, resp);
+        }finally {
+
+            CategoriaProdutoDAO categoriaProdutoDAO = new CategoriaProdutoDAO();
+
+            try {
+                ResultSet rs = categoriaProdutoDAO.buscarCategoriaProdutoPeloID(id);
+                if (!rs.next()) {
+                    req.setAttribute("retorno", "notfound");
+                    req.setAttribute("entidade", id);
+
         // Recebe o ID da categoria do produto a ser deletada
         String id = req.getParameter("categoria_id");
 
@@ -61,8 +81,34 @@ public class DeleteCategoriaProdutoServlet extends HttpServlet {
                     req.setAttribute("retorno", "erro"); // Erro ao deletar
                 }
 
-                req.setAttribute("metodo", "DELETAR");
-                req.setAttribute("entidade", nome);
+
+                    req.getRequestDispatcher("/pages/categoriaProduto/deletarCategoriaProdutoPeloID.jsp").forward(req, resp);
+                } else {
+
+
+                    String nome = rs.getString("nome");
+
+                    int num = categoriaProdutoDAO.removerCategoriaProduto(id);
+
+                    if (num == 1) {
+                        req.setAttribute("retorno", "certo");
+                    } else {
+                        req.setAttribute("retorno", "erro");
+                    }
+
+                    req.setAttribute("entidade", nome);
+
+
+                    req.getRequestDispatcher("/pages/categoriaProduto/listagemCategoriaProdutos.jsp").forward(req, resp);
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+                req.setAttribute("retorno", "erro");
+                req.setAttribute("mensagem", "Erro SQL");
+
+                req.getRequestDispatcher("/pages/categoriaProduto/listagemCategoriaProdutos.jsp").forward(req, resp);
+
+            }
 
                 // Encaminha a requisição para o JSP de listagem de categorias com o resultado
                 RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/categoriaProduto/listagemCategoriaProdutos.jsp");

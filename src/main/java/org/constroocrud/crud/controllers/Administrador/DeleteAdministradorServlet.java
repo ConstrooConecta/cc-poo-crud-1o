@@ -22,6 +22,51 @@ public class DeleteAdministradorServlet extends HttpServlet {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
 
+        req.setAttribute("metodo", "DELETAR");
+
+        String str_id = req.getParameter("administrador_id");
+        int id = 0;
+
+        try {
+            id = Integer.parseInt(str_id);
+        } catch (NumberFormatException numberFormatException) {
+            req.setAttribute("retorno", "notfound");
+            req.setAttribute("mensagem", "Tag Serviço não encontrado!");
+            req.getRequestDispatcher("../pages/administrador/deletarAdministradorPeloID").forward(req, resp);
+        } finally {
+
+            AdministradorDAO administradorDAO = new AdministradorDAO();
+
+            try {
+                ResultSet rs = administradorDAO.buscarAdministradorPeloID(id);
+                if (!rs.next()) {
+                    req.setAttribute("retorno", "notfound");
+                    req.setAttribute("entidade", id);
+
+                    req.getRequestDispatcher("/pages/administrador/deletarAdministradorPeloID.jsp").forward(req, resp);
+                } else {
+                    String nome = rs.getString("nome");
+
+                    int num = administradorDAO.removerAdministrador(id);
+
+                    if (num == 1) {
+                        req.setAttribute("retorno", "certo");
+                    } else {
+                        req.setAttribute("retorno", "erro");
+                    }
+
+                    req.setAttribute("entidade", nome);
+
+                    req.getRequestDispatcher("/pages/administrador/listagemAdministradores.jsp").forward(req, resp);
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+                req.setAttribute("retorno", "erro");
+                req.setAttribute("mensagem", "Erro SQL");
+
+                req.getRequestDispatcher("/pages/administrador/listagemAdministradores.jsp").forward(req, resp);
+
+            }
         // Obtém o ID do administrador a ser deletado do parâmetro "administrador_id" da requisição
         String id = req.getParameter("administrador_id");
 

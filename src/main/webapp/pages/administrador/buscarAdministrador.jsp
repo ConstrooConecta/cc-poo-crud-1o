@@ -72,8 +72,11 @@
             ResultSet resultSet = administradorDAO.buscarAdministradorPeloNome(String.valueOf(request.getAttribute("nome"))); // Busca os administradores
 
             try {
-                while (resultSet.next()) { // Itera sobre os resultados
-        %>
+                if (!resultSet.next()){%>
+        <p>Nenhum item encontrado</p>
+        <%
+        }else{
+            do {%>
         <div class="administrador"> <!-- Container para cada administrador -->
             <div class="info"> <!-- Informações do administrador -->
                 <h2><%= resultSet.getString("nome") %></h2> <!-- Nome do administrador -->
@@ -95,10 +98,13 @@
             </div>
         </div>
         <%
-                } // Fim do while
+                } while (resultSet.next());
+            }
+        %>
 
-            } catch (SQLException e) { // Tratamento de exceções
-                e.printStackTrace(); // Imprime o stack trace em caso de erro
+        <%
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         %>
 

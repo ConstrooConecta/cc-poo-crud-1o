@@ -27,6 +27,14 @@
             <input type="submit" id="buttonCadastrar" value="Ativar/Desativar"> <!-- Botão de envio -->
         </div>
 
+        <div id="infos-erro">
+            <% if (request.getAttribute("retorno") == "erro"){%>
+            <P><%=request.getAttribute("mensagem") %></P>
+
+            <%} else if (request.getAttribute("retorno") == "notfound") {%>
+            <p>  ITEM NÃO ENCONTRADO</p>
+            <%}%>
+
         <div id="infos-erro"> <!-- Seção para exibição de mensagens de erro -->
             <% if (request.getAttribute("retorno") == "erro") { %>
             <p><%= request.getAttribute("mensagem") %></p> <!-- Mensagem de erro -->
