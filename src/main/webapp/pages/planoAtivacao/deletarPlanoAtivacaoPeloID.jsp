@@ -27,17 +27,15 @@
             <input type="submit" id="buttonCadastrar" value="Deletar"> <!-- Botão de envio -->
         </div>
 
+        <div id="infos-erro">
             <% if (request.getAttribute("retorno") == "erro"){
         %>
-        <div>
-            <P><%=request.getAttribute("mensagem") %></P>
-
-        </div>
+            <p><%=request.getAttribute("mensagem") %></p>
             <%} else if (request.getAttribute("retorno") == "notfound") {%>
-        <div>
-            <p>ITEM NÃO ENCONTRADO</p>
-        </div>
+                <p>ITEM NÃO ENCONTRADO</p>
             <%}%>
+        </div>
+    </div>
 </form>
 
 </body>

@@ -50,7 +50,6 @@
         %>
         <div>
             <P>ERRO AO <%= request.getAttribute("metodo") %> O ITEM: <%= request.getAttribute("entidade") %></P>
-
         </div>
         <%} else if (request.getAttribute("retorno") == "certo") {%>
         <div>
@@ -72,8 +71,11 @@
             PlanoDAO planoDAO = new PlanoDAO();
             ResultSet resultSet = planoDAO.buscarPlanoPeloNome(String.valueOf(request.getAttribute("nome")));
             try {
-                while (resultSet.next()) {
-        %>
+                if (!resultSet.next()){%>
+                    <p>Nenhum item encontrado</p>
+                <%
+                }else{
+                    do {%>
         <div class="plano">
             <div class="info">
                 <div class="details">
@@ -106,9 +108,12 @@
                 </form>
             </div>
         </div>
-        <%
+                    <%
+                    } while (resultSet.next());
+                }
+        %>
 
-            }
+        <%
             } catch (SQLException e) {
             e.printStackTrace();
             }

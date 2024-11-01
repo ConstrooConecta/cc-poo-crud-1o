@@ -73,8 +73,11 @@
             CategoriaProdutoDAO categoriaProdutoDAO = new CategoriaProdutoDAO(); // Instância do DAO
             ResultSet resultSet = categoriaProdutoDAO.buscarSimilarCategoriaProdutoPeloNome(String.valueOf(request.getAttribute("nome"))); // Busca as categorias
             try {
-                while (resultSet.next()) { // Itera sobre os resultados
-        %>
+                if (!resultSet.next()){%>
+        <p>Nenhum item encontrado</p>
+        <%
+        }else{
+            do {%>
         <div class="categoria"> <!-- Container para cada categoria -->
             <div class="info"> <!-- Informações da categoria -->
                 <h2><%= resultSet.getString("nome") %></h2> <!-- Nome da categoria -->
@@ -95,9 +98,13 @@
             </div>
         </div>
         <%
-                } // Fim do while
-            } catch (SQLException sqlException) { // Tratamento de exceções
-                sqlException.printStackTrace(); // Imprime o stack trace em caso de erro
+                } while (resultSet.next());
+            }
+        %>
+
+        <%
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         %>
     </section>

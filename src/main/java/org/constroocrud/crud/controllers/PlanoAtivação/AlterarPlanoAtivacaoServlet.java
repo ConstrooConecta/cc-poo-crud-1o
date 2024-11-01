@@ -33,7 +33,7 @@ public class AlterarPlanoAtivacaoServlet extends HttpServlet {
             req.setAttribute("mensagem", "Plano Ativação não encontrado!");
 
             // Redireciona para a página de alteração do administrador
-            req.getRequestDispatcher("../pages/planoAtivacao/listagemPlanoAtivacao.jsp").forward(req, resp);
+            req.getRequestDispatcher("../pages/planoAtivacao/alterarPlanoAtivacaoPeloID.jsp").forward(req, resp);
         }finally {
             //Estabelece a conexao
             PlanoAtivacaoDAO planoAtivacaoDAO = new PlanoAtivacaoDAO();
@@ -48,7 +48,7 @@ public class AlterarPlanoAtivacaoServlet extends HttpServlet {
             }else if (num == 0){
                 req.setAttribute("retorno", "notfound");
                 req.setAttribute("mensagem", "Plano Ativação não encontrado!");
-                req.getRequestDispatcher("/pages/planoAtivacao/listagemPlanosAtivacao.jsp").forward(req, resp);
+                req.getRequestDispatcher("/pages/planoAtivacao/alterarPlanoAtivacaoPeloID.jsp").forward(req, resp);
             }else {
                 req.setAttribute("retorno", "erro");
                 req.setAttribute("mensagem", "Erro");

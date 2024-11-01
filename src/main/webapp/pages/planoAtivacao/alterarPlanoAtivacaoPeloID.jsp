@@ -32,7 +32,7 @@
             <P><%=request.getAttribute("mensagem") %></P>
 
             <%} else if (request.getAttribute("retorno") == "notfound") {%>
-            <p>ITEM NÃO ENCONTRADO</p>
+            <p>  ITEM NÃO ENCONTRADO</p>
             <%}%>
         </div>
 

@@ -68,8 +68,11 @@
             ResultSet resultSet = tagServicoDAO.buscarTagServicoPeloNome(String.valueOf(request.getAttribute("nome")));
 
             try {
-                while (resultSet.next()) {
-        %>
+                if (!resultSet.next()){%>
+        <p>Nenhum item encontrado</p>
+        <%
+        }else{
+            do {%>
         <div class="categoria">
             <div class="info">
                 <h2><%= resultSet.getString("nome") %></h2>
@@ -90,9 +93,13 @@
             </div>
         </div>
         <%
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
+                } while (resultSet.next());
+            }
+        %>
+
+        <%
+            } catch (SQLException e) {
+            e.printStackTrace();
             }
         %>
     </section>
