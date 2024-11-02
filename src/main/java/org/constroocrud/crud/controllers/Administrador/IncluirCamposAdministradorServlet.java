@@ -53,8 +53,6 @@ public class IncluirCamposAdministradorServlet extends HttpServlet {
                     req.setAttribute("nome", nome);
                     req.setAttribute("senha", senha);
                     req.setAttribute("email", email);
-                    // Redireciona para a página de alteração do administrador
-                    req.getRequestDispatcher("/pages/administrador/alterarCamposAdministrador.jsp").forward(req, resp);
                 }
             }catch (SQLException sqlException){
                 sqlException.printStackTrace();

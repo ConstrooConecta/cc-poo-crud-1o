@@ -65,14 +65,16 @@ public class InsertPlanoServlet extends HttpServlet {
         } catch (SQLException e) {
             // Lida com exceções SQL
             throw new RuntimeException(e);
+        }finally {
+
+            // Define os atributos que serão utilizados na página de listagem
+            req.setAttribute("metodo", "INSERIR");
+            req.setAttribute("entidade", nome);
+
+            // Redireciona para a página de listagem de planos
+            RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/plano/listagemPlanos.jsp");
+            rd.include(req, resp);
+
         }
-
-        // Define os atributos que serão utilizados na página de listagem
-        req.setAttribute("metodo", "INSERIR");
-        req.setAttribute("entidade", nome);
-
-        // Redireciona para a página de listagem de planos
-        RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/plano/listagemPlanos.jsp");
-        rd.include(req, resp);
     }
 }

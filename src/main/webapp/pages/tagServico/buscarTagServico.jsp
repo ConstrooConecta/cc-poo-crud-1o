@@ -95,9 +95,6 @@
         %>
 
         <%
-            } catch (SQLException e) {
-            e.printStackTrace();
-                }
             } catch (SQLException sqlException) {
                 sqlException.printStackTrace(); // Log do erro
             }

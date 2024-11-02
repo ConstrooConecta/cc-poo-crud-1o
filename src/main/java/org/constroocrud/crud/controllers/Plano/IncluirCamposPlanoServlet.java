@@ -63,7 +63,7 @@ public class IncluirCamposPlanoServlet extends HttpServlet {
                     req.setAttribute("valor", valor);
 
                     // Redireciona para a página de alteração do administrador
-                    req.getRequestDispatcher("pages/plano/alterarCamposTagServico.jsp").forward(req, resp);
+                    req.getRequestDispatcher("pages/plano/alterarCamposPlano.jsp").forward(req, resp);
                 }
 
 
@@ -76,10 +76,6 @@ public class IncluirCamposPlanoServlet extends HttpServlet {
                 // Redireciona para a página de alteração do administrador
                 req.getRequestDispatcher("/pages/plano/alterarPlanoPeloID.jsp").forward(req, resp);
             }
-
-
-
-
 
         }
     }

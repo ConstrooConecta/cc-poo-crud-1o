@@ -28,15 +28,13 @@
         </div>
 
         <!-- Exibição de mensagens de erro ou status -->
-        <% if (request.getAttribute("retorno") == "erro") { %>
-        <div>
-            <p><%= request.getAttribute("mensagem") %></p> <!-- Mensagem de erro recebida do servlet -->
+        <div class="infos-erro">
+            <% if (request.getAttribute("retorno") == "erro") { %>
+                <p><%= request.getAttribute("mensagem") %></p> <!-- Mensagem de erro recebida do servlet -->
+            <% } else if (request.getAttribute("retorno") == "notfound") { %>
+                <p>ITEM NÃO ENCONTRADO</p> <!-- Mensagem informando que o item não foi encontrado -->
+            <% } %>
         </div>
-        <% } else if (request.getAttribute("retorno") == "notfound") { %>
-        <div>
-            <p>ITEM NÃO ENCONTRADO</p> <!-- Mensagem informando que o item não foi encontrado -->
-        </div>
-        <% } %>
     </div>
 </form>
 

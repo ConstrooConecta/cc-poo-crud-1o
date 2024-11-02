@@ -50,38 +50,6 @@ public class DeletePlanoAtivacaoServlet extends HttpServlet {
                     req.getRequestDispatcher("/pages/planoAtivacao/deletarPlanoAtivacaoPeloID.jsp").forward(req, resp);
                 } else {
 
-        // Recebe o ID do plano de ativação a ser deletado
-        String str_id_tipo = req.getParameter("id_planoativacao");
-        int id_tipo = Integer.parseInt(str_id_tipo); // Converte o ID para inteiro
-
-        // Estabelece a conexão com o DAO
-        PlanoAtivacaoDAO planoAtivacaoDAO = new PlanoAtivacaoDAO();
-
-        try {
-            // Verifica se o plano de ativação existe
-            ResultSet rs = planoAtivacaoDAO.buscarPlanoAtivacaoPeloID(id_tipo);
-            if (!rs.next()) {
-                // Se não encontrado, define atributos para resposta
-                req.setAttribute("retorno", "notfound");
-                req.setAttribute("metodo", "DELETAR");
-                req.setAttribute("entidade", id_tipo);
-
-                // Redireciona para a página de listagem de planos de ativação
-                RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/planoAtivacao/listagemPlanosAtivacao.jsp");
-                rd.include(req, resp);
-            } else {
-                // Tenta remover o plano de ativação
-                int num = planoAtivacaoDAO.removerPlanoAtivacao(id_tipo);
-
-                // Verifica o resultado da operação de remoção
-                if (num == 1) {
-                    req.setAttribute("retorno", "certo"); // Deletado com sucesso
-                } else if (num == 0) {
-                    req.setAttribute("retorno", "notfound"); // Não encontrado
-                } else {
-                    req.setAttribute("retorno", "erro"); // Erro inesperado
-                }
-
                     int num = planoAtivacaoDAO.removerPlanoAtivacao(id);
 
                     if (num == 1) {
@@ -92,29 +60,15 @@ public class DeletePlanoAtivacaoServlet extends HttpServlet {
 
                     req.setAttribute("entidade", id);
 
-                    req.getRequestDispatcher("/pages/planoAtivacao/listagemPlanosAtivacao.jsp");
+                    req.getRequestDispatcher("/pages/planoAtivacao/listagemPlanosAtivacao.jsp").forward(req, resp);
                 }
             } catch (SQLException sqlException) {
                 sqlException.printStackTrace();
                 req.setAttribute("retorno", "erro");
                 req.setAttribute("mensagem", "Erro SQL");
 
-                req.getRequestDispatcher("/pages/planoAtivacao/listagemPlanosAtivacao.jsp");
+                req.getRequestDispatcher("/pages/planoAtivacao/listagemPlanosAtivacao.jsp").forward(req, resp);
             }
-
-                // Redireciona para a página de listagem de planos de ativação
-                RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/planoAtivacao/listagemPlanosAtivacao.jsp");
-                rd.include(req, resp);
-            }
-        } catch (SQLException sqlException) {
-            // Trata exceções SQL
-            sqlException.printStackTrace();
-            req.setAttribute("retorno", "erro");
-            req.setAttribute("mensagem", "Erro SQL");
-
-            // Redireciona para a página de listagem de planos de ativação
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/planoAtivacao/listagemPlanosAtivacao.jsp");
-            rd.include(req, resp);
         }
     }
 }

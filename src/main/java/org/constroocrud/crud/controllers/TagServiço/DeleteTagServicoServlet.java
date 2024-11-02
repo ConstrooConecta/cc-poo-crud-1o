@@ -33,7 +33,7 @@ public class DeleteTagServicoServlet extends HttpServlet {
         } catch (NumberFormatException numberFormatException) {
             req.setAttribute("retorno", "notfound");
             req.setAttribute("mensagem", "Tag Serviço não encontrado!");
-            req.getRequestDispatcher("/pages/tagServico/deletarTagServicoPeloID").forward(req, resp);
+            req.getRequestDispatcher("/pages/tagServico/deletarTagServicoPeloID.jsp").forward(req, resp);
         } finally {
 
             TagServicoDAO tagServicoDAO = new TagServicoDAO();
@@ -59,15 +59,13 @@ public class DeleteTagServicoServlet extends HttpServlet {
                         req.setAttribute("retorno", "erro");
                     }
 
-                    req.getRequestDispatcher("/pages/tagServico/listagemTagServico.jsp").forward(req, resp);
-
                 }
             } catch (SQLException sqlException) {
                 sqlException.printStackTrace();
                 req.setAttribute("retorno", "erro");
                 req.setAttribute("mensagem", "Erro SQL");
-
-                req.getRequestDispatcher("/pages/tagServico/listagemTagServico.jsp");
+            }finally {
+                req.getRequestDispatcher("/pages/tagServico/listagemTagServico.jsp").forward(req, resp);
             }
         }
     }

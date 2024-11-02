@@ -27,6 +27,7 @@
             <input type="submit" id="buttonCadastrar" value="Deletar"> <!-- Botão de envio -->
         </div>
 
+        <!-- Mensagens de feedback baseadas no resultado da operação -->
         <div id="infos-erro">
             <% if (request.getAttribute("retorno") == "erro"){
         %>
@@ -36,17 +37,6 @@
             <%}%>
 
         <!-- Mensagens de feedback baseadas no resultado da operação -->
-        <div id="infos-erro">
-            <% if (request.getAttribute("retorno") == "erro") { %>
-            <div>
-                <p><%= request.getAttribute("mensagem") %></p> <!-- Mensagem de erro -->
-            </div>
-            <% } else if (request.getAttribute("retorno") == "notfound") { %>
-            <div>
-                <p>ITEM NÃO ENCONTRADO</p> <!-- Mensagem se o item não for encontrado -->
-            </div>
-            <% } %>
-        </div>
     </div>
 </form>
 

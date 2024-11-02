@@ -107,8 +107,6 @@
                 e.printStackTrace();
             }
         %>
-
-
     </section>
 </main>
 </body>

@@ -80,9 +80,9 @@
             try {
                 if (!resultSet.next()){%>
         <p>Nenhum item encontrado</p>
-        <%
-        }else{
-            do {%>
+            <%
+            }else{
+                do {%>
         <div class="plano">
             <div class="info">
                 <div class="details">

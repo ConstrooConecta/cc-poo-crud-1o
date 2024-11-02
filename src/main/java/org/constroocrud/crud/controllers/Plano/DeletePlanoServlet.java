@@ -27,11 +27,6 @@ public class DeletePlanoServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
 
         req.setAttribute("metodo", "DELETAR");
-      
-        // Recebe o ID do plano a ser deletado
-        String str_id = req.getParameter("plano_id");
-        int id = Integer.parseInt(str_id);
-        out.println(id); // Imprime o ID para debug
 
         String str_id = req.getParameter("plano_id");
         int id = 0;
@@ -42,6 +37,7 @@ public class DeletePlanoServlet extends HttpServlet {
             req.setAttribute("retorno", "notfound");
             req.getRequestDispatcher("/pages/plano/deletarPlanoPeloID.jsp").forward(req, resp);
         }finally {
+
             PlanoDAO planoDAO = new PlanoDAO();
 
             try {
@@ -55,32 +51,6 @@ public class DeletePlanoServlet extends HttpServlet {
                 } else {
 
                     String nome = rs.getString("nome_plano");
-
-            // Busca o plano pelo ID
-            ResultSet rs = planoDAO.buscarPlanoPeloID(id);
-            if (!rs.next()) {
-                // Se o plano não for encontrado, define atributos de retorno e redireciona
-                req.setAttribute("retorno", "notfound");
-                req.setAttribute("metodo", "DELETAR");
-                req.setAttribute("entidade", id);
-
-                RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/plano/listagemPlanos.jsp");
-                rd.include(req, resp);
-            } else {
-                // Se o plano for encontrado, obtém o nome do plano
-                String nome = rs.getString("nome_plano");
-
-                // Tenta remover o plano pelo ID
-                int num = planoDAO.removerPlanoPeloID(id);
-
-                // Define os atributos de retorno baseados no resultado da remoção
-                if (num == 1) {
-                    req.setAttribute("retorno", "certo"); // Sucesso
-                } else if (num == 0) {
-                    req.setAttribute("retorno", "notfound"); // Plano não encontrado
-                } else {
-                    req.setAttribute("retorno", "erro"); // Erro durante a remoção
-                }
 
                     int num = planoDAO.removerPlanoPeloID(id);
 
@@ -105,15 +75,6 @@ public class DeletePlanoServlet extends HttpServlet {
 
             }
 
-            }
-        } catch (SQLException sqlException) {
-            sqlException.printStackTrace(); // Imprime o erro no console
-            req.setAttribute("retorno", "erro");
-            req.setAttribute("mensagem", "Erro SQL"); // Mensagem de erro SQL
-
-            // Redireciona para a página de listagem de planos
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/plano/listagemPlanos.jsp");
-            rd.include(req, resp);
         }
     }
 }
