@@ -65,6 +65,7 @@ main {
     margin-bottom: 20px;
 }
 
+.controls input[type="submit"],
 .controls .create-btn {
     background-color:#0E292F;
     color: #fff;
@@ -133,6 +134,6 @@ main {
 .actionsCreateAlterDelete{
     display: flex;
     flex-direction: row;
-    width: 200px;
+    width: 40%;
     justify-content: space-between;
 }

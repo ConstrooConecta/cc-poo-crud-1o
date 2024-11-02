@@ -1,41 +1,48 @@
 package org.constroocrud.crud.models; // Pacote da classe Administrador
 
-public class Administrador { // Classe principal
+public class Administrador { // Classe principal para representar um administrador
 
     private int id; // ID do administrador
     private String nome; // Nome do administrador
     private String email; // Email do administrador
     private String senha; // Senha do administrador
 
-    public int getId() { // Getter para ID
-        return id;
+    // Construtor com ID
+    public Administrador(int id, String nome, String email, String senha) {
+        this.id = id; // Inicializa o ID
+        this.nome = nome; // Inicializa o nome
+        this.email = email; // Inicializa o email
+        this.senha = senha; // Inicializa a senha
     }
 
-    public String getNome() { // Getter para nome
-        return nome;
+    // Construtor sem ID (para criação de novos administradores)
+    public Administrador(String nome, String email, String senha) {
+        this.nome = nome; // Inicializa o nome
+        this.email = email; // Inicializa o email
+        this.senha = senha; // Inicializa a senha
     }
 
-    public String getEmail() { // Getter para email
-        return email;
+    // Construtor padrão
+    public Administrador() {
     }
 
-    public String getSenha() { // Getter para senha
-        return senha;
+    // Getter para ID
+    public int getId() {
+        return id; // Retorna o ID do administrador
     }
 
-    public Administrador(int id, String nome, String email, String senha) { // Construtor com ID
-        this.id = id;
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
+    // Getter para nome
+    public String getNome() {
+        return nome; // Retorna o nome do administrador
     }
 
-    public Administrador(String nome, String email, String senha) { // Construtor sem ID
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
+    // Getter para email
+    public String getEmail() {
+        return email; // Retorna o email do administrador
     }
 
-    public Administrador() { // Construtor padrão
+    // Getter para senha
+    public String getSenha() {
+        return senha; // Retorna a senha do administrador
     }
 }

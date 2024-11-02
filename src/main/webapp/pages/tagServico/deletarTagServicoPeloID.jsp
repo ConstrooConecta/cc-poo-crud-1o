@@ -3,41 +3,38 @@
 <html>
 <head>
     <title>Deletar Tag Serviço pelo ID</title> <!-- Título da página -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/cascading-style-sheets/id.css"> <!-- Link para o CSS da página -->
 </head>
 <body>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/cascading-style-sheets/id.css">
 <header>
     <div class="titulo-constroo">
         <h1>Constroo</h1>
-        <img src="${pageContext.request.contextPath}/imagens/LogoVersaoMenor.svg" alt="Logo do app Constroo">
+        <img src="${pageContext.request.contextPath}/imagens/LogoVersaoMenor.svg" alt="Logo do app Constroo"> <!-- Logo da aplicação -->
     </div>
 </header>
 <h1 id="titulo-Editar-Pelo-ID">Deletar Tag Serviço por ID</h1> <!-- Título principal -->
-<form action="${pageContext.request.contextPath}/DeletarTagServicoServlet" method="post"> <!-- Formulário para alteração -->
+<form action="${pageContext.request.contextPath}/DeletarTagServicoServlet" method="post"> <!-- Formulário para deletar Tag Serviço -->
     <h2 class="subtitulo-forms"></h2> <!-- Subtítulo -->
     <div class="infos-linha1"> <!-- Linha de informações -->
 
         <div class="ID">
-            <label for="id">ID:</label> <!-- Rótulo para nome Atual -->
-            <input type="text" name="tag_id" id="id" placeholder="Insira o ID"> <!-- Campo de entrada para Nome Novo -->
+            <label for="id">ID:</label> <!-- Rótulo para ID -->
+            <input type="text" name="tag_id" id="id" placeholder="Insira o ID" required> <!-- Campo de entrada para o ID da Tag Serviço -->
         </div>
 
         <div class="classButton1">
-            <input type="submit" id="buttonCadastrar" value="Deletar"> <!-- Botão de envio -->
+            <input type="submit" id="buttonCadastrar" value="Deletar"> <!-- Botão de envio para deletar -->
         </div>
 
-            <% if (request.getAttribute("retorno") == "erro"){
-        %>
-        <div>
-            <P><%=request.getAttribute("mensagem") %></P>
-
+        <%-- Exibição de mensagens de retorno --%>
+        <div class="infos-erro">
+            <% if (request.getAttribute("retorno") == "erro") { %>
+                <p><%= request.getAttribute("mensagem") %></p> <!-- Mensagem de erro -->
+            <% } else if (request.getAttribute("retorno") == "notfound") { %>
+                <p>ITEM NÃO ENCONTRADO</p> <!-- Mensagem se o item não for encontrado -->
+            <% } %>
         </div>
-            <%} else if (request.getAttribute("retorno") == "notfound") {%>
-        <div>
-            <p>ITEM NÃO ENCONTRADO</p>
-        </div>
-            <%}%>
+    </div>
 </form>
-
 </body>
 </html>
