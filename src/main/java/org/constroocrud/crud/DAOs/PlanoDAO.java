@@ -35,7 +35,7 @@ public class PlanoDAO {
         conexao.conectar(); // Estabelece a conexão com o banco de dados
         Connection conn = conexao.getConn(); // Obtém a conexão ativa
         try {
-            String query = "SELECT * FROM plano WHERE id = ? ORDER BY id"; // Query para selecionar um plano pelo ID
+            String query = "SELECT * FROM plano WHERE id = ?"; // Query para selecionar um plano pelo ID
             pstmt = conn.prepareStatement(query); // Prepara a instrução SQL
             pstmt.setInt(1, id); // Define o parâmetro ID na consulta
             rs = pstmt.executeQuery(); // Executa a consulta e armazena o resultado

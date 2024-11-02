@@ -2,18 +2,17 @@
 <html>
 <head>
     <title>Editar Administrador</title> <!-- Título da página -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/cascading-style-sheets/alterarAdministrador.css"> <!-- Importação do CSS -->
 </head>
 <body>
-<!-- Inclusão de outra página JSP que pode conter um formulário ou outras informações -->
+
+<!-- Inclusão da página que contém o formulário ou outras informações -->
 <section>
     <jsp:include page="alterarAdministradorPeloID.jsp" />
 </section>
 
-<!-- Importação do arquivo CSS para estilizar a página de edição do administrador -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/cascading-style-sheets/alterarAdministrador.css">
-
 <!-- Formulário para alteração das informações do administrador -->
-<form action="AlterarAdministradorServlet" method="post"> <!-- Ação do formulário que chama o servlet responsável pela edição -->
+<form action="AlterarAdministradorServlet" method="post"> <!-- Ação do formulário -->
     <h2 class="subtitulo-forms"></h2> <!-- Subtítulo (vazio) -->
 
     <div class="infos-linha"> <!-- Linha que agrupa as informações a serem editadas -->
@@ -25,7 +24,7 @@
 
         <div class="gridNovoNome">
             <label for="nome">Novo Nome:</label> <!-- Rótulo para o campo de novo nome -->
-            <input type="text" name="nome" id="nome" value="<%= request.getAttribute("nome") %>" placeholder="Novo nome"> <!-- Campo para inserir o novo nome -->
+            <input type="text" name="nome" id="nome" value="<%= request.getAttribute("nome") %>" placeholder="Novo nome" required> <!-- Campo para inserir o novo nome -->
         </div>
 
         <!-- Seção para exibir e editar o e-mail do administrador -->
@@ -36,7 +35,7 @@
 
         <div class="gridNovoEmail">
             <label for="email">Novo Email:</label> <!-- Rótulo para o campo de novo e-mail -->
-            <input type="email" name="email" id="email" value="<%= request.getAttribute("email") %>" placeholder="Email novo"> <!-- Campo para inserir o novo e-mail -->
+            <input type="email" name="email" id="email" value="<%= request.getAttribute("email") %>" placeholder="Email novo" required> <!-- Campo para inserir o novo e-mail -->
         </div>
 
         <!-- Seção para inserir uma nova senha -->
@@ -48,12 +47,12 @@
     </div>
 
     <div class="classButton">
-        <input type="submit" id="buttonCadastrar"> <!-- Botão para enviar o formulário -->
+        <input type="submit" id="buttonCadastrar" value="Atualizar"> <!-- Botão para enviar o formulário -->
     </div>
 </form>
 
 <!-- Bloco para exibir mensagens de retorno após a submissão do formulário -->
-<% if (request.getAttribute("retorno") == "erro") { %>
+<% if ("erro".equals(request.getAttribute("retorno"))) { %>
 <div>
     <p><%= request.getAttribute("mensagem") %></p> <!-- Mensagem de erro a ser exibida -->
 </div>

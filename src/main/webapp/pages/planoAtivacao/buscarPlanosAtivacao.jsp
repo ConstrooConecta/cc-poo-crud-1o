@@ -41,7 +41,7 @@
             </div>
             <!-- Formulário para buscar planos de ativação pelo ID -->
             <form id="form-plano-ativacao-criar" action="${pageContext.request.contextPath}/BuscarPlanoAtivacaoServlet" method="post">
-                <input type="number" name="id" id="id" value="<%= (Integer.parseInt(String.valueOf(request.getAttribute("id"))) == 0) ? null : request.getAttribute("id") %>" placeholder="Pesquise o plano pelo ID">
+                <input type="number" name="id" id="id" value="<%= request.getAttribute("id") %>" placeholder="Pesquise o plano pelo ID" required>
                 <input type="submit" value="Pesquisar">
             </form>
         </div>

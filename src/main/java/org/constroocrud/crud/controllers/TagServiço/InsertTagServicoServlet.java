@@ -10,7 +10,6 @@ import org.constroocrud.crud.DAOs.TagServicoDAO;
 import org.constroocrud.crud.models.TagServico;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -22,7 +21,6 @@ public class InsertTagServicoServlet extends HttpServlet {
             throws ServletException, IOException {
 
         resp.setContentType("text/html");
-        PrintWriter out = resp.getWriter();
 
         String nome = req.getParameter("nome");
         String descricao = req.getParameter("descricao");
@@ -33,27 +31,24 @@ public class InsertTagServicoServlet extends HttpServlet {
         try {
             ResultSet rs = tagServicoDAO.buscarTagServicoPeloNome(nome);
             if (!rs.next()) {
+                // Tag Serviço não existe, prossegue para inserção
                 int num = tagServicoDAO.inserirTagServico(tagServico);
-                if (num == 1) {
-                    req.setAttribute("retorno", "certo");
-                } else if (num == 0) {
-                    req.setAttribute("retorno", "notfound");
-                } else {
-                    req.setAttribute("retorno", "erro");
-                }
+                req.setAttribute("retorno", num == 1 ? "certo" : "erro");
             } else {
-                req.setAttribute("retorno", "existente");  // Categoria já existe
+                // Tag Serviço já existe
+                req.setAttribute("retorno", "existente");
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            req.setAttribute("retorno", "erro");
+            req.setAttribute("mensagem", "Erro ao acessar o banco de dados: " + e.getMessage());
+            e.printStackTrace(); // Logar a exceção para depuração
         }
 
         req.setAttribute("metodo", "INSERIR");
         req.setAttribute("entidade", nome);
 
-        // Você é direcionado para a listagem de usuários!
-        RequestDispatcher rd;
-        rd = getServletContext().getRequestDispatcher("/pages/tagServico/listagemTagServico.jsp");
+        // Redireciona para a listagem de Tag Serviço
+        RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/tagServico/listagemTagServico.jsp");
         rd.include(req, resp);
     }
 }

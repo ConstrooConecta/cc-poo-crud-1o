@@ -3,10 +3,9 @@
 <html>
 <head>
     <title>Alterar Administrador pelo ID</title> <!-- Título da página -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/cascading-style-sheets/id.css"> <!-- Importação do CSS -->
 </head>
 <body>
-<!-- Importação do arquivo CSS para estilizar a página de edição do administrador -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/cascading-style-sheets/id.css">
 
 <header>
     <div class="titulo-constroo">
@@ -18,14 +17,13 @@
 <h1 id="titulo-Editar-Pelo-ID">Editar Administrador por ID</h1> <!-- Título principal da seção de edição -->
 
 <!-- Formulário que será enviado ao servlet para inclusão dos campos do administrador -->
-<form action="${pageContext.request.contextPath}/IncluirCamposAdministradorServlet" method="post"> <!-- Ação do formulário, que chama o servlet responsável pela edição -->
-    <h2 class="subtitulo-forms"></h2> <!-- Subtítulo (vazio) -->
-
+<form action="${pageContext.request.contextPath}/IncluirCamposAdministradorServlet" method="post"> <!-- Ação do formulário -->
     <div class="infos-linha1"> <!-- Contêiner para as informações do administrador -->
+
         <!-- Seção para inserir o ID do administrador -->
         <div class="ID">
             <label for="id">ID:</label> <!-- Rótulo para o campo de ID -->
-            <input type="text" name="administrador_id" id="id" placeholder="Insira o ID"> <!-- Campo para inserir o ID do administrador -->
+            <input type="text" name="administrador_id" id="id" placeholder="Insira o ID" required> <!-- Campo para inserir o ID -->
         </div>
 
         <div class="classButton1">
@@ -34,14 +32,14 @@
 
         <!-- Seção para exibir mensagens de erro -->
         <div id="infos-erro">
-            <% if (request.getAttribute("retorno") == "erro") { %>
+            <% if ("erro".equals(request.getAttribute("retorno"))) { %>
             <p><%= request.getAttribute("mensagem") %></p> <!-- Mensagem de erro a ser exibida -->
-
-            <% } else if (request.getAttribute("retorno") == "notfound") { %>
+            <% } else if ("notfound".equals(request.getAttribute("retorno"))) { %>
             <p>ITEM NÃO ENCONTRADO</p> <!-- Mensagem caso o item não seja encontrado -->
             <% } %>
         </div>
     </div>
 </form>
+
 </body>
 </html>

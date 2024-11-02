@@ -19,7 +19,7 @@
 
     <div class="ID"> <!-- Div para o campo ID -->
       <label for="id">ID:</label> <!-- Rótulo para o campo ID -->
-      <input type="text" name="categoria_id" id="id" placeholder="Insira o ID"> <!-- Campo de entrada para o ID da categoria -->
+      <input type="text" name="categoria_id" id="id" placeholder="Insira o ID" required> <!-- Campo de entrada para o ID da categoria -->
     </div>
 
     <div class="classButton1"> <!-- Div para o botão de ação -->

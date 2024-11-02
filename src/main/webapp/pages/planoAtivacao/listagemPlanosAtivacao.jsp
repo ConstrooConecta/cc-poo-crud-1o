@@ -38,7 +38,7 @@
                 </form>
             </div>
             <form id="form-plano-ativacao-criar" action="${pageContext.request.contextPath}/BuscarPlanoAtivacaoServlet" method="post">
-                <input type="text" name="id" id="id" placeholder="Pesquise o plano pelo ID"> <!-- Campo de pesquisa -->
+                <input type="text" name="id" id="id" placeholder="Pesquise o plano pelo ID" required> <!-- Campo de pesquisa -->
                 <input type="submit" value="Pesquisar"> <!-- Botão de pesquisa -->
             </form>
         </div>

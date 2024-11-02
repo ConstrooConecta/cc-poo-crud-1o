@@ -20,7 +20,7 @@
 
         <div class="ID">
             <label for="id">ID:</label> <!-- Rótulo para ID do plano -->
-            <input type="text" name="id_planoativacao" id="id" placeholder="Insira o ID"> <!-- Campo de entrada para o ID -->
+            <input type="text" name="id_planoativacao" id="id" placeholder="Insira o ID" required> <!-- Campo de entrada para o ID -->
         </div>
 
         <div class="classButton1">
@@ -35,8 +35,7 @@
             <%} else if (request.getAttribute("retorno") == "notfound") {%>
                 <p>ITEM NÃO ENCONTRADO</p>
             <%}%>
-
-        <!-- Mensagens de feedback baseadas no resultado da operação -->
+        </div>
     </div>
 </form>
 
