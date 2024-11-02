@@ -1,6 +1,5 @@
 package org.constroocrud.crud.controllers.PlanoAtivação;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -9,112 +8,62 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.constroocrud.crud.DAOs.PlanoAtivacaoDAO;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-// Este servlet é responsável por deletar planos de ativação.
-
+// Servlet responsável por deletar planos de ativação com base no ID fornecido
 @WebServlet(name = "DeletePlanoAtivacaoServlet", value = "/DeletarPlanoAtivacaoServlet")
 public class DeletePlanoAtivacaoServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // Define o tipo de resposta como HTML
         resp.setContentType("text/html");
-        PrintWriter out = resp.getWriter();
+
+        // Recebe o ID do plano de ativação e tenta converter para inteiro
+        String str_id_tipo = req.getParameter("id_planoativacao");
+        int id;
 
         req.setAttribute("metodo", "DELETAR");
 
-        //Recebe o id da entidade comprador/vendedor ou Profissional
-        String str_id_tipo = req.getParameter("id_planoativacao");
-        int id = 0;
         try {
             id = Integer.parseInt(str_id_tipo);
-        } catch (NumberFormatException numberFormatException) {
+        } catch (NumberFormatException e) {
+            // Caso o ID não seja um número válido, configura o retorno como "notfound" e redireciona
             req.setAttribute("retorno", "notfound");
-            req.setAttribute("mensagem", "Plano Ativação não encontrado!");
+            req.setAttribute("mensagem", "Plano de Ativação não encontrado!");
             req.getRequestDispatcher("/pages/planoAtivacao/deletarPlanoAtivacaoPeloID.jsp").forward(req, resp);
-        } finally {
-            //Estabelece a conexao
-            PlanoAtivacaoDAO planoAtivacaoDAO = new PlanoAtivacaoDAO();
+            return;
+        }
 
-            try {
-                ResultSet rs = planoAtivacaoDAO.buscarPlanoAtivacaoPeloID(id);
-                if (!rs.next()) {
-                    req.setAttribute("retorno", "notfound");
-                    req.setAttribute("mensagem", "Plano Ativação não encontrado!");
-                    req.setAttribute("entidade", id);
-
-                    req.getRequestDispatcher("/pages/planoAtivacao/deletarPlanoAtivacaoPeloID.jsp").forward(req, resp);
-                } else {
-
-        // Recebe o ID do plano de ativação a ser deletado
-        String str_id_tipo = req.getParameter("id_planoativacao");
-        int id_tipo = Integer.parseInt(str_id_tipo); // Converte o ID para inteiro
-
-        // Estabelece a conexão com o DAO
         PlanoAtivacaoDAO planoAtivacaoDAO = new PlanoAtivacaoDAO();
 
         try {
-            // Verifica se o plano de ativação existe
-            ResultSet rs = planoAtivacaoDAO.buscarPlanoAtivacaoPeloID(id_tipo);
+            // Verifica se o plano existe no banco de dados
+            ResultSet rs = planoAtivacaoDAO.buscarPlanoAtivacaoPeloID(id);
             if (!rs.next()) {
-                // Se não encontrado, define atributos para resposta
                 req.setAttribute("retorno", "notfound");
-                req.setAttribute("metodo", "DELETAR");
-                req.setAttribute("entidade", id_tipo);
-
-                // Redireciona para a página de listagem de planos de ativação
-                RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/planoAtivacao/listagemPlanosAtivacao.jsp");
-                rd.include(req, resp);
+                req.setAttribute("mensagem", "Plano de Ativação não encontrado!");
+                req.setAttribute("entidade", id);
+                req.getRequestDispatcher("/pages/planoAtivacao/deletarPlanoAtivacaoPeloID.jsp").forward(req, resp);
             } else {
-                // Tenta remover o plano de ativação
-                int num = planoAtivacaoDAO.removerPlanoAtivacao(id_tipo);
+                // Remove o plano de ativação
+                int num = planoAtivacaoDAO.removerPlanoAtivacao(id);
 
-                // Verifica o resultado da operação de remoção
                 if (num == 1) {
-                    req.setAttribute("retorno", "certo"); // Deletado com sucesso
-                } else if (num == 0) {
-                    req.setAttribute("retorno", "notfound"); // Não encontrado
+                    req.setAttribute("retorno", "certo");
                 } else {
-                    req.setAttribute("retorno", "erro"); // Erro inesperado
+                    req.setAttribute("retorno", "erro");
                 }
 
-                    int num = planoAtivacaoDAO.removerPlanoAtivacao(id);
-
-                    if (num == 1) {
-                        req.setAttribute("retorno", "certo");
-                    } else {
-                        req.setAttribute("retorno", "erro");
-                    }
-
-                    req.setAttribute("entidade", id);
-
-                    req.getRequestDispatcher("/pages/planoAtivacao/listagemPlanosAtivacao.jsp");
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-                req.setAttribute("retorno", "erro");
-                req.setAttribute("mensagem", "Erro SQL");
-
-                req.getRequestDispatcher("/pages/planoAtivacao/listagemPlanosAtivacao.jsp");
-            }
-
-                // Redireciona para a página de listagem de planos de ativação
-                RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/planoAtivacao/listagemPlanosAtivacao.jsp");
-                rd.include(req, resp);
+                req.setAttribute("entidade", id);
+                req.getRequestDispatcher("/pages/planoAtivacao/listagemPlanosAtivacao.jsp").forward(req, resp);
             }
         } catch (SQLException sqlException) {
-            // Trata exceções SQL
             sqlException.printStackTrace();
             req.setAttribute("retorno", "erro");
             req.setAttribute("mensagem", "Erro SQL");
-
-            // Redireciona para a página de listagem de planos de ativação
-            RequestDispatcher rd = getServletContext().getRequestDispatcher("/pages/planoAtivacao/listagemPlanosAtivacao.jsp");
-            rd.include(req, resp);
+            req.getRequestDispatcher("/pages/planoAtivacao/listagemPlanosAtivacao.jsp").forward(req, resp);
         }
     }
 }

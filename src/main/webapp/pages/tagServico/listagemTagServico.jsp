@@ -41,7 +41,7 @@
                 </form>
             </div>
             <form action="${pageContext.request.contextPath}/BuscarTagServicoServlet" method="post">
-                <input type="text" name="nome" id="nome" placeholder="Pesquisar categorias">
+                <input type="text" name="nome" id="nome" placeholder="Pesquisar categorias" required>
                 <input type="submit" value="Pesquisar"> <!-- Botão de pesquisa -->
             </form>
         </div>
@@ -79,15 +79,15 @@
                 <p>ID: <%= resultSet.getInt("id") %> | Descrição: <%= resultSet.getString("descricao") %></p> <!-- Exibe ID e Descrição -->
             </div>
             <div class="actions">
-                <form action="${pageContext.request.contextPath}/DeletarTagServicoServlet" method="post">
-                    <input type="hidden" name="tag_id" value="<%= resultSet.getInt("id") %>">
-                    <input type="hidden" name="nome" value="<%= resultSet.getString("nome") %>">
+                <form action="${pageContext.request.contextPath}/DeletarTagServicoServlet" method="post"> <!-- Formulário para deletar Tag Serviço -->
+                    <input type="hidden" name="tag_id" value="<%= resultSet.getInt("id") %>"> <!-- ID da Tag Serviço -->
+                    <input type="hidden" name="nome" value="<%= resultSet.getString("nome") %>"> <!-- Nome da Tag Serviço -->
                     <button type="submit" class="delete-btn">Deletar</button> <!-- Botão para deletar Tag Serviço -->
                 </form>
-                <form action="${pageContext.request.contextPath}/DirecionarTagServicoServlet" method="post">
-                    <input type="hidden" name="tag_id" value="<%= resultSet.getInt("id") %>">
-                    <input type="hidden" name="nome" value="<%= resultSet.getString("nome") %>">
-                    <input type="hidden" name="descricao" value="<%= resultSet.getString("descricao") %>">
+                <form action="${pageContext.request.contextPath}/DirecionarTagServicoServlet" method="post"> <!-- Formulário para editar Tag Serviço -->
+                    <input type="hidden" name="tag_id" value="<%= resultSet.getInt("id") %>"> <!-- ID da Tag Serviço -->
+                    <input type="hidden" name="nome" value="<%= resultSet.getString("nome") %>"> <!-- Nome da Tag Serviço -->
+                    <input type="hidden" name="descricao" value="<%= resultSet.getString("descricao") %>"> <!-- Descrição da Tag Serviço -->
                     <button type="submit" class="edit-btn">Editar</button> <!-- Botão para editar Tag Serviço -->
                 </form>
             </div>

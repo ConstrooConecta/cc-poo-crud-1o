@@ -3,7 +3,7 @@
 <meta charset="UTF-8">
 <html>
 <head>
-    <title>Editar Administrador</title> <!-- Título da página -->
+    <title>Editar Categotia Produto</title> <!-- Título da página -->
 </head>
 <body>
 <!-- <link rel="stylesheet" href="alterarAdministrador.css">  -->

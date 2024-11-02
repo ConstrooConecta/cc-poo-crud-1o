@@ -19,7 +19,7 @@
 
         <div class="ID">
             <label for="id">ID:</label> <!-- Rótulo para ID -->
-            <input type="text" name="tag_id" id="id" placeholder="Insira o ID"> <!-- Campo de entrada para o ID da Tag Serviço -->
+            <input type="text" name="tag_id" id="id" placeholder="Insira o ID" required> <!-- Campo de entrada para o ID da Tag Serviço -->
         </div>
 
         <div class="classButton1">
@@ -27,15 +27,13 @@
         </div>
 
         <%-- Exibição de mensagens de retorno --%>
-        <% if (request.getAttribute("retorno") == "erro") { %>
-        <div>
-            <p><%= request.getAttribute("mensagem") %></p> <!-- Mensagem de erro -->
+        <div class="infos-erro">
+            <% if (request.getAttribute("retorno") == "erro") { %>
+                <p><%= request.getAttribute("mensagem") %></p> <!-- Mensagem de erro -->
+            <% } else if (request.getAttribute("retorno") == "notfound") { %>
+                <p>ITEM NÃO ENCONTRADO</p> <!-- Mensagem se o item não for encontrado -->
+            <% } %>
         </div>
-        <% } else if (request.getAttribute("retorno") == "notfound") { %>
-        <div>
-            <p>ITEM NÃO ENCONTRADO</p> <!-- Mensagem se o item não for encontrado -->
-        </div>
-        <% } %>
     </div>
 </form>
 </body>

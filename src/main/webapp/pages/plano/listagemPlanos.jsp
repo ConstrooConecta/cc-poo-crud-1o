@@ -27,8 +27,8 @@
 <main>
     <section class="planos">
         <h1>Planos</h1> <!-- Título da seção -->
-        <div class="controls"> <!-- Controles para ações -->
-            <div class="actionsCreateAlterDelete">
+        <div class="controls">
+            <div class="actionsCreateAlterDelete"> <!-- Controles para ações de criação, alteração e exclusão -->
                 <form action="${pageContext.request.contextPath}/pages/plano/cadastrarPlano.html" method="get">
                     <button type="submit" class="create-btn">Adicionar</button> <!-- Botão para adicionar plano -->
                 </form>
@@ -40,27 +40,23 @@
                 </form>
             </div>
             <form action="${pageContext.request.contextPath}/BuscarPlanoServlet" method="post"> <!-- Formulário de pesquisa -->
-                <input type="text" name="nome" id="nome" placeholder="Pesquisar planos"> <!-- Campo de pesquisa -->
+                <input type="text" name="nome" id="nome" placeholder="Pesquisar planos" required> <!-- Campo de pesquisa -->
                 <input type="submit" value="Pesquisar"> <!-- Botão de pesquisa -->
             </form>
         </div>
 
         <!-- Exibição de mensagens de retorno -->
-        <% if (request.getAttribute("retorno") == "erro") { %>
+        <% if (request.getAttribute("retorno") != null) { %>
         <div>
+            <% if (request.getAttribute("retorno").equals("erro")) { %>
             <p>ERRO AO <%= request.getAttribute("metodo") %> O ITEM: <%= request.getAttribute("entidade") %></p>
-        </div>
-        <% } else if (request.getAttribute("retorno") == "certo") { %>
-        <div>
+            <% } else if (request.getAttribute("retorno").equals("certo")) { %>
             <p>SUCESSO AO <%= request.getAttribute("metodo") %> O ITEM: <%= request.getAttribute("entidade") %></p>
-        </div>
-        <% } else if (request.getAttribute("retorno") == "notfound") { %>
-        <div>
+            <% } else if (request.getAttribute("retorno").equals("notfound")) { %>
             <p>ITEM NÃO ENCONTRADO AO <%= request.getAttribute("metodo") %>: <%= request.getAttribute("entidade") %></p>
-        </div>
-        <% } else if (request.getAttribute("retorno") == "existente") { %>
-        <div>
+            <% } else if (request.getAttribute("retorno").equals("existente")) { %>
             <p>ITEM JÁ EXISTENTE AO <%= request.getAttribute("metodo") %>: <%= request.getAttribute("entidade") %></p>
+            <% } %>
         </div>
         <% } %>
 
@@ -76,16 +72,17 @@
                 <div class="details">
                     <h2>ID: <%= resultSet.getString("id") %> | <%= resultSet.getString("nome_plano") %></h2>
                     <p>Preço Mensal: <%= resultSet.getDouble("valor") %></p>
-                    <p>Tipo de Plano: <% if (resultSet.getString("tipo_plano").equals("P")) { %>
-                        Profissional
-                        <% } else if (resultSet.getString("tipo_plano").equals("V")) { %>
-                        Vendedor
-                        <% } %></p>
+                    <p>Tipo de Plano:
+                        <% if (resultSet.getString("tipo_plano").equals("P")) { %>Profissional<%
+                        } else if (resultSet.getString("tipo_plano").equals("V")) { %>Vendedor<% } %>
+                    </p>
                     <p>Tempo de Duração: <%= resultSet.getInt("tempo_duracao") %></p>
                     <p><%= resultSet.getString("descricao") %></p>
                 </div>
             </div>
-            <div class="actions"> <!-- Ações para cada plano -->
+
+            <!-- Formulários para deletar ou editar cada plano -->
+            <div class="actions">
                 <form action="${pageContext.request.contextPath}/DeletarPlanoServlet" method="post">
                     <input type="hidden" name="plano_id" value="<%= resultSet.getInt("id") %>"> <!-- ID do plano -->
                     <input type="hidden" name="nome" value="<%= resultSet.getString("nome_plano") %>"> <!-- Nome do plano -->

@@ -32,7 +32,7 @@ public class CategoriaProdutoDAO {
 
     // Método para buscar todas as categorias de produtos
     public ResultSet buscarCategoriaProduto() {
-        String query = "SELECT * FROM categoria_produto ORDER BY id";
+        String query = "SELECT * FROM categoria_produto ORDER BY nome";
         try {
             Connection conn = getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query);
@@ -45,7 +45,7 @@ public class CategoriaProdutoDAO {
 
     // Método para buscar uma categoria de produto pelo ID
     public ResultSet buscarCategoriaProdutoPeloID(int id) {
-        String query = "SELECT * FROM categoria_produto WHERE id = ?";
+        String query = "SELECT * FROM categoria_produto WHERE id = ? ORDER BY nome";
         try {
             Connection conn = getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query);
@@ -73,7 +73,7 @@ public class CategoriaProdutoDAO {
 
     // Método para buscar categorias de produto com nome similar
     public ResultSet buscarSimilarCategoriaProdutoPeloNome(String nome) {
-        String query = "SELECT * FROM categoria_produto WHERE nome LIKE ?";
+        String query = "SELECT * FROM categoria_produto WHERE nome LIKE ? ORDER BY nome";
         try {
             Connection conn = getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query);

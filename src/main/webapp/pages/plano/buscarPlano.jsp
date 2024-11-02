@@ -42,41 +42,42 @@
             </div>
             <!-- Formulário para pesquisar planos -->
             <form action="${pageContext.request.contextPath}/BuscarPlanoServlet" method="post">
-                <input type="text" name="nome" id="nome" value="<%= request.getAttribute("nome") %>" placeholder="Pesquisar planos">
+                <input type="text" name="nome" id="nome" value="<%= request.getAttribute("nome") %>" placeholder="Pesquisar planos" required>
                 <input type="submit" value="Pesquisar" class="">
             </form>
         </div>
 
-        <% if (request.getAttribute("retorno") == "erro"){
+        <!-- Exibição de mensagens de erro ou sucesso -->
+        <%
+            // Verifica se o atributo "retorno" não é nulo, indicando que há uma mensagem para exibir
+            if (request.getAttribute("retorno") != null) {
         %>
         <div>
-            <P>ERRO AO <%= request.getAttribute("metodo") %> O ITEM: <%= request.getAttribute("entidade") %></P>
+            <%
+                // Exibe a mensagem correspondente com base no valor de "retorno"
+                if (request.getAttribute("retorno").equals("erro")) {
+            %>
+            <p>ERRO AO <%= request.getAttribute("metodo") %> O ITEM: <%= request.getAttribute("entidade") %></p> <!-- Mensagem de erro -->
+            <%
+            } else if (request.getAttribute("retorno").equals("certo")) {
+            %>
+            <p>SUCESSO AO <%= request.getAttribute("metodo") %> O ITEM: <%= request.getAttribute("entidade") %></p> <!-- Mensagem de sucesso -->
+            <%
+            } else if (request.getAttribute("retorno").equals("notfound")) {
+            %>
+            <p>ITEM NÃO ENCONTRADO AO <%= request.getAttribute("metodo") %>: <%= request.getAttribute("entidade") %></p> <!-- Mensagem de item não encontrado -->
+            <%
+            } else if (request.getAttribute("retorno").equals("existente")) {
+            %>
+            <p>ITEM JÁ EXISTENTE AO <%= request.getAttribute("metodo") %>: <%= request.getAttribute("entidade") %></p> <!-- Mensagem de item já existente -->
+            <%
+                }
+            %>
         </div>
-        <%} else if (request.getAttribute("retorno") == "certo") {%>
-        <div>
-            <P>SUCESSO AO <%= request.getAttribute("metodo") %> O ITEM: <%= request.getAttribute("entidade") %></P>
+        <%
+            }
+        %>
 
-        </div>
-        <%} else if (request.getAttribute("retorno") == "notfound") {%>
-        <div>
-            <p>ITEM NÃO ENCONTRADO AO <%= request.getAttribute("metodo")%>: <%= request.getAttribute("entidade") %></p>
-        </div>
-        <%} else if (request.getAttribute("retorno") == "existente") {%>
-
-        <!-- Exibição de mensagens de erro ou sucesso -->
-        <% if (request.getAttribute("retorno") != null) { %>
-        <div>
-            <% if (request.getAttribute("retorno").equals("erro")) { %>
-            <p>ERRO AO <%= request.getAttribute("metodo") %> O ITEM: <%= request.getAttribute("entidade") %></p>
-            <% } else if (request.getAttribute("retorno").equals("certo")) { %>
-            <p>SUCESSO AO <%= request.getAttribute("metodo") %> O ITEM: <%= request.getAttribute("entidade") %></p>
-            <% } else if (request.getAttribute("retorno").equals("notfound")) { %>
-            <p>ITEM NÃO ENCONTRADO AO <%= request.getAttribute("metodo") %>: <%= request.getAttribute("entidade") %></p>
-            <% } else if (request.getAttribute("retorno").equals("existente")) { %>
-            <p>ITEM JÁ EXISTENTE AO <%= request.getAttribute("metodo") %>: <%= request.getAttribute("entidade") %></p>
-            <% } %>
-        </div>
-        <% } %>
 
         <!-- Recuperação de planos do banco de dados -->
         <%
@@ -88,13 +89,10 @@
                 <%
                 }else{
                     do {%>
-
-                while (resultSet.next()) { // Iteração sobre os resultados
-        %>
         <div class="plano">
             <div class="info">
                 <div class="details">
-                    <h2><%= resultSet.getString("nome_plano") %></h2> <!-- Nome do plano -->
+                    <h2>ID: <%= resultSet.getString("id") %> | <%= resultSet.getString("nome_plano") %></h2>
                     <p>Preço Mensal: <%= resultSet.getDouble("valor") %></p> <!-- Preço do plano -->
                     <p>Tipo de Usuário:
                         <% if (resultSet.getString("tipo_plano").equals("P")) { %>Profissional
@@ -127,11 +125,7 @@
                     } while (resultSet.next());
                 }
         %>
-
         <%
-
-        <%
-                } // Fim do while
             } catch (SQLException e) {
                 e.printStackTrace(); // Impressão de erro se houver uma exceção
             }

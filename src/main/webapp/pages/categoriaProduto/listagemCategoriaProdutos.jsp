@@ -41,31 +41,39 @@
                 </form>
             </div>
             <form action="${pageContext.request.contextPath}/BuscarCategoriaProdutoServlet" method="post">
-                <input type="text" name="nome" id="nome" placeholder="Pesquisar categorias"> <!-- Campo de pesquisa -->
+                <input type="text" name="nome" id="nome" placeholder="Pesquisar categorias" required> <!-- Campo de pesquisa -->
                 <input type="submit" value="Pesquisar">
             </form>
 
         </div>
-        <% if (request.getAttribute("retorno") == "erro"){
+        <%
+            // Verifica o valor do atributo "retorno" para exibir a mensagem apropriada.
+            if (request.getAttribute("retorno") == "erro") {
         %>
         <div>
-            <P>ERRO AO <%= request.getAttribute("metodo") %> O ITEM: <%= request.getAttribute("entidade") %></P>
-
+            <p>ERRO AO <%= request.getAttribute("metodo") %> O ITEM: <%= request.getAttribute("entidade") %></p> <!-- Mensagem de erro, indicando falha ao executar o método na entidade -->
         </div>
-        <%} else if (request.getAttribute("retorno") == "certo") {%>
+        <%
+        } else if (request.getAttribute("retorno") == "certo") {
+        %>
         <div>
-            <P>SUCESSO AO <%= request.getAttribute("metodo") %> O ITEM: <%= request.getAttribute("entidade") %></P>
-
+            <p>SUCESSO AO <%= request.getAttribute("metodo") %> O ITEM: <%= request.getAttribute("entidade") %></p> <!-- Mensagem de sucesso, indicando que o método foi executado com êxito na entidade -->
         </div>
-        <%} else if (request.getAttribute("retorno") == "notfound") {%>
+        <%
+        } else if (request.getAttribute("retorno") == "notfound") {
+        %>
         <div>
-            <p>ITEM NÃO ENCONTRADO AO <%= request.getAttribute("metodo")%>: <%= request.getAttribute("entidade") %></p>
+            <p>ITEM NÃO ENCONTRADO AO <%= request.getAttribute("metodo") %>: <%= request.getAttribute("entidade") %></p> <!-- Mensagem de item não encontrado ao tentar executar o método na entidade -->
         </div>
-        <%} else if (request.getAttribute("retorno") == "existente") {%>
+        <%
+        } else if (request.getAttribute("retorno") == "existente") {
+        %>
         <div>
-            <p>ITEM JÁ EXISTENTE AO <%= request.getAttribute("metodo") %>: <%= request.getAttribute("entidade") %></p>
+            <p>ITEM JÁ EXISTENTE AO <%= request.getAttribute("metodo") %>: <%= request.getAttribute("entidade") %></p> <!-- Mensagem de item já existente ao tentar executar o método na entidade -->
         </div>
-        <%}%>
+        <%
+            }
+        %>
 
 
         <%

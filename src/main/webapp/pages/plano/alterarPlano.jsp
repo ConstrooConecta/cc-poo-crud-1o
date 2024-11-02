@@ -17,7 +17,7 @@
     </div>
 </header>
 
-<h1 id="titulo-Editar-Administrador">Editar Plano</h1> <!-- Título principal -->
+<h1 id="titulo-Editar-Plano">Editar Plano</h1> <!-- Título principal -->
 <form action="AlterarPlanoServlet" method="post"> <!-- Formulário para alteração -->
     <h2 class="subtitulo-forms"></h2> <!-- Subtítulo (atualmente vazio) -->
     <div class="infos-linha"> <!-- Linha de informações -->

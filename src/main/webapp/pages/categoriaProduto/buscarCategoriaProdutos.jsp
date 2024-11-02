@@ -29,7 +29,6 @@
     <section class="categorias"> <!-- Seção para categorias -->
         <h1>Categorias Produtos</h1> <!-- Título da seção -->
         <div class="controls"> <!-- Controles de ação -->
-
             <div class="actionsCreateAlterDelete">
                 <form action="${pageContext.request.contextPath}/pages/categoriaProduto/cadastrarCategoriaProduto.html" method="get">
                     <button type="submit" class="create-btn">Adicionar</button> <!-- Botão para adicionar administrador -->
@@ -42,7 +41,7 @@
                 </form>
             </div>
             <form action="${pageContext.request.contextPath}/BuscarCategoriaProdutoServlet" method="post">
-                <input type="text" name="nome" id="nome" value="<%=request.getAttribute("nome")%>" placeholder="Pesquisar categorias"> <!-- Campo de pesquisa -->
+                <input type="text" name="nome" id="nome" value="<%=request.getAttribute("nome")%>" placeholder="Pesquisar categorias" required> <!-- Campo de pesquisa -->
                 <input type="submit" value="Pesquisar">
             </form>
 
@@ -81,7 +80,7 @@
         <div class="categoria"> <!-- Container para cada categoria -->
             <div class="info"> <!-- Informações da categoria -->
                 <h2><%= resultSet.getString("nome") %></h2> <!-- Nome da categoria -->
-                <p><%= resultSet.getString("descricao") %></p> <!-- Descrição da categoria -->
+                <p>ID: <%= resultSet.getInt("id") %> | descrição: <%= resultSet.getString("descricao") %></p> <!-- Descrição da categoria -->
             </div>
             <div class="actions"> <!-- Ações disponíveis -->
                 <form action="${pageContext.request.contextPath}/DeletarCategoriaProdutoServlet" method="post"> <!-- Formulário para deletar -->

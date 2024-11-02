@@ -33,7 +33,7 @@ public class AdministradorDAO {
 
     // Método para buscar todos os administradores
     public ResultSet buscarAdministrador() {
-        String query = "SELECT * FROM administrador ORDER BY id";
+        String query = "SELECT * FROM administrador ORDER BY nome";
         try {
             Connection conn = getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query);
@@ -46,7 +46,7 @@ public class AdministradorDAO {
 
     // Método para buscar um administrador pelo ID
     public ResultSet buscarAdministradorPeloID(int id) {
-        String query = "SELECT * FROM administrador WHERE id = ?";
+        String query = "SELECT * FROM administrador WHERE id = ? ORDER BY nome";
         try {
             Connection conn = getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query);
@@ -60,7 +60,7 @@ public class AdministradorDAO {
 
     // Método para buscar um administrador pelo email
     public ResultSet buscarAdministradorPeloEmail(String email) {
-        String query = "SELECT * FROM administrador WHERE email = ?";
+        String query = "SELECT * FROM administrador WHERE email = ? ORDER BY nome";
         try {
             Connection conn = getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query);
@@ -74,7 +74,7 @@ public class AdministradorDAO {
 
     // Método para buscar um administrador pelo nome
     public ResultSet buscarAdministradorPeloNome(String nome) {
-        String query = "SELECT * FROM administrador WHERE nome LIKE ?";
+        String query = "SELECT * FROM administrador WHERE nome LIKE ? ORDER BY nome";
         try {
             Connection conn = getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query);

@@ -20,7 +20,7 @@
 
         <div class="ID"> <!-- Campo para ID -->
             <label for="id">ID:</label> <!-- Rótulo para o campo de ID -->
-            <input type="text" name="plano_id" id="id" placeholder="Insira o ID"> <!-- Campo de entrada para o ID do plano -->
+            <input type="text" name="plano_id" id="id" placeholder="Insira o ID" required> <!-- Campo de entrada para o ID do plano -->
         </div>
 
         <div class="classButton1"> <!-- Botão de envio -->
@@ -28,15 +28,13 @@
         </div>
 
         <!-- Exibição de mensagens de erro ou status -->
-        <% if (request.getAttribute("retorno") == "erro") { %>
-        <div>
-            <p><%= request.getAttribute("mensagem") %></p> <!-- Mensagem de erro recebida do servlet -->
+        <div class="infos-erro">
+            <% if (request.getAttribute("retorno") == "erro") { %>
+                <p><%= request.getAttribute("mensagem") %></p> <!-- Mensagem de erro recebida do servlet -->
+            <% } else if (request.getAttribute("retorno") == "notfound") { %>
+                <p>ITEM NÃO ENCONTRADO</p> <!-- Mensagem informando que o item não foi encontrado -->
+            <% } %>
         </div>
-        <% } else if (request.getAttribute("retorno") == "notfound") { %>
-        <div>
-            <p>ITEM NÃO ENCONTRADO</p> <!-- Mensagem informando que o item não foi encontrado -->
-        </div>
-        <% } %>
     </div>
 </form>
 
