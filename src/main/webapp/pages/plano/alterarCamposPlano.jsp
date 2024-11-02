@@ -49,7 +49,7 @@
 
         <div class="gridAtualValor">
             <label for="valorAtual">Valor Atual:</label>
-            <input type="number" id="valorAtual" step="0.01" value="<%= request.getAttribute("valor") %>" disabled> <!-- Valor atual, campo desabilitado -->
+            <input type="number" id="valorAtual" min="0.01" step="0.01" value="<%= request.getAttribute("valor") %>" disabled> <!-- Valor atual, campo desabilitado -->
         </div>
 
         <div class="gridNovoValor">
