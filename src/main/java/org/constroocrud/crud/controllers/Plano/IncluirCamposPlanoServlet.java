@@ -43,6 +43,8 @@ public class IncluirCamposPlanoServlet extends HttpServlet {
                 // Se o plano não for encontrado, configura o retorno como "notfound"
                 req.setAttribute("retorno", "notfound");
                 req.setAttribute("mensagem", "Plano não encontrado!");
+                req.getRequestDispatcher("/pages/plano/alterarPlanoPeloID.jsp").forward(req, resp);
+
             } else {
                 // Obtém os dados do plano do ResultSet
                 String nome = resultSet.getString("nome_plano");
