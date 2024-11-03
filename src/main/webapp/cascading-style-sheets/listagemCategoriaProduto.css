@@ -1,44 +1,77 @@
-body {
-    font-family: Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:wght@100&display=swap');
+
+/* =-=-=-=-=-=-=-=-=-=-= Configurações iniciais =-=-=-=-=-=-=-=-=-=-= */
+
+*{
+    font-family: "Montserrat", sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
 }
+
+body {
+    background-color: #f4f4f4;
+}
+
+/* =-=-=-=-=-=-=-=-=-=-= Configurações da nav/header =-=-=-=-=-=-=-=-=-=-= */
 
 header {
-    background-color: #f8f8f8;
-    padding: 20px;
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
+    z-index: 1;
+    width: 100%;
+    background-color: #071c20;
+    color: white;
+    padding: 1% 2%;
+    height: 40px;
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: space-between;
 }
 
-nav {
-    background-color: #0E292F;
-    padding: 10px 0;
+header h1 {
+    font-size: 170%;
+    padding: 0% 1% 0% 1%;
+    font-weight: 600;
 }
 
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    text-align: center;
+header ul {
+    margin-right: 3rem;
+    align-items: center;
+    list-style: none;
+    display: flex;
 }
 
-nav ul li {
-    display: inline;
-    margin: 0 15px;
+li {
+    font-weight: 400;
+    margin: 0px 15px;
 }
 
-nav ul li a {
-    color: #fff;
+a {
+    color: white;
     text-decoration: none;
-    font-size: 16px;
 }
 
-nav ul li a.active {
-    font-weight: bold;
+.cruds > ul > li > a.active {
+    font-weight: 600;
 }
+
+.titulo-constroo {
+    width: 10%;
+    align-items: center;
+    display: inline-flex;
+    font-size: 110%;
+}
+
+.titulo-constroo img{
+    width: 2.5rem;
+    margin: 0rem 0rem 0rem 1rem;
+}
+
+.ref-parte:hover{
+    text-decoration: underline;
+}
+
+
 
 main {
     padding: 20px;
@@ -46,11 +79,12 @@ main {
 
 .categorias {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 8% auto;
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
 }
 
 .categorias h1 {
@@ -65,9 +99,16 @@ main {
     margin-bottom: 20px;
 }
 
+.controls input[type="text"] {
+    padding: 10px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
 .controls input[type="submit"],
 .controls .create-btn {
-    background-color:#0E292F;
+    background-color: #0E292F;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -75,11 +116,9 @@ main {
     cursor: pointer;
 }
 
-.controls input {
-    padding: 10px;
-    width: 200px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.controls input[type="submit"]:hover,
+.controls .create-btn:hover {
+    opacity: 0.8;
 }
 
 .categoria {
@@ -134,6 +173,42 @@ main {
 .actionsCreateAlterDelete{
     display: flex;
     flex-direction: row;
-    width: 40%;
+    width: 200px;
     justify-content: space-between;
+    gap: 15px;
+}
+
+/* =-=-=-=-=-=-=-=-=-=-= Deixando responsivo =-=-=-=-=-=-=-=-=-=-= */
+
+@media screen and (max-width: 820px){
+
+    header ul {
+        display: none;
+    }
+
+    input{
+        margin: 10px 0% 0% 10%;
+    }
+
+    .categorias {
+        max-width: 80%;
+        margin-top: 10vh;
+        height: 50%;
+        min-width: 200px;
+    }
+
+    .actionsCreateAlterDelete, .categoria {
+        flex-direction: column;
+    }
+
+    .pesquisar{
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .pesquisar input{
+        max-width: 25vw;
+    }
+
 }

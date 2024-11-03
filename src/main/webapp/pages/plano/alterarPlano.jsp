@@ -12,8 +12,18 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/cascading-style-sheets/alterarPlano.css"> <!-- Link para a folha de estilo -->
 <header>
     <div class="titulo-constroo">
-        <h1>Constroo</h1> <!-- Título da aplicação -->
-        <img src="${pageContext.request.contextPath}/imagens/LogoVersaoMenor.svg" alt="Logo do app Constroo"> <!-- Logo da aplicação -->
+        <h1>Constroo</h1>
+        <img src="${pageContext.request.contextPath}/imagens/LogoVersaoMenor.svg" alt="Logo do app Constroo">  <!-- Logo da aplicação -->
+    </div>
+
+    <div class="cruds"> <!-- Navegação principal com links para diferentes seções -->
+        <ul>
+            <li><a href="${pageContext.request.contextPath}/pages/plano/listagemPlanos.jsp" class="active">Planos</a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/categoriaProduto/listagemCategoriaProdutos.jsp">Categorias</a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/administrador/listagemAdministradores.jsp">Adms</a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/tagServico/listagemTagServico.jsp">Tag Serviço</a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/planoAtivacao/listagemPlanosAtivacao.jsp">Planos Ativação</a></li>
+        </ul>
     </div>
 </header>
 

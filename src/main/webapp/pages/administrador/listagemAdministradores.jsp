@@ -13,17 +13,21 @@
 </head>
 <body>
 <header>
-    <div class="logo">Constroo 🌍</div> <!-- Logo da aplicação -->
+    <div class="titulo-constroo">
+        <h1>Constroo</h1>
+        <img src="${pageContext.request.contextPath}/imagens/LogoVersaoMenor.svg" alt="Logo do app Constroo">  <!-- Logo da aplicação -->
+    </div>
+
+    <div class="cruds"> <!-- Navegação principal com links para diferentes seções -->
+        <ul>
+            <li><a href="${pageContext.request.contextPath}/pages/plano/listagemPlanos.jsp">Planos</a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/categoriaProduto/listagemCategoriaProdutos.jsp">Categorias</a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/administrador/listagemAdministradores.jsp" class="active">Adms</a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/tagServico/listagemTagServico.jsp">Tag Serviço</a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/planoAtivacao/listagemPlanosAtivacao.jsp">Planos Ativação</a></li>
+        </ul>
+    </div>
 </header>
-<nav> <!-- Navegação principal com links para diferentes seções -->
-    <ul>
-        <li><a href="${pageContext.request.contextPath}/pages/plano/listagemPlanos.jsp">Planos</a></li>
-        <li><a href="${pageContext.request.contextPath}/pages/categoriaProduto/listagemCategoriaProdutos.jsp">Categorias</a></li>
-        <li><a href="${pageContext.request.contextPath}/pages/administrador/listagemAdministradores.jsp" class="active">Adms</a></li>
-        <li><a href="${pageContext.request.contextPath}/pages/tagServico/listagemTagServico.jsp">Tag Serviço</a></li>
-        <li><a href="${pageContext.request.contextPath}/pages/planoAtivacao/listagemPlanosAtivacao.jsp">Planos Ativação</a></li>
-    </ul>
-</nav>
 <main>
     <section class="administradores"> <!-- Seção para listagem dos administradores -->
         <h1>Administradores</h1> <!-- Título da seção -->
@@ -40,7 +44,7 @@
                 </form>
             </div>
 
-            <form action="${pageContext.request.contextPath}/BuscarAdministradorServlet" method="post"> <!-- Formulário de pesquisa de administradores -->
+            <form class="pesquisar" action="${pageContext.request.contextPath}/BuscarAdministradorServlet" method="post"> <!-- Formulário de pesquisa de administradores -->
                 <input type="text" name="nome" id="nome" placeholder="Pesquisar administradores" required> <!-- Campo de pesquisa pelo nome -->
                 <input type="submit" value="Pesquisar"> <!-- Botão de pesquisa -->
             </form>
