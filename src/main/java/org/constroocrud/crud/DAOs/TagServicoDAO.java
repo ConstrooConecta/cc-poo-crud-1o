@@ -1,176 +1,158 @@
 package org.constroocrud.crud.DAOs;
 
+import org.constroocrud.crud.Conexao;
 import org.constroocrud.crud.models.TagServico;
 
 import java.sql.*;
 
 public class TagServicoDAO {
-    private Connection conn;
-    private PreparedStatement pstmt;
-    private ResultSet rs;
 
-    public Connection getConn() {
-        return conn;
-    }
-
-    public PreparedStatement getPstmt() {
-        return pstmt;
-    }
-
-    public ResultSet getRs() {
-        return rs;
-    }
-
-
-    //Metodo que faz a conexao com o banco de dados
-
-
-    public boolean conectar(){
-        try{
-            Class.forName("org.postgresql.Driver");
-
-            String dbUrl = System.getenv("CC_URL");
-            String dbUser = System.getenv("CC_USER");
-            String dbPassword = System.getenv("CC_PASSWORD");
-
-            conn = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
-
-            return true;
-
-        }catch (SQLException sqlException ){
-            sqlException.printStackTrace();
-            return false;
-        }catch(ClassNotFoundException classNotFoundException){
-            classNotFoundException.printStackTrace();
-            return false;
-        }
-
-
-
-    }
-    public boolean inserirTagServico(TagServico tagServico){
-        conectar();
+    // Método para buscar todas as tags de serviço
+    public ResultSet buscarTagServicos() {
+        PreparedStatement pstmt;
+        ResultSet rs = null;
+        Conexao conexao = new Conexao(); // Cria uma nova conexão
+        conexao.conectar(); // Estabelece a conexão com o banco de dados
+        Connection conn = conexao.getConn(); // Obtém a conexão ativa
         try {
-
-            //faz o comando SQL
-            pstmt = conn.prepareStatement("INSERT INTO tag_servico (nome, descricao) VALUES (?, ?)");
-
-            //Coloca como parametro cada atributo do objeto CategoriaProduto por meio dos getters
-            pstmt.setString(1, tagServico.getNome());
-            pstmt.setString(2, tagServico.getDescricao());
-
-
-            pstmt.execute();
-
-            // Retorna True caso a execução da query seja bem sucedida
-
-            return true;
-
-        }catch (SQLException sqlException){
-            sqlException.printStackTrace();
-            // Retorna False caso a execução da query seja mal sucedida
-
-            return false;
+            String query = "SELECT * FROM tag_servico ORDER BY nome"; // Query para selecionar todas as tags
+            pstmt = conn.prepareStatement(query); // Prepara a instrução SQL
+            rs = pstmt.executeQuery(); // Executa a consulta e armazena o resultado
+            return rs; // Retorna o conjunto de resultados
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace(); // Exibe qualquer erro SQL
+            return rs; // Retorna null em caso de erro
+        } finally {
+            conexao.desconectar(); // Desconecta a conexão no final
         }
-
-
     }
 
-    public ResultSet buscarTagServico(){
+    // Método para buscar uma tag de serviço pelo ID
+    public ResultSet buscarTagServicoPeloID(int id) {
+        PreparedStatement pstmt;
+        ResultSet rs = null;
+        Conexao conexao = new Conexao(); // Cria uma nova conexão
+        conexao.conectar(); // Estabelece a conexão com o banco de dados
+        Connection conn = conexao.getConn(); // Obtém a conexão ativa
         try {
-            conectar();
-            String query = "Select * from tag_servico";
-            pstmt = conn.prepareStatement(query);
-            rs = pstmt.executeQuery();
-            return rs;
-
-
-        }catch (SQLException sqlException){
-            sqlException.printStackTrace();
-            return rs;
-
+            String query = "SELECT * FROM tag_servico WHERE id = ? ORDER BY nome"; // Query para selecionar uma tag pelo ID
+            pstmt = conn.prepareStatement(query); // Prepara a instrução SQL
+            pstmt.setInt(1, id); // Define o parâmetro ID na consulta
+            rs = pstmt.executeQuery(); // Executa a consulta e armazena o resultado
+            return rs; // Retorna o conjunto de resultados
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace(); // Exibe qualquer erro SQL
+            return rs; // Retorna null em caso de erro
+        } finally {
+            conexao.desconectar(); // Desconecta a conexão no final
         }
-
-
     }
 
-    public ResultSet buscarTagServicoPeloID(int id){
+    // Método para buscar uma tag de serviço pelo nome
+    public ResultSet buscarTagServicoPeloNome(String nome) {
+        PreparedStatement pstmt;
+        ResultSet rs = null;
+        Conexao conexao = new Conexao(); // Cria uma nova conexão
+        conexao.conectar(); // Estabelece a conexão com o banco de dados
+        Connection conn = conexao.getConn(); // Obtém a conexão ativa
         try {
-            conectar();
-            String query = "Select * from tag_servico where ? = id";
-
-            pstmt = conn.prepareStatement(query);
-            pstmt.setInt(1,id);
-            rs = pstmt.executeQuery();
-            return rs;
-
-
-        }catch (SQLException sqlException){
-            sqlException.printStackTrace();
-            return rs;
-
+            String query = "SELECT * FROM tag_servico WHERE nome LIKE ? ORDER BY nome"; // Query para selecionar tags com nome correspondente
+            pstmt = conn.prepareStatement(query); // Prepara a instrução SQL
+            pstmt.setString(1, "%" + nome + "%"); // Define o parâmetro nome na consulta (wildcard para busca parcial)
+            rs = pstmt.executeQuery(); // Executa a consulta e armazena o resultado
+            return rs; // Retorna o conjunto de resultados
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace(); // Exibe qualquer erro SQL
+            return rs; // Retorna null em caso de erro
+        } finally {
+            conexao.desconectar(); // Desconecta a conexão no final
         }
-
-
     }
 
-
-    public boolean removerTagServicoPeloID(int id){
-
-
-        boolean possuiRegistros = true;
-
+    // Método para remover uma tag de serviço pelo ID
+    public int removerTagServicoPeloID(int id) {
+        PreparedStatement pstmt;
+        Conexao conexao = new Conexao(); // Cria uma nova conexão
+        conexao.conectar(); // Estabelece a conexão com o banco de dados
+        Connection conn = conexao.getConn(); // Obtém a conexão ativa
         try {
-            conectar();
-
-            //Verifica se existe um comprador e vendedor nesse ID e atribui ao boolean possuiRegistros
-            ResultSet resultSet = buscarTagServicoPeloID(id);
-            if (!resultSet.next()){
-
-                possuiRegistros = false;
-            }else {
-
-                possuiRegistros = true;
+            // Verifica se existe uma tag de serviço com esse ID
+            ResultSet resultSet = buscarTagServicoPeloID(id); // Busca a tag pelo ID
+            if (!resultSet.next()) {
+                return 0; // Retorna 0 se a tag não for encontrada
             }
 
-            //executa a query
-            String remover = "DELETE FROM tag_servico WHERE id = ?";
-            pstmt = conn.prepareStatement(remover);
+            // Executa a query de remoção
+            String remover = "DELETE FROM tag_servico WHERE id = ?"; // Query para deletar uma tag pelo ID
+            pstmt = conn.prepareStatement(remover); // Prepara a instrução SQL
+            pstmt.setInt(1, id); // Define o parâmetro ID na consulta
 
-            pstmt.setInt(1, id);
-            pstmt.execute();
+            int rows = pstmt.executeUpdate(); // Executa a remoção
 
-
-
-            return possuiRegistros;
-        }catch (SQLException sqlException){
-            sqlException.printStackTrace();
-            return false;
+            if (rows > 0) {
+                return 1; // Retorna 1 se a remoção foi bem-sucedida
+            }
+            return 0; // Retorna 0 se nenhuma linha foi afetada
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace(); // Exibe qualquer erro SQL
+            return -1; // Retorna -1 em caso de erro
+        } finally {
+            conexao.desconectar(); // Desconecta a conexão no final
         }
     }
 
-    public boolean alterarTagServico(int id, TagServico tagServico) {
-        conectar();
+    // Método para inserir uma nova tag de serviço
+    public int inserirTagServico(TagServico tagServico) {
+        PreparedStatement pstmt;
+        Conexao conexao = new Conexao(); // Cria uma nova conexão
+        conexao.conectar(); // Estabelece a conexão com o banco de dados
+        Connection conn = conexao.getConn(); // Obtém a conexão ativa
         try {
-            // Prepare a single statement with placeholders for all columns
-            pstmt = conn.prepareStatement("UPDATE tag_servico SET nome = ?, descricao = ? WHERE id = ?");
+            // Faz o comando SQL
+            pstmt = conn.prepareStatement("INSERT INTO tag_servico (nome, descricao) VALUES (?, ?)"); // Query para inserir uma nova tag
+            // Coloca como parâmetro cada atributo do objeto TagServico
+            pstmt.setString(1, tagServico.getNome()); // Define o nome da tag
+            pstmt.setString(2, tagServico.getDescricao()); // Define a descrição da tag
 
-            // Set parameters without quotation marks
-            pstmt.setString(1, tagServico.getNome());
-            pstmt.setString(2, tagServico.getDescricao());
+            int rows = pstmt.executeUpdate(); // Executa a inserção
 
-            pstmt.setInt(3, id);
-
-            pstmt.execute();
-
-            // No need for separate statements for each column update
-            // ...
-
-            return true;
-
+            if (rows > 0) {
+                return 1; // Retorna 1 se a inserção foi bem-sucedida
+            }
+            return 0; // Retorna 0 se nenhuma linha foi afetada
         } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
-            return false;
+            sqlException.printStackTrace(); // Exibe qualquer erro SQL
+            return -1; // Retorna -1 em caso de erro
+        } finally {
+            conexao.desconectar(); // Desconecta a conexão no final
+        }
+    }
+
+    // Método para alterar uma tag de serviço
+    public int alterarTagServico(int id, TagServico tagServico) {
+        PreparedStatement pstmt;
+        Conexao conexao = new Conexao(); // Cria uma nova conexão
+        conexao.conectar(); // Estabelece a conexão com o banco de dados
+        Connection conn = conexao.getConn(); // Obtém a conexão ativa
+        try {
+            // Prepara a consulta de atualização
+            pstmt = conn.prepareStatement("UPDATE tag_servico SET nome = ?, descricao = ? WHERE id = ?"); // Query para atualizar os dados da tag
+            // Define os parâmetros da consulta
+            pstmt.setString(1, tagServico.getNome()); // Define o nome da tag
+            pstmt.setString(2, tagServico.getDescricao()); // Define a descrição da tag
+            pstmt.setInt(3, id); // Define o ID da tag que será atualizado
+
+            int rows = pstmt.executeUpdate(); // Executa a atualização
+
+            if (rows > 0) {
+                return 1; // Retorna 1 se a alteração for bem-sucedida
+            }
+            return 0; // Retorna 0 se nenhuma linha foi afetada
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace(); // Exibe qualquer erro SQL
+            return -1; // Retorna -1 em caso de erro
+        } finally {
+            conexao.desconectar(); // Desconecta a conexão no final
         }
     }
 }

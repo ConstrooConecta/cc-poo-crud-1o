@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Área Restrita - Entrar</title>
+    <title>Área Restrita - Menu</title>
+    <link rel="stylesheet" href="menu.css">
     <link rel="shortcut icon" type="imagex/png" href="/imagens/LogoVersaoMenor.ico">
-    <link rel="stylesheet" href="cascading-style-sheets/estilizacao_arearestrita.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
 </head>
 <body>
     <header>
@@ -20,25 +19,39 @@
             </div>
         </div>
     </header>
-    <div class="content">
-        <div class="login">
-            <img src="imagens/LogoAreaRestrita.svg" alt="" id="Imagem-Login">
-            <h5 class="titulo-login">Área Restrita</h5>
-            <h2>Faça seu login</h2>
-            <form action="LoginServlet" method="post" class="formulario-login">
-                <label>E-mail
-                    <br>
-                    <input type="email" name="email-admin" placeholder="Insira seu e-mail" class="informacoes-admin" required>
-                </label>
-                <br><br>
-                <label>Senha *
-                    <br>
-                    <input type="password" name="senha-admin" placeholder="Insira sua senha" class="informacoes-admin">
-                </label>
-                <br><br>
-                <button type="submit" value="Logar" id="botao-login">Login</button>
-            </form>
+    <div id="content">
+        <div id="titulo-menu">
+            <h3>Área Restrita</h3>
+            <h2>Selecione o contéudo</h2>
         </div>
+        <div id="opcoes">
+            <div class="caixa-opcao">
+                <h2>CRUD</h2>
+                <p>Create - Read - Update - Delete </p>
+                <ul>
+                    <li>Administradores</li>
+                    <li>Categorias de Produto</li>
+                    <li>Categorias de Serviços</li>
+                    <li>Planos</li>
+                    <li>Ativação de Planos</li>
+                </ul>
+                <a href="login.jsp"><button>Login</button></a>
+            </div>
+            <div class="caixa-opcao">
+                <h2>Dashboard</h2>
+                <p>Bussiness Intelligence</p>
+                <ul>
+                    <li>Dados</li>
+                    <li>Gráficos</li>
+                    <li>Estatísticas</li>
+                    <li>naosei</li>
+                    <li>naosei</li>
+                </ul>
+                <a href=""><button>Login</button></a>
+            </div>
+        </div>
+
     </div>
+
 </body>
 </html>

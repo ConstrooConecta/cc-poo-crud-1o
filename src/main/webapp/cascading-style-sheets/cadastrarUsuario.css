@@ -30,7 +30,9 @@
     color: #0E292F;
 
 }
-
+#atual{
+    display: inline-block;
+}
 .subtitulo-forms{
     margin-top: 40px;
     font-size: 20px;

@@ -1,0 +1,320 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:wght@100&display=swap');
+
+/* =-=-=-=-=-=-=-=-=-=-= Configurações iniciais =-=-=-=-=-=-=-=-=-=-=*/
+
+*{
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f4f4f4;
+    overflow-x: hidden;
+}
+
+/* =-=-=-=-=-=-=-=-=-=-= Configurações da nav/header =-=-=-=-=-=-=-=-=-=-=*/
+
+header {
+    top: 0px;
+    z-index: 1;
+    width: 100%;
+    background-color: #071c20;
+    color: white;
+    padding: 1% 2%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    justify-content: space-between;
+}
+
+header h1 {
+    font-size: 170%;
+    padding: 0% 1% 0% 1%;
+    font-weight: 600;
+}
+
+header nav {
+    font-weight: 600;
+}
+
+header ul {
+    align-items: center;
+    list-style: none;
+    display: flex;
+}
+
+li {
+    margin: 0px 15px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+hr{
+    margin: 3% 5% 3% 5%;
+}
+
+.navc{
+    padding: 4%;
+}
+
+.titulo-constroo {
+    width: 10%;
+    align-items: center;
+    display: inline-flex;
+    font-size: 110%;
+}
+
+.titulo-constroo img{
+    width: 2.5rem;
+    margin: 0rem 0rem 0rem 1rem;
+}
+
+.ref-parte:hover{
+    text-decoration: underline;
+}
+
+#baixar{
+    background-color: #867151;
+    border-radius: 10px;
+    height: 35px;
+    border: 0px;
+    width: 80px;
+    transition: 0.5s;
+    font-size: 100%;
+    font-weight: 600;
+    margin: 10px;
+}
+
+#baixar:hover{
+    transition: 0.5s;
+    background-color: #493e2e;
+}
+
+/* =-=-=-=-=-=-=-=-=-=-= Estilização da parte de "Conheça a equipe" =-=-=-=-=-=-=-=-=-=-=*/
+
+#titulo-conheca{
+    text-align: center;
+    margin-top: 20%;
+    position: absolute;
+    color: #f4f4f4;
+    font-size: 6rem;
+    font-weight: 700;
+    justify-content: center;
+}
+
+#conheca-equipe{
+    display: flex;
+    justify-content: center;
+    margin-top: 3%;
+}
+
+#conheca-equipe img{
+    margin: -1% 0% 0% 0%;
+    width: 100%;
+}
+
+/* =-=-=-=-=-=-=-=-=-=-= Estilização da parte de "quem somos" =-=-=-=-=-=-=-=-=-=-=*/
+
+#imagem-empresa{
+    width: 30%;
+    margin: -2% 7% 0% 0%;
+}
+
+#quem-somos{
+    margin: 8% 0% 0% 0%;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.prp-texto{
+    justify-content: center;
+    color: #0a262c;
+    margin-left: 4%;
+    width: 80%;
+}
+
+.texto-qs{
+    font-size: 135%;
+    margin: 0% 0% 3% 7%;
+    width: 60%;
+}
+
+.prp-titulo{
+    width: 200%;
+    margin: 0% 6.5%;
+    padding: 0% 0% 2% 0%;
+    font-size: 4rem;
+    font-weight: 900;
+}
+
+#imagem-empresa img{
+    width: 20rem;
+    margin: 0% 40% 0% 0%;
+}
+
+#divisao{
+    transform: rotate(-4deg);
+    position: absolute;
+    z-index: -1;
+    background-color: #867151ae;
+    width: 290%;
+    height: 90%;
+    top: 274%;
+    left: -200px;
+}
+
+/* =-=-=-=-=-=-=-=-=-=-= Estilização da parte de "Missão" =-=-=-=-=-=-=-=-=-=-=*/
+
+.missao{
+    display: flex;
+    margin-top: 5%;
+    text-align: center;
+    justify-content: center;
+}
+
+.missao img{
+    width: 20rem;
+}
+
+#texto-missao{
+    align-items: center;
+    width: 56%;
+    font-size: 145%;
+}
+
+#missao-titulo{
+    font-weight: 1000;
+    font-size: 3.5rem;
+    margin-bottom: 3%;
+}
+
+/* =-=-=-=-=-=-=-=-=-=-= Estilização do carrossel - Apresentação da equipe =-=-=-=-=-=-=-=-=-=-=*/
+
+
+.card{
+    display: inline-block;
+    margin: 3%;
+    color: #f4f4f4;
+}
+
+#eq{
+    font-weight: 1000;
+    color: #f4f4f4;
+    font-size: 300%;
+}
+
+.apr-equipe{
+    margin-top: 10%;
+    text-align: center;
+}
+
+.carrossel {
+    position: relative;
+    max-width: 100%;
+    margin: 0% 0% 5% 0%;
+}
+
+.slides{
+    margin: 10px;
+    display: flex;
+    width: 100%;
+    transition: 1s;
+}
+
+.slide{
+    width: 100%;
+    flex-direction: row;
+    transition: 1s;
+    justify-content: space-between;
+    display: flex;
+    display: none;
+}
+
+.foto-equipe {
+    width: 270px;
+    margin: 2%;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.botao-carrossel{
+    color:   #f4f4f4;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.active{
+    display: block;
+}
+
+/* =-=-=-=-=-=-=-=-=-=-= Configurações do footer =-=-=-=-=-=-=-=-=-=-=*/
+
+footer {
+    background-color: #062530;
+    color: #ffffff;
+    padding: 3% 0%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.frase{
+    width: 30%;
+    font-style: italic;
+    font-size: 125%;
+}
+
+.footer-container {
+    display: flex;
+    width: 90%;
+}
+
+.footer-item {
+    width: 15%;
+    margin: 0% 7%;
+}
+
+.footer-item h3 {
+    font-size: 120%;
+    margin-bottom: 10px;
+}
+
+.footer-item ul {    
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0%;
+}
+
+.direitos {
+    background-color: #062530;
+    color: white;
+    text-align: center;
+    padding: 0.4% 0%;
+    font-size: 80%;
+}
+
+/* =-=-=-=-=-=-=-=-=-=-= Sem categoria =-=-=-=-=-=-=-=-=-=-=*/
+    
+.negrito {
+    font-weight: bold;
+}

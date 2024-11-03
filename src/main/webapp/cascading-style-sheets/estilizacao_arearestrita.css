@@ -88,12 +88,15 @@ label {
     align-items: flex-start;
 }
 
-.informacoes-admin{
-    padding: 0% 0% 0% 12%;
+.informacao-erro{
+    margin: 20px;
+}
+
+.informacoes-admin {
+    padding: 0% 0% 0% 5%;
     font-weight: 300;
     font-size: 80%;
-    margin: 0% 0% 0% 0%;
-    width: 365%;
+    width: 26.7vw;
     height: 160%;
     border-radius: 10px;
     border: none;
