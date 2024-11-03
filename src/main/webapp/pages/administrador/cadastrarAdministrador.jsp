@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> <!-- Define tipo de conteúdo e codificação para UTF-8 -->
+
 <html lang="pt-BR"> <!-- Define o idioma da página -->
 <head>
     <meta charset="UTF-8"> <!-- Define a codificação de caracteres -->
@@ -11,16 +13,16 @@
 <header>
     <div class="titulo-constroo">
         <h1>Constroo</h1>
-        <img src="${pageContext.request.contextPath}/imagens/LogoVersaoMenor.svg" alt="Logo do app Constroo">  <!-- Logo da aplicação -->
+        <img src="../../imagens/LogoVersaoMenor.svg" alt="Logo do app Constroo">  <!-- Logo da aplicação -->
     </div>
 
     <div class="cruds"> <!-- Navegação principal com links para diferentes seções -->
         <ul>
-            <li><a href="${pageContext.request.contextPath}/pages/plano/listagemPlanos.jsp">Planos</a></li>
-            <li><a href="${pageContext.request.contextPath}/pages/categoriaProduto/listagemCategoriaProdutos.jsp">Categorias</a></li>
-            <li><a href="${pageContext.request.contextPath}/pages/administrador/listagemAdministradores.jsp" class="active">Adms</a></li>
-            <li><a href="${pageContext.request.contextPath}/pages/tagServico/listagemTagServico.jsp">Tag Serviço</a></li>
-            <li><a href="${pageContext.request.contextPath}/pages/planoAtivacao/listagemPlanosAtivacao.jsp">Planos Ativação</a></li>
+            <li><a href="../plano/listagemPlanos.jsp">Planos</a></li>
+            <li><a href="../categoriaProduto/listagemCategoriaProdutos.jsp">Categorias</a></li>
+            <li><a href="../listagemAdministradores.jsp" class="active">Adms</a></li>
+            <li><a href="../tagServico/listagemTagServico.jsp">Tag Serviço</a></li>
+            <li><a href="../planoAtivacao/listagemPlanosAtivacao.jsp">Planos Ativação</a></li>
         </ul>
     </div>
 </header>
