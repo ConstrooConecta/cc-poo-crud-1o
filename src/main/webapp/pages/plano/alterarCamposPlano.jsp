@@ -64,7 +64,7 @@
 
         <div class="gridNovoTipo">
             <label for="Tipo">Tipo Novo:</label>
-            <select name="tipo" id="tipo"> <!-- Seleção para novo tipo -->
+            <select name="tipo" id="tipo" required> <!-- Seleção para novo tipo -->
                 <option value="" disabled selected>Selecione o tipo</option> <!-- Opção padrão -->
                 <option value="P">Profissional</option> <!-- Opção Profissional -->
                 <option value="V">Vendedor</option> <!-- Opção Vendedor -->
