@@ -30,7 +30,6 @@ public class DirecionarPlanoAlterarServlet extends HttpServlet {
 
         // Converte o ID do plano de String para int
         int id = Integer.parseInt(str_id);
-        out.println(id); // Imprime o ID para debug (pode ser removido em produção)
 
         // Define os atributos que serão utilizados na página de alteração
         req.setAttribute("id", id);
