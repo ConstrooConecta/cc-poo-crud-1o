@@ -13,17 +13,21 @@
 </head>
 <body>
 <header>
-    <div class="logo">Constroo 🌍</div> <!-- Logo do app -->
+    <div class="titulo-constroo">
+        <h1>Constroo</h1>
+        <img src="${pageContext.request.contextPath}/imagens/LogoVersaoMenor.svg" alt="Logo do app Constroo">  <!-- Logo da aplicação -->
+    </div>
+
+    <div class="cruds"> <!-- Navegação principal com links para diferentes seções -->
+        <ul>
+            <li><a href="${pageContext.request.contextPath}/pages/plano/listagemPlanos.jsp">Planos</a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/categoriaProduto/listagemCategoriaProdutos.jsp">Categorias</a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/administrador/listagemAdministradores.jsp">Adms</a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/tagServico/listagemTagServico.jsp">Tag Serviço</a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/planoAtivacao/listagemPlanosAtivacao.jsp" class="active">Planos Ativação</a></li>
+        </ul>
+    </div>
 </header>
-<nav>
-    <ul>
-        <li><a href="${pageContext.request.contextPath}/pages/plano/listagemPlanos.jsp">Planos</a></li>
-        <li><a href="${pageContext.request.contextPath}/pages/categoriaProduto/listagemCategoriaProdutos.jsp">Categorias</a></li>
-        <li><a href="${pageContext.request.contextPath}/pages/administrador/listagemAdministradores.jsp">Adms</a></li>
-        <li><a href="${pageContext.request.contextPath}/pages/tagServico/listagemTagServico.jsp">Tag Servico</a></li>
-        <li><a href="${pageContext.request.contextPath}/pages/planoAtivacao/listagemPlanosAtivacao.jsp" class="active">Planos Ativação</a></li>
-    </ul>
-</nav>
 
 <main>
     <section class="planos">
@@ -37,7 +41,7 @@
                     <button type="submit" class="create-btn">Deletar</button> <!-- Botão para deletar plano -->
                 </form>
             </div>
-            <form id="form-plano-ativacao-criar" action="${pageContext.request.contextPath}/BuscarPlanoAtivacaoServlet" method="post">
+            <form id=form-plano-ativacao-criar" class="pesquisar" action="${pageContext.request.contextPath}/BuscarPlanoAtivacaoServlet" method="post">
                 <input type="text" name="id" id="id" placeholder="Pesquise o plano pelo ID" required> <!-- Campo de pesquisa -->
                 <input type="submit" value="Pesquisar"> <!-- Botão de pesquisa -->
             </form>

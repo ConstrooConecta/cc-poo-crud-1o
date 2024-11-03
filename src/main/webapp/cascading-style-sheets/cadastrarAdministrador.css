@@ -1,13 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:wght@100&display=swap');
 
-/* Configurações iniciais */
-
-.montserrat{
-    font-family: "Montserrat", sans-serif;
-    font-weight: 10;
-    font-style: normal;
-}
+/* =-=-=-=-=-=-=-=-=-=-= Configurações iniciais =-=-=-=-=-=-=-=-=-=-= */
 
 *{
     font-family: "Montserrat", sans-serif;
@@ -17,11 +11,12 @@
 
 body {
     background-color: #f4f4f4;
-    overflow-x: hidden;
 }
 
+
+/* =-=-=-=-=-=-=-=-=-=-= Configurações da nav/header =-=-=-=-=-=-=-=-=-=-= */
+
 header {
-    top: 0px;
     z-index: 1;
     width: 100%;
     background-color: #071c20;
@@ -29,14 +24,36 @@ header {
     padding: 1% 2%;
     height: 40px;
     display: flex;
-    align-items: center;
     position: fixed;
+    top: 0px;
+    align-items: center;
     justify-content: space-between;
 }
 
 header h1 {
     font-size: 170%;
     padding: 0% 1% 0% 1%;
+    font-weight: 600;
+}
+
+header ul {
+    margin-right: 3rem;
+    align-items: center;
+    list-style: none;
+    display: flex;
+}
+
+li {
+    font-weight: 400;
+    margin: 0px 15px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+.cruds > ul > li > a.active {
     font-weight: 600;
 }
 
@@ -52,6 +69,9 @@ header h1 {
     margin: 0rem 0rem 0rem 1rem;
 }
 
+.ref-parte:hover{
+    text-decoration: underline;
+}
 
 /* Formulario */
 #titulo-Cadastrar-Administrador {

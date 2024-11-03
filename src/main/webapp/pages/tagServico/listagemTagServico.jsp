@@ -14,19 +14,23 @@
 </head>
 <body>
 <header>
-    <div class="logo">Constroo 🌍</div> <!-- Logo do aplicativo -->
+    <div class="titulo-constroo">
+        <h1>Constroo</h1>
+        <img src="${pageContext.request.contextPath}/imagens/LogoVersaoMenor.svg" alt="Logo do app Constroo">  <!-- Logo da aplicação -->
+    </div>
+
+    <div class="cruds"> <!-- Navegação principal com links para diferentes seções -->
+        <ul>
+            <li><a href="${pageContext.request.contextPath}/pages/plano/listagemPlanos.jsp">Planos</a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/categoriaProduto/listagemCategoriaProdutos.jsp">Categorias</a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/administrador/listagemAdministradores.jsp">Adms</a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/tagServico/listagemTagServico.jsp" class="active">Tag Serviço</a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/planoAtivacao/listagemPlanosAtivacao.jsp">Planos Ativação</a></li>
+        </ul>
+    </div>
 </header>
-<nav>
-    <ul>
-        <li><a href="${pageContext.request.contextPath}/pages/plano/listagemPlanos.jsp">Planos</a></li>
-        <li><a href="${pageContext.request.contextPath}/pages/categoriaProduto/listagemCategoriaProdutos.jsp">Categorias</a></li>
-        <li><a href="${pageContext.request.contextPath}/pages/administrador/listagemAdministradores.jsp">Adms</a></li>
-        <li><a href="${pageContext.request.contextPath}/pages/tagServico/listagemTagServico.jsp" class="active">Tag Servico</a></li>
-        <li><a href="${pageContext.request.contextPath}/pages/planoAtivacao/listagemPlanosAtivacao.jsp">Planos Ativação</a></li>
-    </ul>
-</nav>
 <main>
-    <section class="categorias">
+    <section class="tags">
         <h1>Tag Serviços</h1>
         <div class="controls">
             <div class="actionsCreateAlterDelete">
@@ -40,7 +44,7 @@
                     <button type="submit" class="create-btn">Deletar</button> <!-- Botão para deletar Tag Serviço -->
                 </form>
             </div>
-            <form action="${pageContext.request.contextPath}/BuscarTagServicoServlet" method="post">
+            <form class="pesquisar" action="${pageContext.request.contextPath}/BuscarTagServicoServlet" method="post">
                 <input type="text" name="nome" id="nome" placeholder="Pesquisar categorias" required>
                 <input type="submit" value="Pesquisar"> <!-- Botão de pesquisa -->
             </form>
@@ -73,7 +77,7 @@
             try {
                 while (resultSet.next()) {
         %>
-        <div class="categoria">
+        <div class="tag">
             <div class="info">
                 <h2><%= resultSet.getString("nome") %></h2>
                 <p>ID: <%= resultSet.getInt("id") %> | Descrição: <%= resultSet.getString("descricao") %></p> <!-- Exibe ID e Descrição -->

@@ -8,8 +8,18 @@
 <body>
 <header>
   <div class="titulo-constroo">
-    <h1>Constroo</h1> <!-- Título principal da aplicação -->
-    <img src="${pageContext.request.contextPath}/imagens/LogoVersaoMenor.svg" alt="Logo do app Constroo"> <!-- Logo da aplicação -->
+    <h1>Constroo</h1>
+    <img src="${pageContext.request.contextPath}/imagens/LogoVersaoMenor.svg" alt="Logo do app Constroo">  <!-- Logo da aplicação -->
+  </div>
+
+  <div class="cruds"> <!-- Navegação principal com links para diferentes seções -->
+    <ul>
+      <li><a href="${pageContext.request.contextPath}/pages/plano/listagemPlanos.jsp">Planos</a></li>
+      <li><a href="${pageContext.request.contextPath}/pages/categoriaProduto/listagemCategoriaProdutos.jsp" class="active">Categorias</a></li>
+      <li><a href="${pageContext.request.contextPath}/pages/administrador/listagemAdministradores.jsp" >Adms</a></li>
+      <li><a href="${pageContext.request.contextPath}/pages/tagServico/listagemTagServico.jsp">Tag Serviço</a></li>
+      <li><a href="${pageContext.request.contextPath}/pages/planoAtivacao/listagemPlanosAtivacao.jsp">Planos Ativação</a></li>
+    </ul>
   </div>
 </header>
 <h1 id="titulo-Editar-Pelo-ID">Deletar Categoria Produto por ID</h1> <!-- Título principal da seção -->
