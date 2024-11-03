@@ -27,7 +27,6 @@ public class DirecionarAdministradorAlterarServlet extends HttpServlet {
         String senha = req.getParameter("senha");
         String email = req.getParameter("email");
         int id = Integer.parseInt(str_id); // Converte o ID para um tipo inteiro
-        out.println(id); // Exibe o ID no response para fins de depuração
 
         // Define atributos para serem utilizados na página de alteração
         req.setAttribute("id", id);
