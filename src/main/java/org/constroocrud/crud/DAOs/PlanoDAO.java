@@ -76,12 +76,6 @@ public class PlanoDAO {
         conexao.conectar(); // Estabelece a conexão com o banco de dados
         Connection conn = conexao.getConn(); // Obtém a conexão ativa
         try {
-            // Verifica se existe um plano com esse ID
-            ResultSet resultSet = buscarPlanoPeloID(id); // Busca o plano pelo ID
-            if (!resultSet.next()) {
-                return 0; // Retorna 0 se o plano não for encontrado
-            }
-
             // Executa a query de remoção
             String remover = "DELETE FROM plano WHERE id = ?"; // Query para deletar um plano pelo ID
             pstmt = conn.prepareStatement(remover); // Prepara a instrução SQL

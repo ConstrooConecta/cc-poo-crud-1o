@@ -78,9 +78,6 @@ public class TagServicoDAO {
         try {
             // Verifica se existe uma tag de serviço com esse ID
             ResultSet resultSet = buscarTagServicoPeloID(id); // Busca a tag pelo ID
-            if (!resultSet.next()) {
-                return 0; // Retorna 0 se a tag não for encontrada
-            }
 
             // Executa a query de remoção
             String remover = "DELETE FROM tag_servico WHERE id = ?"; // Query para deletar uma tag pelo ID
