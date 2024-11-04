@@ -30,7 +30,7 @@
 
         <div class="ID">
             <label for="id">ID:</label> <!-- Rótulo para ID do plano -->
-            <input type="text" name="id_planoativacao" id="id" placeholder="Insira o ID" required> <!-- Campo de entrada para o ID -->
+            <input type="number" name="id_planoativacao" id="id" min="1" placeholder="Insira o ID" required> <!-- Campo de entrada para o ID -->
         </div>
 
         <div class="classButton1">

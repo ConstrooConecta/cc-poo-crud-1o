@@ -31,7 +31,7 @@
         <div class="infos-linha1"> <!-- Linha de informações -->
             <div class="ID">
                 <label for="id">ID:</label> <!-- Rótulo para o campo de ID -->
-                <input type="text" name="administrador_id" id="id" placeholder="Insira o ID" required> <!-- Campo de entrada para ID, obrigatório -->
+                <input type="number" name="administrador_id" id="id" min="1" placeholder="Insira o ID" required> <!-- Campo de entrada para ID, obrigatório -->
             </div>
 
             <div class="classButton1"> <!-- Container para o botão -->
