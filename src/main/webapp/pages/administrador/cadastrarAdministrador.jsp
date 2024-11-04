@@ -20,7 +20,7 @@
         <ul>
             <li><a href="../plano/listagemPlanos.jsp">Planos</a></li>
             <li><a href="../categoriaProduto/listagemCategoriaProdutos.jsp">Categorias</a></li>
-            <li><a href="../listagemAdministradores.jsp" class="active">Adms</a></li>
+            <li><a href="listagemAdministradores.jsp" class="active">Adms</a></li>
             <li><a href="../tagServico/listagemTagServico.jsp">Tag Serviço</a></li>
             <li><a href="../planoAtivacao/listagemPlanosAtivacao.jsp">Planos Ativação</a></li>
         </ul>
@@ -31,7 +31,7 @@
     <h1 id="titulo-Cadastrar-Administrador">Cadastrar Administrador</h1> <!-- Título da seção de cadastro -->
     <form action="${pageContext.request.contextPath}/InserirAdministradorServlet" method="post"> <!-- Formulário de cadastro -->
 
-        <h2 class="subtitulo-forms">Complete as informações abaixo</h2> <!-- Subtítulo para orientações -->
+        <h2 class="subtitulo-forms"></h2> <!-- Subtítulo para orientações -->
 
         <div class="infos-linha"> <!-- Container para informações do administrador -->
 

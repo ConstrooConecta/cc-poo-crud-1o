@@ -30,7 +30,7 @@
 
         <div class="ID"> <!-- Divisão para o campo de ID -->
             <label for="id">ID:</label> <!-- Rótulo para o campo ID -->
-            <input type="text" name="id_planoativacao" id="id" placeholder="Insira o ID" required> <!-- Campo de entrada para ID do plano -->
+            <input type="number" name="id_planoativacao" id="id" min="1" value="<%= (request.getAttribute("id") == null) ? "" : request.getAttribute("id") %>" placeholder="Insira o ID" required> <!-- Campo de entrada para ID do plano -->
         </div>
 
         <div class="classButton1">

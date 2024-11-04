@@ -30,7 +30,7 @@
 
         <div class="ID">
             <label for="id">ID:</label> <!-- Rótulo para ID -->
-            <input type="text" name="tag_id" id="id" placeholder="Insira o ID" required> <!-- Campo de entrada para o ID da Tag Serviço -->
+            <input type="number" name="tag_id" id="id" min="1" placeholder="Insira o ID" required> <!-- Campo de entrada para o ID da Tag Serviço -->
         </div>
 
         <div class="classButton1">
