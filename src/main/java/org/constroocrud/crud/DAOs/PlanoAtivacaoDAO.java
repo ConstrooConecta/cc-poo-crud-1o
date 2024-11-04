@@ -98,13 +98,7 @@ public class PlanoAtivacaoDAO {
         conexao.conectar(); // Estabelece a conexão com o banco de dados
         Connection conn = conexao.getConn(); // Obtém a conexão ativa
         PreparedStatement pstmt;
-        ResultSet resultSet = buscarPlanoAtivacaoPeloID(id); // Busca o plano pelo ID
         try {
-            // Verifica se existe um plano de ativação nesse ID
-            if (resultSet == null || !resultSet.next()) {
-                return 0; // Retorna 0 se o plano não foi encontrado
-            }
-
             // Executa a query de remoção
             String remover = "DELETE FROM plano_ativacao WHERE id = ?"; // Query para deletar um plano pelo ID
             pstmt = conn.prepareStatement(remover); // Prepara a instrução SQL
