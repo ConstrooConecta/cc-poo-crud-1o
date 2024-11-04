@@ -34,7 +34,7 @@
         <!-- Seção para inserir o ID do administrador -->
         <div class="ID">
             <label for="id">ID:</label> <!-- Rótulo para o campo de ID -->
-            <input type="text" name="administrador_id" id="id" placeholder="Insira o ID" required> <!-- Campo para inserir o ID -->
+            <input type="number" name="administrador_id" id="id" min="1" value="<%= (request.getAttribute("id") == null) ? "" : request.getAttribute("id") %>" placeholder="Insira o ID" required> <!-- Campo para inserir o ID -->
         </div>
 
         <div class="classButton1">

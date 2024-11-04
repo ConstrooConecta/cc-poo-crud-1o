@@ -30,7 +30,7 @@
 
         <div class="ID">
             <label for="id">ID:</label> <!-- Rótulo para o ID -->
-            <input type="text" name="tag_id" id="id" placeholder="Insira o ID" required> <!-- Campo de entrada para o ID, agora obrigatório -->
+            <input type="number" name="tag_id" id="id" min="1" value="<%= (request.getAttribute("id") == null) ? "" : request.getAttribute("id") %>" placeholder="Insira o ID" required> <!-- Campo de entrada para o ID, agora obrigatório -->
         </div>
 
         <div class="classButton1">

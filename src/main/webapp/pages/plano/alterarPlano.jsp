@@ -59,7 +59,7 @@
 
         <div class="gridNovaDuracao">
             <label for="duracao">Nova Duração:</label> <!-- Rótulo para nova duração -->
-            <input type="number" name="duracao" id="duracao" value="<%= request.getAttribute("duracao") %>" placeholder="Descrição nova"> <!-- Campo de entrada para nova duração -->
+            <input type="number" name="duracao" id="duracao" min="1" value="<%= request.getAttribute("duracao") %>" placeholder="Descrição nova"> <!-- Campo de entrada para nova duração -->
         </div>
 
         <div class="gridAtualValor">
