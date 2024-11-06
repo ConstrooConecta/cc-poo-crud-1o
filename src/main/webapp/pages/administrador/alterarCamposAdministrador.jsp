@@ -46,6 +46,14 @@
             <input type="password" name="senha" id="senha" placeholder="Senha nova"> <!-- Campo para inserir a nova senha -->
             <input type="hidden" name="id" value="<%= request.getAttribute("id") %>"> <!-- Campo oculto que armazena o ID do administrador -->
         </div>
+
+    </div>
+
+    <!-- Bloco para exibir mensagens de retorno após a submissão do formulário -->
+    <div>
+    <% if ("erro".equals(request.getAttribute("retorno"))) { %>
+        <p><%= request.getAttribute("mensagem") %></p> <!-- Mensagem de erro a ser exibida -->
+    <% } %>
     </div>
 
     <div class="classButton">
@@ -53,11 +61,5 @@
     </div>
 </form>
 
-<!-- Bloco para exibir mensagens de retorno após a submissão do formulário -->
-<% if ("erro".equals(request.getAttribute("retorno"))) { %>
-<div>
-    <p><%= request.getAttribute("mensagem") %></p> <!-- Mensagem de erro a ser exibida -->
-</div>
-<% } %>
 </body>
 </html>

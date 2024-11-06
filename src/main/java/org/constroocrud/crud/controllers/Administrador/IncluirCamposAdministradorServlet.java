@@ -33,7 +33,6 @@ public class IncluirCamposAdministradorServlet extends HttpServlet {
             req.setAttribute("retorno", "notfound");
             req.setAttribute("mensagem", "Admin não encontrado!");
             req.getRequestDispatcher("/pages/administrador/alterarAdministradorPeloID.jsp").forward(req, resp);
-            return;
         }
 
         // Cria uma instância do DAO para buscar dados do administrador
