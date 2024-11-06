@@ -126,7 +126,7 @@ public class CategoriaProdutoDAO {
         Connection conn = conexao.getConn(); // Obtém a conexão ativa
         try {
             // Prepara a instrução SQL para remoção de categoria
-            String remover = "DELETE FROM tag_servico WHERE id = ?"; // Query para deletar tag_servico pelo ID
+            String remover = "DELETE FROM categoria_produto WHERE id = ?"; // Query para deletar tag_servico pelo ID
             pstmt = conn.prepareStatement(remover); // Prepara a instrução SQL
             pstmt.setInt(1, id); // Define o parâmetro ID
             int rows = pstmt.executeUpdate(); // Executa a remoção e retorna a quantidade de linhas afetadas
