@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %> <!-- Definição do tipo de conteúdo e linguagem -->
 <%@ page errorPage="../ErrorPage.jsp" %>
+
 <html>
 <head>
     <title>Alterar Administrador pelo ID</title> <!-- Título da página -->
@@ -9,8 +10,18 @@
 
 <header>
     <div class="titulo-constroo">
-        <h1>Constroo</h1> <!-- Nome do aplicativo -->
-        <img src="${pageContext.request.contextPath}/imagens/LogoVersaoMenor.svg" alt="Logo do app Constroo"> <!-- Logo do aplicativo -->
+        <h1>Constroo</h1>
+        <img src="${pageContext.request.contextPath}/imagens/LogoVersaoMenor.svg" alt="Logo do app Constroo">  <!-- Logo da aplicação -->
+    </div>
+
+    <div class="cruds"> <!-- Navegação principal com links para diferentes seções -->
+        <ul>
+            <li><a href="${pageContext.request.contextPath}/pages/plano/listagemPlanos.jsp">Planos</a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/categoriaProduto/listagemCategoriaProdutos.jsp">Categorias</a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/administrador/listagemAdministradores.jsp" class="active">Adms</a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/tagServico/listagemTagServico.jsp">Tag Serviço</a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/planoAtivacao/listagemPlanosAtivacao.jsp">Planos Ativação</a></li>
+        </ul>
     </div>
 </header>
 
@@ -23,7 +34,7 @@
         <!-- Seção para inserir o ID do administrador -->
         <div class="ID">
             <label for="id">ID:</label> <!-- Rótulo para o campo de ID -->
-            <input type="text" name="administrador_id" id="id" placeholder="Insira o ID" required> <!-- Campo para inserir o ID -->
+            <input type="number" name="administrador_id" id="id" min="1" value="<%= (request.getAttribute("id") == null) ? "" : request.getAttribute("id") %>" placeholder="Insira o ID" required> <!-- Campo para inserir o ID -->
         </div>
 
         <div class="classButton1">

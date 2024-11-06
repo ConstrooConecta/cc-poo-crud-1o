@@ -9,9 +9,20 @@
 <header>
     <div class="titulo-constroo">
         <h1>Constroo</h1>
-        <img src="${pageContext.request.contextPath}/imagens/LogoVersaoMenor.svg" alt="Logo do app Constroo"> <!-- Logo da aplicação -->
+        <img src="${pageContext.request.contextPath}/imagens/LogoVersaoMenor.svg" alt="Logo do app Constroo">  <!-- Logo da aplicação -->
+    </div>
+
+    <div class="cruds"> <!-- Navegação principal com links para diferentes seções -->
+        <ul>
+            <li><a href="${pageContext.request.contextPath}/pages/plano/listagemPlanos.jsp">Planos</a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/categoriaProduto/listagemCategoriaProdutos.jsp">Categorias</a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/administrador/listagemAdministradores.jsp">Adms</a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/tagServico/listagemTagServico.jsp" class="active">Tag Serviço</a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/planoAtivacao/listagemPlanosAtivacao.jsp">Planos Ativação</a></li>
+        </ul>
     </div>
 </header>
+
 <h1 id="titulo-Editar-Pelo-ID">Deletar Tag Serviço por ID</h1> <!-- Título principal -->
 <form action="${pageContext.request.contextPath}/DeletarTagServicoServlet" method="post"> <!-- Formulário para deletar Tag Serviço -->
     <h2 class="subtitulo-forms"></h2> <!-- Subtítulo -->
@@ -19,7 +30,7 @@
 
         <div class="ID">
             <label for="id">ID:</label> <!-- Rótulo para ID -->
-            <input type="text" name="tag_id" id="id" placeholder="Insira o ID" required> <!-- Campo de entrada para o ID da Tag Serviço -->
+            <input type="number" name="tag_id" id="id" min="1" placeholder="Insira o ID" required> <!-- Campo de entrada para o ID da Tag Serviço -->
         </div>
 
         <div class="classButton1">

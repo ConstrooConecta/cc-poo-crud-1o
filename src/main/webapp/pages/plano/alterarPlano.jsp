@@ -12,8 +12,18 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/cascading-style-sheets/alterarPlano.css"> <!-- Link para a folha de estilo -->
 <header>
     <div class="titulo-constroo">
-        <h1>Constroo</h1> <!-- Título da aplicação -->
-        <img src="${pageContext.request.contextPath}/imagens/LogoVersaoMenor.svg" alt="Logo do app Constroo"> <!-- Logo da aplicação -->
+        <h1>Constroo</h1>
+        <img src="${pageContext.request.contextPath}/imagens/LogoVersaoMenor.svg" alt="Logo do app Constroo">  <!-- Logo da aplicação -->
+    </div>
+
+    <div class="cruds"> <!-- Navegação principal com links para diferentes seções -->
+        <ul>
+            <li><a href="${pageContext.request.contextPath}/pages/plano/listagemPlanos.jsp" class="active">Planos</a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/categoriaProduto/listagemCategoriaProdutos.jsp">Categorias</a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/administrador/listagemAdministradores.jsp">Adms</a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/tagServico/listagemTagServico.jsp">Tag Serviço</a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/planoAtivacao/listagemPlanosAtivacao.jsp">Planos Ativação</a></li>
+        </ul>
     </div>
 </header>
 
@@ -49,7 +59,7 @@
 
         <div class="gridNovaDuracao">
             <label for="duracao">Nova Duração:</label> <!-- Rótulo para nova duração -->
-            <input type="number" name="duracao" id="duracao" value="<%= request.getAttribute("duracao") %>" placeholder="Descrição nova"> <!-- Campo de entrada para nova duração -->
+            <input type="number" name="duracao" id="duracao" min="1" value="<%= request.getAttribute("duracao") %>" placeholder="Descrição nova"> <!-- Campo de entrada para nova duração -->
         </div>
 
         <div class="gridAtualValor">
@@ -69,7 +79,7 @@
 
         <div class="gridNovoTipo">
             <label for="Tipo">Tipo Novo:</label>
-            <select name="tipo" id="tipo"> <!-- Seleção para novo tipo -->
+            <select name="tipo" id="tipo" required> <!-- Seleção para novo tipo -->
                 <option value="" disabled selected>Selecione o tipo</option> <!-- Opção padrão -->
                 <option value="P">Profissional</option> <!-- Opção Profissional -->
                 <option value="V">Vendedor</option> <!-- Opção Vendedor -->

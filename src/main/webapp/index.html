@@ -3,55 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Área Restrita - Menu</title>
-    <link rel="stylesheet" href="menu.css">
-    <link rel="shortcut icon" type="imagex/png" href="/imagens/LogoVersaoMenor.ico">
+    <title>Constroo</title>
+    <link rel="stylesheet" href="landingPage/landingpage.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="sla.css">
+    <link rel="shortcut icon" type="imagex/png" href="landingPage/imagens/LogoVersaoMenor.ico">
 </head>
 <body>
     <header>
         <div class="titulo-constroo">
             <h1>Constroo</h1>
-            <div>
-                <img src="imagens/LogoVersaoMenor.svg" alt="Logo do app Constroo">
-            </div>
+                <img src="landingPage/imagens/LogoVersaoMenor.svg" alt="Logo do app Constroo">
+        </div>
+        <div class="navc">
+            <nav>
+                <ul>
+                    <li><a href="landingPage/quemsomos.html" class="ref-parte">Quem somos</a></li>
+                    <li><a href="#vantagens"class="ref-parte">Vantagens</a></li>
+                    <li><a href="#comocomprar"class="ref-parte">Como comprar</a></li>
+                    <button id="baixar"> <a href="#baixe-ja-ancora">Baixar</a></button>
+                </ul>
+            </nav>
         </div>
     </header>
-    <div id="content">
-        <div id="titulo-menu">
-            <h3>Área Restrita</h3>
-            <h2>Selecione o contéudo</h2>
-        </div>
-        <div id="opcoes">
-            <div class="caixa-opcao">
-                <h2>CRUD</h2>
-                <p>Create - Read - Update - Delete </p>
-                <ul>
-                    <li>Administradores</li>
-                    <li>Categorias de Produto</li>
-                    <li>Categorias de Serviços</li>
-                    <li>Planos</li>
-                    <li>Ativação de Planos</li>
-                </ul>
-                <a href="login.jsp"><button>Login</button></a>
+    <div class="aprsapp">
+        <div class="textos">
+            <h1 id="app">O Aplicativo Constroo</h1>
+            <p id="tt">
+                O Constroo é um aplicativo projetado para facilitar a vida dos construtores em seu processo de construção e reformulação.
+            </p>
+            <button id="baixe-botao"><a href="#baixe-ja-ancora">BAIXE EM BREVE</a></button>
+            <div class="sabermais">
+                <img src="landingPage/imagens/Arrow%20-%20Down%20Circle.png" alt="">
+                <p>
+                Role para baixo para saber mais
+                </p>
             </div>
-            <div class="caixa-opcao">
-                <h2>Dashboard</h2>
-                <p>Bussiness Intelligence</p>
-                <ul>
-                    <li>Dados</li>
-                    <li>Gráficos</li>
-                    <li>Estatísticas</li>
-                    <li>naosei</li>
-                    <li>naosei</li>
-                </ul>
-                <a href=""><button>Login</button></a>
+        </div>
+        <div class="logo-apresentacao">
+            <img src="landingPage/imagens/LogoNovaSVG.svg" alt="Logo Constroo">
+        </div>
+    </div>
+    <div class="marketplace">
+        <img src="landingPage/imagens/06-1.png" alt="Materiais de construção ilustração">
+        <div class="textomarket">
+            <h1>O MARKETPLACE DE MATERIAIS DE CONSTRUÇÕES USADOS</h1>
+            <p id="marketconstroo">No Constroo, você consegue obter os materiais de construção no menor preço do mercado e também 
+                evitar prejuízos vendendo as sobras de material da sua obra!
+                 Além disso, oferecemos uma variedade de serviços profissionais relacionados à construção civil</p>
+        </div>
+    </div>
+
+    <a id="vantagens" class="ancora"></a>
+    <div class="vantagens">
+        <h1>VANTAGENS DO CONSTROO</h1>
+        <div class="quadrado-informacao">
+            <div class="q1">
+                <h2>Retenção de dinheiro</h2>
+                <p>
+                Para garantir o sucesso da sua compra, até que o comprador e o 
+                vendedor confirmem o envio e a chegada do produto o dinheiro é retido pelo app
+                </p>
+            </div>
+            <div class="q1">
+                <h2>Venda mais fácil</h2>
+                <p>
+                    No Constroo, caso você queira vender seu produto mais rápido,
+                    por um pequeno adicional você consegue destacar seu produto em todo o aplicativo
+                </p>
+            </div>
+            <div class="q1">
+                <h2>ChatBot</h2>
+                <p>
+                    Qualquer dúvida ou pergunta pode ser respondida pelo ChatBot de Suporte do Constroo ativo 24h por dia
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="como">
+        <a id="comocomprar" class="ancora"></a>
+
+        <div class="direita">
+            <div class="direita-texto">
+                <h1 class="titulo-como">COMO COMPRAR PELO CONSTROO?</h1>
+                    <div class="texto-como">
+                        <p>Para comprar seu produto no Constroo, você precisa pagar para começar a negociar com o vendedor sobre o local de encontro ou o
+                            pagamento de um frete para obter o produto. 
+                            Quando tiver o produto em mãos, basta confirmar a chegada do produto para que o seu dinheiro seja liberado do sistema.
+                            Até a confirmação da compra, você pode cancelar o processo a qualquer momento, tendo seu dinheiro devolvido.</p>
+                    </div>
+                </div>
+            <div class="imagem-direita">
+                <img src="landingPage/imagens/ComoComprar.svg" alt="Celular aberto no aplicativo Constroo">
+
+            </div>
+        </div>
+    
+        <div id="esquerda">
+            <img src="landingPage/imagens/ComoVender.svg" alt="Celular aberto no aplicativo Constroo">
+            <div id="esquerda-texto">
+                <h1 class="titulo-como">COMO VENDER PELO CONSTROO?</h1>
+                    <p id="texto-como-esquerda">
+                        Para vender no Constroo basta você fornecer algumas informações do seu produto (descrição, estado do produto, disponibilidade para entrega, etc) e esperar algum comprador se interessar pelo seu produto. 
+                        Após isso vocês devem discutir sobre como será feita a entrega e então confirmar a entrega do produto, com tudo isso feito você terá vendido seu produto!
+                    </p>
+            </div>
+        </div>
+    
+        <div class="direita">
+            <div class="direita-texto">
+                <h1 class="titulo-como">DIVULGUE SEU SERVIÇO!</h1>
+
+                <div class="texto-como">
+                    <p>
+                        Se você é um profissional ou alguém capaz de oferecer um serviço relacionado à área da      Construção Civil, 
+                        você pode divulgar ele aqui, aumentando seu alcance e quantidade de clientes. Para isso basta informar
+                        informações do próprio serviço (pagando uma certa taxa você consegue destacar e aumentar o alcance dele na página principal de serviços!).
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="imagem-direita">
+                <img src="landingPage/imagens/Servico.svg" alt="Homem construindo">
             </div>
         </div>
 
     </div>
 
+    <hr>
+
+    <div id="baixe-ja">
+
+        <a id="baixe-ja-ancora" class="ancora"></a>
+
+        <img src="landingPage/imagens/Propaganda.svg" alt="Celular na interface do app" id="imagem-baixe">
+
+        <div id="prp-texto">
+            <h1 id="prp-titulo">Baixe em breve o Constroo!</h1>
+            <p id="bxj-texto">
+                Venda e compre materiais de construção usados de forma prática e segura. Conecte-se com compradores e vendedores de todo o país e economize no seu próximo projeto. O Constroo é a solução completa para quem quer renovar, construir ou vender com economia e sustentabilidade.
+            </p>
+            <img src="landingPage/imagens/googleplay.svg" alt="" id="play-baixe">
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="footer-container">
+
+            <p id="frase">“Reutilize um tijolo por dia, construa um futuro sustentável“</p>
+
+            <div class="footer-item">
+                <h3>Descubra</h3>
+                <ul>
+                    <a href="landingPage/quemsomos.html">ConstruConecta</a>
+                    <a href="https://institutojef.org.br/">Instituto J&F</a>
+                    <a href="https://www.instagram.com/constroo_/">Instagram</a>
+                </ul>
+            </div>
+
+            <div class="footer-item">
+                <h3>Desenvolvedores</h3>
+                <ul>
+                    <a href="landingPage/menuOpcoes/menu.html">Área Restrita</a>
+                </ul>
+            </div>
+
+            <div class="footer-item">
+                <h3>Em breve</h3>
+                <ul>
+                    <a href="#baixe-ja-ancora">Google Play</a>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <div id="direitos">
+        <p>&copy; 2024 ConstruConecta. Todos os direitos reservados.</p>
+    </div>
+    
 </body>
 </html>

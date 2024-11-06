@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Categoria de Produto</title>
+    <link rel="stylesheet" href="../cascading-style-sheets/cadastrarCategoriaProduto.css">
+</head>
+<body>
+    <header>
+        <div class="titulo-constroo">
+            <h1>Constroo</h1>
+                <img src="../imagens/LogoVersaoMenor.svg" alt="Logo do app Constroo">
+        </div>
+    </header>
+    <h1 id="titulo-Cadastrar-Categoria-Produto">Cadastrar Categoria Produto</h1>
+    <form action="../InserirCategoriaProdutoServlet" method="post" >
+        <h2 class="subtitulo-forms"></h2>
+
+        <div class="infos-linha">
+            <label for="Nome">Nome</label>
+            <input type="text" name="nome" id="nome" placeholder="Digite o nome da categoria">
+            <label for="Nome">Descricao</label>
+            <input type="text" name="descricao" id="descricao" placeholder="Descreva a categoria">
+            
+            <input type="submit" id="buttonCadastrar" value="Cadastrar">
+
+        </div>
+
+
+        
+    </form>
+</body>
+</html>

@@ -40,6 +40,9 @@ public class IncluirCamposTagServicoServlet extends HttpServlet {
             if (!resultSet.next()) {
                 req.setAttribute("retorno", "notfound");
                 req.setAttribute("mensagem", "Tag Serviço não encontrada!");
+
+                // Redireciona para a página de alteração do Tag Serviço
+                req.getRequestDispatcher("/pages/tagServico/alterarTagServicoPeloID.jsp").forward(req, resp);
             } else {
                 // Recupera os detalhes da Tag Serviço
                 String nome = resultSet.getString("nome");
@@ -49,6 +52,9 @@ public class IncluirCamposTagServicoServlet extends HttpServlet {
                 req.setAttribute("id", id);
                 req.setAttribute("nome", nome);
                 req.setAttribute("descricao", descricao);
+
+                // Redireciona para a página de alteração do Tag Serviço
+                req.getRequestDispatcher("/pages/tagServico/alterarCamposTagServico.jsp").forward(req, resp);
             }
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
@@ -56,7 +62,5 @@ public class IncluirCamposTagServicoServlet extends HttpServlet {
             req.setAttribute("mensagem", "Erro ao acessar o banco de dados.");
         }
 
-        // Redireciona para a página de alteração do Tag Serviço
-        req.getRequestDispatcher("/pages/tagServico/alterarCamposTagServico.jsp").forward(req, resp);
     }
 }

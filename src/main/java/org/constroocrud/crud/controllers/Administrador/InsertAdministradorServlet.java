@@ -42,7 +42,8 @@ public class InsertAdministradorServlet extends HttpServlet {
         Administrador administrador = new Administrador(nome, email, hashedPassword);
 
         // Verifica a validade do email e da senha usando expressões regulares
-        if (email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$") && senha.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,20}$")) {
+        if (email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")
+                && senha.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,20}$")) {
             try {
                 // Verifica se já existe um administrador com o email fornecido
                 ResultSet rs = administradorDAO.buscarAdministradorPeloEmail(email);

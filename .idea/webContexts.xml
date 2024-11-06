@@ -12,6 +12,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/pages/deletarCamposTagServico.jsp" value="file://$PROJECT_DIR$/src/main/webapp/pages" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/pages/listagemAdministradores.jsp" value="file://$PROJECT_DIR$/src/main/webapp/pages" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/pages/listagemPlanos.jsp" value="file://$PROJECT_DIR$/src/main/webapp/pages" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/pages/plano/alterarPlanoPeloID.jsp" value="file://$PROJECT_DIR$/src/main/webapp/pages/plano" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/pages/planoAtivacao/deletarPlanoAtivacaoPeloID.jsp" value="file://$PROJECT_DIR$/src/main/webapp/pages/planoAtivacao" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/pages/planoAtivacao/listagemPlanosAtivacao.jsp" value="file://$PROJECT_DIR$/src/main/webapp/pages/planoAtivacao" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/pagesant/listagemAdministradores.jsp" value="file://$PROJECT_DIR$/src/main/webapp/pagesant" />

@@ -23,7 +23,6 @@ public class AlterarTagServicoServlet extends HttpServlet {
         // Recebe o id da tag de serviço que será alterada
         String str_id = req.getParameter("id");
         int id = Integer.parseInt(str_id); // Converte o id para inteiro
-        out.println(str_id); // Exibe o id no console (opcional, para debugging)
 
         // Recebe os novos valores de nome e descrição da tag de serviço
         String nome = req.getParameter("nome");

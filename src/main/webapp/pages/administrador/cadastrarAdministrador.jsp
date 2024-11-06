@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> <!-- Define tipo de conteúdo e codificação para UTF-8 -->
+
 <html lang="pt-BR"> <!-- Define o idioma da página -->
 <head>
     <meta charset="UTF-8"> <!-- Define a codificação de caracteres -->
@@ -9,9 +11,19 @@
 <body>
 
 <header>
-    <div class="titulo-constroo"> <!-- Container para título e logo -->
-        <h1>Constroo</h1> <!-- Nome da aplicação -->
-        <img src="${pageContext.request.contextPath}/imagens/LogoVersaoMenor.svg" alt="Logo do app Constroo"> <!-- Logo da aplicação -->
+    <div class="titulo-constroo">
+        <h1>Constroo</h1>
+        <img src="../../imagens/LogoVersaoMenor.svg" alt="Logo do app Constroo">  <!-- Logo da aplicação -->
+    </div>
+
+    <div class="cruds"> <!-- Navegação principal com links para diferentes seções -->
+        <ul>
+            <li><a href="../plano/listagemPlanos.jsp">Planos</a></li>
+            <li><a href="../categoriaProduto/listagemCategoriaProdutos.jsp">Categorias</a></li>
+            <li><a href="listagemAdministradores.jsp" class="active">Adms</a></li>
+            <li><a href="../tagServico/listagemTagServico.jsp">Tag Serviço</a></li>
+            <li><a href="../planoAtivacao/listagemPlanosAtivacao.jsp">Planos Ativação</a></li>
+        </ul>
     </div>
 </header>
 
@@ -19,7 +31,7 @@
     <h1 id="titulo-Cadastrar-Administrador">Cadastrar Administrador</h1> <!-- Título da seção de cadastro -->
     <form action="${pageContext.request.contextPath}/InserirAdministradorServlet" method="post"> <!-- Formulário de cadastro -->
 
-        <h2 class="subtitulo-forms">Complete as informações abaixo</h2> <!-- Subtítulo para orientações -->
+        <h2 class="subtitulo-forms"></h2> <!-- Subtítulo para orientações -->
 
         <div class="infos-linha"> <!-- Container para informações do administrador -->
 

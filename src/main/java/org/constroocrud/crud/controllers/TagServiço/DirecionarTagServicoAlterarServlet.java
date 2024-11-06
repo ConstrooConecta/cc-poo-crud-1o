@@ -22,7 +22,6 @@ public class DirecionarTagServicoAlterarServlet extends HttpServlet {
         String descricao = req.getParameter("descricao");
 
         int id = Integer.parseInt(str_id);
-        out.println(id);
 
         // Define os atributos que serão utilizados na página de alteração
         req.setAttribute("id", id);

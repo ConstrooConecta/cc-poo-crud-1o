@@ -24,7 +24,6 @@ public class DirecionarCategoriaProdutoAlterarServlet extends HttpServlet {
 
         // Converte o ID recebido para um inteiro
         int id = Integer.parseInt(str_id);
-        out.println(id); // Imprime o ID para fins de depuração
 
         // Define os atributos da categoria para serem acessados na página de alteração
         req.setAttribute("id", id);

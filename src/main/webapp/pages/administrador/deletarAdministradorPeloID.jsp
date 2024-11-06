@@ -8,9 +8,19 @@
 </head>
 <body>
 <header>
-    <div class="titulo-constroo"> <!-- Container para título e logo -->
-        <h1>Constroo</h1> <!-- Nome da aplicação -->
-        <img src="${pageContext.request.contextPath}/imagens/LogoVersaoMenor.svg" alt="Logo do app Constroo"> <!-- Logo da aplicação -->
+    <div class="titulo-constroo">
+        <h1>Constroo</h1>
+        <img src="${pageContext.request.contextPath}/imagens/LogoVersaoMenor.svg" alt="Logo do app Constroo">  <!-- Logo da aplicação -->
+    </div>
+
+    <div class="cruds"> <!-- Navegação principal com links para diferentes seções -->
+        <ul>
+            <li><a href="${pageContext.request.contextPath}/pages/plano/listagemPlanos.jsp">Planos</a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/categoriaProduto/listagemCategoriaProdutos.jsp">Categorias</a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/administrador/listagemAdministradores.jsp" class="active">Adms</a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/tagServico/listagemTagServico.jsp">Tag Serviço</a></li>
+            <li><a href="${pageContext.request.contextPath}/pages/planoAtivacao/listagemPlanosAtivacao.jsp">Planos Ativação</a></li>
+        </ul>
     </div>
 </header>
 
@@ -21,7 +31,7 @@
         <div class="infos-linha1"> <!-- Linha de informações -->
             <div class="ID">
                 <label for="id">ID:</label> <!-- Rótulo para o campo de ID -->
-                <input type="text" name="administrador_id" id="id" placeholder="Insira o ID" required> <!-- Campo de entrada para ID, obrigatório -->
+                <input type="number" name="administrador_id" id="id" min="1" placeholder="Insira o ID" required> <!-- Campo de entrada para ID, obrigatório -->
             </div>
 
             <div class="classButton1"> <!-- Container para o botão -->
