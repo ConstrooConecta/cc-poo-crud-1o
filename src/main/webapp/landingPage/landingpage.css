@@ -16,7 +16,7 @@ body {
 
 /* =-=-=-=-=-=-=-=-=-=-= Configurações da nav/header =-=-=-=-=-=-=-=-=-=-= */
 
-header {    
+header {
     z-index: 1;
     width: 100%;
     background-color: #071c20;
@@ -236,7 +236,7 @@ a {
 
 .q1 h2{
     font-size: 200%;
-    padding: 10% 0%;   
+    padding: 10% 0%;
     height: 1rem;
 }
 .q1 p{
@@ -381,7 +381,7 @@ footer {
     margin-bottom: 10px;
 }
 
-.footer-item ul {    
+.footer-item ul {
     display: flex;
     flex-direction: column;
     list-style: none;
@@ -400,6 +400,128 @@ footer {
 .ancora {
     display: block;
     height: 130px;
-    margin-top: -200px; 
+    margin-top: -200px;
     visibility: hidden;
+}
+
+/* =-=-=-=-=-=-=-=-=-=-= Aplicando media =-=-=-=-=-=-=-=-=-=-=*/
+
+
+@media screen and (max-width: 740px ){
+    header ul {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1023px ){
+
+    /* =-=-=-=-=-=-=-=-=-=-= Apresentação do app responsiva =-=-=-=-=-=-=-=-=-=-=*/
+
+    #constroo{
+        font-size: 100%;
+    }
+
+    .aprsapp img{
+        width: 2vh;
+    }
+    .textos{
+        margin-left: 5vw;
+        width: 40vw;
+    }
+
+    .sabermais{
+        font-size: 0.7rem;
+    }
+
+    .logo-apresentacao img{
+        width: 19vh;
+        margin-left: -10vw;
+    }
+    #app{
+        font-size: 300%;
+    }
+    #tt{
+        font-size: 110%;
+    }
+    #baixe-botao{
+        font-weight: 700;
+        font-size: 0.8rem;
+        height: 6vh;
+    }
+
+    /* =-=-=-=-=-=-=-=-=-=-= O marketplace para você responsivo =-=-=-=-=-=-=-=-=-=-=*/
+
+    .marketplace img{
+        width: 30vh;
+    }
+    .textomarket h1{
+        font-size: 150%;
+
+    }
+    .marketplace{
+        height: 40vh;
+    }
+
+    #marketconstroo {
+        width: 80%;
+        font-size: 100%;
+    }
+    /* =-=-=-=-=-=-=-=-=-=-= Vantagens responsivo =-=-=-=-=-=-=-=-=-=-=*/
+
+    .como{
+        margin: 10% 0%;
+    }
+
+    .vantagens{
+        height: 50vh;
+    }
+    .q1{
+        height: 30vh;
+        margin: 10px;
+    }
+    .q1 h2{
+        font-size: 120%;
+        margin-bottom: 4vh;
+    }
+
+    .q1 p{
+        font-size: 90%;
+        padding-bottom: 10%;
+    }
+    /* =-=-=-=-=-=-=-=-=-=-= Configurações da parte de "como" =-=-=-=-=-=-=-=-=-=-=*/
+
+    .direita-texto{
+        font-size: 10px;
+    }
+
+    .imagem-direita img{
+        width: 50vh;
+    }
+
+    #esquerda img{
+        width: 50vh;
+    }
+
+    #esquerda-texto{
+        font-size: 10px;
+    }
+
+    /* =-=-=-=-=-=-=-=-=-=-= Estilização da parte de "Baixe já" =-=-=-=-=-=-=-=-=-=-=*/
+
+    #imagem-baixe{
+        width: 50vh;
+    }
+
+    #play-baixe{
+        width: 20vh;
+    }
+
+    #bxj-texto{
+        font-size: 0.9rem;
+    }
+
+    #prp-titulo{
+        font-size: 2.6rem;
+    }
+
 }
