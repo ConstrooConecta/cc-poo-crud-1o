@@ -184,6 +184,7 @@ hr{
 }
 
 #texto-missao{
+    color: #0a262c;
     align-items: center;
     width: 56%;
     font-size: 145%;
@@ -298,7 +299,7 @@ footer {
     margin-bottom: 10px;
 }
 
-.footer-item ul {    
+.footer-item ul {
     display: flex;
     flex-direction: column;
     list-style: none;
@@ -314,7 +315,236 @@ footer {
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Sem categoria =-=-=-=-=-=-=-=-=-=-=*/
-    
+
 .negrito {
     font-weight: bold;
+}
+
+@media screen and (max-width: 740px ){
+    header ul {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1023px ){
+    /* =-=-=-=-=-=-=-=-=-=-= Conheça a equipe =-=-=-=-=-=-=-=-=-=-=*/
+
+    #titulo-conheca{
+        font-size: 2rem;
+    }
+
+    /* =-=-=-=-=-=-=-=-=-=-= Quem somos =-=-=-=-=-=-=-=-=-=-=*/
+
+    .texto-qs{
+        width: 50vw;
+        font-size: 0.9rem;
+    }
+
+    .prp-titulo{
+        font-size: 3rem;
+    }
+
+    #imagem-empresa img{
+        width: 30vw;
+    }
+
+    #divisao{
+        display: none;
+    }
+
+    /* =-=-=-=-=-=-=-=-=-=-= Nossa Missão =-=-=-=-=-=-=-=-=-=-=*/
+
+    .missao{
+        display: flex;
+        margin-top: 5%;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .missao img{
+        width: 20rem;
+    }
+
+    #texto-missao{
+        font-size: 1rem;
+    }
+
+    #missao-titulo{
+        font-weight: 1000;
+        font-size: 3rem;
+    }
+
+    /* =-=-=-=-=-=-=-=-=-=-= Apresentação da equipe (carrossel) =-=-=-=-=-=-=-=-=-=-=*/
+
+    .foto-equipe {
+        width: 30vh;
+        margin: 2%;
+    }
+
+    .botao-carrossel{
+        color:   #000000;
+
+    }
+}
+
+@media screen and (max-width: 720px ){
+
+    /* =-=-=-=-=-=-=-=-=-=-= Configurações do footer =-=-=-=-=-=-=-=-=-=-=*/
+
+    #imagem-empresa img{
+        display: none;
+    }
+
+    .prp-titulo{
+        font-size: 3rem;
+        width: 10px;
+    }
+}
+
+@media screen and (max-width: 709px ){
+
+    /* =-=-=-=-=-=-=-=-=-=-= Configurações do footer =-=-=-=-=-=-=-=-=-=-=*/
+
+    footer {
+        height: 50vh;
+        justify-content: center;
+
+    }
+
+    .frase{
+        display: none;
+    }
+
+    .footer-container {
+        width: 25vw;
+        flex-direction: column;
+    }
+
+    .footer-item {
+        margin: 2vh;
+    }
+
+    .footer-item h3 {
+        font-size: 1rem;
+    }
+
+    .direitos {
+        font-size: 0.7rem;
+    }
+}
+
+/* =-=-=-=-=-=-=-=-=-=-= Responsividade para Iphone 12 Pro | Dimensões do Edge =-=-=-=-=-=-=-=-=-=-=*/
+
+
+@media (max-width: 390px){
+
+    header h1 {
+        font-size: 1rem;
+    }
+
+    header ul {
+        font-size: 70%;
+        display: block;
+    }
+
+    header ul .ref-parte, #baixar {
+        display: none;
+    }
+
+    .titulo-constroo img{
+        width: 7vw;
+    }
+
+    #qs-nav{
+        display: block;
+    }
+
+    /* =-=-=-=-=-=-=-=-=-=-= Equipe =-=-=-=-=-=-=-=-=-=-=*/
+
+    #titulo-conheca{
+        font-size: 150%;
+    }
+
+    #imagem-empresa {
+        display: none;
+    }
+
+
+    .texto-qs{
+        width: 100%;
+        margin: 0;
+        font-size: 90%;
+    }
+
+    .prp-texto{
+        text-align: center;
+        width: 90%;
+        margin: 0;
+        margin-bottom: 10%;
+    }
+
+    .prp-titulo{
+        width: 100%;
+        margin: 0;
+        font-size: 3rem;
+        margin-bottom: 3%;
+    }
+
+    /* =-=-=-=-=-=-=-=-=-=-= Equipe =-=-=-=-=-=-=-=-=-=-=*/
+    .carrossel{
+        margin: 0;
+        width: 100%;
+    }
+
+    .slides{
+        margin: 0;
+    }
+
+    #eq     {
+        color: #071c20;
+    }
+
+    /* =-=-=-=-=-=-=-=-=-=-= Missão =-=-=-=-=-=-=-=-=-=-=*/
+
+    .missao{
+        width: 100%;
+        margin: 15% 0%;
+        font-size: 3rem;
+        margin-bottom: 3%;
+    }
+
+    #texto-missao{
+        width: 90%;
+    }
+
+    .missao p {
+        font-size: 90%;
+    }
+    /* =-=-=-=-=-=-=-=-=-=-= Footer =-=-=-=-=-=-=-=-=-=-=*/
+    footer {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #frase {
+        width: 90%;
+        text-align: center;
+        font-size: 100%;
+    }
+
+    .footer-item {
+        width: 100%;
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    #direitos {
+        font-size: 70%;
+        padding: 5px 0;
+    }
 }
