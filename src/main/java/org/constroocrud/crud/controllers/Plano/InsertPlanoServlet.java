@@ -47,7 +47,7 @@ public class InsertPlanoServlet extends HttpServlet {
 
         try {
             // Verifica se já existe um plano com o mesmo ID
-            ResultSet rs = planoDAO.buscarPlanoPeloID(plano.getId());
+            ResultSet rs = planoDAO.buscarPlanoPeloNome(plano.getNome());
             if (!rs.next()) { // Se não encontrar, insere o novo plano
                 int num = planoDAO.inserirPlano(plano);
                 // Define o retorno baseado no resultado da inserção
