@@ -415,7 +415,7 @@ footer {
 
 @media screen and (max-width: 1023px ){
 
-    /* =-=-=-=-=-=-=-=-=-=-= Apresentação do app responsiva =-=-=-=-=-=-=-=-=-=-=*/
+    /* =-=-=-=-=-=-=-=-=-=-= Apresentação do app =-=-=-=-=-=-=-=-=-=-=*/
 
     #constroo{
         font-size: 100%;
@@ -424,6 +424,7 @@ footer {
     .aprsapp img{
         width: 2vh;
     }
+
     .textos{
         margin-left: 5vw;
         width: 40vw;
@@ -437,27 +438,32 @@ footer {
         width: 19vh;
         margin-left: -10vw;
     }
+
     #app{
         font-size: 300%;
     }
+
     #tt{
         font-size: 110%;
     }
+
     #baixe-botao{
         font-weight: 700;
         font-size: 0.8rem;
         height: 6vh;
     }
 
-    /* =-=-=-=-=-=-=-=-=-=-= O marketplace para você responsivo =-=-=-=-=-=-=-=-=-=-=*/
+    /* =-=-=-=-=-=-=-=-=-=-= O marketplace =-=-=-=-=-=-=-=-=-=-=*/
 
     .marketplace img{
         width: 30vh;
     }
+
     .textomarket h1{
         font-size: 150%;
 
     }
+
     .marketplace{
         height: 40vh;
     }
@@ -466,7 +472,8 @@ footer {
         width: 80%;
         font-size: 100%;
     }
-    /* =-=-=-=-=-=-=-=-=-=-= Vantagens responsivo =-=-=-=-=-=-=-=-=-=-=*/
+
+    /* =-=-=-=-=-=-=-=-=-=-= Vantagens =-=-=-=-=-=-=-=-=-=-=*/
 
     .como{
         margin: 10% 0%;
@@ -475,10 +482,12 @@ footer {
     .vantagens{
         height: 50vh;
     }
+
     .q1{
         height: 30vh;
         margin: 10px;
     }
+
     .q1 h2{
         font-size: 120%;
         margin-bottom: 4vh;
@@ -487,7 +496,9 @@ footer {
     .q1 p{
         font-size: 90%;
         padding-bottom: 10%;
+
     }
+
     /* =-=-=-=-=-=-=-=-=-=-= Configurações da parte de "como" =-=-=-=-=-=-=-=-=-=-=*/
 
     .direita-texto{
@@ -506,7 +517,8 @@ footer {
         font-size: 10px;
     }
 
-    /* =-=-=-=-=-=-=-=-=-=-= Estilização da parte de "Baixe já" =-=-=-=-=-=-=-=-=-=-=*/
+    /* =-=-=-=-=-=-=-=-=-=-= Baixe em breve =-=-=-=-=-=-=-=-=-=-=*/
+
 
     #imagem-baixe{
         width: 50vh;
@@ -524,4 +536,269 @@ footer {
         font-size: 2.6rem;
     }
 
+}
+
+@media screen and (max-width: 709px ){
+
+    /* =-=-=-=-=-=-=-=-=-=-= Configurações do footer =-=-=-=-=-=-=-=-=-=-=*/
+
+    footer {
+        height: 50vh;
+        justify-content: center;
+    }
+
+    #frase{
+        display: none;
+    }
+
+    .footer-container {
+        width: 25vw;
+        flex-direction: column;
+    }
+
+    .footer-item {
+        margin: 2vh;
+    }
+
+    .footer-item h3 {
+        font-size: 1rem;
+    }
+
+    .direitos {
+        font-size: 0.7rem;
+    }
+}
+
+/* =-=-=-=-=-=-=-=-=-=-= Responsividade para Iphone 12 Pro | Dimensões do Edge =-=-=-=-=-=-=-=-=-=-=*/
+
+@media (max-width: 419px) {
+
+    header h1 {
+        margin-left: 25vw;
+        font-size: 1rem;
+    }
+
+    header ul {
+        display: block;
+    }
+
+    header ul .ref-parte, #baixar {
+        display: none;
+    }
+
+    #qs-nav{
+        display: block;
+    }
+
+    .titulo-constroo {
+        justify-content: center;
+        font-size: 100%;
+    }
+
+    .titulo-constroo img{
+        width: 7vw;
+    }
+
+    #baixar {
+        width: 100px;
+    }
+
+    /* =-=-=-=-=-=-=-=-=-=-= Apresentação do app =-=-=-=-=-=-=-=-=-=-=*/
+    .aprsapp {
+        flex-direction: column;
+        padding: 20% 0;
+        text-align: center;
+    }
+
+    .textos {
+        margin-left: 38%;
+        width: 90%;
+    }
+
+    .logo-apresentacao img{
+        display: none;
+    }
+    #app {
+        width: 100%;
+        font-size: 300%;
+    }
+
+    #tt {
+        width: 100%;
+        font-size: 120%;
+        margin: 5% 0;
+    }
+
+    #baixe-botao {
+        width: 100%;
+        font-size: 120%;
+        height: 50px;
+        margin-top: 10px;
+    }
+
+    /* =-=-=-=-=-=-=-=-=-=-= Marketplace =-=-=-=-=-=-=-=-=-=-= */
+    .marketplace {
+        height: 55vh;
+        flex-direction: column;
+        text-align: center;
+        margin: 20% 0% 40% 0%;
+    }
+
+    .marketplace img {
+        margin: 0;
+        width: 90%;
+    }
+
+    .textomarket {
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 0;
+    }
+
+    .textomarket h1 {
+        width: 100%;
+        font-size: 170%;
+    }
+
+    #marketconstroo {
+        font-size: 100%;
+        margin-bottom: 10%;
+        width: 90%;
+        margin: 0% 5%;
+    }
+
+    /* =-=-=-=-=-=-=-=-=-=-= Vantagens =-=-=-=-=-=-=-=-=-=-=*/
+
+    .vantagens{
+        justify-content: center;
+        height: 130vh;
+    }
+
+    .vantagens h1 {
+        font-size: 1.5rem;
+        padding: 0;
+    }
+
+    .quadrado-informacao {
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .q1 {
+        width: 83%;
+        padding: 20px;
+        font-size: 100%;
+    }
+
+    .q1 h2 {
+        padding: 10% 0% 0% 0%;
+        font-size: 150%;
+    }
+
+    .q1 p {
+        font-size: 100%;
+    }
+
+    /* =-=-=-=-=-=-=-=-=-=-= Como =-=-=-=-=-=-=-=-=-=-=*/
+    .como{
+        margin: 30% 0% 15% 0%;
+    }
+    .direita,
+    #esquerda {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .direita-texto{
+        width: 90%;
+        margin: 10px 0;
+    }
+
+    #esquerda-texto{
+        width: 90%;
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    #texto-como-esquerda{
+        width: 100%;
+        font-size: 10px;
+    }
+
+    .imagem-direita img,
+    #esquerda img {
+        display: none;
+    }
+
+    .texto-como {
+        width: 100%;
+        font-size: 100%;
+    }
+
+    .titulo-como {
+        font-size: 200%;
+    }
+
+    /* =-=-=-=-=-=-=-=-=-=-= Baixe em breve =-=-=-=-=-=-=-=-=-=-=*/
+
+    #baixe-ja{
+        margin-top: 20%;
+        flex-direction: column;
+    }
+    #imagem-baixe {
+        width: 100%;
+        margin: 20px 0;
+    }
+
+    #play-baixe {
+        margin: 0;
+    }
+
+    #prp-texto {
+        margin-left: 4%;
+        width: 90%;
+        text-align: center;
+    }
+
+    #prp-titulo {
+        width: 90%;
+        font-size: 200%;
+    }
+
+    #bxj-texto {
+        font-size: 100%;
+        width: 100%;
+        margin: 5% 0;
+    }
+
+    /* =-=-=-=-=-=-=-=-=-=-= Footer =-=-=-=-=-=-=-=-=-=-=*/
+    footer {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #frase {
+        width: 90%;
+        text-align: center;
+        font-size: 100%;
+    }
+
+    .footer-item {
+        width: 100%;
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    #direitos {
+        font-size: 70%;
+        padding: 5px 0;
+    }
 }
