@@ -1,5 +1,6 @@
 
 # CRUD CONSTROO
+- o crud do constroo é uma ferramenta para gerenciar recursos do aplicativo Constroo. Ele consegue gerenciar administradores, categorias de produtos, tags de profissionais e planos. 
 
 ## Linguagens utilizadas:
 ### Backend 
